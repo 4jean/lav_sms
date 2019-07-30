@@ -1,0 +1,435 @@
+/* ------------------------------------------------------------------------------
+*
+*  # D3.js library
+*
+*  Basic styles for D3.js visualization library
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-d3 {
+
+
+    // Axis
+    // ------------------------------
+
+    // Base
+    .d3-axis {
+
+        // Path
+        path {
+            fill: none;
+            stroke: $gray-600;
+            shape-rendering: crispEdges;
+        }
+
+        // Line
+        line {
+            stroke: $gray-200;
+            shape-rendering: crispEdges;
+        }
+
+        // Ticks
+        .tick {
+            &,
+            text {
+                font-size: $font-size-sm;
+                fill: $gray-900;
+            }
+        }
+    }
+
+    // Lighter axis text
+    .d3-axis-solid {
+        path,
+        line {
+            stroke: $gray-500;
+        }
+
+        // Ticks
+        .tick {
+            fill: $gray-600;
+
+            text {
+                fill: $gray-600;
+            }
+        }
+    }
+
+    // Stronger axis text
+    .d3-axis-strong {
+        path,
+        line {
+            stroke: $gray-500;
+        }
+
+        // Ticks
+        .tick {
+            fill: $gray-900;
+
+            text {
+                fill: $gray-900;
+            }
+        }
+    }
+
+    // Transparent axis
+    .d3-axis-transparent {
+
+        // Hide path
+        path {
+            stroke: none;
+        }
+
+        // Hide line
+        line {
+            stroke: $gray-300;
+        }
+
+        // Change tick colors
+        .tick {
+            fill: $gray-600;
+
+            text {
+                fill: $gray-600;
+            }
+        }
+    }
+
+
+
+    // Tooltip
+    // ------------------------------
+
+    //
+    // Basic tooltip
+    //
+
+    // Base
+    .d3-tip {
+        position: absolute;
+        padding: $tooltip-padding-y $tooltip-padding-x;
+        background-color: $tooltip-bg;
+        color: $tooltip-color;
+        margin-bottom: -($tooltip-arrow-height);
+        font-size: $tooltip-font-size;
+        z-index: $zindex-tooltip;
+        @include border-radius($tooltip-border-radius);
+
+        // Arrow
+        .d3-tip-arrow {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+        }
+    }
+
+    // Tooltip positioning
+    .d3-tip {
+        &.n .d3-tip-arrow {
+            bottom: -($tooltip-arrow-height);
+            left: 50%;
+            margin-left: -($tooltip-arrow-height);
+            border-width: $tooltip-arrow-height $tooltip-arrow-height 0;
+            border-top-color: $tooltip-arrow-color;
+        }
+        &.e .d3-tip-arrow {
+            top: 50%;
+            margin-top: -$tooltip-arrow-height;
+            /*rtl:begin:ignore*/
+            left: -($tooltip-arrow-height);
+            border-width: $tooltip-arrow-height $tooltip-arrow-height $tooltip-arrow-height 0;
+            border-right-color: $tooltip-arrow-color;
+            /*rtl:end:ignore*/
+        }
+        &.w .d3-tip-arrow {
+            top: 50%;
+            margin-top: -$tooltip-arrow-height;
+            /*rtl:begin:ignore*/
+            right: -($tooltip-arrow-height);
+            border-width: $tooltip-arrow-height 0 $tooltip-arrow-height $tooltip-arrow-height;
+            border-left-color: $tooltip-arrow-color;
+            /*rtl:end:ignore*/
+        }
+        &.s .d3-tip-arrow {
+            top: 0;
+            left: 50%;
+            margin-left: -$tooltip-arrow-height;
+            border-width: 0 $tooltip-arrow-height $tooltip-arrow-height;
+            border-bottom-color: $tooltip-arrow-color;
+        }
+    }
+
+
+    //
+    // Venn diagram tooltip
+    //
+
+    // Base
+    .venntooltip {
+        position: absolute;
+        text-align: center;
+        white-space: nowrap;
+        background-color: $tooltip-bg;
+        color: $tooltip-color;
+        padding: $tooltip-padding-y $tooltip-padding-x;
+        display: none;
+        @include border-radius($tooltip-border-radius);
+    }
+
+
+
+    // Chart types
+    // ------------------------------
+
+    // Lines
+    .d3-line {
+        fill: none;
+
+        // Thin stroke
+        &-thin {
+            stroke-width: 1px;
+        }
+
+        // Medium stroke
+        &-medium {
+            stroke-width: 1.5px;
+        }
+
+        // Strong stroke
+        &-strong {
+            stroke-width: 2px;
+        }
+    }
+
+
+    // Line circles
+    .d3-line-circle {
+        fill: none;
+        cursor: pointer;
+
+        // Thin stroke
+        &-thin {
+            stroke-width: 1px;
+        }
+
+        // Medium stroke
+        &-medium {
+            stroke-width: 1.5px;
+        }
+
+        // Strong stroke
+        &-strong {
+            stroke-width: 2px;
+        }
+    }
+
+
+
+    // Grid
+    // ------------------------------
+
+    // Basic grid
+    .d3-grid {
+        .tick {
+            line {
+                stroke-width: 1px;
+                stroke: $gray-300;
+                shape-rendering: crispEdges;
+            }
+
+            text {
+                fill: $gray-900;
+                stroke: none;
+            }
+        }
+    }
+
+
+    // Dashed grid
+    .d3-grid-dashed {
+        .tick {
+            stroke-dasharray: 4,2;
+            stroke-width: 1px;
+            stroke: $gray-300;
+            shape-rendering: crispEdges;
+        }
+
+        path {
+            stroke-width: 0;
+        }
+    }
+
+
+
+    // Components
+    // ------------------------------
+
+    // Crosshair overlay
+    .d3-crosshair-overlay {
+        fill: none;
+        pointer-events: all;
+    }
+
+
+
+    // Bullets
+    // ------------------------------
+
+    //
+    // Base
+    //
+
+    // Ticks
+    .bullet-tick {
+
+        // Line styles
+        line {
+            stroke: $gray-600;
+            stroke-width: 1px;
+            shape-rendering: crispEdges;
+        }
+
+        // Text styles
+        text {
+            fill: $gray-600;
+            font-size: $font-size-sm;
+        }
+    }
+
+    // Marker
+    .bullet-marker {
+        stroke-width: 2px;
+        shape-rendering: crispEdges;
+    }
+
+    // Title
+    .bullet-title {
+        font-size: $font-size-base;
+        font-weight: $font-weight-semibold;
+    }
+
+    // Subtitle
+    .bullet-subtitle {
+        fill: $gray-600;
+    }
+
+
+    //
+    // First bullet
+    //
+
+    // Ranges
+    .bullet-1 .bullet-range-1 {
+        fill: rgba($color-slate-500, 0.8);
+    }
+    .bullet-1 .bullet-range-2 {
+        fill: rgba($color-slate-500, 0.4);
+    }
+    .bullet-1 .bullet-range-3 {
+        fill: $color-slate-500;
+    }
+
+    // Measures
+    .bullet-1 .bullet-measure-1 {
+        fill: rgba($color-slate-600, 0.9);
+    }
+    .bullet-1 .bullet-measure-2 {
+        fill: $white;
+    }
+
+    // Marker
+    .bullet-1 .bullet-marker {
+        stroke: $color-slate-800;
+    }
+
+
+    //
+    // Second bullet
+    //
+
+    // Ranges
+    .bullet-2 .bullet-range-1 {
+        fill: rgba($color-warning-400, 0.6);
+    }
+    .bullet-2 .bullet-range-2 {
+        fill: rgba($color-warning-400, 0.3);
+    }
+    .bullet-2 .bullet-range-3 {
+        fill: $color-warning-400;
+    }
+
+    // Measures
+    .bullet-2 .bullet-measure-1 {
+        fill: rgba($color-warning-600, 0.9);
+    }
+    .bullet-2 .bullet-measure-2 {
+        fill: $white;
+    }
+
+    // Marker
+    .bullet-2 .bullet-marker {
+        stroke: $color-warning-800;
+    }
+
+
+    //
+    // Third bullet
+    //
+
+    // Ranges
+    .bullet-3 .bullet-range-1 {
+        fill: rgba($color-success-400, 0.7);
+    }
+    .bullet-3 .bullet-range-2 {
+        fill: rgba($color-success-400, 0.35);
+    }
+    .bullet-3 .bullet-range-3 {
+        fill: $color-success-400;
+    }
+
+    // Measures
+    .bullet-3 .bullet-measure-1 {
+        fill: rgba($color-success-600, 0.9);
+    }
+    .bullet-3 .bullet-measure-2 {
+        fill: $white;
+    }
+
+    // Marker
+    .bullet-3 .bullet-marker {
+        stroke: $color-success-800;
+    }
+
+
+
+    // Progress counter icon. Styles moved to
+    // CSS, because IE9 drove me crazy...
+    // ------------------------------
+
+    .counter-icon {
+        font-size: ($icon-font-size * 2);
+        position: absolute;
+        left: 50%;
+        margin-left: -($icon-font-size);
+    }
+
+
+    // Legend
+    // ------------------------------
+
+    .chart-widget-legend {
+        margin: 0.625rem 0 0 0;
+        padding: 0;
+        font-size: $font-size-sm;
+        text-align: center;
+        
+        li {
+            margin: 0.3125rem 0.625rem 0;
+            padding: 0.4375rem 0.5rem 0.3125rem;
+            display: inline-block;
+        }
+    }
+}

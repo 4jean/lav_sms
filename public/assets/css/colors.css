@@ -1,0 +1,2415 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Custom color system
+ *
+ *  Custom color system styles, includes background, border and text colors
+ *
+ * ---------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------
+ *
+ *  # Global configuration
+ *
+ *  Here you can change main theme, enable or disable certain components and
+ *  optional styles. This allows you to include only components that you need.
+ *
+ *  'true'  - enables component and includes it to main CSS file.
+ *  'false' - disables component and excludes it from main CSS file.
+ *
+ *  Layout helper: @if $layout == 'base' {...}
+ *  Theme helper: @if $theme == 'material' {...}
+ *  Component helper: @if $enable-* {...}
+ *
+ * ---------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------
+ *
+ *  # Custom Limitless functions
+ *
+ *  Utility mixins and functions for evalutating source code across our variables, maps, and mixins.
+ *
+ * ---------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------
+ *
+ *  # Custom template mixins
+ *
+ *  All custom mixins are prefixed with "ll-" to avoid conflicts
+ *
+ * ---------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------
+ *
+ *  # Main colors
+ *
+ *  List of the template main color palettes
+ *
+ * ---------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------
+ *
+ *  # Default Bootstrap variable overrides
+ *
+ *  Variables should follow the `$component-state-property-size` formula for
+ *  consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
+ *  Also includes custom variables, all marked with "!default" flag.
+ *
+ * ---------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------
+ *
+ *  # Additional variables
+ *
+ *  Mainly 3rd party libraries and additional variables for default
+ *  Bootstrap components.
+ *
+ * ---------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------
+ *
+ *  # Mixins
+ *
+ *  Import Bootstrap mixins with overrides
+ *
+ * ---------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------
+ *
+ *  # Badge mixin
+ *
+ *  Override and extend default badge mixin.
+ *
+ * ---------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------
+ *
+ *  # Buttons mixin
+ *
+ *  Override and extend default buttons mixin.
+ *
+ * ---------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------
+ *
+ *  # Caret mixin
+ *
+ *  Override and extend default cared mixin.
+ *
+ * ---------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------
+ *
+ *  # Forms mixin
+ *
+ *  Override and extend default forms mixin.
+ *
+ * ---------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------
+ *
+ *  # Background mixin
+ *
+ *  Override and extend default background mixin.
+ *
+ * ---------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------
+ *
+ *  # Custom color system
+ *
+ *  Custom color system styles. Includes background, border and text colors
+ *
+ * ---------------------------------------------------------------------------- */
+.alpha-primary {
+  background-color: #E3F2FD; }
+
+.text-primary {
+  color: #2196F3; }
+  .text-primary[href]:hover, .text-primary[href]:focus {
+    color: #0c83e2; }
+
+.bg-primary {
+  background-color: #2196F3; }
+
+.border-primary {
+  border-color: #2196F3; }
+
+.border-top-primary {
+  border-top-color: #2196F3; }
+
+.border-bottom-primary {
+  border-bottom-color: #2196F3; }
+
+.border-left-primary {
+  border-left-color: #2196F3; }
+
+.border-right-primary {
+  border-right-color: #2196F3; }
+
+.text-primary-300 {
+  color: #64B5F6; }
+  .text-primary-300[href]:hover, .text-primary-300[href]:focus {
+    color: #40a4f4; }
+
+.bg-primary-300 {
+  background-color: #64B5F6; }
+
+.border-primary-300 {
+  border-color: #64B5F6; }
+
+.border-top-primary-300 {
+  border-top-color: #64B5F6; }
+
+.border-bottom-primary-300 {
+  border-bottom-color: #64B5F6; }
+
+.border-left-primary-300 {
+  border-left-color: #64B5F6; }
+
+.border-right-primary-300 {
+  border-right-color: #64B5F6; }
+
+.text-primary-400 {
+  color: #42A5F5; }
+  .text-primary-400[href]:hover, .text-primary-400[href]:focus {
+    color: #1e94f3; }
+
+.bg-primary-400 {
+  background-color: #42A5F5; }
+
+.border-primary-400 {
+  border-color: #42A5F5; }
+
+.border-top-primary-400 {
+  border-top-color: #42A5F5; }
+
+.border-bottom-primary-400 {
+  border-bottom-color: #42A5F5; }
+
+.border-left-primary-400 {
+  border-left-color: #42A5F5; }
+
+.border-right-primary-400 {
+  border-right-color: #42A5F5; }
+
+.text-primary-600 {
+  color: #1E88E5; }
+  .text-primary-600[href]:hover, .text-primary-600[href]:focus {
+    color: #1774c6; }
+
+.bg-primary-600 {
+  background-color: #1E88E5; }
+
+.border-primary-600 {
+  border-color: #1E88E5; }
+
+.border-top-primary-600 {
+  border-top-color: #1E88E5; }
+
+.border-bottom-primary-600 {
+  border-bottom-color: #1E88E5; }
+
+.border-left-primary-600 {
+  border-left-color: #1E88E5; }
+
+.border-right-primary-600 {
+  border-right-color: #1E88E5; }
+
+.text-primary-700 {
+  color: #1976D2; }
+  .text-primary-700[href]:hover, .text-primary-700[href]:focus {
+    color: #1563b0; }
+
+.bg-primary-700 {
+  background-color: #1976D2; }
+
+.border-primary-700 {
+  border-color: #1976D2; }
+
+.border-top-primary-700 {
+  border-top-color: #1976D2; }
+
+.border-bottom-primary-700 {
+  border-bottom-color: #1976D2; }
+
+.border-left-primary-700 {
+  border-left-color: #1976D2; }
+
+.border-right-primary-700 {
+  border-right-color: #1976D2; }
+
+.text-primary-800 {
+  color: #1565C0; }
+  .text-primary-800[href]:hover, .text-primary-800[href]:focus {
+    color: #11539e; }
+
+.bg-primary-800 {
+  background-color: #1565C0; }
+
+.border-primary-800 {
+  border-color: #1565C0; }
+
+.border-top-primary-800 {
+  border-top-color: #1565C0; }
+
+.border-bottom-primary-800 {
+  border-bottom-color: #1565C0; }
+
+.border-left-primary-800 {
+  border-left-color: #1565C0; }
+
+.border-right-primary-800 {
+  border-right-color: #1565C0; }
+
+.alpha-danger {
+  background-color: #FFEBEE; }
+
+.text-danger {
+  color: #F44336; }
+  .text-danger[href]:hover, .text-danger[href]:focus {
+    color: #f22112; }
+
+.bg-danger {
+  background-color: #F44336; }
+
+.border-danger {
+  border-color: #F44336; }
+
+.border-top-danger {
+  border-top-color: #F44336; }
+
+.border-bottom-danger {
+  border-bottom-color: #F44336; }
+
+.border-left-danger {
+  border-left-color: #F44336; }
+
+.border-right-danger {
+  border-right-color: #F44336; }
+
+.text-danger-300 {
+  color: #E57373; }
+  .text-danger-300[href]:hover, .text-danger-300[href]:focus {
+    color: #df5353; }
+
+.bg-danger-300 {
+  background-color: #E57373; }
+
+.border-danger-300 {
+  border-color: #E57373; }
+
+.border-top-danger-300 {
+  border-top-color: #E57373; }
+
+.border-bottom-danger-300 {
+  border-bottom-color: #E57373; }
+
+.border-left-danger-300 {
+  border-left-color: #E57373; }
+
+.border-right-danger-300 {
+  border-right-color: #E57373; }
+
+.text-danger-400 {
+  color: #EF5350; }
+  .text-danger-400[href]:hover, .text-danger-400[href]:focus {
+    color: #ec312d; }
+
+.bg-danger-400 {
+  background-color: #EF5350; }
+
+.border-danger-400 {
+  border-color: #EF5350; }
+
+.border-top-danger-400 {
+  border-top-color: #EF5350; }
+
+.border-bottom-danger-400 {
+  border-bottom-color: #EF5350; }
+
+.border-left-danger-400 {
+  border-left-color: #EF5350; }
+
+.border-right-danger-400 {
+  border-right-color: #EF5350; }
+
+.text-danger-600 {
+  color: #E53935; }
+  .text-danger-600[href]:hover, .text-danger-600[href]:focus {
+    color: #d8201c; }
+
+.bg-danger-600 {
+  background-color: #E53935; }
+
+.border-danger-600 {
+  border-color: #E53935; }
+
+.border-top-danger-600 {
+  border-top-color: #E53935; }
+
+.border-bottom-danger-600 {
+  border-bottom-color: #E53935; }
+
+.border-left-danger-600 {
+  border-left-color: #E53935; }
+
+.border-right-danger-600 {
+  border-right-color: #E53935; }
+
+.text-danger-700 {
+  color: #D32F2F; }
+  .text-danger-700[href]:hover, .text-danger-700[href]:focus {
+    color: #b52626; }
+
+.bg-danger-700 {
+  background-color: #D32F2F; }
+
+.border-danger-700 {
+  border-color: #D32F2F; }
+
+.border-top-danger-700 {
+  border-top-color: #D32F2F; }
+
+.border-bottom-danger-700 {
+  border-bottom-color: #D32F2F; }
+
+.border-left-danger-700 {
+  border-left-color: #D32F2F; }
+
+.border-right-danger-700 {
+  border-right-color: #D32F2F; }
+
+.text-danger-800 {
+  color: #C62828; }
+  .text-danger-800[href]:hover, .text-danger-800[href]:focus {
+    color: #a62222; }
+
+.bg-danger-800 {
+  background-color: #C62828; }
+
+.border-danger-800 {
+  border-color: #C62828; }
+
+.border-top-danger-800 {
+  border-top-color: #C62828; }
+
+.border-bottom-danger-800 {
+  border-bottom-color: #C62828; }
+
+.border-left-danger-800 {
+  border-left-color: #C62828; }
+
+.border-right-danger-800 {
+  border-right-color: #C62828; }
+
+.alpha-success {
+  background-color: #E8F5E9; }
+
+.text-success {
+  color: #4CAF50; }
+  .text-success[href]:hover, .text-success[href]:focus {
+    color: #409444; }
+
+.bg-success {
+  background-color: #4CAF50; }
+
+.border-success {
+  border-color: #4CAF50; }
+
+.border-top-success {
+  border-top-color: #4CAF50; }
+
+.border-bottom-success {
+  border-bottom-color: #4CAF50; }
+
+.border-left-success {
+  border-left-color: #4CAF50; }
+
+.border-right-success {
+  border-right-color: #4CAF50; }
+
+.text-success-300 {
+  color: #81C784; }
+  .text-success-300[href]:hover, .text-success-300[href]:focus {
+    color: #67bb6a; }
+
+.bg-success-300 {
+  background-color: #81C784; }
+
+.border-success-300 {
+  border-color: #81C784; }
+
+.border-top-success-300 {
+  border-top-color: #81C784; }
+
+.border-bottom-success-300 {
+  border-bottom-color: #81C784; }
+
+.border-left-success-300 {
+  border-left-color: #81C784; }
+
+.border-right-success-300 {
+  border-right-color: #81C784; }
+
+.text-success-400 {
+  color: #66BB6A; }
+  .text-success-400[href]:hover, .text-success-400[href]:focus {
+    color: #4dae52; }
+
+.bg-success-400 {
+  background-color: #66BB6A; }
+
+.border-success-400 {
+  border-color: #66BB6A; }
+
+.border-top-success-400 {
+  border-top-color: #66BB6A; }
+
+.border-bottom-success-400 {
+  border-bottom-color: #66BB6A; }
+
+.border-left-success-400 {
+  border-left-color: #66BB6A; }
+
+.border-right-success-400 {
+  border-right-color: #66BB6A; }
+
+.text-success-600 {
+  color: #43A047; }
+  .text-success-600[href]:hover, .text-success-600[href]:focus {
+    color: #38853b; }
+
+.bg-success-600 {
+  background-color: #43A047; }
+
+.border-success-600 {
+  border-color: #43A047; }
+
+.border-top-success-600 {
+  border-top-color: #43A047; }
+
+.border-bottom-success-600 {
+  border-bottom-color: #43A047; }
+
+.border-left-success-600 {
+  border-left-color: #43A047; }
+
+.border-right-success-600 {
+  border-right-color: #43A047; }
+
+.text-success-700 {
+  color: #388E3C; }
+  .text-success-700[href]:hover, .text-success-700[href]:focus {
+    color: #2d7330; }
+
+.bg-success-700 {
+  background-color: #388E3C; }
+
+.border-success-700 {
+  border-color: #388E3C; }
+
+.border-top-success-700 {
+  border-top-color: #388E3C; }
+
+.border-bottom-success-700 {
+  border-bottom-color: #388E3C; }
+
+.border-left-success-700 {
+  border-left-color: #388E3C; }
+
+.border-right-success-700 {
+  border-right-color: #388E3C; }
+
+.text-success-800 {
+  color: #2E7D32; }
+  .text-success-800[href]:hover, .text-success-800[href]:focus {
+    color: #246127; }
+
+.bg-success-800 {
+  background-color: #2E7D32; }
+
+.border-success-800 {
+  border-color: #2E7D32; }
+
+.border-top-success-800 {
+  border-top-color: #2E7D32; }
+
+.border-bottom-success-800 {
+  border-bottom-color: #2E7D32; }
+
+.border-left-success-800 {
+  border-left-color: #2E7D32; }
+
+.border-right-success-800 {
+  border-right-color: #2E7D32; }
+
+.alpha-warning {
+  background-color: #FBE9E7; }
+
+.text-warning {
+  color: #FF5722; }
+  .text-warning[href]:hover, .text-warning[href]:focus {
+    color: #fb3c00; }
+
+.bg-warning {
+  background-color: #FF5722; }
+
+.border-warning {
+  border-color: #FF5722; }
+
+.border-top-warning {
+  border-top-color: #FF5722; }
+
+.border-bottom-warning {
+  border-bottom-color: #FF5722; }
+
+.border-left-warning {
+  border-left-color: #FF5722; }
+
+.border-right-warning {
+  border-right-color: #FF5722; }
+
+.text-warning-300 {
+  color: #FF8A65; }
+  .text-warning-300[href]:hover, .text-warning-300[href]:focus {
+    color: #ff6d3f; }
+
+.bg-warning-300 {
+  background-color: #FF8A65; }
+
+.border-warning-300 {
+  border-color: #FF8A65; }
+
+.border-top-warning-300 {
+  border-top-color: #FF8A65; }
+
+.border-bottom-warning-300 {
+  border-bottom-color: #FF8A65; }
+
+.border-left-warning-300 {
+  border-left-color: #FF8A65; }
+
+.border-right-warning-300 {
+  border-right-color: #FF8A65; }
+
+.text-warning-400 {
+  color: #FF7043; }
+  .text-warning-400[href]:hover, .text-warning-400[href]:focus {
+    color: #ff531d; }
+
+.bg-warning-400 {
+  background-color: #FF7043; }
+
+.border-warning-400 {
+  border-color: #FF7043; }
+
+.border-top-warning-400 {
+  border-top-color: #FF7043; }
+
+.border-bottom-warning-400 {
+  border-bottom-color: #FF7043; }
+
+.border-left-warning-400 {
+  border-left-color: #FF7043; }
+
+.border-right-warning-400 {
+  border-right-color: #FF7043; }
+
+.text-warning-600 {
+  color: #F4511E; }
+  .text-warning-600[href]:hover, .text-warning-600[href]:focus {
+    color: #e13e0b; }
+
+.bg-warning-600 {
+  background-color: #F4511E; }
+
+.border-warning-600 {
+  border-color: #F4511E; }
+
+.border-top-warning-600 {
+  border-top-color: #F4511E; }
+
+.border-bottom-warning-600 {
+  border-bottom-color: #F4511E; }
+
+.border-left-warning-600 {
+  border-left-color: #F4511E; }
+
+.border-right-warning-600 {
+  border-right-color: #F4511E; }
+
+.text-warning-700 {
+  color: #E64A19; }
+  .text-warning-700[href]:hover, .text-warning-700[href]:focus {
+    color: #c43f15; }
+
+.bg-warning-700 {
+  background-color: #E64A19; }
+
+.border-warning-700 {
+  border-color: #E64A19; }
+
+.border-top-warning-700 {
+  border-top-color: #E64A19; }
+
+.border-bottom-warning-700 {
+  border-bottom-color: #E64A19; }
+
+.border-left-warning-700 {
+  border-left-color: #E64A19; }
+
+.border-right-warning-700 {
+  border-right-color: #E64A19; }
+
+.text-warning-800 {
+  color: #D84315; }
+  .text-warning-800[href]:hover, .text-warning-800[href]:focus {
+    color: #b53812; }
+
+.bg-warning-800 {
+  background-color: #D84315; }
+
+.border-warning-800 {
+  border-color: #D84315; }
+
+.border-top-warning-800 {
+  border-top-color: #D84315; }
+
+.border-bottom-warning-800 {
+  border-bottom-color: #D84315; }
+
+.border-left-warning-800 {
+  border-left-color: #D84315; }
+
+.border-right-warning-800 {
+  border-right-color: #D84315; }
+
+.alpha-info {
+  background-color: #E0F7FA; }
+
+.text-info {
+  color: #00BCD4; }
+  .text-info[href]:hover, .text-info[href]:focus {
+    color: #009aae; }
+
+.bg-info {
+  background-color: #00BCD4; }
+
+.border-info {
+  border-color: #00BCD4; }
+
+.border-top-info {
+  border-top-color: #00BCD4; }
+
+.border-bottom-info {
+  border-bottom-color: #00BCD4; }
+
+.border-left-info {
+  border-left-color: #00BCD4; }
+
+.border-right-info {
+  border-right-color: #00BCD4; }
+
+.text-info-300 {
+  color: #4DD0E1; }
+  .text-info-300[href]:hover, .text-info-300[href]:focus {
+    color: #2cc7db; }
+
+.bg-info-300 {
+  background-color: #4DD0E1; }
+
+.border-info-300 {
+  border-color: #4DD0E1; }
+
+.border-top-info-300 {
+  border-top-color: #4DD0E1; }
+
+.border-bottom-info-300 {
+  border-bottom-color: #4DD0E1; }
+
+.border-left-info-300 {
+  border-left-color: #4DD0E1; }
+
+.border-right-info-300 {
+  border-right-color: #4DD0E1; }
+
+.text-info-400 {
+  color: #26C6DA; }
+  .text-info-400[href]:hover, .text-info-400[href]:focus {
+    color: #20a9ba; }
+
+.bg-info-400 {
+  background-color: #26C6DA; }
+
+.border-info-400 {
+  border-color: #26C6DA; }
+
+.border-top-info-400 {
+  border-top-color: #26C6DA; }
+
+.border-bottom-info-400 {
+  border-bottom-color: #26C6DA; }
+
+.border-left-info-400 {
+  border-left-color: #26C6DA; }
+
+.border-right-info-400 {
+  border-right-color: #26C6DA; }
+
+.text-info-600 {
+  color: #00ACC1; }
+  .text-info-600[href]:hover, .text-info-600[href]:focus {
+    color: #008a9b; }
+
+.bg-info-600 {
+  background-color: #00ACC1; }
+
+.border-info-600 {
+  border-color: #00ACC1; }
+
+.border-top-info-600 {
+  border-top-color: #00ACC1; }
+
+.border-bottom-info-600 {
+  border-bottom-color: #00ACC1; }
+
+.border-left-info-600 {
+  border-left-color: #00ACC1; }
+
+.border-right-info-600 {
+  border-right-color: #00ACC1; }
+
+.text-info-700 {
+  color: #0097A7; }
+  .text-info-700[href]:hover, .text-info-700[href]:focus {
+    color: #007481; }
+
+.bg-info-700 {
+  background-color: #0097A7; }
+
+.border-info-700 {
+  border-color: #0097A7; }
+
+.border-top-info-700 {
+  border-top-color: #0097A7; }
+
+.border-bottom-info-700 {
+  border-bottom-color: #0097A7; }
+
+.border-left-info-700 {
+  border-left-color: #0097A7; }
+
+.border-right-info-700 {
+  border-right-color: #0097A7; }
+
+.text-info-800 {
+  color: #00838F; }
+  .text-info-800[href]:hover, .text-info-800[href]:focus {
+    color: #006069; }
+
+.bg-info-800 {
+  background-color: #00838F; }
+
+.border-info-800 {
+  border-color: #00838F; }
+
+.border-top-info-800 {
+  border-top-color: #00838F; }
+
+.border-bottom-info-800 {
+  border-bottom-color: #00838F; }
+
+.border-left-info-800 {
+  border-left-color: #00838F; }
+
+.border-right-info-800 {
+  border-right-color: #00838F; }
+
+.alpha-pink {
+  background-color: #FCE4EC; }
+
+.text-pink {
+  color: #E91E63; }
+  .text-pink[href]:hover, .text-pink[href]:focus {
+    color: #cd1453; }
+
+.bg-pink {
+  background-color: #E91E63; }
+
+.border-pink {
+  border-color: #E91E63; }
+
+.border-top-pink {
+  border-top-color: #E91E63; }
+
+.border-bottom-pink {
+  border-bottom-color: #E91E63; }
+
+.border-left-pink {
+  border-left-color: #E91E63; }
+
+.border-right-pink {
+  border-right-color: #E91E63; }
+
+.text-pink-300 {
+  color: #F06292; }
+  .text-pink-300[href]:hover, .text-pink-300[href]:focus {
+    color: #ed3f7a; }
+
+.bg-pink-300 {
+  background-color: #F06292; }
+
+.border-pink-300 {
+  border-color: #F06292; }
+
+.border-top-pink-300 {
+  border-top-color: #F06292; }
+
+.border-bottom-pink-300 {
+  border-bottom-color: #F06292; }
+
+.border-left-pink-300 {
+  border-left-color: #F06292; }
+
+.border-right-pink-300 {
+  border-right-color: #F06292; }
+
+.text-pink-400 {
+  color: #EC407A; }
+  .text-pink-400[href]:hover, .text-pink-400[href]:focus {
+    color: #e91d62; }
+
+.bg-pink-400 {
+  background-color: #EC407A; }
+
+.border-pink-400 {
+  border-color: #EC407A; }
+
+.border-top-pink-400 {
+  border-top-color: #EC407A; }
+
+.border-bottom-pink-400 {
+  border-bottom-color: #EC407A; }
+
+.border-left-pink-400 {
+  border-left-color: #EC407A; }
+
+.border-right-pink-400 {
+  border-right-color: #EC407A; }
+
+.text-pink-600 {
+  color: #D81B60; }
+  .text-pink-600[href]:hover, .text-pink-600[href]:focus {
+    color: #b61751; }
+
+.bg-pink-600 {
+  background-color: #D81B60; }
+
+.border-pink-600 {
+  border-color: #D81B60; }
+
+.border-top-pink-600 {
+  border-top-color: #D81B60; }
+
+.border-bottom-pink-600 {
+  border-bottom-color: #D81B60; }
+
+.border-left-pink-600 {
+  border-left-color: #D81B60; }
+
+.border-right-pink-600 {
+  border-right-color: #D81B60; }
+
+.text-pink-700 {
+  color: #C2185B; }
+  .text-pink-700[href]:hover, .text-pink-700[href]:focus {
+    color: #a0144b; }
+
+.bg-pink-700 {
+  background-color: #C2185B; }
+
+.border-pink-700 {
+  border-color: #C2185B; }
+
+.border-top-pink-700 {
+  border-top-color: #C2185B; }
+
+.border-bottom-pink-700 {
+  border-bottom-color: #C2185B; }
+
+.border-left-pink-700 {
+  border-left-color: #C2185B; }
+
+.border-right-pink-700 {
+  border-right-color: #C2185B; }
+
+.text-pink-800 {
+  color: #AD1457; }
+  .text-pink-800[href]:hover, .text-pink-800[href]:focus {
+    color: #8b1046; }
+
+.bg-pink-800 {
+  background-color: #AD1457; }
+
+.border-pink-800 {
+  border-color: #AD1457; }
+
+.border-top-pink-800 {
+  border-top-color: #AD1457; }
+
+.border-bottom-pink-800 {
+  border-bottom-color: #AD1457; }
+
+.border-left-pink-800 {
+  border-left-color: #AD1457; }
+
+.border-right-pink-800 {
+  border-right-color: #AD1457; }
+
+.alpha-violet {
+  background-color: #F3E5F5; }
+
+.text-violet {
+  color: #9C27B0; }
+  .text-violet[href]:hover, .text-violet[href]:focus {
+    color: #802091; }
+
+.bg-violet {
+  background-color: #9C27B0; }
+
+.border-violet {
+  border-color: #9C27B0; }
+
+.border-top-violet {
+  border-top-color: #9C27B0; }
+
+.border-bottom-violet {
+  border-bottom-color: #9C27B0; }
+
+.border-left-violet {
+  border-left-color: #9C27B0; }
+
+.border-right-violet {
+  border-right-color: #9C27B0; }
+
+.text-violet-300 {
+  color: #BA68C8; }
+  .text-violet-300[href]:hover, .text-violet-300[href]:focus {
+    color: #ad4cbe; }
+
+.bg-violet-300 {
+  background-color: #BA68C8; }
+
+.border-violet-300 {
+  border-color: #BA68C8; }
+
+.border-top-violet-300 {
+  border-top-color: #BA68C8; }
+
+.border-bottom-violet-300 {
+  border-bottom-color: #BA68C8; }
+
+.border-left-violet-300 {
+  border-left-color: #BA68C8; }
+
+.border-right-violet-300 {
+  border-right-color: #BA68C8; }
+
+.text-violet-400 {
+  color: #AB47BC; }
+  .text-violet-400[href]:hover, .text-violet-400[href]:focus {
+    color: #933ba2; }
+
+.bg-violet-400 {
+  background-color: #AB47BC; }
+
+.border-violet-400 {
+  border-color: #AB47BC; }
+
+.border-top-violet-400 {
+  border-top-color: #AB47BC; }
+
+.border-bottom-violet-400 {
+  border-bottom-color: #AB47BC; }
+
+.border-left-violet-400 {
+  border-left-color: #AB47BC; }
+
+.border-right-violet-400 {
+  border-right-color: #AB47BC; }
+
+.text-violet-600 {
+  color: #8E24AA; }
+  .text-violet-600[href]:hover, .text-violet-600[href]:focus {
+    color: #741d8a; }
+
+.bg-violet-600 {
+  background-color: #8E24AA; }
+
+.border-violet-600 {
+  border-color: #8E24AA; }
+
+.border-top-violet-600 {
+  border-top-color: #8E24AA; }
+
+.border-bottom-violet-600 {
+  border-bottom-color: #8E24AA; }
+
+.border-left-violet-600 {
+  border-left-color: #8E24AA; }
+
+.border-right-violet-600 {
+  border-right-color: #8E24AA; }
+
+.text-violet-700 {
+  color: #7B1FA2; }
+  .text-violet-700[href]:hover, .text-violet-700[href]:focus {
+    color: #631982; }
+
+.bg-violet-700 {
+  background-color: #7B1FA2; }
+
+.border-violet-700 {
+  border-color: #7B1FA2; }
+
+.border-top-violet-700 {
+  border-top-color: #7B1FA2; }
+
+.border-bottom-violet-700 {
+  border-bottom-color: #7B1FA2; }
+
+.border-left-violet-700 {
+  border-left-color: #7B1FA2; }
+
+.border-right-violet-700 {
+  border-right-color: #7B1FA2; }
+
+.text-violet-800 {
+  color: #6A1B9A; }
+  .text-violet-800[href]:hover, .text-violet-800[href]:focus {
+    color: #541579; }
+
+.bg-violet-800 {
+  background-color: #6A1B9A; }
+
+.border-violet-800 {
+  border-color: #6A1B9A; }
+
+.border-top-violet-800 {
+  border-top-color: #6A1B9A; }
+
+.border-bottom-violet-800 {
+  border-bottom-color: #6A1B9A; }
+
+.border-left-violet-800 {
+  border-left-color: #6A1B9A; }
+
+.border-right-violet-800 {
+  border-right-color: #6A1B9A; }
+
+.alpha-purple {
+  background-color: #EDE7F6; }
+
+.text-purple {
+  color: #673AB7; }
+  .text-purple[href]:hover, .text-purple[href]:focus {
+    color: #57319a; }
+
+.bg-purple {
+  background-color: #673AB7; }
+
+.border-purple {
+  border-color: #673AB7; }
+
+.border-top-purple {
+  border-top-color: #673AB7; }
+
+.border-bottom-purple {
+  border-bottom-color: #673AB7; }
+
+.border-left-purple {
+  border-left-color: #673AB7; }
+
+.border-right-purple {
+  border-right-color: #673AB7; }
+
+.text-purple-300 {
+  color: #9575CD; }
+  .text-purple-300[href]:hover, .text-purple-300[href]:focus {
+    color: #7f59c3; }
+
+.bg-purple-300 {
+  background-color: #9575CD; }
+
+.border-purple-300 {
+  border-color: #9575CD; }
+
+.border-top-purple-300 {
+  border-top-color: #9575CD; }
+
+.border-bottom-purple-300 {
+  border-bottom-color: #9575CD; }
+
+.border-left-purple-300 {
+  border-left-color: #9575CD; }
+
+.border-right-purple-300 {
+  border-right-color: #9575CD; }
+
+.text-purple-400 {
+  color: #7E57C2; }
+  .text-purple-400[href]:hover, .text-purple-400[href]:focus {
+    color: #6a41b2; }
+
+.bg-purple-400 {
+  background-color: #7E57C2; }
+
+.border-purple-400 {
+  border-color: #7E57C2; }
+
+.border-top-purple-400 {
+  border-top-color: #7E57C2; }
+
+.border-bottom-purple-400 {
+  border-bottom-color: #7E57C2; }
+
+.border-left-purple-400 {
+  border-left-color: #7E57C2; }
+
+.border-right-purple-400 {
+  border-right-color: #7E57C2; }
+
+.text-purple-600 {
+  color: #5E35B1; }
+  .text-purple-600[href]:hover, .text-purple-600[href]:focus {
+    color: #4e2c94; }
+
+.bg-purple-600 {
+  background-color: #5E35B1; }
+
+.border-purple-600 {
+  border-color: #5E35B1; }
+
+.border-top-purple-600 {
+  border-top-color: #5E35B1; }
+
+.border-bottom-purple-600 {
+  border-bottom-color: #5E35B1; }
+
+.border-left-purple-600 {
+  border-left-color: #5E35B1; }
+
+.border-right-purple-600 {
+  border-right-color: #5E35B1; }
+
+.text-purple-700 {
+  color: #512DA8; }
+  .text-purple-700[href]:hover, .text-purple-700[href]:focus {
+    color: #42258a; }
+
+.bg-purple-700 {
+  background-color: #512DA8; }
+
+.border-purple-700 {
+  border-color: #512DA8; }
+
+.border-top-purple-700 {
+  border-top-color: #512DA8; }
+
+.border-bottom-purple-700 {
+  border-bottom-color: #512DA8; }
+
+.border-left-purple-700 {
+  border-left-color: #512DA8; }
+
+.border-right-purple-700 {
+  border-right-color: #512DA8; }
+
+.text-purple-800 {
+  color: #4527A0; }
+  .text-purple-800[href]:hover, .text-purple-800[href]:focus {
+    color: #382081; }
+
+.bg-purple-800 {
+  background-color: #4527A0; }
+
+.border-purple-800 {
+  border-color: #4527A0; }
+
+.border-top-purple-800 {
+  border-top-color: #4527A0; }
+
+.border-bottom-purple-800 {
+  border-bottom-color: #4527A0; }
+
+.border-left-purple-800 {
+  border-left-color: #4527A0; }
+
+.border-right-purple-800 {
+  border-right-color: #4527A0; }
+
+.alpha-indigo {
+  background-color: #E8EAF6; }
+
+.text-indigo {
+  color: #3F51B5; }
+  .text-indigo[href]:hover, .text-indigo[href]:focus {
+    color: #354499; }
+
+.bg-indigo {
+  background-color: #3F51B5; }
+
+.border-indigo {
+  border-color: #3F51B5; }
+
+.border-top-indigo {
+  border-top-color: #3F51B5; }
+
+.border-bottom-indigo {
+  border-bottom-color: #3F51B5; }
+
+.border-left-indigo {
+  border-left-color: #3F51B5; }
+
+.border-right-indigo {
+  border-right-color: #3F51B5; }
+
+.text-indigo-300 {
+  color: #7986CB; }
+  .text-indigo-300[href]:hover, .text-indigo-300[href]:focus {
+    color: #5d6dc0; }
+
+.bg-indigo-300 {
+  background-color: #7986CB; }
+
+.border-indigo-300 {
+  border-color: #7986CB; }
+
+.border-top-indigo-300 {
+  border-top-color: #7986CB; }
+
+.border-bottom-indigo-300 {
+  border-bottom-color: #7986CB; }
+
+.border-left-indigo-300 {
+  border-left-color: #7986CB; }
+
+.border-right-indigo-300 {
+  border-right-color: #7986CB; }
+
+.text-indigo-400 {
+  color: #5C6BC0; }
+  .text-indigo-400[href]:hover, .text-indigo-400[href]:focus {
+    color: #4555b1; }
+
+.bg-indigo-400 {
+  background-color: #5C6BC0; }
+
+.border-indigo-400 {
+  border-color: #5C6BC0; }
+
+.border-top-indigo-400 {
+  border-top-color: #5C6BC0; }
+
+.border-bottom-indigo-400 {
+  border-bottom-color: #5C6BC0; }
+
+.border-left-indigo-400 {
+  border-left-color: #5C6BC0; }
+
+.border-right-indigo-400 {
+  border-right-color: #5C6BC0; }
+
+.text-indigo-600 {
+  color: #3949AB; }
+  .text-indigo-600[href]:hover, .text-indigo-600[href]:focus {
+    color: #2f3d8e; }
+
+.bg-indigo-600 {
+  background-color: #3949AB; }
+
+.border-indigo-600 {
+  border-color: #3949AB; }
+
+.border-top-indigo-600 {
+  border-top-color: #3949AB; }
+
+.border-bottom-indigo-600 {
+  border-bottom-color: #3949AB; }
+
+.border-left-indigo-600 {
+  border-left-color: #3949AB; }
+
+.border-right-indigo-600 {
+  border-right-color: #3949AB; }
+
+.text-indigo-700 {
+  color: #303F9F; }
+  .text-indigo-700[href]:hover, .text-indigo-700[href]:focus {
+    color: #273382; }
+
+.bg-indigo-700 {
+  background-color: #303F9F; }
+
+.border-indigo-700 {
+  border-color: #303F9F; }
+
+.border-top-indigo-700 {
+  border-top-color: #303F9F; }
+
+.border-bottom-indigo-700 {
+  border-bottom-color: #303F9F; }
+
+.border-left-indigo-700 {
+  border-left-color: #303F9F; }
+
+.border-right-indigo-700 {
+  border-right-color: #303F9F; }
+
+.text-indigo-800 {
+  color: #283593; }
+  .text-indigo-800[href]:hover, .text-indigo-800[href]:focus {
+    color: #202a75; }
+
+.bg-indigo-800 {
+  background-color: #283593; }
+
+.border-indigo-800 {
+  border-color: #283593; }
+
+.border-top-indigo-800 {
+  border-top-color: #283593; }
+
+.border-bottom-indigo-800 {
+  border-bottom-color: #283593; }
+
+.border-left-indigo-800 {
+  border-left-color: #283593; }
+
+.border-right-indigo-800 {
+  border-right-color: #283593; }
+
+.alpha-blue {
+  background-color: #E1F5FE; }
+
+.text-blue {
+  color: #03A9F4; }
+  .text-blue[href]:hover, .text-blue[href]:focus {
+    color: #038fce; }
+
+.bg-blue {
+  background-color: #03A9F4; }
+
+.border-blue {
+  border-color: #03A9F4; }
+
+.border-top-blue {
+  border-top-color: #03A9F4; }
+
+.border-bottom-blue {
+  border-bottom-color: #03A9F4; }
+
+.border-left-blue {
+  border-left-color: #03A9F4; }
+
+.border-right-blue {
+  border-right-color: #03A9F4; }
+
+.text-blue-300 {
+  color: #4FC3F7; }
+  .text-blue-300[href]:hover, .text-blue-300[href]:focus {
+    color: #2ab7f5; }
+
+.bg-blue-300 {
+  background-color: #4FC3F7; }
+
+.border-blue-300 {
+  border-color: #4FC3F7; }
+
+.border-top-blue-300 {
+  border-top-color: #4FC3F7; }
+
+.border-bottom-blue-300 {
+  border-bottom-color: #4FC3F7; }
+
+.border-left-blue-300 {
+  border-left-color: #4FC3F7; }
+
+.border-right-blue-300 {
+  border-right-color: #4FC3F7; }
+
+.text-blue-400 {
+  color: #29B6F6; }
+  .text-blue-400[href]:hover, .text-blue-400[href]:focus {
+    color: #0aa7ef; }
+
+.bg-blue-400 {
+  background-color: #29B6F6; }
+
+.border-blue-400 {
+  border-color: #29B6F6; }
+
+.border-top-blue-400 {
+  border-top-color: #29B6F6; }
+
+.border-bottom-blue-400 {
+  border-bottom-color: #29B6F6; }
+
+.border-left-blue-400 {
+  border-left-color: #29B6F6; }
+
+.border-right-blue-400 {
+  border-right-color: #29B6F6; }
+
+.text-blue-600 {
+  color: #039BE5; }
+  .text-blue-600[href]:hover, .text-blue-600[href]:focus {
+    color: #0381bf; }
+
+.bg-blue-600 {
+  background-color: #039BE5; }
+
+.border-blue-600 {
+  border-color: #039BE5; }
+
+.border-top-blue-600 {
+  border-top-color: #039BE5; }
+
+.border-bottom-blue-600 {
+  border-bottom-color: #039BE5; }
+
+.border-left-blue-600 {
+  border-left-color: #039BE5; }
+
+.border-right-blue-600 {
+  border-right-color: #039BE5; }
+
+.text-blue-700 {
+  color: #0288D1; }
+  .text-blue-700[href]:hover, .text-blue-700[href]:focus {
+    color: #026fab; }
+
+.bg-blue-700 {
+  background-color: #0288D1; }
+
+.border-blue-700 {
+  border-color: #0288D1; }
+
+.border-top-blue-700 {
+  border-top-color: #0288D1; }
+
+.border-bottom-blue-700 {
+  border-bottom-color: #0288D1; }
+
+.border-left-blue-700 {
+  border-left-color: #0288D1; }
+
+.border-right-blue-700 {
+  border-right-color: #0288D1; }
+
+.text-blue-800 {
+  color: #0277BD; }
+  .text-blue-800[href]:hover, .text-blue-800[href]:focus {
+    color: #025f97; }
+
+.bg-blue-800 {
+  background-color: #0277BD; }
+
+.border-blue-800 {
+  border-color: #0277BD; }
+
+.border-top-blue-800 {
+  border-top-color: #0277BD; }
+
+.border-bottom-blue-800 {
+  border-bottom-color: #0277BD; }
+
+.border-left-blue-800 {
+  border-left-color: #0277BD; }
+
+.border-right-blue-800 {
+  border-right-color: #0277BD; }
+
+.alpha-teal {
+  background-color: #E0F2F1; }
+
+.text-teal {
+  color: #009688; }
+  .text-teal[href]:hover, .text-teal[href]:focus {
+    color: #007065; }
+
+.bg-teal {
+  background-color: #009688; }
+
+.border-teal {
+  border-color: #009688; }
+
+.border-top-teal {
+  border-top-color: #009688; }
+
+.border-bottom-teal {
+  border-bottom-color: #009688; }
+
+.border-left-teal {
+  border-left-color: #009688; }
+
+.border-right-teal {
+  border-right-color: #009688; }
+
+.text-teal-300 {
+  color: #4DB6AC; }
+  .text-teal-300[href]:hover, .text-teal-300[href]:focus {
+    color: #409d94; }
+
+.bg-teal-300 {
+  background-color: #4DB6AC; }
+
+.border-teal-300 {
+  border-color: #4DB6AC; }
+
+.border-top-teal-300 {
+  border-top-color: #4DB6AC; }
+
+.border-bottom-teal-300 {
+  border-bottom-color: #4DB6AC; }
+
+.border-left-teal-300 {
+  border-left-color: #4DB6AC; }
+
+.border-right-teal-300 {
+  border-right-color: #4DB6AC; }
+
+.text-teal-400 {
+  color: #26A69A; }
+  .text-teal-400[href]:hover, .text-teal-400[href]:focus {
+    color: #1f877d; }
+
+.bg-teal-400 {
+  background-color: #26A69A; }
+
+.border-teal-400 {
+  border-color: #26A69A; }
+
+.border-top-teal-400 {
+  border-top-color: #26A69A; }
+
+.border-bottom-teal-400 {
+  border-bottom-color: #26A69A; }
+
+.border-left-teal-400 {
+  border-left-color: #26A69A; }
+
+.border-right-teal-400 {
+  border-right-color: #26A69A; }
+
+.text-teal-600 {
+  color: #00897B; }
+  .text-teal-600[href]:hover, .text-teal-600[href]:focus {
+    color: #006359; }
+
+.bg-teal-600 {
+  background-color: #00897B; }
+
+.border-teal-600 {
+  border-color: #00897B; }
+
+.border-top-teal-600 {
+  border-top-color: #00897B; }
+
+.border-bottom-teal-600 {
+  border-bottom-color: #00897B; }
+
+.border-left-teal-600 {
+  border-left-color: #00897B; }
+
+.border-right-teal-600 {
+  border-right-color: #00897B; }
+
+.text-teal-700 {
+  color: #00796B; }
+  .text-teal-700[href]:hover, .text-teal-700[href]:focus {
+    color: #005349; }
+
+.bg-teal-700 {
+  background-color: #00796B; }
+
+.border-teal-700 {
+  border-color: #00796B; }
+
+.border-top-teal-700 {
+  border-top-color: #00796B; }
+
+.border-bottom-teal-700 {
+  border-bottom-color: #00796B; }
+
+.border-left-teal-700 {
+  border-left-color: #00796B; }
+
+.border-right-teal-700 {
+  border-right-color: #00796B; }
+
+.text-teal-800 {
+  color: #00695C; }
+  .text-teal-800[href]:hover, .text-teal-800[href]:focus {
+    color: #00433a; }
+
+.bg-teal-800 {
+  background-color: #00695C; }
+
+.border-teal-800 {
+  border-color: #00695C; }
+
+.border-top-teal-800 {
+  border-top-color: #00695C; }
+
+.border-bottom-teal-800 {
+  border-bottom-color: #00695C; }
+
+.border-left-teal-800 {
+  border-left-color: #00695C; }
+
+.border-right-teal-800 {
+  border-right-color: #00695C; }
+
+.alpha-green {
+  background-color: #F1F8E9; }
+
+.text-green {
+  color: #8BC34A; }
+  .text-green[href]:hover, .text-green[href]:focus {
+    color: #78ad39; }
+
+.bg-green {
+  background-color: #8BC34A; }
+
+.border-green {
+  border-color: #8BC34A; }
+
+.border-top-green {
+  border-top-color: #8BC34A; }
+
+.border-bottom-green {
+  border-bottom-color: #8BC34A; }
+
+.border-left-green {
+  border-left-color: #8BC34A; }
+
+.border-right-green {
+  border-right-color: #8BC34A; }
+
+.text-green-300 {
+  color: #AED581; }
+  .text-green-300[href]:hover, .text-green-300[href]:focus {
+    color: #9ccb64; }
+
+.bg-green-300 {
+  background-color: #AED581; }
+
+.border-green-300 {
+  border-color: #AED581; }
+
+.border-top-green-300 {
+  border-top-color: #AED581; }
+
+.border-bottom-green-300 {
+  border-bottom-color: #AED581; }
+
+.border-left-green-300 {
+  border-left-color: #AED581; }
+
+.border-right-green-300 {
+  border-right-color: #AED581; }
+
+.text-green-400 {
+  color: #9CCC65; }
+  .text-green-400[href]:hover, .text-green-400[href]:focus {
+    color: #8ac248; }
+
+.bg-green-400 {
+  background-color: #9CCC65; }
+
+.border-green-400 {
+  border-color: #9CCC65; }
+
+.border-top-green-400 {
+  border-top-color: #9CCC65; }
+
+.border-bottom-green-400 {
+  border-bottom-color: #9CCC65; }
+
+.border-left-green-400 {
+  border-left-color: #9CCC65; }
+
+.border-right-green-400 {
+  border-right-color: #9CCC65; }
+
+.text-green-600 {
+  color: #7CB342; }
+  .text-green-600[href]:hover, .text-green-600[href]:focus {
+    color: #699738; }
+
+.bg-green-600 {
+  background-color: #7CB342; }
+
+.border-green-600 {
+  border-color: #7CB342; }
+
+.border-top-green-600 {
+  border-top-color: #7CB342; }
+
+.border-bottom-green-600 {
+  border-bottom-color: #7CB342; }
+
+.border-left-green-600 {
+  border-left-color: #7CB342; }
+
+.border-right-green-600 {
+  border-right-color: #7CB342; }
+
+.text-green-700 {
+  color: #689F38; }
+  .text-green-700[href]:hover, .text-green-700[href]:focus {
+    color: #55832e; }
+
+.bg-green-700 {
+  background-color: #689F38; }
+
+.border-green-700 {
+  border-color: #689F38; }
+
+.border-top-green-700 {
+  border-top-color: #689F38; }
+
+.border-bottom-green-700 {
+  border-bottom-color: #689F38; }
+
+.border-left-green-700 {
+  border-left-color: #689F38; }
+
+.border-right-green-700 {
+  border-right-color: #689F38; }
+
+.text-green-800 {
+  color: #558B2F; }
+  .text-green-800[href]:hover, .text-green-800[href]:focus {
+    color: #446e25; }
+
+.bg-green-800 {
+  background-color: #558B2F; }
+
+.border-green-800 {
+  border-color: #558B2F; }
+
+.border-top-green-800 {
+  border-top-color: #558B2F; }
+
+.border-bottom-green-800 {
+  border-bottom-color: #558B2F; }
+
+.border-left-green-800 {
+  border-left-color: #558B2F; }
+
+.border-right-green-800 {
+  border-right-color: #558B2F; }
+
+.alpha-orange {
+  background-color: #FFF3E0; }
+
+.text-orange {
+  color: #FF9800; }
+  .text-orange[href]:hover, .text-orange[href]:focus {
+    color: #d98100; }
+
+.bg-orange {
+  background-color: #FF9800; }
+
+.border-orange {
+  border-color: #FF9800; }
+
+.border-top-orange {
+  border-top-color: #FF9800; }
+
+.border-bottom-orange {
+  border-bottom-color: #FF9800; }
+
+.border-left-orange {
+  border-left-color: #FF9800; }
+
+.border-right-orange {
+  border-right-color: #FF9800; }
+
+.text-orange-300 {
+  color: #FFB74D; }
+  .text-orange-300[href]:hover, .text-orange-300[href]:focus {
+    color: #ffa827; }
+
+.bg-orange-300 {
+  background-color: #FFB74D; }
+
+.border-orange-300 {
+  border-color: #FFB74D; }
+
+.border-top-orange-300 {
+  border-top-color: #FFB74D; }
+
+.border-bottom-orange-300 {
+  border-bottom-color: #FFB74D; }
+
+.border-left-orange-300 {
+  border-left-color: #FFB74D; }
+
+.border-right-orange-300 {
+  border-right-color: #FFB74D; }
+
+.text-orange-400 {
+  color: #FFA726; }
+  .text-orange-400[href]:hover, .text-orange-400[href]:focus {
+    color: #ff9700; }
+
+.bg-orange-400 {
+  background-color: #FFA726; }
+
+.border-orange-400 {
+  border-color: #FFA726; }
+
+.border-top-orange-400 {
+  border-top-color: #FFA726; }
+
+.border-bottom-orange-400 {
+  border-bottom-color: #FFA726; }
+
+.border-left-orange-400 {
+  border-left-color: #FFA726; }
+
+.border-right-orange-400 {
+  border-right-color: #FFA726; }
+
+.text-orange-600 {
+  color: #FB8C00; }
+  .text-orange-600[href]:hover, .text-orange-600[href]:focus {
+    color: #d57700; }
+
+.bg-orange-600 {
+  background-color: #FB8C00; }
+
+.border-orange-600 {
+  border-color: #FB8C00; }
+
+.border-top-orange-600 {
+  border-top-color: #FB8C00; }
+
+.border-bottom-orange-600 {
+  border-bottom-color: #FB8C00; }
+
+.border-left-orange-600 {
+  border-left-color: #FB8C00; }
+
+.border-right-orange-600 {
+  border-right-color: #FB8C00; }
+
+.text-orange-700 {
+  color: #F57C00; }
+  .text-orange-700[href]:hover, .text-orange-700[href]:focus {
+    color: #cf6900; }
+
+.bg-orange-700 {
+  background-color: #F57C00; }
+
+.border-orange-700 {
+  border-color: #F57C00; }
+
+.border-top-orange-700 {
+  border-top-color: #F57C00; }
+
+.border-bottom-orange-700 {
+  border-bottom-color: #F57C00; }
+
+.border-left-orange-700 {
+  border-left-color: #F57C00; }
+
+.border-right-orange-700 {
+  border-right-color: #F57C00; }
+
+.text-orange-800 {
+  color: #EF6C00; }
+  .text-orange-800[href]:hover, .text-orange-800[href]:focus {
+    color: #c95b00; }
+
+.bg-orange-800 {
+  background-color: #EF6C00; }
+
+.border-orange-800 {
+  border-color: #EF6C00; }
+
+.border-top-orange-800 {
+  border-top-color: #EF6C00; }
+
+.border-bottom-orange-800 {
+  border-bottom-color: #EF6C00; }
+
+.border-left-orange-800 {
+  border-left-color: #EF6C00; }
+
+.border-right-orange-800 {
+  border-right-color: #EF6C00; }
+
+.alpha-brown {
+  background-color: #EFEBE9; }
+
+.text-brown {
+  color: #795548; }
+  .text-brown[href]:hover, .text-brown[href]:focus {
+    color: #61443a; }
+
+.bg-brown {
+  background-color: #795548; }
+
+.border-brown {
+  border-color: #795548; }
+
+.border-top-brown {
+  border-top-color: #795548; }
+
+.border-bottom-brown {
+  border-bottom-color: #795548; }
+
+.border-left-brown {
+  border-left-color: #795548; }
+
+.border-right-brown {
+  border-right-color: #795548; }
+
+.text-brown-300 {
+  color: #A1887F; }
+  .text-brown-300[href]:hover, .text-brown-300[href]:focus {
+    color: #90746a; }
+
+.bg-brown-300 {
+  background-color: #A1887F; }
+
+.border-brown-300 {
+  border-color: #A1887F; }
+
+.border-top-brown-300 {
+  border-top-color: #A1887F; }
+
+.border-bottom-brown-300 {
+  border-bottom-color: #A1887F; }
+
+.border-left-brown-300 {
+  border-left-color: #A1887F; }
+
+.border-right-brown-300 {
+  border-right-color: #A1887F; }
+
+.text-brown-400 {
+  color: #8D6E63; }
+  .text-brown-400[href]:hover, .text-brown-400[href]:focus {
+    color: #775c53; }
+
+.bg-brown-400 {
+  background-color: #8D6E63; }
+
+.border-brown-400 {
+  border-color: #8D6E63; }
+
+.border-top-brown-400 {
+  border-top-color: #8D6E63; }
+
+.border-bottom-brown-400 {
+  border-bottom-color: #8D6E63; }
+
+.border-left-brown-400 {
+  border-left-color: #8D6E63; }
+
+.border-right-brown-400 {
+  border-right-color: #8D6E63; }
+
+.text-brown-600 {
+  color: #6D4C41; }
+  .text-brown-600[href]:hover, .text-brown-600[href]:focus {
+    color: #553b33; }
+
+.bg-brown-600 {
+  background-color: #6D4C41; }
+
+.border-brown-600 {
+  border-color: #6D4C41; }
+
+.border-top-brown-600 {
+  border-top-color: #6D4C41; }
+
+.border-bottom-brown-600 {
+  border-bottom-color: #6D4C41; }
+
+.border-left-brown-600 {
+  border-left-color: #6D4C41; }
+
+.border-right-brown-600 {
+  border-right-color: #6D4C41; }
+
+.text-brown-700 {
+  color: #5D4037; }
+  .text-brown-700[href]:hover, .text-brown-700[href]:focus {
+    color: #452f29; }
+
+.bg-brown-700 {
+  background-color: #5D4037; }
+
+.border-brown-700 {
+  border-color: #5D4037; }
+
+.border-top-brown-700 {
+  border-top-color: #5D4037; }
+
+.border-bottom-brown-700 {
+  border-bottom-color: #5D4037; }
+
+.border-left-brown-700 {
+  border-left-color: #5D4037; }
+
+.border-right-brown-700 {
+  border-right-color: #5D4037; }
+
+.text-brown-800 {
+  color: #4E342E; }
+  .text-brown-800[href]:hover, .text-brown-800[href]:focus {
+    color: #362420; }
+
+.bg-brown-800 {
+  background-color: #4E342E; }
+
+.border-brown-800 {
+  border-color: #4E342E; }
+
+.border-top-brown-800 {
+  border-top-color: #4E342E; }
+
+.border-bottom-brown-800 {
+  border-bottom-color: #4E342E; }
+
+.border-left-brown-800 {
+  border-left-color: #4E342E; }
+
+.border-right-brown-800 {
+  border-right-color: #4E342E; }
+
+.alpha-grey {
+  background-color: #FAFAFA; }
+
+.text-grey {
+  color: #777; }
+  .text-grey[href]:hover, .text-grey[href]:focus {
+    color: #646464; }
+
+.bg-grey {
+  background-color: #777; }
+
+.border-grey {
+  border-color: #777; }
+
+.border-top-grey {
+  border-top-color: #777; }
+
+.border-bottom-grey {
+  border-bottom-color: #777; }
+
+.border-left-grey {
+  border-left-color: #777; }
+
+.border-right-grey {
+  border-right-color: #777; }
+
+.text-grey-300 {
+  color: #999; }
+  .text-grey-300[href]:hover, .text-grey-300[href]:focus {
+    color: #868686; }
+
+.bg-grey-300 {
+  background-color: #999; }
+
+.border-grey-300 {
+  border-color: #999; }
+
+.border-top-grey-300 {
+  border-top-color: #999; }
+
+.border-bottom-grey-300 {
+  border-bottom-color: #999; }
+
+.border-left-grey-300 {
+  border-left-color: #999; }
+
+.border-right-grey-300 {
+  border-right-color: #999; }
+
+.text-grey-400 {
+  color: #888; }
+  .text-grey-400[href]:hover, .text-grey-400[href]:focus {
+    color: #757575; }
+
+.bg-grey-400 {
+  background-color: #888; }
+
+.border-grey-400 {
+  border-color: #888; }
+
+.border-top-grey-400 {
+  border-top-color: #888; }
+
+.border-bottom-grey-400 {
+  border-bottom-color: #888; }
+
+.border-left-grey-400 {
+  border-left-color: #888; }
+
+.border-right-grey-400 {
+  border-right-color: #888; }
+
+.text-grey-600 {
+  color: #666; }
+  .text-grey-600[href]:hover, .text-grey-600[href]:focus {
+    color: #535353; }
+
+.bg-grey-600 {
+  background-color: #666; }
+
+.border-grey-600 {
+  border-color: #666; }
+
+.border-top-grey-600 {
+  border-top-color: #666; }
+
+.border-bottom-grey-600 {
+  border-bottom-color: #666; }
+
+.border-left-grey-600 {
+  border-left-color: #666; }
+
+.border-right-grey-600 {
+  border-right-color: #666; }
+
+.text-grey-700 {
+  color: #555; }
+  .text-grey-700[href]:hover, .text-grey-700[href]:focus {
+    color: #424242; }
+
+.bg-grey-700 {
+  background-color: #555; }
+
+.border-grey-700 {
+  border-color: #555; }
+
+.border-top-grey-700 {
+  border-top-color: #555; }
+
+.border-bottom-grey-700 {
+  border-bottom-color: #555; }
+
+.border-left-grey-700 {
+  border-left-color: #555; }
+
+.border-right-grey-700 {
+  border-right-color: #555; }
+
+.text-grey-800 {
+  color: #444; }
+  .text-grey-800[href]:hover, .text-grey-800[href]:focus {
+    color: #313131; }
+
+.bg-grey-800 {
+  background-color: #444; }
+
+.border-grey-800 {
+  border-color: #444; }
+
+.border-top-grey-800 {
+  border-top-color: #444; }
+
+.border-bottom-grey-800 {
+  border-bottom-color: #444; }
+
+.border-left-grey-800 {
+  border-left-color: #444; }
+
+.border-right-grey-800 {
+  border-right-color: #444; }
+
+.alpha-slate {
+  background-color: #ECEFF1; }
+
+.text-slate {
+  color: #607D8B; }
+  .text-slate[href]:hover, .text-slate[href]:focus {
+    color: #506974; }
+
+.bg-slate {
+  background-color: #607D8B; }
+
+.border-slate {
+  border-color: #607D8B; }
+
+.border-top-slate {
+  border-top-color: #607D8B; }
+
+.border-bottom-slate {
+  border-bottom-color: #607D8B; }
+
+.border-left-slate {
+  border-left-color: #607D8B; }
+
+.border-right-slate {
+  border-right-color: #607D8B; }
+
+.text-slate-300 {
+  color: #90A4AE; }
+  .text-slate-300[href]:hover, .text-slate-300[href]:focus {
+    color: #7a929e; }
+
+.bg-slate-300 {
+  background-color: #90A4AE; }
+
+.border-slate-300 {
+  border-color: #90A4AE; }
+
+.border-top-slate-300 {
+  border-top-color: #90A4AE; }
+
+.border-bottom-slate-300 {
+  border-bottom-color: #90A4AE; }
+
+.border-left-slate-300 {
+  border-left-color: #90A4AE; }
+
+.border-right-slate-300 {
+  border-right-color: #90A4AE; }
+
+.text-slate-400 {
+  color: #78909C; }
+  .text-slate-400[href]:hover, .text-slate-400[href]:focus {
+    color: #657d89; }
+
+.bg-slate-400 {
+  background-color: #78909C; }
+
+.border-slate-400 {
+  border-color: #78909C; }
+
+.border-top-slate-400 {
+  border-top-color: #78909C; }
+
+.border-bottom-slate-400 {
+  border-bottom-color: #78909C; }
+
+.border-left-slate-400 {
+  border-left-color: #78909C; }
+
+.border-right-slate-400 {
+  border-right-color: #78909C; }
+
+.text-slate-600 {
+  color: #546E7A; }
+  .text-slate-600[href]:hover, .text-slate-600[href]:focus {
+    color: #445a63; }
+
+.bg-slate-600 {
+  background-color: #546E7A; }
+
+.border-slate-600 {
+  border-color: #546E7A; }
+
+.border-top-slate-600 {
+  border-top-color: #546E7A; }
+
+.border-bottom-slate-600 {
+  border-bottom-color: #546E7A; }
+
+.border-left-slate-600 {
+  border-left-color: #546E7A; }
+
+.border-right-slate-600 {
+  border-right-color: #546E7A; }
+
+.text-slate-700 {
+  color: #455A64; }
+  .text-slate-700[href]:hover, .text-slate-700[href]:focus {
+    color: #35464d; }
+
+.bg-slate-700 {
+  background-color: #455A64; }
+
+.border-slate-700 {
+  border-color: #455A64; }
+
+.border-top-slate-700 {
+  border-top-color: #455A64; }
+
+.border-bottom-slate-700 {
+  border-bottom-color: #455A64; }
+
+.border-left-slate-700 {
+  border-left-color: #455A64; }
+
+.border-right-slate-700 {
+  border-right-color: #455A64; }
+
+.text-slate-800 {
+  color: #37474F; }
+  .text-slate-800[href]:hover, .text-slate-800[href]:focus {
+    color: #273338; }
+
+.bg-slate-800 {
+  background-color: #37474F; }
+
+.border-slate-800 {
+  border-color: #37474F; }
+
+.border-top-slate-800 {
+  border-top-color: #37474F; }
+
+.border-bottom-slate-800 {
+  border-bottom-color: #37474F; }
+
+.border-left-slate-800 {
+  border-left-color: #37474F; }
+
+.border-right-slate-800 {
+  border-right-color: #37474F; }
+
+.border-transparent {
+  border-color: transparent !important; }
+
+.border-top-transparent {
+  border-top-color: transparent !important; }
+
+.border-bottom-transparent {
+  border-bottom-color: transparent !important; }
+
+.border-left-transparent {
+  border-left-color: transparent !important; }
+
+.border-right-transparent {
+  border-right-color: transparent !important; }
+
+.border-light-alpha {
+  border-color: rgba(255, 255, 255, 0.1); }
+
+.border-top-light-alpha {
+  border-top-color: rgba(255, 255, 255, 0.1); }
+
+.border-bottom-light-alpha {
+  border-bottom-color: rgba(255, 255, 255, 0.1); }
+
+.border-left-light-alpha {
+  border-left-color: rgba(255, 255, 255, 0.1); }
+
+.border-right-light-alpha {
+  border-right-color: rgba(255, 255, 255, 0.1); }
+
+.border-dark-alpha {
+  border-color: rgba(0, 0, 0, 0.1); }
+
+.border-top-dark-alpha {
+  border-top-color: rgba(0, 0, 0, 0.1); }
+
+.border-bottom-dark-alpha {
+  border-bottom-color: rgba(0, 0, 0, 0.1); }
+
+.border-left-dark-alpha {
+  border-left-color: rgba(0, 0, 0, 0.1); }
+
+.border-right-dark-alpha {
+  border-right-color: rgba(0, 0, 0, 0.1); }
+
+.bg-dark-alpha {
+  background-color: rgba(0, 0, 0, 0.2); }
+
+.bg-light-alpha {
+  background-color: rgba(255, 255, 255, 0.1); }

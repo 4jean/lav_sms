@@ -1,0 +1,177 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Pagination component
+ *
+ *  Overrides for pagination component
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+//
+// Base styles
+//
+
+// Container
+.pagination {
+    margin-bottom: 0;
+}
+
+// Link
+.page-link {
+    text-align: center;
+    min-width: ($font-size-base * $line-height-base) + rem-calc($pagination-border-width * 2) + ($pagination-padding-y * 2);
+    @include transition(all ease-in-out $component-transition-timer);
+}
+
+
+//
+// Sizing
+//
+
+// Large
+.pagination-lg {
+    .page-link {
+        min-width: ($font-size-lg * $line-height-lg) + rem-calc($pagination-border-width * 2) + ($pagination-padding-y-lg * 2);
+    }
+}
+
+// Small
+.pagination-sm {
+    .page-link {
+        min-width: ($font-size-sm * $line-height-sm) + rem-calc($pagination-border-width * 2) + ($pagination-padding-y-sm * 2);
+    }
+}
+
+
+//
+// Optional styles
+//
+
+// Rounded style
+.pagination-rounded {
+    .page-item {
+        &:first-child {
+            .page-link {
+                @include border-left-radius($border-radius-round);
+            }
+        }
+        &:last-child {
+            .page-link {
+                @include border-right-radius($border-radius-round);
+            }
+        }
+    }
+}
+
+// Flat style
+.pagination-flat {
+
+    // Item
+    .page-item {
+
+        // Active state
+        &.active .page-link {
+            background-color: $pagination-active-bg;
+        }
+
+        // Disabled state
+        &.disabled .page-link {
+            border-color: transparent;
+        }
+    }
+
+    // Link
+    .page-link {
+        background-color: transparent;
+        border-color: transparent;
+        margin-left: $pagination-flat-spacing;
+        @include border-radius($border-radius);
+
+        @include hover-focus {
+            background-color: $pagination-hover-bg;
+        }
+    }
+
+    // Rounded
+    &.pagination-rounded {
+        .page-link {
+            @include border-radius($border-radius-round);
+        }
+    }
+}
+
+// Separated style
+.pagination-separated {
+
+    // Link
+    .page-link {
+        margin-left: $pagination-separated-spacing;
+        @include border-radius($border-radius);
+    }
+
+    // Rounded
+    &.pagination-rounded {
+        .page-link {
+            @include border-radius($border-radius-round);
+        }
+    }
+}
+
+// Pager style
+.pagination-pager {
+
+    // Item
+    .page-item {
+        @include border-radius($border-radius);
+    }
+
+    // Link
+    .page-link {
+        margin-left: $spacer;
+        @include border-radius($border-radius);
+    }
+
+    // Rounded
+    &.pagination-rounded {
+        .page-link {
+            @include border-radius($border-radius-round);
+        }
+    }
+
+    // Linked style
+    &-linked {
+
+        // Item
+        .page-item {
+            &.disabled .page-link {
+                background-color: transparent;
+                border-color: transparent;
+            }
+        }
+
+        // Link
+        .page-link {
+            color: $link-color;
+            background-color: transparent;
+            border-color: transparent;
+
+            @include hover-focus {
+                color: $pagination-active-color;
+                background-color: $pagination-active-bg;
+                border-color: $pagination-active-border-color;
+            }
+        }
+    }
+
+    // Sizes
+    &:not(.pagination-rounded).pagination-lg {
+        .page-link {
+            @include border-radius($border-radius-lg);
+        }
+    }
+    &:not(.pagination-rounded).pagination-sm {
+        .page-link {
+            @include border-radius($border-radius-sm);
+        }
+    }
+}

@@ -1,0 +1,1613 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # jQuery UI Widgets
+ *
+ *  Styles for jQuery UI widgets
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-jqueryui {
+
+
+	// Accordion
+	// -------------------------
+
+	// Base
+	.ui-accordion {
+
+		// Header
+		.ui-accordion-header {
+			display: block;
+			cursor: pointer;
+			margin: 0;
+			outline: 0;
+			position: relative;
+			background-color: $card-bg;
+			padding: $card-spacer-y $card-spacer-x;
+			border: $card-border-width solid $card-border-color;
+			margin-top: $ui-accordion-spacer-y;
+			@include border-radius($card-border-radius);
+
+			// Remove top margin from the first item
+			&:first-child {
+				margin-top: 0;
+			}
+
+			// Border radius correction
+			&.ui-accordion-header-active {
+				@include border-bottom-radius(0);
+			}
+
+			// Icons
+			.ui-accordion-header-icon {
+				position: absolute;
+				top: 50%;
+				right: $card-spacer-x;
+				margin-top: -($icon-font-size / 2);
+
+				// Iconll
+				&:before {
+					content: '\e9b8';
+			        font-family: $icon-font-family;
+			        display: block;
+			        width: $icon-font-size;
+			        font-size: $icon-font-size;
+			        line-height: 1;
+			        @include ll-font-smoothing();
+				}
+			}
+		}
+
+		// Change icon in active header
+		.ui-accordion-header-active {
+			.ui-accordion-header-icon:before {
+				content: '\e9b7';
+			}
+		}
+
+		// Icons
+		.ui-accordion-icons {
+			padding-right: (($card-spacer-x * 2) + $icon-font-size);
+		}
+
+		// Content
+		.ui-accordion-content {
+			padding: $card-spacer-x;
+			background-color: $card-bg;
+			border: $card-border-width solid $card-border-color;
+			border-top: 0;
+			overflow: auto;
+			@include border-bottom-radius($card-border-radius);
+		}
+	}
+
+	// Sortable vertical spacing
+	.accordion-sortable-group {
+		& + & {
+			margin-top: $ui-accordion-spacer-y;
+		}
+	}
+
+
+
+	// Autocomplete
+	// -------------------------
+
+	// Base
+	.ui-autocomplete { 
+		position: absolute;
+		display: none;
+		padding: $dropdown-padding-y 0;
+		z-index: $zindex-dropdown;
+		max-height: $ui-autocomplete-height;
+		overflow: auto;
+
+		// Category title
+		.ui-autocomplete-category {
+			padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+			font-size: $font-size-sm;
+			line-height: $line-height-sm;
+			text-transform: uppercase;
+			font-weight: $font-weight-bold;
+
+			// Optgroup items have double horizontal spacing
+			~ .ui-menu-item {
+				.ui-menu-item-wrapper {
+					padding-left: ($dropdown-item-padding-x * 2);
+				}
+			}
+		}
+	}
+
+	// Animated processing icon
+	.ui-autocomplete-processing:after { 
+	    content: '\eb51';
+	    font-family: $icon-font-family;
+	    display: inline-block;
+	    position: absolute;
+	    top: 50%;
+	    right: $input-padding-x;
+	    width: $icon-font-size;
+	    text-align: right;
+	    margin-top: -($icon-font-size / 2);
+	    font-size: $icon-font-size;
+	    line-height: 1;
+	    color: inherit;
+	    animation: rotation 1s linear infinite;
+	    @include ll-font-smoothing();
+	}
+
+	// Inside input group, remove border and border radius from the last element
+	.input-group {
+		.ui-autocomplete-input {
+			+ .input-group-append {
+				> .btn,
+				> .ui-button {
+					border-left: 0;
+					@include border-left-radius(0);
+				}
+			}
+		}
+	}
+
+
+
+	// Buttons
+	// -------------------------
+
+	// Base
+	.ui-button {
+		position: relative;
+		display: inline-block;
+		font-weight: $btn-font-weight;
+		text-align: center;
+		white-space: nowrap;
+		vertical-align: middle;
+		user-select: none;
+		cursor: pointer;
+		background-color: $btn-light-bg;
+		border: $btn-border-width solid $btn-light-border-color;
+		color: $btn-light-color;
+		@include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-line-height, $btn-border-radius);
+		@include transition($btn-transition);
+
+		// Remove outline
+		&:focus {
+			outline: 0;
+		}
+
+		// Hover and active states
+		&:not([class*=bg-]) {
+			&:hover,
+			&:focus,
+			&:active {
+				color: $btn-light-hover-color;
+				background-color: $btn-light-hover-bg;
+				border-color: $btn-light-hover-border-color;
+			}
+		}
+
+		// Disabled
+		&.ui-state-disabled {
+			cursor: $cursor-disabled;
+			opacity: $btn-disabled-opacity;
+			box-shadow: none;
+		}
+
+		// Colored button
+		&[class*=bg-]:not(.bg-transparent):not(.bg-white):not(.bg-light) {
+			&:hover,
+			&:focus {
+				color: $white;
+				box-shadow: $btn-dark-hover-box-shadow;
+			}
+			&:active {
+				box-shadow: $btn-dark-hover-box-shadow;
+			}
+		}
+
+		// Transparent button
+		&.ui-button-link {
+			background-color: transparent;
+			border-color: transparent;
+
+			// Change link color on hover and focus
+			@include hover-focus {
+				color: $link-hover-color;
+			}
+
+			// Remove box shadow
+			&:hover,
+			&:focus,
+			&:active {
+				box-shadow: none;
+			}
+		}
+
+		// Reset extra padding in Firefox
+		&::-moz-focus-inner {
+			border: 0;
+			padding: 0;
+		}
+
+		// Spacing between icon and text
+		.ui-button-icon-space {
+			display: inline-block;
+			width: $element-spacer-x;
+		}
+	}
+
+
+	//
+	// Buttons with icons
+	//
+
+	// Icon only
+	.ui-button-icon-only {
+	    text-indent: -9999px;
+	    padding-left: $btn-padding-y + (($line-height-computed - $icon-font-size) / 2) + ($icon-font-size / 2);
+	    padding-right: $btn-padding-y + (($line-height-computed - $icon-font-size) / 2) + ($icon-font-size / 2);
+	    overflow: hidden;
+
+	    // Icon
+	    .ui-icon {
+		    position: absolute;
+		    left: 50%;
+		    top: 50%;
+		    text-indent: 0;
+		    transform: translate(-50%, -50%);
+	    }
+
+	    // Remove spacing between text and icon
+	    // and text
+	    .ui-button-icon-space,
+	    .ui-button-text {
+	    	display: none;
+	    }
+	}
+
+
+	//
+	// Button sets
+	//
+
+	// Base
+	.ui-controlgroup {
+		display: inline-block;
+		vertical-align: middle;
+		position: relative;
+
+		// Child buttons
+		.ui-button {
+			border-radius: 0;
+			margin-left: -($btn-border-width);
+			float: left;
+		}
+
+		// Remove left margin for first childs
+		.ui-button:first-child,
+		.ui-helper-hidden-accessible:first-child + .ui-button {
+			margin-left: 0;
+		}
+
+		// Add border radius for the first button
+		.ui-button:first-child,
+		.ui-helper-hidden-accessible:first-child + .ui-button:not(:last-child) {
+			@include border-left-radius($btn-border-radius);
+		}
+
+		// Add border radius for the last button
+		.ui-button:last-of-type {
+			@include border-right-radius($btn-border-radius);
+		}
+	}
+
+	// Checkbox and radio
+	.ui-checkboxradio-label {
+
+		// States
+		&.ui-checkboxradio-checked {
+			background-color: $btn-light-active-bg;
+			color: $btn-light-active-color;
+			border-color: $btn-light-active-border-color;
+
+			// Custom color
+			&[class*=bg-]:not(.bg-white):not(.bg-light):not(.bg-transparent) {
+				box-shadow: $btn-dark-active-box-shadow;
+			}
+		}
+
+		// Disabled state
+		&.ui-checkboxradio-disabled {
+			pointer-events: none;
+		}
+	}
+
+
+
+	// Datepicker
+	// ------------------------------
+
+	// Base
+	.ui-datepicker {
+		min-width: $ui-datepicker-width;
+		padding: $datepicker-padding;
+
+		// Ignore inline picker
+		&:not(.ui-datepicker-inline) {
+			display: none;
+			background-color: $dropdown-bg;
+			border: $dropdown-border-width solid $dropdown-border-color;
+			z-index: $zindex-tooltip!important;
+			@include border-radius($dropdown-border-radius);
+			@include box-shadow($dropdown-box-shadow);
+		}
+
+		// Make it flexible in sidebar
+		.sidebar & {
+			min-width: 0;
+		}
+
+		// ANimate all links
+		a {
+			@include transition(all ease-in-out $component-transition-timer);
+		}
+
+
+		// Header
+		// ------------------------------
+
+		// Base
+		.ui-datepicker-header {
+			position: relative;
+		}
+
+		// Title
+		.ui-datepicker-title {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+	        padding-top: ($datepicker-padding / 2);
+	        padding-bottom: ($datepicker-padding / 2);
+			font-size: $datepicker-title-font-size;
+			margin-left: (($icon-font-size + ($datepicker-item-padding * 2)) + $datepicker-padding);
+			margin-right: (($icon-font-size + ($datepicker-item-padding * 2)) + $datepicker-padding);
+
+			// Show month
+			.ui-datepicker-month {
+				font-weight: $font-weight-semibold;
+			}
+
+			// Show year
+			.ui-datepicker-year {
+				font-size: 85%;
+				color: $text-muted;
+				margin-left: ($datepicker-padding / 2);
+			}
+
+			// Date select
+			select {
+				outline: 0;
+				height: $input-height-sm;
+				border-color: $input-border-color;
+				flex: 1;
+
+				&.ui-datepicker-month,
+				&.ui-datepicker-year {
+					font-size: $font-size-base;
+					font-weight: $font-weight-normal;
+					color: $body-color;
+				}
+			}
+		}
+
+
+		// Nav buttons
+		// ------------------------------
+
+		// Base
+		.ui-datepicker-prev,
+		.ui-datepicker-next {
+			position: absolute;
+			top: 50%;
+			margin-top: -(($icon-font-size / 2) + $datepicker-item-padding);
+			line-height: 1;
+			color: $body-color;
+			padding: $datepicker-item-padding;
+			cursor: pointer;
+			@include border-radius($border-radius);
+
+			// Icon base
+			&:after {
+				font-family: $icon-font-family;
+				display: block;
+				font-size: $icon-font-size;
+				width: $icon-font-size;
+				text-align: center;
+				@include ll-font-smoothing();
+			}
+
+			// Hide text
+			span {
+				display: none;
+			}
+		}
+
+		// Prev button icon
+		.ui-datepicker-prev {
+			left: 0;
+
+			// Icon
+			&:after {
+		        @if $direction == 'LTR' {
+		            content: '\e9c8';
+		        }
+		        @else {
+		            content: '\e9cb';
+		        }
+			}
+		}
+
+		// Next btn icon
+		.ui-datepicker-next {
+			right: 0;
+
+			// Icon
+			&:after {
+		        @if $direction == 'LTR' {
+		            content: '\e9cb';
+		        }
+		        @else {
+		            content: '\e9c8';
+		        }
+			}
+		}
+
+		// Hover state
+		.ui-datepicker-prev-hover,
+		.ui-datepicker-next-hover {
+			color: $datepicker-item-hover-color;
+			background-color: $datepicker-item-hover-bg;
+		}
+
+
+		// Components
+		// ------------------------------
+
+		// Table
+		.ui-datepicker-calendar {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 0;
+
+			// Header cells
+			th {
+				text-align: center;
+				font-weight: $font-weight-normal;
+				padding-top: $datepicker-padding;
+				padding-bottom: $datepicker-item-padding;
+				font-size: $font-size-sm;
+				color: $datepicker-item-weekday-color;
+			}
+
+			// Body cells
+			td {
+				text-align: center;
+
+				// Day element
+				span,
+				a {
+					display: block;
+					position: relative;
+					text-decoration: none;
+					min-width: (($datepicker-item-padding * 2) + $line-height-computed);
+					color: $body-color;
+					padding: $datepicker-item-padding;
+					@include border-radius($border-radius);
+				}
+
+				// Hover state
+				.ui-state-hover {
+					color: $datepicker-item-hover-color;
+					background-color: $datepicker-item-hover-bg;
+				}
+
+				// Disabled state
+				&.ui-state-disabled {
+					a,
+					span {
+						color: $datepicker-item-disabled-color;
+						background-color: $datepicker-item-disabled-bg;
+					}
+				}
+
+				// Week column
+				&.ui-datepicker-week-col {
+					min-width: (($datepicker-item-padding * 2) + $line-height-computed);
+					padding: $datepicker-item-padding;
+					color: $datepicker-item-weekday-color;
+				}
+
+				// Active day
+				&.ui-datepicker-current-day .ui-state-active {
+					color: $datepicker-item-active-color;
+					background-color: $datepicker-item-active-bg;
+				}
+
+				// Today
+				&.ui-datepicker-today .ui-state-highlight {
+					color: $datepicker-item-today-color;
+					background-color: $datepicker-item-today-bg;
+
+					// Corner indicator
+					&:after {
+						content: "";
+						position: absolute;
+						top: ($datepicker-item-padding / 3);
+						right: ($datepicker-item-padding / 3);
+						border-top: $datepicker-item-padding solid darken($datepicker-item-today-bg, 50%);
+						border-left: $datepicker-item-padding solid transparent;
+						@include size(0);
+					}
+				}
+			}
+
+			// Dates in other months
+			.ui-datepicker-other-month {
+				.ui-priority-secondary {
+					color: $datepicker-item-disabled-color;
+				}
+			}
+
+			// Weeks
+			.ui-datepicker-week-col {
+				text-align: left;
+			}
+		}
+
+		// Multiple calendars
+		&.ui-datepicker-multi {
+			width: auto!important;
+		}
+	}
+
+	// Button panel
+	.ui-datepicker-buttonpane {
+		display: flex;
+		justify-content: space-between;
+		padding-top: $datepicker-padding;
+
+		// Buttons
+		button {
+			@extend .ui-button;
+		}
+	}
+
+	// Inline datepicker
+	.ui-datepicker-inline {
+		max-width: 100%;
+		overflow-x: auto;
+	}
+
+	// Trigger
+	.ui-datepicker-trigger {
+		position: absolute;
+		top: 4px;
+		right: 5px;
+		z-index: 4;
+		padding: 6px;
+		cursor: pointer;
+	}
+
+	// Clearfix
+	.ui-datepicker-row-break {
+		clear: both;
+		width: 100%;
+	}
+
+	// Multiple datepickers
+	.ui-datepicker-multi {
+		.ui-datepicker-group {
+			float: left;
+
+			// Spacing between calendars
+			+ .ui-datepicker-group {
+				padding-left: $datepicker-padding;
+			}
+		}
+	}
+	.ui-datepicker-multi-2 .ui-datepicker-group {
+		width: 46%;
+	}
+	.ui-datepicker-multi-3 .ui-datepicker-group {
+		width: 33.3%;
+	}
+	.ui-datepicker-multi-4 .ui-datepicker-group {
+		width: 25%;
+	}
+
+
+
+	// Dialog
+	// ------------------------------
+
+	// Base
+	.ui-dialog {
+		position: fixed;
+		top: 0;
+		/*rtl:ignore*/
+		left: 0;	
+		background-color: $modal-content-bg;
+		background-clip: padding-box;
+		border: $modal-content-border-width solid $modal-content-border-color;
+		z-index: $zindex-modal;
+		display: none;
+		overflow: hidden;
+		outline: 0;
+		@include border-radius($border-radius-lg);
+		@include box-shadow($modal-content-box-shadow-xs);
+
+		// Change the width on mobile
+		@include media-breakpoint-down(sm) {
+			width: 90%!important;
+		}
+	}
+
+
+	//
+	// Dialog header
+	//
+
+	// Header
+	.ui-dialog-titlebar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: $modal-header-padding;
+		padding-bottom: 0;
+
+		// Draggable cursor
+		.ui-draggable & {
+			cursor: move;
+		}
+	}
+
+	// Title
+	.ui-dialog-title {
+		display: block;
+		font-size: $h6-font-size;
+		line-height: $modal-title-line-height;
+	}
+
+	// Close button
+	.ui-dialog-titlebar-close {
+		margin-left: auto;
+		background-color: transparent;
+		padding: 0;
+		border: 0;
+		font-size: 0;
+		text-indent: 0;
+
+		// Cross icon
+		&:after {
+			content: '\ed6a';
+			font-family: $icon-font-family;
+			display: block;
+			width: $font-size-base;
+			font-size: $font-size-base;
+			line-height: 1;
+			@include ll-font-smoothing();
+		}
+
+		// Remove default button shadows
+		&:hover,
+		&:focus {
+			background-color: transparent !important;
+			box-shadow: none;
+		}
+	}
+
+
+	//
+	// Dialog content
+	//
+
+	// Content itself
+	.ui-dialog-content {
+		position: relative;
+		overflow: auto;
+		padding: $modal-inner-padding;
+
+		// Remove bottom margin from last childs
+		.form-group:last-child,
+		p:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	// Buttons
+	.ui-dialog-buttonpane {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		padding: $modal-inner-padding;
+		padding-top: 0;
+
+		// Spacing between buttons
+		button + button {
+			margin-left: $element-spacer-x;
+		}
+	}
+
+
+
+	// Menu
+	// ------------------------------
+
+	// Base
+	.ui-menu {
+		list-style: none;
+		padding: $dropdown-padding-y 0;
+		margin: 0;
+		display: block;
+		outline: none;
+		min-width: $dropdown-min-width;
+		white-space: nowrap;
+		background-color: $dropdown-bg;
+		border: $dropdown-border-width solid $dropdown-border-color;
+		z-index: $zindex-dropdown;
+		@include border-radius($dropdown-border-radius);
+		@include box-shadow($dropdown-box-shadow);
+
+		// Nested menu
+		.ui-menu {
+			position: absolute;
+			top: -($dropdown-padding-y - rem-calc($dropdown-border-width))!important;
+		}
+
+		// Menu item
+		.ui-menu-item {
+			margin: 0;
+			position: relative;
+
+			// Icons
+			i {
+				margin-right: $dropdown-item-padding-x;
+			}
+		}
+
+		// Link
+		.ui-menu-item-wrapper {
+			position: relative;
+			display: flex;
+			align-items: flex-start;
+			cursor: pointer;
+			padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+			outline: 0;
+			color: $dropdown-link-color;
+			overflow: hidden;
+			@include transition(all ease-in-out $component-transition-timer);
+
+	        // Submenu arrow icon
+			> .ui-menu-icon {
+	            position: absolute;
+	            top: 50%;
+	            margin-top: -($icon-font-size / 2);
+	            right: $dropdown-item-padding-x;
+
+				&:after {
+		            @if $direction == 'LTR' {
+		                content: '\e9c7';
+		            }
+		            @else {
+		                content: '\e9c4';
+		            }
+		            font-family: $icon-font-family;
+		            font-size: $icon-font-size;
+		            line-height: 1;
+		            @include ll-font-smoothing();
+		        }
+			}
+		}
+
+		// Header
+		.ui-menu-header {
+			display: flex;
+			align-items: flex-start;
+			padding: $dropdown-padding-y $dropdown-item-padding-x;
+			font-size: $font-size-sm;
+			line-height: $line-height-sm;
+			text-transform: uppercase;
+			color: $dropdown-header-color;
+		    margin-top: ($dropdown-padding-y / 2);
+		    margin-bottom: ($dropdown-padding-y / 2);
+
+		    // Highlighted header
+		    &.highlight {
+		        margin-top: 0;
+		        background-color: $dropdown-header-bg;
+		    }
+		}
+	    .ui-menu-item + .highlight,
+	    .highlight + .ui-menu-item {
+	        margin-top: $dropdown-padding-y;
+	    }
+
+	    // Icons
+	    .ui-menu-item-wrapper,
+	    .ui-menu-header {
+	    	> i {
+		        top: 0;
+		        margin-top: (($line-height-computed - $icon-font-size) / 2);
+				margin-right: $dropdown-icon-spacer-x;
+	    	}
+	    }
+
+		// Divider
+		.ui-menu-divider {
+			margin: $dropdown-item-padding-y 0;
+			height: 0;
+			font-size: 0;
+			overflow: hidden;
+			border-top: $border-width solid $dropdown-divider-bg;
+		}
+
+		// Disabled state
+		.ui-state-disabled {
+			.ui-menu-item-wrapper {
+		        color: $dropdown-link-disabled-color;
+		        background-color: transparent;
+		        cursor: $cursor-disabled;
+			}
+		}
+
+		// Hover state
+		.ui-state-focus,
+		.ui-state-active {
+		    color: $dropdown-link-hover-color;
+		    background-color: $dropdown-link-hover-bg;
+		}
+	}
+
+
+
+	// Progress bar
+	// ------------------------------
+
+	// Base
+	.ui-progressbar {
+		display: flex;
+		height: $progress-height;
+		overflow: hidden; // force rounded corners by cropping it
+		font-size: $progress-font-size;
+		background-color: $progress-bg;
+		@include border-radius($progress-border-radius);
+		@include box-shadow($progress-box-shadow);
+	}
+
+	// Value
+	.ui-progressbar-value {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		color: $progress-bar-color;
+		text-align: center;
+		background-color: $progress-bar-bg;
+		background-size: $progress-height $progress-height;
+		@include transition($progress-bar-transition);
+
+		// Stripes
+		.ui-progressbar-striped & {
+			@include gradient-striped();
+		}
+
+		// Animated stripes
+		.ui-progressbar-active & {
+			animation: progress-bar-stripes $progress-bar-animation-timing;
+		}
+
+		// Remove stripes in indeterminate mode
+		.ui-progressbar-indeterminate & {
+			background-image: none;
+		}
+	}
+
+
+
+	// Select menu
+	// ------------------------------
+
+	// Base
+	.ui-selectmenu-menu {
+		padding: 0;
+		margin: 0;
+		position: absolute;
+		top: 0;
+		/*rtl:ignore*/
+		left: 0;
+		display: none;
+
+		// Set max width for menu
+		.ui-menu {
+			max-height: $dropdown-scrollable-max-height;
+			overflow-y: auto;
+			overflow-x: hidden;
+
+			// Optgroups
+			.ui-selectmenu-optgroup {
+				font-size: $font-size-sm;
+				font-weight: $font-weight-semibold;
+				line-height: $line-height-sm;
+				padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+				text-transform: uppercase;
+				height: auto;
+				border: 0;
+
+				// Add double horizontal padding for items
+				~ .ui-menu-item {
+					.ui-menu-item-wrapper {
+						padding-left: ($dropdown-item-padding-x * 2);
+					}
+				}
+			}
+		}
+	}
+
+	// Display if opened
+	.ui-selectmenu-open {
+		display: block;
+	}
+
+	// Select button
+	.ui-selectmenu-button {
+		text-decoration: none;
+		text-align: left;
+		outline: 0;
+
+		// Button
+		&:not(.ui-controlgroup-item) {
+			display: inline-block;
+			position: relative;
+			background-color: $input-bg;
+			border: $input-border-width solid $input-border-color;
+			cursor: pointer;
+			@include border-radius($input-border-radius);
+		}
+		&:not(.ui-button-icon-only) {
+			padding: $input-padding-y $input-padding-x;
+			padding-right: (($input-padding-x * 2) + $icon-font-size);
+		}
+
+		// Darken on hover and focus
+		@include hover-focus {
+			box-shadow: $hover-shadow-lighter;
+		}
+
+		// Reset button styles
+		&:not([class*=bg-]) {
+			@include hover-focus {
+				background-color: $input-bg;
+			}
+		}
+
+		// Down arrow
+		&:after {
+	        content: '\e9c5';
+	        font-family: $icon-font-family;
+	        display: inline-block;
+	        position: absolute;
+	        top: 50%;
+	        right: $input-padding-x;
+	        text-align: right;
+	        margin-top: -($icon-font-size / 2);
+	        font-size: $icon-font-size;
+	        line-height: 1;
+	        color: inherit;
+	        @include ll-font-smoothing();
+		}
+
+		// Button text
+		.ui-selectmenu-text {
+			display: block;
+			text-transform: none;
+			@include text-truncate();
+		}
+
+		// Opened state
+		&.ui-selectmenu-button-open {
+			box-shadow: $hover-shadow-lighter;
+		}
+	}
+
+	// Disabled menu
+	.ui-selectmenu-disabled {
+	    cursor: $cursor-disabled;
+	    background-color: $input-disabled-bg;
+
+	    // States
+		@include hover-focus {
+			box-shadow: none;
+		}
+	}
+
+
+	//
+	// Optional sizing to match form controls
+	//
+
+	// Large
+	.ui-selectmenu-lg {
+		.ui-selectmenu-button {
+			.ui-selectmenu-text {
+				padding: $input-padding-y-lg $input-padding-x-lg;
+				padding-right: (($input-padding-x-lg * 2) + $icon-font-size);
+				font-size: $font-size-lg;
+				line-height: $line-height-lg;
+			}
+		}
+	}
+
+	// Small
+	.ui-selectmenu-sm {
+		.ui-selectmenu-button {
+			.ui-selectmenu-text {
+				padding: $input-padding-y-sm $input-padding-x-sm;
+				padding-right: (($input-padding-x-sm * 2) + $icon-font-size);
+				font-size: $font-size-sm;
+				line-height: $line-height-sm;
+			}
+		}
+	}
+
+
+	//
+	// Images
+	//
+
+	.ui-selectmenu-images {
+
+		// Image base
+		.ui-menu-item span {
+			display: inline-block;
+			margin-right: $dropdown-icon-spacer-x;
+			background-size: $line-height-computed $line-height-computed;
+			float: left;
+			@include size($line-height-computed);
+			@include border-radius($border-radius);
+		}
+
+		// Demo images, replace with your own
+		.demo-img-amazon {
+			background: url('#{$img-path}/brands/amazon.png') no-repeat;
+		}
+		.demo-img-youtube {
+			background: url('#{$img-path}/brands/youtube.png') no-repeat;
+		}
+		.demo-img-twitter {
+			background: url('#{$img-path}/brands/twitter.png') no-repeat;
+		}
+		.demo-img-bing {
+			background: url('#{$img-path}/brands/bing.png') no-repeat;
+		}
+		.demo-img-spotify {
+			background: url('#{$img-path}/brands/spotify.png') no-repeat;
+		}
+	}
+
+
+
+	// Sliders
+	// ------------------------------
+
+	.ui-slider {
+		position: relative;
+		text-align: left;
+	    background-color: $slider-bg;
+	    @include border-radius($border-radius-round);
+	    @include box-shadow($slider-box-shadow);
+
+		// Handle
+		.ui-slider-handle {
+			position: absolute;
+			z-index: 2;
+			cursor: pointer;
+			background-color: $slider-handle-bg;
+		    border: $slider-handle-border-width solid $slider-handle-border-color;
+			outline: 0;
+		    @include size($slider-height * 3);
+		    @include border-radius($border-radius-round);
+		    @include transition(background-color ease-in-out $component-transition-timer);
+
+			// Hover color
+			&.ui-state-hover,
+			&.ui-state-focus {
+				background-color: $slider-handle-hover-bg;
+
+		        // Inner circle
+		        &:after {
+		            background-color: $slider-handle-inner-hover-bg;
+		        }
+			}
+
+			// Inner circle
+			&:after {
+		        content: '';
+		        display: inline-block;
+		        position: absolute;
+		        top: 50%;
+		        left: 50%;
+		        margin-top: -($slider-height / 2);
+		        margin-left: -($slider-height / 2);
+		        background-color: $slider-handle-inner-bg;
+		        @include size($slider-height);
+		        @include border-radius($border-radius-round);
+		        @include transition(background-color ease-in-out $component-transition-timer);
+			}
+		}
+
+		// Range
+		.ui-slider-range {
+			position: absolute;
+			z-index: 1;
+			display: block;
+			background-color: $slider-connect-bg;
+			@include border-radius($border-radius-round);
+		}
+
+		// Disabled state
+		&.ui-slider-disabled {
+			opacity: $slider-disabled-opacity;
+
+			// Handle
+			.ui-slider-handle {
+				cursor: $cursor-disabled;
+			}
+		}
+	}
+
+
+	//
+	// Orientations
+	//
+
+	// Horizontal
+	.ui-slider-horizontal {
+		height: $slider-height;
+
+		// Handle
+		.ui-slider-handle {
+	        top: -($slider-height * 1.5) + ($slider-height / 2);
+	        /*rtl:ignore*/
+	        margin-left: -($slider-height * 1.5);
+		}
+
+		// Ranges
+		.ui-slider-range {
+			top: 0;
+			height: 100%;
+		}
+		.ui-slider-range-min {
+			left: 0;
+		}
+		.ui-slider-range-max {
+			right: 0;
+		}
+	}
+
+	// Vertical
+	.ui-slider-vertical {
+		width: $slider-height;
+		height: 150px;
+		display: inline-block;
+		margin: 0 $element-spacer-x;
+
+		// Handle
+		.ui-slider-handle {
+	        left: -($slider-height * 1.5) + ($slider-height / 2);
+	        margin-bottom: -($slider-height * 1.5);
+		}
+
+		// Ranges
+		.ui-slider-range {
+			left: 0;
+			width: 100%;
+		}
+		.ui-slider-range-min {
+			bottom: 0;
+		}
+		.ui-slider-range-max {
+			top: 0;
+		}
+	}
+
+
+	//
+	// Handles
+	//
+
+	// Slider with solid handle
+	.ui-slider-solid {
+		.ui-slider-handle {
+
+			// Inner
+			&:after {
+				background-color: $white;
+				@include transition(opacity ease-in-out $component-transition-timer);
+			}
+
+			// States
+			&.ui-state-hover:after,
+			&.ui-state-active:after {
+				background-color: $white;
+				opacity: 0.75;
+			}
+		}
+	}
+
+	// White handle
+	.ui-handle-white .ui-slider-handle:after {
+		content: none;
+	}
+
+
+	//
+	// Sizing
+	//
+
+	// Large
+	.ui-slider-lg {
+
+		// Handle
+		.ui-slider-handle {
+		    @include size($slider-height-lg * 3);
+
+		    // Inner circle
+		    &:after {
+				margin-top: -($slider-height-lg / 2);
+				margin-left: -($slider-height-lg / 2);
+				@include size($slider-height-lg);
+		    }
+		}
+
+		// In horizontal orientation
+		&.ui-slider-horizontal {
+			height: $slider-height-lg;
+
+			.ui-slider-handle {
+		        top: -($slider-height-lg * 1.5) + ($slider-height-lg / 2);
+		        /*rtl:ignore*/
+		        margin-left: -($slider-height-lg * 1.5);
+			}
+		}
+
+		// In vertical orientation
+		&.ui-slider-vertical {
+			width: $slider-height-lg;
+
+			.ui-slider-handle {
+		        left: -($slider-height-lg * 1.5) + ($slider-height-lg / 2);
+		        margin-bottom: -($slider-height-lg * 1.5);
+			}
+		}
+	}
+
+	// Small
+	.ui-slider-sm {
+
+		// Handle
+		.ui-slider-handle {
+		    @include size($slider-height-sm * 3);
+
+		    // Inner circle
+		    &:after {
+				margin-top: -($slider-height-sm / 2);
+				margin-left: -($slider-height-sm / 2);
+				@include size($slider-height-sm);
+		    }
+		}
+
+		// In horizontal orientation
+		&.ui-slider-horizontal {
+			height: $slider-height-sm;
+
+			.ui-slider-handle {
+		        top: -($slider-height-sm * 1.5) + ($slider-height-sm / 2);
+		        /*rtl:ignore*/
+		        margin-left: -($slider-height-sm * 1.5);
+			}
+		}
+
+		// In vertical orientation
+		&.ui-slider-vertical {
+			width: $slider-height-sm;
+
+			.ui-slider-handle {
+		        left: -($slider-height-sm * 1.5) + ($slider-height-sm / 2);
+		        margin-bottom: -($slider-height-sm * 1.5);
+			}
+		}
+	}
+
+
+	//
+	// Contextual colors
+	//
+
+	.ui-slider-primary .ui-slider-range,
+	.ui-slider-solid.ui-slider-primary .ui-slider-handle {
+		background-color: theme-color("primary");
+		border-color: theme-color("primary");
+	}
+	.ui-slider-danger .ui-slider-range,
+	.ui-slider-solid.ui-slider-danger .ui-slider-handle {
+		background-color: theme-color("danger");
+		border-color: theme-color("danger");
+	}
+	.ui-slider-success .ui-slider-range,
+	.ui-slider-solid.ui-slider-success .ui-slider-handle {
+		background-color: theme-color("success");
+		border-color: theme-color("success");
+	}
+	.ui-slider-warning .ui-slider-range,
+	.ui-slider-solid.ui-slider-warning .ui-slider-handle {
+		background-color: theme-color("warning");
+		border-color: theme-color("warning");
+	}
+	.ui-slider-info .ui-slider-range,
+	.ui-slider-solid.ui-slider-info .ui-slider-handle {
+		background-color: theme-color("info");
+		border-color: theme-color("info");
+	}
+
+
+
+	// Spinner
+	// ------------------------------
+
+	// Base
+	.ui-spinner {
+		position: relative;
+		display: flex;
+	    width: 100%;
+	}
+
+	// Input
+	.ui-spinner-input {
+		border-right: 0;
+		@include border-right-radius(0);
+	}
+
+
+	//
+	// Buttons
+	//
+
+	// Button base
+	.ui-spinner-button {
+		display: flex;
+		align-items: center;
+		@include border-radius(0);
+
+		// Button icons base
+		&:after {
+	        font-family: $icon-font-family;
+	        position: absolute;	
+	        left: 50%;
+	        top: 50%;
+	        width: $icon-font-size;
+	        font-size: $icon-font-size;
+	        line-height: 1;
+	        text-indent: 0;
+	        transform: translate(-50%, -50%);
+	        @include ll-font-smoothing();
+		}
+
+		// Add rounded corders
+		&:last-child {
+			@include border-right-radius($btn-border-radius);
+		}
+
+		// Hide original icons
+		> span {
+			display: none;
+		}
+
+		// Remove left border from 2nd button
+		& + & {
+			border-left: 0;
+		}
+	}
+
+	// Up button icon
+	.ui-spinner-up {
+		&:after {
+			content: '\e9f7';
+		}
+	}
+
+	// Down button icon
+	.ui-spinner-down {
+		&:after {
+			content: '\e9e2';
+		}
+	}
+
+
+
+	// Tabs
+	// ------------------------------
+
+	.ui-tabs {
+		position: relative;
+
+		// Tabs navigation
+		.ui-tabs-nav {
+			display: flex;
+		    flex-wrap: wrap;
+			margin-bottom: $spacer;
+			border-bottom: $nav-tabs-border-width solid $nav-tabs-border-color;
+		}
+
+		// Items
+		.ui-tabs-tab {
+			list-style: none;
+			position: relative;
+			padding: 0;
+			margin-bottom: -$nav-tabs-border-width;
+		}
+
+		// Links
+		.ui-tabs-anchor {
+			position: relative;
+			display: flex;
+		    justify-content: center;
+		    align-items: flex-start;
+			color: $nav-tabs-link-color;
+			padding: $nav-link-padding-y $nav-link-padding-x;
+			border: $nav-tabs-border-width solid transparent;
+			@include transition(all ease-in-out $component-transition-timer);
+
+			// Top highlight
+	        &:before {
+	            content: '';
+	            position: absolute;
+	            height: $nav-tabs-highlight-link-border-width;
+	            top: -($nav-tabs-border-width);
+	            left: -($nav-tabs-border-width);
+	            right: -($nav-tabs-border-width);
+	            @include transition(background-color ease-in-out $component-transition-timer);
+	        }
+
+	        // Icons
+	        i {
+	        	top: 0;
+		        margin-top: (($line-height-computed - $icon-font-size) / 2);
+	        }
+		}
+
+		// Hover/focus states
+		.ui-state-hover,
+		.ui-state-focus {
+			.ui-tabs-anchor:not(.ui-state-disabled) {
+				color: $nav-tabs-link-hover-color;
+			}
+		}
+
+		// Active item
+		.ui-tabs-active {
+			.ui-tabs-anchor {
+		        color: $nav-tabs-link-active-color;
+		        background-color: $nav-tabs-link-active-bg;
+		        border-color: $nav-tabs-link-active-border-color;
+
+		        // Top highlight
+		        &:before {
+		            background-color: $nav-tabs-highlight-link-border-color;
+		        }
+		    }
+		}
+
+		// Disabled item
+		.ui-state-disabled {
+	        color: $nav-link-disabled-color;
+	        background-color: transparent;
+	        border-color: transparent;
+	        cursor: $cursor-disabled;
+		}
+
+		// Add bottom border and bg to sortable helper
+		.ui-sortable-helper:not(.ui-tabs-active) {
+			.ui-tabs-anchor {
+				border-color: $nav-tabs-border-color;
+			}
+		}
+
+		// Display tabs panel
+		.ui-tabs-panel {
+			display: block;
+		}
+	}
+
+
+
+	// Tooltip
+	// ------------------------------
+
+	.ui-tooltip {
+		position: absolute;
+		z-index: $zindex-tooltip;
+		max-width: $tooltip-max-width;
+		padding: $tooltip-padding-y $tooltip-padding-x;
+		color: $tooltip-color;
+		text-align: center;
+		background-color: $tooltip-bg;
+		@include border-radius($tooltip-border-radius);
+	}
+
+
+
+	// Misc
+	// ------------------------------
+
+	// Overlay
+	.ui-widget-overlay {
+		position: fixed;
+		top: 0;
+		/*rtl:ignore*/
+		left: 0;
+		z-index: $zindex-modal-backdrop;
+		background-color: $modal-backdrop-bg;
+		opacity: $modal-backdrop-opacity;
+		@include size(100%);
+	}
+
+	//
+	// Layout helpers
+	//
+
+	// Hide element
+	.ui-helper-hidden {
+		display: none;
+	}
+
+	// Accessible element
+	.ui-helper-hidden-accessible {
+		border: 0;
+		clip: rect(0 0 0 0);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+	}
+
+	// Reset
+	.ui-helper-reset {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		outline: 0;
+		list-style: none;
+	}
+
+	// Clearfix
+	.ui-helper-clearfix {
+		@include clearfix;
+	}
+
+	// iFrame fix
+	.ui-helper-zfix {
+		top: 0;
+		left: 0;
+		position: absolute;
+		opacity: 0;
+		@include size(100%);
+	}
+
+	// Overlay z-index
+	.ui-front {
+		z-index: $zindex-modal-backdrop;
+	}
+}

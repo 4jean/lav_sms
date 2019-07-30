@@ -1,0 +1,17 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Ace code editor
+*
+*  Styles Ace - an embeddable code editor written in JavaScript
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-ace {
+
+	// Base
+	.ace_editor {
+		height: $ace-height;
+		position: relative;
+	}
+}

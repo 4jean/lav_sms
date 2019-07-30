@@ -1,0 +1,64 @@
+{
+    "app": {
+        "name": "Limitless - Responsive Web Application Kit"
+    },
+
+    "nav_inline": {
+        "user": {
+        	"name": "Евдокия Тапочка",
+        	"location": "Бобруйск, РБ"
+    	},
+        "nav": {
+        	"header": "Заголовок навигации",
+        	"top_level": "Ссылка верхнего уровня",
+        	"with_children": {
+        		"main": "Подменю",
+        		"second_one": "Ссылка второго уровня #1",
+        		"second_two": "Ссылка второго уровня #2"
+        	},
+        	"multiple_levels": {
+        		"main": "Множественные уровни",
+        		"second_one": "Второй уровень - ссылка 1",
+        		"second_child": {
+        			"main": "Второй уровень с подуровнями",
+        			"third_one": "Третий уровень - ссылка 1",
+        			"third_two": "Третий уровень - ссылка 2"
+        		},
+        		"second_three": "Второй уровень - ссылка 3",
+        		"disabled": "Неактивная ссылка"
+        	}
+    	}
+    },
+
+    "nav_advanced": {
+        "user": {
+        	"name": "Евдокия Тапочка",
+        	"location": "Бобруйск, РБ"
+    	},
+        "nav": {
+        	"header": "Заголовок навигации",
+        	"tooltip": "Подсказка",
+        	"tooltip_text": "Текст подсказки",
+        	"inline_element": "Дополнительный элемент",
+            "insert": "Вставленный HTML из JSON файла",
+            "inline_text": "Текстовый элемент",
+            "badges": {
+                "done": "<span class='badge bg-success'>Сделано</span>",
+                "fixed": "Исправлено",
+                "new": "Новое",
+                "text": "Простой текст"
+            },
+        	"multiple_levels": {
+        		"main": "Множественные уровни",
+        		"second_one": "Второй уровень - ссылка 1",
+        		"second_child": {
+        			"main": "Второй уровень с подуровнями",
+        			"third_one": "Третий уровень - ссылка 1",
+        			"third_two": "Третий уровень - ссылка 2"
+        		},
+        		"second_three": "Второй уровень - ссылка 3",
+        		"disabled": "Неактивная ссылка"
+        	}
+    	}
+    }    
+}

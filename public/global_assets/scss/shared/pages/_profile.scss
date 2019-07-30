@@ -1,0 +1,56 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # User profile
+ *
+ *  Styles for all user profile layouts
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-profile {
+
+	// Cover image layout base
+	.profile-cover {
+		position: relative;
+
+		// Cover details
+		.media {
+			position: absolute;
+			left: $card-spacer-x;
+			right: $card-spacer-x;
+			bottom: 50%;
+			transform: translateY(50%);
+
+			// Add shadow to buttons
+			.btn {
+				box-shadow: $profile-cover-element-shadow !important;
+			}
+
+			// Desktop view
+			@include media-breakpoint-up(md) {
+				bottom: $spacer;
+				transform: none;
+			}
+		}
+
+		// Text styles
+		.media-body {
+			text-shadow: $profile-cover-element-shadow;
+		}
+	}
+
+	// Cover image
+	.profile-cover-img {
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+		background-size: cover;
+		height: $profile-cover-height;
+	}
+
+	// User thumbnail inside cover
+	.profile-thumb img {
+		border: $profile-thumb-border-width solid $profile-thumb-border-color;
+		box-shadow: $profile-cover-element-shadow;
+		@include size($profile-thumb-size);
+	}
+}

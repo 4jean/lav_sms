@@ -1,0 +1,192 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Buttons extension
+ *
+ *  The Buttons extension for DataTables provides a common set of options, API
+ *  methods and styling to display buttons that will interact with a DataTable
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-datatable-buttons {
+
+    // Full width buttons
+    .dt-buttons-full {
+
+        // Container
+        .dt-buttons {
+            float: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            border-bottom: $table-border-width solid $table-border-color;
+            padding-top: $dt-spacer-y;
+            padding-bottom: ($dt-spacer-y / 2);
+            background-color: $table-accent-bg;
+
+            // Button
+            > .btn {
+                margin-bottom: ($dt-spacer-y / 2);
+                float: none;
+            }
+        }
+    }
+
+    // Buttons. Default alignment is right
+    .dt-buttons {
+        position: relative;
+        float: right;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 0 $dt-spacer-y $dt-spacer-x;
+
+        // Left display option
+        .dt-buttons-left & {
+            float: left;
+        }
+
+        // Default buttons
+        > .btn {
+            border-radius: 0;
+
+            // First button
+            &:first-child {
+                @include border-left-radius($btn-border-radius);
+            }
+
+            // Last button
+            &:last-of-type {
+                @include border-right-radius($btn-border-radius);
+            }
+
+            // Add 1px spacing between buttons
+            & + .btn {
+                margin-left: -($btn-border-width);
+            }
+        }
+
+        // Mobile view
+        @include media-breakpoint-down(sm) {
+            float: none;
+            text-align: center;
+            display: block;
+
+            .btn {
+                float: none;
+            }
+        }
+    }
+
+    // Overlay
+    .dt-button-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: $modal-backdrop-bg;
+        z-index: $zindex-modal-backdrop;
+        opacity: $modal-backdrop-opacity;
+    }
+
+    // Button collection
+    .dt-button-collection {
+        position: absolute;
+        background-color: $dropdown-bg;
+        display: block;
+        z-index: $zindex-modal;
+        padding: $dropdown-padding-y 0;
+        overflow: hidden;
+        min-width: $dropdown-min-width;
+        column-gap: 0.125rem;
+        @include border-radius($dropdown-border-radius);
+        @include box-shadow($dropdown-box-shadow);
+
+        // Force collection dropdown to be right aligned
+        &:not(.fixed) {
+            top: 100%!important;
+            left: auto!important;
+            right: 0!important;
+        }
+
+        // Inner buttons
+        > .dt-button {
+            padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+            color: $dropdown-link-color;
+            background-color: transparent;
+            border: 0;
+            display: block;
+            outline: 0;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            @include transition(all ease-in-out $component-transition-timer);
+
+            // Add 1px top spacing between buttons
+            + .dt-button {
+                margin-top: $dropdown-item-spacer-y;
+            }
+
+            // Hover state
+            @include hover-focus {
+                color: $dropdown-link-hover-color;
+                background-color: $dropdown-link-hover-bg;
+            }
+
+            // Active state
+            &.active {
+                color: $dropdown-link-active-color;
+                background-color: $dropdown-link-active-bg;
+            }
+        }
+
+        // Fixed centered layout
+        &.fixed {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-left: -($dt-button-collection-2col-width / 4);
+            padding-left: $dropdown-padding-y;
+            padding-right: $dropdown-padding-y;
+
+            // Two columns
+            &.two-column {
+                margin-left: -($dt-button-collection-2col-width / 2);
+            }
+
+            // Three columns
+            &.three-column {
+                margin-left: -($dt-button-collection-3col-width / 2);
+            }
+
+            // Four columns
+            &.four-column {
+                margin-left: -($dt-button-collection-4col-width / 2);
+            }
+        }
+
+        // Inner content
+        > * {
+            -webkit-column-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        // Two columns
+        &.two-column {
+            width: $dt-button-collection-2col-width;
+            column-count: 2;
+        }
+
+        // Three columns
+        &.three-column {
+            width: $dt-button-collection-3col-width;
+            column-count: 3;
+        }
+
+        // Four columns
+        &.four-column {
+            width: $dt-button-collection-4col-width;
+            column-count: 4;
+        }
+    }
+}

@@ -1,0 +1,213 @@
+/* ------------------------------------------------------------------------------
+*
+*  # C3 charts
+*
+*  Styles for C3.js visualization library
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-c3 {
+
+    // Base
+    .c3 {
+
+        // Use smaller text
+        svg {
+            font-size: $font-size-sm;
+        }
+
+        // Paths and lines defaults
+        path,
+        line {
+            fill: none;
+            stroke: $gray-600;
+        }
+        path.domain {
+            shape-rendering: crispEdges;
+        }
+
+        // Disable text selection
+        text {
+            user-select: none;
+        }
+    }
+
+
+    //
+    // Components
+    //
+
+    // Default shape rendering style
+    .c3-legend-item-tile,
+    .c3-xgrid-focus,
+    .c3-ygrid,
+    .c3-event-rect,
+    .c3-bars path {
+        shape-rendering: crispEdges;
+    }
+
+    // Arcs
+    .c3-chart-arc {
+        path {
+            stroke: $white;
+        }
+
+        text {
+            fill: $white;
+            font-size: $font-size-base;
+        }
+    }
+
+    // Grid
+    .c3-grid {
+        line {
+            stroke: $gray-500;
+        }
+
+        text {
+            fill: $gray-500;
+        }
+    }
+    .c3-xgrid,
+    .c3-ygrid {
+        stroke-dasharray: 3 3;
+    }
+
+    // Text on chart
+    .c3-text {
+        font-weight: $font-weight-semibold;
+
+        &.c3-empty {
+            fill: $gray-700;
+            font-size: 2em;
+        }
+    }
+
+    // Line
+    .c3-line {
+        stroke-width: 2px;
+    }
+
+    // Area
+    .c3-area {
+        stroke-width: 0;
+        opacity: 0.4;
+    }
+
+    // Point
+    .c3-circle._expanded_ {
+        stroke-width: 1.5px;
+        stroke: $white;
+    }
+    .c3-selected-circle {
+        fill: $white;
+        stroke-width: 2px;
+    }
+
+    // Bar
+    .c3-bar {
+        stroke-width: 0;
+
+        &._expanded_ {
+            fill-opacity: 0.75;
+        }
+    }
+
+    // Arc
+    .c3-chart-arcs-title {
+        font-size: $h6-font-size;
+    }
+    .c3-chart-arcs {
+        .c3-chart-arcs-background {
+            fill: $gray-300;
+            stroke: none;
+        }
+
+        .c3-chart-arcs-gauge-unit {
+            fill: $body-color;
+            font-size: $h6-font-size;
+        }
+
+        .c3-chart-arcs-gauge-max,
+        .c3-chart-arcs-gauge-min {
+            fill: $gray-200;
+        }
+    }
+    .c3-chart-arc .c3-gauge-value {
+        fill: $body-color;
+        font-size: $h1-font-size;
+    }
+
+    // Focus
+    .c3-target {
+        &.c3-focused {
+            opacity: 1;
+
+            path.c3-line,
+            path.c3-step {
+                stroke-width: 2px;
+            }
+        }
+
+        &.c3-defocused {
+            opacity: 0.3 !important;
+        }
+    }
+
+    // Region
+    .c3-region {
+        fill: $color-slate-600;
+        fill-opacity: .1;
+    }
+
+    // Brush
+    .c3-brush .extent {
+        fill-opacity: .1;
+    }
+
+    // Legend
+    .c3-legend-item {
+        font-size: $font-size-sm;
+    }
+    .c3-legend-background {
+        fill: $white;
+        stroke: lightgray;
+        stroke-width: 1;
+        opacity: 0.75;
+    }
+
+    // Tooltip
+    .c3-tooltip {
+        border-collapse: collapse;
+        border-spacing: 0;
+        background-color: $white;
+        empty-cells: show;
+        opacity: 0.95;
+
+        th {
+            background-color: $gray-900;
+            padding: $table-cell-padding-xs;
+            text-align: center;
+            color: $white;
+            border: $table-border-width solid $gray-900;
+            font-weight: $font-weight-semibold;
+        }
+
+        td {
+            padding: $table-cell-padding-xs;
+            background-color: $white;
+            border: $table-border-width solid $border-color;
+
+            > span {
+                display: inline-block;
+                margin-right: map-get($spacers, 2);
+                @include size($badge-mark-size);
+            }
+
+            &.value {
+                text-align: right;
+            }
+        }
+    }
+}

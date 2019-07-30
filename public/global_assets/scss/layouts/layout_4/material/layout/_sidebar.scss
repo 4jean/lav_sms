@@ -1,0 +1,1387 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Sidebar layouts
+ *
+ *  Sidebar components, main navigation and sidebar itself
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+// Sidebar base
+// ------------------------------
+
+// Base
+.sidebar {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	box-sizing: content-box;
+	flex: 0 0 auto;
+	width: $sidebar-base-width;
+	z-index: $sidebar-zindex;
+	@include box-shadow($card-box-shadow);
+	@include transition(all ease-in-out $component-transition-timer);
+
+	// Main and secondary sidebars default position
+	&-main,
+	&-secondary {
+		&,
+		.sidebar-content {
+			left: -($sidebar-base-width * 1.1);
+		}
+	}
+
+	// Right sidebar default position
+	&-right {
+		&,
+		.sidebar-content {
+			right: -($sidebar-base-width * 1.1);
+		}
+	}
+
+	// Fullscreen mode
+	&.sidebar-fullscreen {
+		width: 100%;
+	}
+}
+
+// Sidebar content
+.sidebar-content {
+	position: fixed;
+	top: $nav-link-height;
+	bottom: 0;
+	width: inherit;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+	@include transition(left ease-in-out $component-transition-timer, right ease-in-out $component-transition-timer);
+
+	// If first navbar is large, make sure top spacing is calculated properly
+	.navbar-lg:first-child ~ .page-content & {
+		top: $nav-link-height-lg;
+	}
+
+	// If first navbar is small, make sure top spacing is calculated properly
+	.navbar-sm:first-child ~ .page-content & {
+		top: $nav-link-height-sm;
+	}
+}
+
+
+
+// Sidebar togglers
+// ------------------------------
+
+// Toggle main sidebar on mobile
+.sidebar-mobile-main {
+	.sidebar-main {
+		box-shadow: $sidebar-left-mobile-box-shadow;
+
+		&,
+		.sidebar-content {
+			left: 0;
+		}
+	}
+}
+
+// Toggle secondary sidebar on mobile
+.sidebar-mobile-secondary {
+	.sidebar-secondary {
+		box-shadow: $sidebar-left-mobile-box-shadow;
+
+		&,
+		.sidebar-content {
+			left: 0;
+		}
+	}
+}
+
+// Toggle right sidebar on mobile
+.sidebar-mobile-right {
+	.sidebar-right {
+		display: block;
+		box-shadow: $sidebar-right-mobile-box-shadow;
+
+		&,
+		.sidebar-content {
+			right: 0;
+		}
+	}
+}
+
+
+
+// Sidebar navigation
+// ------------------------------
+
+// Main sidebar nav
+.nav-sidebar {
+	flex-direction: column;
+
+	// Add vertical spacing to the first and last nav items
+	.nav-item:not(.nav-item-header) {
+		&:first-child {
+			padding-top: $navigation-padding-y;
+		}
+		&:last-child {
+			padding-bottom: $navigation-padding-y;
+		}
+	}
+
+	// Add spacing between nav items for better visual separation
+	.nav-item:not(.nav-item-divider) {
+		margin-bottom: $navigation-item-spacer-y;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	// Text style in top level links
+	> .nav-item > .nav-link {
+		font-weight: $navigation-item-font-weight;
+	}
+
+	// Links
+	.nav-link {
+		position: relative;
+		display: flex;
+		align-items: flex-start;
+		padding: $navigation-item-padding-y $navigation-item-padding-x;
+		@include transition(background-color ease-in-out $component-transition-timer, color ease-in-out $component-transition-timer);
+
+		// Icons
+		i {
+			margin-right: $navigation-item-padding-x;
+			margin-top: ($line-height-computed - $icon-font-size) / 2;
+			margin-bottom: ($line-height-computed - $icon-font-size) / 2;
+			top: 0;
+		}
+
+		// Badges
+		.badge {
+			@include transition(background-color ease-in-out $component-transition-timer, border-color ease-in-out $component-transition-timer);
+		}
+
+
+		// Disabled state
+		&.disabled {
+			@include plain-hover-focus {
+				background-color: transparent;
+				opacity: $navigation-item-disabled-opacity;
+			}
+		}
+	}
+
+	// Nav item header
+	.nav-item-header {
+		padding: $navigation-item-padding-y $navigation-item-padding-x;
+		margin-top: $navigation-padding-y;
+
+		// Hide icons by default and show them in folded mode
+		> i {
+			display: none;
+		}
+	}
+
+	// Divider
+	.nav-item-divider {
+		margin: $navigation-padding-y 0;
+		height: 1px;
+	}
+}
+
+// Nav items with submenu
+.nav-item-submenu {
+	> .nav-link {
+		padding-right: ($navigation-item-padding-x + ($icon-font-size * 1.5));
+
+		// Direction arrow
+		&:after {
+			@if $direction == 'LTR' {
+				content: '\e9c7';
+			}
+			@else {
+				content: '\e9c4';
+			}
+		    font-family: $icon-font-family;
+		    display: inline-block;
+		    font-size: $icon-font-size;
+		    vertical-align: middle;
+		    line-height: 1;
+		    position: absolute;
+			top: $navigation-item-padding-y;
+			margin-top: ($line-height-computed - $icon-font-size) / 2;
+		    right: $navigation-item-padding-x;
+		    @include transition(transform 0.25s ease-in-out);
+		    @include ll-font-smoothing();
+		}
+	}
+
+	// When submenu is opened, rotate arrow
+	&.nav-item-open > .nav-link {
+		&:after {
+			transform: rotate(90deg);
+		}
+	}
+}
+
+// Sidebar nav submenus
+.nav-group-sub {
+	display: none;
+
+	// Links
+	.nav-link {
+		padding: $navigation-sub-padding-y $navigation-item-padding-x $navigation-sub-padding-y (($navigation-item-padding-x * 2) + $icon-font-size);
+	}
+
+	// Third level menus
+	.nav-group-sub {
+		.nav-link {
+			padding-left: (($navigation-item-padding-x * 3) + $icon-font-size);
+		}
+
+		// Fourth level
+		.nav-group-sub {
+			.nav-link {
+				padding-left: (($navigation-item-padding-x * 4) + $icon-font-size);
+			}
+		}
+	}
+
+	// Re-position arrow icon in submenu items since padding differs
+	.nav-item-submenu > .nav-link {
+		&:after {
+			top: $navigation-sub-padding-y;
+		}
+	}
+
+	// Expand submenu
+	.nav-item-expanded > & {
+		display: block;
+	}
+}
+
+// Scrollspy nav
+.nav-scrollspy {
+	.nav-link.active + .nav,
+	.nav-item-open .nav-link:not(.active) + .nav {
+		display: block;
+	}
+
+	// Rotate direction icon
+	.nav-link {
+		&.active:after {
+			transform: rotate(90deg);
+		}
+	}
+}
+
+
+//
+// Optional navigation styles
+//
+
+// Reversed icons alignment
+@if $enable-sidebar-nav-icons-reverse {
+	.nav-sidebar-icons-reverse {
+		.nav-link {
+			padding-right: $navigation-item-padding-x + $navigation-item-padding-x + $icon-font-size;
+
+			i {
+				position: absolute;
+				top: $navigation-item-padding-y;
+				right: $navigation-item-padding-x;
+				margin-right: 0;
+			}
+		}
+
+		.nav-item-submenu {
+			.nav-link {
+				padding-right: ($nav-link-padding-x + $icon-font-size + $icon-font-size + $nav-link-padding-x);
+
+				&:after {
+					right: ($nav-link-padding-x + $icon-font-size + $icon-font-size);
+				}
+			}
+		}
+
+		.nav-group-sub {
+			.nav-link {
+				padding-left: ($navigation-item-padding-x * 2);
+
+				i {
+					top: $navigation-sub-padding-y;
+				}
+			}
+
+			.nav-group-sub {
+				.nav-link {
+					padding-left: ($navigation-item-padding-x * 3);
+				}
+
+				.nav-group-sub {
+					.nav-link {
+						padding-left: ($navigation-item-padding-x * 4);
+					}
+				}
+			}
+		}
+	}
+}
+
+// Bordered navigation
+@if $enable-sidebar-nav-bordered {
+	.nav-sidebar-bordered {
+		> .nav-item {
+			+ .nav-item:not(.nav-item-divider) {
+				margin-bottom: 0;
+			}
+		}
+
+		.sidebar .card:first-child & {
+			padding-top: 0;
+
+			> .nav-item:first-child,
+			> .nav-item-header:first-child {
+				border-top: 0;
+			}
+		}
+		.sidebar .card:last-child & {
+			padding-bottom: 0;
+
+			> .nav-item:last-child,
+			> .nav-item-header:last-child {
+				border-bottom: 0;
+			}
+		}
+
+		.sidebar-dark & {
+			> .nav-item {
+				border-top: $navigation-dark-bordered-border-width solid $navigation-dark-bordered-border-color;
+
+				&:last-child {
+					border-bottom: $navigation-dark-bordered-border-width solid $navigation-dark-bordered-border-color;
+				}
+			}
+
+			> .nav-item-header {
+				background-color: $navigation-dark-bordered-header-bg;
+				border-top: $navigation-dark-bordered-border-width solid $navigation-dark-bordered-border-color;
+				margin: 0;
+			}
+		}
+
+		.sidebar-light & {
+			> .nav-item {
+				border-top: $navigation-light-bordered-border-width solid $navigation-light-bordered-border-color;
+
+				&:last-child {
+					border-bottom: $navigation-light-bordered-border-width solid $navigation-light-bordered-border-color;
+				}
+			}
+
+			> .nav-item-header {
+				background-color: $navigation-light-bordered-header-bg;
+				border-top: $navigation-light-bordered-border-width solid $navigation-light-bordered-border-color;
+				margin: 0;
+			}
+		}
+	}
+}
+
+
+
+// Sidebar mobile toggler
+// ------------------------------
+
+// Base styles
+.sidebar-mobile-toggler {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+    // Links
+	a {
+		padding: $navbar-link-padding-y $navigation-item-padding-x;
+    	@include transition(all ease-in-out $component-transition-timer);
+
+    	// Add proper spacing if first navbar has optional size
+		.navbar-lg:first-child ~ .page-content & {
+			padding: $navbar-link-padding-y-lg $navigation-item-padding-x;
+		}
+		.navbar-sm:first-child ~ .page-content & {
+			padding: $navbar-link-padding-y-sm $navigation-item-padding-x;
+		}
+	}
+}
+
+// Expand sidebar to full width button
+.sidebar-mobile-expand {
+	i {
+		&:last-child:not(:first-child) {
+			display: none;
+		}
+
+		// Fullscreen mode
+		.sidebar-fullscreen & {
+			&:first-child {
+				display: none;
+			}
+			&:last-child {
+				display: inline-block;
+			}
+		}
+	}
+}
+
+
+
+// Sidebar options
+// ------------------------------
+
+//
+// Colors
+//
+
+// Dark sidebar
+.sidebar-dark {
+	background-color: $sidebar-dark-bg;
+	color: $sidebar-dark-color;
+	border-color: $sidebar-dark-border-color;
+
+	// Mobile toggler
+	.sidebar-mobile-toggler {
+		color: $sidebar-dark-toggler-color;
+		border-bottom-color: $sidebar-dark-border-color;
+
+		// An option to use custom color
+		&:not([class*=bg-]) {
+			background-color: $sidebar-dark-toggler-bg;
+		}
+
+		// Links
+		a {
+			color: $sidebar-dark-toggler-color;
+
+			// Hover state
+			@include hover {
+				color: $sidebar-dark-toggler-hover-color;
+				background-color: $sidebar-dark-toggler-hover-bg;
+			}
+		}
+	}
+
+	// Card header border color
+	.card-header {
+		border-color: $sidebar-dark-border-color;
+	}
+}
+
+// Dark sidebar and dark sidebar with custom colors
+.sidebar-dark,
+.sidebar-light .card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) {
+	.nav-sidebar {
+
+		// All links
+		.nav-link {
+			color: $navigation-dark-color;
+
+			// Ignore disabled links when adding colors
+			&:not(.disabled) {
+				@include hover {
+					color: $navigation-dark-hover-color;
+					background-color: $navigation-dark-hover-bg;
+				}
+			}
+		}
+
+		// Active links in submenu
+		.nav-item > .nav-link.active {
+			background-color: $navigation-dark-sub-active-bg;
+			color: $navigation-dark-sub-active-color;
+		}
+
+		// Link in opened submenu
+		.nav-item-open > .nav-link:not(.disabled),
+		> .nav-item-expanded:not(.nav-item-open) > .nav-link {
+			background-color: $navigation-dark-hover-bg;
+			color: $navigation-dark-hover-color;
+		}
+
+		// Active link in top level
+		> .nav-item-open > .nav-link:not(.disabled),
+		> .nav-item > .nav-link.active {
+			background-color: $navigation-dark-active-bg;
+			color: $navigation-dark-active-color;
+		}
+
+		// Header
+		.nav-item-header {
+			color: rgba($sidebar-dark-color, 0.5);
+		}
+
+		// Divider
+		.nav-item-divider {
+			background-color: $sidebar-dark-border-color;
+		}
+
+		// Submenus
+		> .nav-item-submenu > .nav-group-sub {
+			background-color: $navigation-dark-sub-bg;
+		}
+	}
+}
+
+// If dark sidebar has custom bg color,
+// justify bg color for active state
+.sidebar-dark[class*=bg-],
+.sidebar .card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) {
+	.nav-sidebar {
+		> .nav-item-open > .nav-link:not(.disabled),
+		> .nav-item > .nav-link.active {
+			background-color: fade-in($navigation-dark-hover-bg, 0.15);
+		}
+	}
+}
+
+// Light sidebar
+.sidebar-light {
+	background-color: $sidebar-light-bg;
+	color: $sidebar-light-color;
+	border-color: $sidebar-light-border-color;
+
+	// Main sidebar nav
+	.nav-sidebar {
+
+		// All links
+		.nav-link {
+			color: $navigation-light-color;
+
+			// Ignore disabled links when adding colors
+			&:not(.disabled) {
+				@include hover {
+					color: $navigation-light-hover-color;
+					background-color: $navigation-light-hover-bg;
+				}
+			}
+		}
+
+		// Active links in submenu
+		.nav-item > .nav-link.active {
+			background-color: $navigation-light-sub-active-bg;
+			color: $navigation-light-sub-active-color;
+		}
+
+		// Link in opened submenu
+		.nav-item-open > .nav-link:not(.disabled),
+		> .nav-item-expanded:not(.nav-item-open) > .nav-link {
+			background-color: $navigation-light-hover-bg;
+			color: $navigation-light-hover-color;
+		}
+
+		// Active link in top level
+		> .nav-item-open > .nav-link:not(.disabled),
+		> .nav-item > .nav-link.active {
+			background-color: $navigation-light-active-bg;
+			color: $navigation-light-active-color;
+		}
+
+		// Header
+		.nav-item-header {
+			color: rgba($sidebar-light-color, 0.5);
+		}
+
+		// Divider
+		.nav-item-divider {
+			background-color: $sidebar-light-border-color;
+		}
+
+		// Submenus
+		> .nav-item-submenu > .nav-group-sub {
+			background-color: $navigation-light-sub-bg;
+		}
+	}
+
+	// Sidebar mobile toggler
+	.sidebar-mobile-toggler {
+		color: $sidebar-light-toggler-color;
+		border-bottom-color: $sidebar-light-border-color;
+
+		// An option to use custom color
+		&:not([class*=bg-]) {
+			background-color: $sidebar-light-toggler-bg;
+		}
+
+		// Links
+		a {
+			color: $sidebar-light-toggler-color;
+
+			// Hover state
+			@include hover {
+				color: $sidebar-light-toggler-hover-color;
+				background-color: $sidebar-light-toggler-hover-bg;
+			}
+		}
+
+		// Custom colors
+		&[class*=bg-]:not(.bg-white):not(.bg-light):not(.bg-transparent) {
+			color: $sidebar-dark-toggler-color;
+			border-bottom-color: $sidebar-dark-border-color;
+
+			// Links
+			a {
+				color: $sidebar-dark-toggler-color;
+
+				// Hover state
+				@include hover {
+					color: $sidebar-dark-toggler-hover-color;
+					background-color: $sidebar-dark-toggler-hover-bg;
+				}
+			}
+		}
+	}
+}
+
+
+//
+// Mini sidebar - can be used only on certain breakpoints ("md" and up)
+//
+
+.sidebar-xs {
+	@include media-breakpoint-up(md) {
+
+		// Works only in main sidebar
+		.sidebar-main {
+			width: $sidebar-mini-width;
+
+			// Hide default scrollbar
+			.sidebar-content {
+				&::-webkit-scrollbar {
+			        width: 0 !important;
+			    }
+			}
+
+			// Card and card elements
+			.card:not(.card-sidebar-mobile),
+			.card-title {
+				display: none;
+			}
+
+			// Card header and control actions
+			.card-header {
+				h6 {
+					+ .header-elements {
+						padding-top: ((($headings-line-height * $h6-font-size) - $icon-font-size) / 2);
+						padding-bottom: ((($headings-line-height * $h6-font-size) - $icon-font-size) / 2);
+					}
+				}
+				h5 {
+					+ .header-elements {
+						padding-top: ((($headings-line-height * $h5-font-size) - $icon-font-size) / 2);
+						padding-bottom: ((($headings-line-height * $h5-font-size) - $icon-font-size) / 2);
+					}
+				}
+			}
+
+			// Main navigation
+			.nav-sidebar {
+
+				// Nav items
+				> .nav-item {
+					position: relative;
+					margin: 0;
+
+					// Links
+					> .nav-link {
+						justify-content: center;
+						padding-left: 0;
+						padding-right: 0;
+
+						// Icons
+						> i {
+							position: static;
+							margin-left: 0;
+							margin-right: 0;
+							display: block;
+							padding-bottom: $navigation-item-spacer-y;
+						}
+
+						// Hide text
+						> span {
+							display: none;
+						}
+					}
+				}
+
+				// Items with submenu
+				> .nav-item-submenu {
+
+					// Show submenus on hover
+					@include hover-focus {
+						> .nav-group-sub {
+							display: block!important;
+						}
+					}
+
+					// Submenu
+					> .nav-group-sub {
+						position: absolute;
+						top: -($navigation-padding-y);
+						right: -($sidebar-base-width);
+						width: $sidebar-base-width;
+						display: none;
+						z-index: $zindex-dropdown;
+						@include box-shadow($dropdown-box-shadow);
+						@include border-right-radius($border-radius);
+
+						// Submenu title
+						&[data-submenu-title] {
+							&:before {
+								content: attr(data-submenu-title);
+								display: block;
+								padding: $navigation-item-padding-y $navigation-item-padding-x;
+								padding-bottom: 0;
+								margin-top: $navigation-padding-y;
+								opacity: $navigation-sub-item-opacity;
+							}
+						}
+					}
+
+					// Hide direction arrows
+					> .nav-link {
+						&:after {
+							content: none;
+						}
+					}
+				}
+
+				// Submenu
+				.nav-group-sub {
+					.nav-link {
+						padding-left: $navigation-item-padding-x;
+					}
+
+					// Third level
+					.nav-group-sub {
+						.nav-link {
+							padding-left: ($navigation-item-padding-x + $icon-font-size);
+						}
+
+						// Fourth level
+						.nav-group-sub {
+							.nav-link {
+								padding-left: (($navigation-item-padding-x * 2) + $icon-font-size);
+							}
+						}
+					}
+				}
+
+				// Navigation header
+				> .nav-item-header {
+					padding: 0;
+					text-align: center;
+
+					// Icons
+					> i {
+						display: block;
+						top: 0;
+						padding: $navigation-item-padding-y $navigation-item-padding-x;
+						margin-top: (($line-height-computed - $icon-font-size) / 2);
+						margin-bottom: (($line-height-computed - $icon-font-size) / 2);
+					}
+
+					// Hide text label
+					> div {
+						display: none;
+					}
+				}
+
+				// Hide submenu in opened section
+				> .nav-item-open > .nav-group-sub {
+					display: none!important;
+				}
+
+				// Do not show disabled submenus on hover
+				> .nav-item {
+					@include hover-focus {
+						> .nav-link.disabled + .nav-group-sub,
+						> .nav-link.disabled > span {
+							display: none!important;
+						}
+					}
+				}
+			}
+
+			// Sidebar user block
+			.sidebar-user {
+
+				// Remove horizontal padding
+				.card-body {
+					padding-left: 0;
+					padding-right: 0;
+				}
+
+				// Center image
+				.media {
+					justify-content: center;
+
+					// Hide all text
+					> div {
+						&:not(:first-child) {
+							display: none!important;
+
+						}
+
+						&:first-child {
+							margin: 0!important;
+						}
+					}
+				}
+			}
+
+			// Flip 2nd level dropdown if there's no enough space
+			// and height doesn't fit the browser window
+			.nav-item-submenu-reversed {
+				.nav-group-sub {
+					top: auto!important;
+					bottom: 0;
+				}
+			}
+
+
+			//
+			// Color options
+			//
+
+			// Dark sidebar
+			&.sidebar-dark {
+				.nav-sidebar {
+					> .nav-item:not(.nav-item-open):hover {
+						> .nav-link:not(.active):not(.disabled) {
+							color: $navigation-dark-hover-color;
+							background-color: $navigation-dark-hover-bg;
+						}
+					}
+
+					> .nav-item-submenu {
+						> .nav-group-sub {
+							background-color: $sidebar-dark-xs-menu-bg;
+							border-left: $sidebar-dark-border-width solid $sidebar-dark-border-color;
+						}
+					}
+				}
+			}
+
+			// Light sidebar
+			&.sidebar-light {
+				.nav-sidebar {
+					> .nav-item:not(.nav-item-open):hover {
+						> .nav-link:not(.active):not(.disabled) {
+							color: $navigation-light-hover-color;
+							background-color: $navigation-light-hover-bg;
+						}
+					}
+
+					> .nav-item-submenu {
+						> .nav-group-sub {
+							background-color: $sidebar-light-xs-menu-bg;
+							border: $sidebar-light-border-width solid $sidebar-light-border-color;
+						}
+					}
+				}
+
+				// Custom cards background
+				.card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) {
+					.nav-sidebar {
+						> .nav-item:not(.nav-item-open):hover {
+							> .nav-link:not(.active):not(.disabled) {
+								color: $navigation-dark-hover-color;
+								background-color: $navigation-dark-hover-bg;
+							}
+						}
+
+						> .nav-item-submenu {
+							> .nav-group-sub {
+								background-color: $sidebar-dark-xs-menu-bg;
+								border: $sidebar-dark-border-width solid $sidebar-dark-border-color;
+							}
+						}
+					}
+				}
+			}
+		}
+
+
+		//
+		// Fixed sidebar
+		//
+
+		// Base
+		.sidebar-main.sidebar-fixed {
+			z-index: ($zindex-fixed - 1);
+
+			// Submenu
+			.nav-sidebar > .nav-item-submenu {
+				@include hover-focus {
+					> .nav-group-sub {
+						position: fixed;
+						left: $sidebar-mini-width;
+						top: $nav-link-height + rem-calc($navbar-border-width * 2);
+						bottom: 0;
+						width: $sidebar-base-width;
+						overflow-y: auto;
+						@include border-radius(0);
+					}
+				}
+			}
+		}
+
+		// If first navbar has different size
+		.navbar-lg:first-child ~ .page-content {
+			.sidebar-fixed.sidebar-main {
+				.nav-sidebar > .nav-item-submenu {
+					@include hover-focus {
+						> .nav-group-sub {
+							top: $nav-link-height-lg + rem-calc($navbar-border-width * 2);
+						}
+					}
+				}
+			}
+		}
+		.navbar-sm:first-child ~ .page-content {
+			.sidebar-fixed.sidebar-main {
+				.nav-sidebar > .nav-item-submenu {
+					@include hover-focus {
+						> .nav-group-sub {
+							top: $nav-link-height-sm + rem-calc($navbar-border-width * 2);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+//
+// Generate series of `.sidebar-expand-*` responsive classes for configuring
+// where sidebar collapses. If togglers are in main navbar, make sure breakpoints match.
+// ------------------------------
+
+.sidebar-expand {
+	@each $breakpoint in map-keys($grid-breakpoints) {
+		$next: breakpoint-next($breakpoint, $grid-breakpoints);
+		$infix: breakpoint-infix($next, $grid-breakpoints);
+
+		&#{$infix} {
+			@include media-breakpoint-up($next) {
+				position: static;
+				margin-left: $content-container-padding-x;
+				margin-right: $content-container-padding-x;
+				margin-bottom: $spacer;
+				@include border-radius($border-radius);
+				@include transition(none);
+
+				// Sidebars
+				&.sidebar-main {
+					left: auto;
+					z-index: $sidebar-zindex-main;
+					box-shadow: $sidebar-left-desktop-box-shadow;
+
+					// Content
+					.sidebar-content {
+						left: 0;
+					}
+				}
+				&.sidebar-secondary {
+					left: auto;
+					z-index: $sidebar-zindex-secondary;
+					box-shadow: $sidebar-left-desktop-box-shadow;
+
+					// Content
+					.sidebar-content {
+						left: 0;
+					}
+				}
+				&.sidebar-right {
+					right: auto;
+					z-index: $sidebar-zindex-right;
+					box-shadow: $sidebar-right-desktop-box-shadow;
+
+					// Content
+					.sidebar-content {
+						right: 0;
+					}
+				}
+				
+				// Sidebar content
+				.sidebar-content {
+					position: static;
+					overflow: visible;
+					width: auto;
+				}
+
+				// Hide mobile toggler
+				.sidebar-mobile-toggler {
+					display: none;
+				}
+
+				// In fullscreen mode
+				&.sidebar-fullscreen {
+					width: $sidebar-base-width;
+				}
+
+				// Hide spcific sidebars
+				.sidebar-main-hidden &.sidebar-main,
+				.sidebar-secondary-hidden &.sidebar-secondary,
+				.sidebar-mobile-right &.sidebar-right {
+					display: none;
+				}
+
+				// Right sidebar
+				&.sidebar-right {
+					display: none;
+
+					// Show if .sidebar-right-visible is added to <body>
+					.sidebar-right-visible & {
+						display: block;
+					}
+				}
+
+				// Sectioned sidebar
+				&.sidebar-sections {
+					background-color: transparent;
+					border: 0;
+					@include box-shadow(none);
+
+					// Cards
+					.card {
+						margin-bottom: $spacer;
+						@include border-radius($card-border-radius);
+						@include box-shadow($card-box-shadow);
+					}
+				}
+			}
+
+			@include media-breakpoint-down($breakpoint) {
+				border: 0;
+			}
+		}
+	}
+}
+
+
+
+// Sidebar components
+// ------------------------------
+
+// Sidebar sections use cards
+.sidebar {
+	.card {
+		border-width: 0;
+		margin-bottom: 0;
+		@include border-radius(0);
+		@include box-shadow(none);
+
+		// Nested card
+		.card {
+			border-width: $card-border-width;
+		}
+	}
+
+	// Remove backgrounds
+	&:not(.sidebar-sections) .card:not([class*=bg-]):not(.fixed-top) {
+		background-color: transparent;
+	}
+
+	// Footer
+	.card-footer {
+		border-bottom: $card-border-width solid $card-border-color;
+	}
+}
+
+// Make grid gutter smaller
+.sidebar {
+	.row:not(.no-gutters) {
+		margin-left: -($grid-gutter-width / 4);
+		margin-right: -($grid-gutter-width / 4);
+
+		[class*=col] {
+			padding-left: ($grid-gutter-width / 4);
+			padding-right: ($grid-gutter-width / 4);	
+		}
+	}
+}
+
+// Remove bottom margin from the last for group
+.sidebar {
+	.form-group:last-child {
+		margin-bottom: 0;
+	}
+}
+
+
+//
+// Tabs
+//
+
+// Basic styles
+.sidebar {
+
+	// Base
+	.nav-tabs {
+
+		// Tab nav item
+		.nav-item {
+			&:first-child .nav-link {
+				border-left: 0;
+			}
+			&:last-child .nav-link {
+				border-right: 0;
+			}
+		}
+
+		// Tab nav link
+		.nav-link {
+			border-top: 0;
+			border-bottom-width: 0;
+
+			// Active state
+			&.active {
+				border-bottom-color: transparent;
+			}
+		}
+	}
+
+	// In dark sidebar
+	&-dark {
+		.nav-tabs {
+			background-color: $sidebar-dark-tabs-bg;
+			border-bottom-color: $sidebar-dark-border-color;
+
+			// Link
+			.nav-link {
+				color: $navigation-dark-color;			
+
+				// Hover state
+				@include hover-focus {
+					color: $navigation-dark-hover-color;
+				}
+
+				// Active state
+				&.active {
+					color: $navigation-dark-active-color;
+				}
+			}
+
+			// Exclude bottom tabs from active state background styling
+			&:not(.nav-tabs-bottom) {
+				.nav-link.active {
+					background-color: $sidebar-dark-bg;
+					border-color: $sidebar-dark-border-color;
+				}
+			}
+
+			// Dropdown
+			.nav-item.show {
+				.nav-link:not(.active) {
+					color: $navigation-dark-active-color;
+				}
+			}
+		}
+	}
+
+	// In light sidebar
+	&-light {
+		.nav-tabs {
+			background-color: $sidebar-light-tabs-bg;
+			border-bottom-color: $sidebar-light-border-color;
+
+			// Link
+			.nav-link {
+
+				// Hover state
+				@include hover-focus {
+					color: $navigation-light-hover-color;
+				}
+
+				// Active state
+				&.active {
+					color: $navigation-light-hover-color;
+				}
+			}
+
+			// Exclude bottom tabs from active state background styling
+			&:not(.nav-tabs-bottom) {
+				.nav-link.active {
+					background-color: $sidebar-light-bg;
+				}
+			}
+		}
+	}
+}
+
+
+//
+// Button group
+//
+
+.row-tile {
+	@include border-radius($btn-border-radius);
+	@include box-shadow($card-box-shadow);
+
+	div[class*=col] {
+
+		//
+		// Rounded corners
+		//
+
+		// Remove rounded corners from all buttons
+		.btn {
+			border-width: 0;
+			@include border-radius(0);
+		}
+
+		.btn-light,
+		.bg-white {
+			border-color: $card-border-color;
+		}
+
+		// Keep left rounded corners for the first and last buttons only
+		&:first-child {
+			.btn {
+				&:first-child {
+					@if $enable-rounded {
+						border-top-left-radius: $border-radius;
+					}
+				}
+				&:last-child {
+					@if $enable-rounded {
+						border-bottom-left-radius: $border-radius;
+					}
+				}
+			}
+		}
+
+		// Keep right rounded corners for the first and last buttons only
+		&:last-child {
+			.btn {
+				&:first-child {
+					@if $enable-rounded {
+						border-top-right-radius: $border-radius;
+					}
+				}
+				&:last-child {
+					@if $enable-rounded {
+						border-bottom-right-radius: $border-radius;
+					}
+				}
+			}
+		}
+
+		//
+		// Borders
+		//
+
+		// Remove top borders
+		.btn + .btn {
+			border-top-width: $btn-border-width;
+		}
+
+		// Remove left borders
+		+ div[class*=col] {
+			.btn {
+				border-left-width: $btn-border-width;
+			}
+		}
+	}
+}
+
+
+//
+// User menu
+//
+
+// Base
+.sidebar-user-material {
+
+	// Add backgroupd image    
+    .sidebar-user-material-body {
+		background: url(#{$img-path}/backgrounds/user_bg4.jpg) center center no-repeat;
+	    background-size: cover;
+    }
+        
+    // Navigation menu wrapper
+	.collapse {
+		
+    	.sidebar-dark & {
+			background-color: $sidebar-dark-user-menu-bg;
+			border-bottom: $sidebar-dark-user-menu-border-width solid $sidebar-dark-user-menu-border-color;
+    	}
+
+
+		// In default sidebar
+    	.sidebar-light & {
+    		background-color: $sidebar-light-user-menu-bg;
+			border-bottom: $sidebar-light-user-menu-border-width solid $sidebar-light-user-menu-border-color;
+    	}
+	}
+}
+
+// User menu
+.sidebar-user-material-footer {
+	
+	// Link
+	> a {
+    	padding: $nav-link-padding-y $nav-link-padding-x;
+    	display: block;
+		color: $white;
+		background-color: rgba($black, 0.15);
+		@include transition(background-color ease-in-out $component-transition-timer);
+		
+		// Hover effect
+		&:hover,
+		&[aria-expanded="true"] {
+			background-color: rgba(#000, 0.25);
+		}
+
+		&:after {
+			@include transition(all ease-in-out $component-transition-timer);
+		}
+					
+		// Rotate caret
+		&[aria-expanded="true"]:after {
+			transform: rotate(180deg);
+		}
+	}    	
+}
+
+// Inside mini sidebar
+.sidebar-xs {
+	@include media-breakpoint-up(md) {
+
+		// Hide text
+		.sidebar-user-material-body > .card-body {
+			display: none;
+		}
+
+		// Menu button
+		.sidebar-user-material-footer {
+
+			// Link
+			> a {
+				padding: (($sidebar-mini-width - $icon-font-size) / 2);
+
+				&:after {
+					margin: auto;
+				}
+			}
+
+			// Hide text
+			> a > span {
+				display: none;
+			}
+		}
+	}
+}

@@ -1,0 +1,156 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Alert component
+ *
+ *  Overrides for alert bootstrap component
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Dismissible alerts
+.alert-dismissible {
+
+    // Adjust close link color
+    .close {
+        @include hover-focus {
+            color: inherit;
+        }
+    }
+}
+
+
+//
+// Alternate styles
+//
+
+// Custom background color
+.alert[class*=bg-]:not(.bg-transparent):not(.bg-white):not(.bg-light) {
+    .alert-link {
+        color: inherit;
+        border-bottom-color: rgba($white, 0.85);
+    }
+}
+
+// Rounded alert
+.alert-rounded {
+    padding-left: ($alert-padding-x * 1.5);
+    padding-right: ($alert-padding-x * 1.5);
+    @include border-radius($border-radius-round);
+
+    // Close button
+    &.alert-dismissible {
+        .close {
+            @include border-right-radius($border-radius-round);
+        }
+    }
+}
+
+// Styled alerts
+.alert {
+
+    // Icon variations
+    &[class*=alert-styled-] {
+
+        // Icon base
+        &:after {
+            content: '\e9a2';
+            font-family: $icon-font-family;
+            color: $white;
+            width: (($alert-padding-y * 2) + $icon-font-size);
+            left: -(($alert-padding-y * 2) + $icon-font-size);
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            margin-top: -($icon-font-size / 2);
+            font-size: $icon-font-size;
+            font-weight: $font-weight-normal;
+            line-height: 1;
+            @include ll-font-smoothing();
+        }
+
+        // Danger icon
+        &.alert-danger:after,
+        &[class*=bg-danger]:after {
+            content: '\ed64';
+        }
+
+        // Success icon
+        &.alert-success:after,
+        &[class*=bg-success]:after {
+            content: '\ed6e';
+        }
+
+        // Warning icon
+        &.alert-warning:after,
+        &[class*=bg-warning]:after {
+            content: '\e9bd';
+        }
+
+        // Info icon
+        &.alert-info:after,
+        &[class*=bg-info]:after {
+            content: '\e9b9';
+        }
+    }
+
+    // Styled alert with left icon
+    &.alert-styled-left {
+        border-left-width: (($alert-padding-y * 2) + $icon-font-size);
+
+        // With custom bg
+        &[class*=bg-]:not(.bg-white):not(.bg-light) {
+            border-left-color: rgba($black, 0.15)!important;
+        }
+    }
+
+    // Styled alert with right icon
+    &.alert-styled-right {
+        border-right-width: (($alert-padding-y * 2) + $icon-font-size);
+
+        // Change icon position
+        &:after {
+            left: auto;
+            right: -(($alert-padding-y * 2) + $icon-font-size);
+        }
+
+        // With custom bg
+        &[class*=bg-]:not(.bg-white):not(.bg-light) {
+            border-right-color: rgba($black, 0.15)!important;
+        }
+    }
+
+    // With custom icon
+    &.alert-styled-custom {
+        &:after {
+            content: "\e81b"; // Change icon code for custom alert
+        }
+    }
+}
+
+// Alert arrow
+.alert {
+
+    // Left arrow
+    &:not(.ui-pnotify)[class*=alert-arrow-]:before,
+    &.ui-pnotify[class*=alert-arrow-] > .brighttheme:before {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        border-left: $alert-arrow-size solid;
+        border-top: $alert-arrow-size solid transparent;
+        border-bottom: $alert-arrow-size solid transparent;
+        border-left-color: inherit;
+        margin-top: -$alert-arrow-size;
+    }
+
+    // Right arrow
+    &:not(.ui-pnotify).alert-arrow-right:before,
+    &.ui-pnotify.alert-arrow-right > .brighttheme:before {
+        left: auto;
+        right: 0;
+        border-left: 0;
+        border-right: $alert-arrow-size solid;
+        border-right-color: inherit;
+    }
+}

@@ -1,0 +1,21 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Background mixin
+ *
+ *  Override and extend default background mixin.
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Contextual backgrounds
+@mixin bg-variant($parent, $color) {
+	#{$parent} {
+		background-color: $color !important;
+	}
+}
+
+// Gradient
+@mixin bg-gradient-variant($parent, $color) {
+	#{$parent} {
+		background: $color linear-gradient(180deg, mix($body-bg, $color, 15%), $color) repeat-x;
+	}
+}

@@ -1,0 +1,64 @@
+{
+    "app": {
+        "name": "Limitless - Responsive Web Application Kit"
+    },
+
+    "nav_inline": {
+        "user": {
+        	"name": "Victoria Baker",
+        	"location": "Santa Ana, CA"
+    	},
+        "nav": {
+        	"header": "Sidebar header",
+        	"top_level": "Top level link",
+        	"with_children": {
+        		"main": "With children",
+        		"second_one": "Second level link 1",
+        		"second_two": "Second level link 2"
+        	},
+        	"multiple_levels": {
+        		"main": "Multiple levels",
+        		"second_one": "Second level link 1",
+        		"second_child": {
+        			"main": "Second level with child",
+        			"third_one": "Third level link 1",
+        			"third_two": "Third level link 2"
+        		},
+        		"second_three": "Second level link 3",
+        		"disabled": "Disabled link"
+        	}
+    	}
+    },
+
+    "nav_advanced": {
+        "user": {
+        	"name": "Victoria Baker",
+        	"location": "Santa Ana, CA"
+    	},
+        "nav": {
+        	"header": "Sidebar header",
+        	"tooltip": "Tooltip",
+        	"tooltip_text": "Tooltip text",
+        	"inline_element": "Inline element",
+        	"insert": "Insert HTML from JSON",
+        	"inline_text": "Plain text",
+        	"badges": {
+        		"done": "<span class='badge bg-success'>Done</span>",
+        		"fixed": "Fixed",
+        		"new": "New",
+        		"text": "Inline text"
+        	},
+        	"multiple_levels": {
+        		"main": "Multiple levels",
+        		"second_one": "Second level link 1",
+        		"second_child": {
+        			"main": "Second level with child",
+        			"third_one": "Third level link 1",
+        			"third_two": "Third level link 2"
+        		},
+        		"second_three": "Second level link 3",
+        		"disabled": "Disabled link"
+        	}
+    	}
+    }
+}

@@ -1,0 +1,481 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Uniform.js
+ *
+ *  Styles for uniform.min.js - form components styling
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-uniform {
+
+
+	// Checkbox and radio
+	// ------------------------------
+
+	// Checkbox and radio have some common styles
+	.uniform-checker,
+	.uniform-choice {
+		position: relative;
+		cursor: pointer;
+		vertical-align: middle;
+
+		// Set general size
+		&,
+		span,
+		input {
+			@include size($checkbox-size);
+		}
+
+		// Input setup
+		span {
+			border: $checkbox-border-width solid $checkbox-border-color;
+			display: inline-block;
+			text-align: center;
+			position: relative;
+
+			// Checked style
+			&.checked {
+				&:after {
+					opacity: 1;
+				}
+			}
+		}
+
+		// Hide original checkbox
+		input[type=checkbox],
+		input[type=radio] {
+			border: 0;
+			background: none;
+			display: inline-block;
+			margin: 0;
+			cursor: pointer;
+			position: absolute;
+			top: -($checkbox-border-width);
+			left: -($checkbox-border-width);
+			visibility: visible;
+			opacity: 0;
+			z-index: 2;
+
+			// Make sure hidden input doesn't overlap the custom element
+			.form-check.form-check-inline & {
+				margin-left: 0;
+				margin-right: 0;
+			}
+		}
+
+
+		//
+		// Alignment
+		//
+
+		// Left alignment
+		.form-check & {
+			position: absolute;
+			top: (($line-height-computed - $checkbox-size) / 2);
+			left: 0;
+		}
+
+		// Right alignment
+		.form-check-right & {
+			left: auto;
+			right: 0;
+		}
+
+		// Left inline
+		.form-check-inline & {
+			position: static;
+			margin-right: $form-check-inline-input-margin-x;
+	        margin-top: ($line-height-computed - $checkbox-size) / 2;
+		}
+
+		// Right inline
+		.form-check-inline.form-check-right & {
+			margin-right: 0;
+			margin-left: $form-check-inline-input-margin-x;
+		}
+
+
+		//
+		// States
+		//
+
+		// Disabled
+		&.disabled {
+			opacity: $checkbox-disabled-opacity;
+
+			// Cursor
+			&,
+			input {
+				cursor: $cursor-disabled;
+			}
+		}
+	}
+
+	// Checkbox
+	.uniform-checker {
+
+		// Checkbox setup
+		span {
+			color: $checkbox-color;
+			@include border-radius($border-radius-sm);
+	        @include transition(border-color ease-in-out $component-transition-timer, color ease-in-out $component-transition-timer);
+
+			// Checkmark icon
+			&:after {
+				content: "\e600";
+				font-family: $icon-font-family;
+				font-size: $icon-font-size;
+				position: absolute;
+				top: ($checkbox-size - $icon-font-size - ($checkbox-border-width * 2)) / 2;
+				left: ($checkbox-size - $icon-font-size - ($checkbox-border-width * 2)) / 2;
+				line-height: 1;
+				opacity: 0;
+				@include ll-font-smoothing();
+		        @include transition(opacity ease-in-out $component-transition-timer);
+			}
+
+			// For dark backgrounds, add .uniform-checker-light class to
+			// checkbox container to make it white
+			.form-check-light & {
+				border-color: $white;
+				color: $white;
+			}
+		}
+
+		// Custom colors
+		&[class*=border-] {
+			span {
+				border-color: inherit;
+				color: inherit;
+			}
+		}
+	}
+
+	// Radio
+	.uniform-choice {
+		border-radius: $border-radius-round;
+
+		// Radio setup
+		span {
+			border-radius: $border-radius-round;
+	        @include transition(border-color ease-in-out $component-transition-timer);
+
+			// Add colored circle
+			&:after {
+				content: "";
+				position: absolute;
+				top: (($checkbox-size / 2) - $checkbox-border-width - (($checkbox-size / 2) / 2));
+				left: (($checkbox-size / 2) - $checkbox-border-width - (($checkbox-size / 2) / 2));
+				border: (($checkbox-size / 2) / 2) solid;
+				border-color: inherit;
+				width: 0;
+				height: 0;
+				border-radius: $border-radius-round;
+				opacity: 0;
+		        @include transition(all ease-in-out $component-transition-timer);
+			}
+
+			// For dark backgrounds, add .uniform-checker-light class to
+			// checkbox container to make it white
+			.form-check-light & {
+				border-color: $white;
+			}
+		}
+
+		// Custom colors
+		&[class*=border-] {
+			span {
+				border-color: inherit;
+
+				&:after {
+					border-color: inherit;
+				}
+			}
+		}
+	}
+
+	// Fix for dropdown active state
+	.dropdown-menu:not([class*=bg-]) {
+		.dropdown-item.active:not(.disabled) {
+			@if (lightness($dropdown-link-active-bg) < 75) {
+				.uniform-checker {
+					span {
+						border-color: $white;
+						color: $white;
+
+					}
+				}
+				.uniform-choice {
+					span {
+						border-color: $white;
+					}
+				}
+			}
+		}
+	}
+
+	// Inside dropdown item
+    .dropdown-item {
+	    &.form-check {
+
+	    	// Label
+	        .form-check-label {
+	            padding-left: ($dropdown-item-padding-x + $dropdown-icon-spacer-x + $checkbox-size);
+	        }
+
+	        // Checkbox and radio
+	        .uniform-checker,
+	        .uniform-choice {
+	            margin-top: ($dropdown-item-padding-y + (($line-height-computed - $checkbox-size) / 2));
+	            left: $dropdown-item-padding-x;
+	        }
+
+	        // Right alignment
+	        &.form-check-right {
+
+	        	// Reverse label padding
+	            .form-check-label {
+	                padding-right: ($dropdown-item-padding-x + $dropdown-icon-spacer-x + $checkbox-size);
+	            }
+
+	            // Reverse checkbox/radio alignment
+	            .uniform-checker,
+	            .uniform-choice {
+	                left: auto;
+	                right: $dropdown-item-padding-x;
+	            }
+	        }
+	    }
+    }
+
+    // Inside dark dropdown
+    .dropdown-menu[class*=bg-]:not(.bg-white):not(.bg-transparent):not(.bg-light) {
+		.uniform-checker {
+			span {
+				border-color: $white;
+				color: $white;
+
+			}
+		}
+		.uniform-choice {
+			span {
+				border-color: $white;
+			}
+		}
+    }
+
+
+	// File uploader
+	// ------------------------------
+
+	// Base
+	.uniform-uploader {
+		position: relative;
+		display: flex;
+		align-items: stretch;
+
+		// File name text
+		.filename {
+			color: $text-muted;
+			padding: $input-padding-y $input-padding-x;
+			flex: 1;
+			border-top: $input-border-width solid transparent;
+			border-bottom: $input-border-width solid $input-border-color;
+			text-align: left;
+			word-break: break-word;
+		}
+
+		// Add .text-white to file input to adapt it for dark backgrounds
+		.text-white ~ .filename {
+			color: $white;
+			border-bottom-color: $input-light-border-color;
+		}
+
+		// Action button
+		.action {
+			margin-left: $element-spacer-x-lg;
+			z-index: 1;
+			@include border-radius($btn-border-radius);
+		}
+
+		// Hide file input
+		input[type=file] {
+			width: 100%;
+			margin-top: 0;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			min-height: $input-height;
+			border: 0;
+			cursor: pointer;
+			z-index: 10;
+			opacity: 0;
+		}
+
+		// Disabled state
+		&.disabled {
+
+			// File name
+			.filename {
+				border-bottom-style: dashed;
+			}
+
+			// Action button
+			.action {
+				opacity: 0.75;
+			}
+
+			// Cursor
+			.filename,
+			input[type=file] {
+				cursor: $cursor-disabled;
+			}
+		}
+	}
+
+
+	//
+	// Sizing
+	//
+
+	// Large
+	.form-control-styled-lg {
+
+		// File input size
+		input[type=file] {
+			min-height: $input-height-lg;
+		}
+
+		// File name text
+		.filename {
+			padding: $input-padding-y-lg $input-padding-x-lg;
+			font-size: $font-size-lg;
+			line-height: $input-line-height-lg;
+		}
+	}
+
+	// Small
+	.form-control-styled-sm {
+
+		// File input size
+		input[type=file] {
+			min-height: $input-height-sm;
+		}
+
+		// File name text
+		.filename {
+			padding: $input-padding-y-sm $input-padding-x-sm;
+			font-size: $font-size-sm;
+			line-height: $input-line-height-sm;
+		}
+	}
+
+
+	// Select
+	// ------------------------------
+
+	// Base
+	.uniform-select {
+	    position: relative;
+	    display: block;
+	    width: 100%;
+	    padding: $input-padding-y $input-padding-x;
+	    font-size: $font-size-base;
+	    line-height: $input-btn-line-height;
+	    color: $input-color;
+	    border-top: $input-border-width solid transparent;
+	    border-bottom: $input-border-width solid $input-border-color;
+		@include transition(all ease-in-out $component-transition-timer);
+
+	    // Focus state
+	    &.focus {
+			border-bottom-color: $input-focus-border-color;
+			box-shadow: $input-focus-box-shadow;
+	    }
+
+	    // Use .text-white in 'selectClass' option to adapt for dark backgrounds
+	    &.text-white {
+	    	border-bottom-color: $input-light-border-color;
+
+		    // Focus state
+		    &.focus {
+				border-bottom-color: $input-light-border-active-color;
+				box-shadow: 0 $input-border-width 0 $input-light-border-active-color;
+		    }
+	    }
+
+	    // Select replacement
+		span {
+		    display: block;
+		    position: relative;
+		    text-align: left;
+		    padding-right: ($input-padding-x + ($icon-font-size * 1.5));
+		    width: 100%;
+		    @include text-truncate();
+
+		    // Icon
+		    &:after {
+		    	content: '\e9c5';
+			    font-family: $icon-font-family;
+			    display: inline-block;
+		    	position: absolute;
+		    	top: 0;
+		    	right: 0;
+			    font-size: $icon-font-size;
+			    margin-top: (($icon-font-size - $line-height-computed) / 2);
+			    @include ll-font-smoothing();
+		    }
+		}
+
+		// Hide default select
+		select {
+			width: 100%;
+			margin-top: 0;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			height: $input-height;
+			border: 0;
+			cursor: pointer;
+			z-index: 10;
+			opacity: 0;
+		}
+
+		// Disabled state
+		&.disabled {
+			color: $input-disabled-color;
+			border-bottom-style: dashed;
+
+			// Cursor
+			select {
+				cursor: $cursor-disabled;
+			}
+		}
+	}
+
+
+	//
+	// Sizing
+	//
+
+	// Large
+	.form-control-styled-lg {
+		.uniform-select {
+			padding: $input-padding-y-lg $input-padding-x-lg;
+			font-size: $font-size-lg;
+			line-height: $input-line-height-lg;
+		}
+	}
+
+	// Small
+	.form-control-styled-sm {
+		.uniform-select {
+			padding: $input-padding-y-sm $input-padding-x-sm;
+			font-size: $font-size-sm;
+			line-height: $input-line-height-sm;
+		}
+	}
+}

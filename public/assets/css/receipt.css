@@ -1,0 +1,71 @@
+.container {
+    margin:10px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+@media print {
+
+    td, th {
+        padding: 2px;
+        text-align: center;
+    }
+
+    @page {
+        /*size: auto;    auto is the initial value */
+        /* margin: 0;   this affects the margin in the printer settings */
+    }
+
+    html {
+        -webkit-print-color-adjust: exact;
+        background-color: #FFFFFF;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        /* margin: 10px;  this affects the margin on the html before sending to printer */
+    }
+
+    body {
+        /*margin: 0 10mm;  margin you want for the content */
+    }
+}
+
+td {
+    text-align: center;
+}
+
+table.td-left td {
+    text-align: left !important;
+    padding: 5px;
+}
+
+.arial {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.clear {
+    clear: both;
+}
+
+@page {
+    margin: 25px 20px;
+}

@@ -1,0 +1,25 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Passy
+*
+*  Styles for passy.min.js - password length checker and password generator
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-passy {
+
+	// Absolute positioned badge
+	.badge-indicator-absolute {
+	    position: relative;
+
+	    // Floaring badge
+	    .password-indicator-badge-absolute {
+	        position: absolute;
+	        top: 50%;
+	        margin-top: -($line-height-computed / 2);
+	        right: $input-padding-x;
+	        @include transition(all ease-in-out $component-transition-timer);
+	    }
+	}
+}

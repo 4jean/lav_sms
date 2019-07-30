@@ -1,0 +1,109 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Page header
+ *
+ *  Page header components and color options
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Page title
+.page-title {
+    padding: $page-header-padding-y 0;
+    position: relative;
+
+    // Subtitle
+    small {
+        display: inline-block;
+        margin-left: $element-spacer-x;
+
+        // Divider
+        &:before {
+            content: '/';
+            margin-right: ($element-spacer-x + 0.25rem);
+        }
+
+        // On a new line
+        &.d-block {
+            margin-left: 0;
+            
+            &:before {
+                content: none;
+            }
+        }
+    }
+
+    // Add left spacing to align with text
+    small.d-block,
+    .breadcrumb {
+        margin-left: ($icon-font-size + $element-spacer-x + 0.25rem);
+    }
+
+    // Remove margin from headings
+    h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+    }
+}
+
+// Page header content
+.page-header-content {
+    position: relative;
+    padding: 0 $page-header-padding-x;
+
+    // With custom colored bottom border
+    &[class*=border-bottom-] + .breadcrumb-line {
+        border-top: 0;
+    }
+}
+
+
+//
+// Page header colors
+//
+
+// Light
+.page-header-light {
+    background-color: $page-header-light-bg;
+    border-bottom: $page-header-border-width solid $page-header-light-border-color;
+    
+    // Cover image
+    &.has-cover {
+        background: url(#{$img-path}/backgrounds/seamless.png); // feel free to change
+    }
+}
+
+// Dark
+.page-header-dark {
+    background-color: $page-header-dark-bg;
+    color: $page-header-dark-color;
+    margin-bottom: $spacer;
+
+    // Breadcrumbs
+    > .breadcrumb,
+    .page-header-content .breadcrumb {
+
+        // Links
+        > li > a,
+        > li + li:before {
+            color: rgba($page-header-dark-color, 0.9);
+        }
+
+        // Hovered links
+        > li > a {
+            @include hover-focus {
+                color: $page-header-dark-color;
+                opacity: 1;
+            }
+        }
+
+        // Active item
+        > .active {
+            color: rgba($page-header-dark-color, 0.5);
+        }
+    }
+    
+    // Cover image
+    &.has-cover {
+        background: url(#{$img-path}/login_cover.jpg); // feel free to change
+        background-size: cover;
+    }
+}

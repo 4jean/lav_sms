@@ -1,0 +1,270 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Steps wizard
+*
+*  Styles for steps.min.js - An all-in-one wizard plugin that is extremely flexible, compact and feature-rich
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-wizard {
+
+    // Base
+    .wizard {
+        width: 100%;
+
+        // Title
+        > .steps .current-info,
+        > .content > .title {
+            display: none;
+        }
+
+        // Wizard content
+        > .content {
+            position: relative;
+            width: auto;
+            padding: 0;
+
+            > .body {
+                padding: 0 $card-spacer-x;
+            }
+
+            > iframe {
+                border: 0;
+                @include size(100%);
+            }
+        }
+    }
+
+    // Steps list
+    .wizard {
+
+        // Steps
+        > .steps {
+            position: relative;
+            display: block;
+            width: 100%;
+
+            // Wizard nav
+            > ul {
+                display: table;
+                width: 100%;
+                table-layout: fixed;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+
+                // Wizard nav item
+                > li {
+                    display: table-cell;
+                    width: auto;
+                    vertical-align: top;
+                    text-align: center;
+                    position: relative;
+
+                    // Link
+                    a {
+                        position: relative;
+                        padding-top: ($wizard-step-number-size + ($spacer / 2));
+                        margin-top: $spacer;
+                        margin-bottom: $spacer;
+                        display: block;
+                        outline: 0;
+                        color: $text-muted;
+                    }
+
+                    // Steps indicator line
+                    &:before,
+                    &:after {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        top: ($wizard-step-number-size + $spacer) - ($wizard-step-number-size / 2) - rem-calc($wizard-step-line-size / 2);
+                        width: 50%;
+                        height: $wizard-step-line-size;
+                        background-color: $wizard-step-number-active-bg;
+                        z-index: 9;
+                    }
+                    &:before {
+                        left: 0;
+                    }
+                    &:after {
+                        right: 0;
+                    }
+                    &:first-child:before,
+                    &:last-child:after {
+                        content: none;
+                    }
+
+                    // Current step
+                    &.current {
+                        &:after,
+                        ~ li:before,
+                        ~ li:after {
+                            background-color: $wizard-step-line-color;
+                        }
+
+                        // Link
+                        > a {
+                            color: $body-color;
+                            cursor: default;
+                        }
+
+                        // Icon container
+                        .number {
+                            font-size: 0;
+                            border-color: $wizard-step-number-active-bg;
+                            background-color: $wizard-step-number-active-color;
+                            color: $wizard-step-number-active-bg;
+
+                            // Icon
+                            &:after {
+                                content: '\e913';
+                                font-family: $icon-font-family;
+                                display: inline-block;
+                                font-size: $icon-font-size;
+                                line-height: ($wizard-step-number-size - rem-calc($wizard-step-line-size * 2));
+                                @include ll-font-smoothing();
+                                @include transition(all ease-in-out $component-transition-timer);
+                            }
+                        }
+                    }
+
+                    // Disabled
+                    &.disabled {
+                        a {
+                            cursor: $cursor-disabled;
+                        }
+                    }
+
+                    // Completed step
+                    &.done {
+
+                        // Link
+                        a {
+                            @include plain-hover-focus {
+                                color: $text-muted;
+                            }
+                        }
+
+                        // Icon container
+                        .number {
+                            font-size: 0;
+                            background-color: $wizard-step-number-active-bg;
+                            border-color: $wizard-step-number-active-bg;
+                            color: $wizard-step-number-active-color;
+
+                            // Icon
+                            &:after {
+                                content: '\ed6f';
+                                font-family: $icon-font-family;
+                                display: inline-block;
+                                font-size: $icon-font-size;
+                                line-height: (($icon-font-size * 2) + rem-calc($wizard-step-line-size));
+                                @include ll-font-smoothing();
+                                @include transition(all ease-in-out $component-transition-timer);
+                            }
+                        }
+                    }
+
+                    // Error
+                    &.error {
+                        .number {
+                            border-color: $wizard-step-number-error-bg;
+                            color: $wizard-step-number-error-bg;
+                        }
+                    }
+                }
+
+                // Add top border if wizard comes after transparent card header
+                .card > .card-header:not([class*=bg-]) > & {
+                    border-top: $card-border-width solid $card-border-color;
+                }
+
+                // Media queries
+                @include media-breakpoint-down(md) {
+                    margin-bottom: $spacer;
+
+                    // Nav item
+                    > li {
+                        display: block;
+                        float: left;
+                        width: 50%;
+
+                        > a {
+                            margin-bottom: 0;
+                        }
+
+                        &:first-child:before,
+                        &:last-child:after {
+                            content: '';
+                        }
+
+                        &:last-child:after {
+                            background-color: $wizard-step-number-active-bg;
+                        }
+                    }
+                }
+                @include media-breakpoint-down(sm) {
+
+                    // Nav item
+                    > li {
+                        width: 100%;
+
+                        &.current:after {
+                            background-color: $wizard-step-number-active-bg;
+                        }
+                    }
+                }
+            }
+
+            // Numbers and icons
+            .number {
+                background-color: $wizard-step-number-bg;
+                color: $wizard-step-number-color;
+                display: inline-block;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                margin-left: -($wizard-step-number-size / 2);
+                border: $wizard-step-line-size solid $wizard-step-line-color;
+                font-size: $font-size-lg;
+                z-index: 10;
+                line-height: ($wizard-step-number-size - rem-calc($wizard-step-line-size * 2));
+                text-align: center;
+                @include size($wizard-step-number-size);
+                @include border-radius($border-radius-circle);
+            }
+        }
+    }
+
+    // Steps pagination
+    .wizard {
+
+        // Container
+        > .actions {
+            position: relative;
+            text-align: right;
+            padding: $card-spacer-x;
+            padding-top: 0;
+
+            // Paging list
+            > ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                @include clearfix;
+
+                // Paging item
+                > li {
+                    display: inline-block;
+
+                    // Add horizontal spacing
+                    & + li {
+                        margin-left: $card-spacer-x;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,173 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # jQuery UI slider pips
+ *
+ *  Styles for jQuery UI slider pips extension
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-jqueryui-pips {
+
+
+    // Pips
+    // -------------------------
+
+    .ui-slider-pips {
+
+
+        // Horizontal
+        // ------------------------------
+
+        // Increase bottom margin to fit the pips
+        &.ui-slider-horizontal {
+            margin-bottom: ($slider-height + $slider-pips-spacer-y + $slider-pips-font-size);
+            margin-left: map-get($spacers, 2);
+            margin-right: map-get($spacers, 2);
+        }
+
+        // Default hide the labels and pips that arnt visible
+        .ui-slider-label,
+        .ui-slider-pip-hide {
+            display: none;
+        }
+
+        // Now we show any labels that we've set to show in the options
+        .ui-slider-pip-label .ui-slider-label {
+            display: block;
+        }
+
+        // Pip and label wrapper
+        .ui-slider-pip {
+            height: $slider-pips-font-size;
+            line-height: 1;
+            font-size: $slider-pips-font-size;
+            width: 1.25rem;
+            margin-left: -$slider-pips-font-size;
+            position: absolute;
+            overflow: visible;
+            text-align: center;
+            top: $slider-pips-spacer-y;
+            left: $slider-pips-spacer-y;
+            cursor: pointer;
+            -webkit-touch-callout: none;
+            user-select: none;
+        }
+
+        // Little pip/line position & size
+        .ui-slider-line {
+            background-color: $slider-pips-color;
+            width: $slider-pips-marker-width;
+            height: $slider-pips-marker-height;
+            position: absolute;
+            left: 50%;
+        }
+
+        // Text label postion & size
+        .ui-slider-label {
+            position: absolute;
+            top: ($slider-pips-spacer-y / 1.5);
+            left: 50%;
+            width: 1.25rem;
+            margin-left: -(1.25rem / 2);
+            white-space: nowrap;
+            color: $slider-pips-color;
+        }
+
+
+        // Vertical
+        // ------------------------------
+
+        // Vertical slider needs right-margin, not bottom
+        &.ui-slider-vertical {
+            margin-left: ($slider-pips-marker-width + $slider-pips-spacer-y + $slider-pips-font-size);
+            margin-right: ($slider-pips-marker-width + $slider-pips-spacer-y + $slider-pips-font-size);
+
+            // Align vertical pips left and to right of the slider
+            .ui-slider-pip {
+                text-align: left;
+                top: auto;
+                left: $slider-pips-spacer-y;
+                margin-left: 0;
+                height: auto;
+            }
+
+            // Vertical line/pip should be horizontal instead
+            .ui-slider-line {
+                width: $slider-pips-marker-height;
+                height: $slider-pips-marker-width;
+                position: absolute;
+                top: 50%;
+                left: 0;
+            }
+
+            // Text label
+            .ui-slider-label {
+                top: 50%;
+                margin-left: 0;
+                margin-top: -($slider-pips-font-size / 2);
+                left: ($slider-pips-spacer-y / 1.5);
+            }
+        }
+    }
+
+
+    // Tooltips
+    // -------------------------
+
+    .ui-slider-float {
+
+        // Remove the godawful looking focus outline on handle and float
+        .ui-slider-handle:focus {
+            &,
+            .ui-slider-tip,
+            .ui-slider-tip-label {
+                outline: 0;
+            }
+        }
+
+        // Style tooltips on handles and on labels 
+        .ui-slider-tip,
+        .ui-slider-tip-label {
+            position: absolute;
+            visibility: hidden;
+            top: -(($slider-height * 3) + ($tooltip-padding-y * 2) + $tooltip-padding-y + $slider-height);
+            display: block;
+            left: 50%;
+            background-color: $tooltip-bg;
+            text-align: center;
+            font-size: $tooltip-font-size;
+            color: $tooltip-color;
+            padding: $tooltip-padding-y $tooltip-padding-x;
+            opacity: 0;
+            transform: translateX(-50%);
+            @include border-radius($tooltip-border-radius);
+            @include transition(all ease-in-out $component-transition-timer $component-transition-delay);
+        }
+
+        // Show the tooltip on hover or focus
+        .ui-slider-handle:hover .ui-slider-tip,
+        .ui-slider-handle:focus .ui-slider-tip {
+            visibility: visible;
+            opacity: 1;
+
+            // Transition delay
+            @if $enable-transitions {
+                transition-delay: $component-transition-delay;
+            }
+        }
+
+        // Give the tooltip a css triangle arrow
+        .ui-slider-tip:after,
+        .ui-slider-pip .ui-slider-tip-label:after {
+            content: '';
+            border: $tooltip-arrow-height solid transparent;
+            border-top-color: $tooltip-bg;
+            position: absolute;
+            bottom: -($tooltip-arrow-height * 2);
+            left: 50%;
+            margin-left: -($tooltip-arrow-height);
+            @include size(0);
+        }
+    }
+}

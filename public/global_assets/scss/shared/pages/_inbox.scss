@@ -1,0 +1,86 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Mail list
+ *
+ *  Inbox page - list, read and write
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-inbox {
+
+    // Base
+    .table-inbox {
+        table-layout: fixed;
+        min-width: map-get($grid-breakpoints, "md");
+
+        // Rows and cells
+        tr {
+            cursor: pointer;
+            @include transition(all ease-in-out $component-transition-timer);
+
+            // Read message background color
+            &:not([class*=alpha-]):not([class*=bg-]) {
+                background-color: $inbox-read-row-bg;
+            }
+
+            // Remove left padding in all cells except first
+            td {
+                &:not(:first-child) {
+                    padding-left: 0;
+                }
+            }
+
+            // New mail
+            &.unread {
+                font-weight: $font-weight-bold;
+
+                // Unread message background color
+                &:not([class*=alpha-]):not([class*=bg-]) {
+                    background-color: $inbox-unread-row-bg;
+                }
+            }
+        }
+    }
+
+    // Cell with checkbox
+    .table-inbox-checkbox {
+        width: (($card-spacer-x * 2) + $checkbox-size);
+    }
+
+    // Set fixed width to star and atachment cells
+    .table-inbox-star,
+    .table-inbox-attachment {
+        width: ($card-spacer-x + $icon-font-size);
+    }
+
+    // User image cell
+    .table-inbox-image {
+        width: ($card-spacer-x + ((($line-height-computed - $icon-font-size + $btn-padding-y-sm) - rem-calc($btn-border-width)) * 2) + $icon-font-size);
+    }
+
+    // Sender name
+    .table-inbox-name {
+        width: 11.25rem;
+    }
+
+    // Message subject
+    .table-inbox-subject {
+        @include media-breakpoint-down(sm) {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    // Message
+    .table-inbox-message {
+        @include text-truncate();
+    }
+
+    // Time cell
+    .table-inbox-time {
+        text-align: right;
+        width: 5rem;
+    }
+}

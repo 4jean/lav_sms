@@ -1,0 +1,224 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Breadcrumb component
+ *
+ *  Overrides for breadcrumb bootstrap component
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Base
+.breadcrumb {
+    padding: 0;
+}
+
+// Breadcrumb item
+.breadcrumb-item {
+    padding: $breadcrumb-padding-y 0;
+    color: inherit;
+
+    // Icons
+    i {
+        font-size: $font-size-sm;
+    }
+}
+
+// Linked items
+a.breadcrumb-item {
+    display: inline-block;
+    color: inherit;
+    @include transition(opacity ease-in-out $component-transition-timer);
+
+    // Hover state
+    &:hover,
+    &:focus,
+    .show > & {
+        opacity: 0.75;
+    }
+}
+
+// Transparent breadcrumb
+.page-header-content {
+
+    // Breadcrumb
+    > .breadcrumb {
+        padding-top: 0;
+        padding-bottom: ($breadcrumb-padding-y * 2);
+
+        &:first-child {
+            padding-bottom: 0;
+            padding-top: ($breadcrumb-padding-y * 2);
+        }
+    }
+}
+
+
+//
+// Divider styles
+//
+
+// Dash
+.breadcrumb-dash > .breadcrumb-item + .breadcrumb-item:before  {
+    content: '\2013\00a0';
+}
+
+// Arrow
+.breadcrumb-arrow > .breadcrumb-item + .breadcrumb-item:before  {
+    @if $direction == "LTR" {
+        content: '\2192\00a0';
+    }
+    @else {
+        content: '\2190\00a0';
+    }
+}
+
+// Arrows
+.breadcrumb-arrows > .breadcrumb-item + .breadcrumb-item:before  {
+    content: '\00bb\00a0';
+}
+
+// Caret
+.breadcrumb-caret > .breadcrumb-item + .breadcrumb-item:before  {
+    content: '\203A\00a0';
+}
+
+
+//
+// Breadcrumb line
+//
+
+// Base
+.breadcrumb-line {
+    position: relative;
+    padding-left: $breadcrumb-line-padding-x;
+    padding-right: $breadcrumb-line-padding-x;
+    border-top: $breadcrumb-line-border-width solid transparent;
+    border-bottom: $breadcrumb-line-border-width solid transparent;
+
+    // Inside page header (all levels)
+    &:not(.breadcrumb-line-component):first-child {
+        border-top-width: 0;
+    }
+    
+    // After page header content
+    &:last-child {
+        margin-bottom: $spacer;
+        
+        // Remove bottom margin if inside colored header
+        .page-header-light &,
+        .page-header-dark & {
+            margin-bottom: 0;
+        }
+    }
+}
+
+// Light line
+.breadcrumb-line-light {
+    background-color: $breadcrumb-line-light-bg;
+    border-color: $breadcrumb-line-light-border-color;
+    color: $body-color;
+
+    // Remove bottom border in light header
+    &:not(.breadcrumb-line-component):last-child {
+        .page-header-light & {
+            border-bottom-width: 0;
+        }
+    }
+
+    // Remove borders in dark header
+    .page-header-dark &:not(.breadcrumb-line-component) {
+        border-top-width: 0;
+        
+        // Remove bottom border if before title
+        &:first-child {
+            border-bottom-width: 0;
+        }
+    }
+
+    // Borders in line component
+    &.breadcrumb-line-component {
+        border-color: $breadcrumb-line-light-border-color;
+    }
+}
+
+// Dark line
+.breadcrumb-line-dark {
+    background-color: $breadcrumb-line-dark-bg;
+    border-color: transparent;
+    color: $white;
+
+    // Remove bottom border in dark header
+    &:not(.breadcrumb-line-component):last-child {
+        .page-header-dark & {
+            border-bottom-width: 0;
+        }
+    }
+
+    // Active state
+    .breadcrumb-item {
+        &.active {
+            color: inherit;
+        }
+    }
+
+    // In dark page header
+    .page-header-dark & {
+        border-color: $breadcrumb-line-dark-border-color;
+    }
+}
+
+// As a component
+.breadcrumb-line-component {
+    border: $breadcrumb-line-border-width solid transparent;
+    @include border-radius($border-radius);
+    
+    // Inside page header
+    .page-header & {
+        margin-left: $page-header-padding-x;
+        margin-right: $page-header-padding-x;
+    }
+}
+
+
+//
+// Breadrumb elements
+//
+
+// Base
+.breadcrumb-elements-item {
+    padding: $breadcrumb-padding-y 0;
+
+    // Spacing between items
+    + .breadcrumb-elements-item {
+        margin-left: map-get($spacers, 3);
+    }
+}
+
+// Links
+a.breadcrumb-elements-item {
+    @extend a.breadcrumb-item;
+}
+
+
+
+// Layout specific additions
+// ------------------------------
+
+//
+// # Layout 5
+//
+
+@if $layout == 'layout_5' {
+
+    // Breadcrumb line has extra horizontal spacing that
+    // matches page content spacing
+    .breadcrumb-line:not(.breadcrumb-line-component) {
+        @include media-breakpoint-up(md) {
+            padding-left: ($page-container-padding-x / 2) + ($content-container-padding-x * 2);
+            padding-right: ($page-container-padding-x / 2) + ($content-container-padding-x * 2);
+        }
+        @include media-breakpoint-up(xl) {
+            padding-left: $page-container-padding-x + ($content-container-padding-x * 2);
+            padding-right: $page-container-padding-x + ($content-container-padding-x * 2);
+        }
+    }
+}

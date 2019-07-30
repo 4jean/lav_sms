@@ -1,0 +1,93 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Ecommerce stuff
+ *
+ *  Styles for Ecommerce set of pages
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-ecommerce {
+
+
+    //
+    // Elements
+    //
+
+    // Sidebar color selector
+    .color-selector-active {
+        position: relative;
+
+        // Checkmark icon
+        i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -($icon-font-size / 2);
+            margin-left: -($icon-font-size / 2);
+        }
+    }
+
+
+    //
+    // Pricing tables
+    //
+
+    // Price label
+    .pricing-table-price {
+        font-size: $pricing-title-font-size;
+
+        // Currency sign
+        > span {
+            font-size: $pricing-subtitle-font-size;
+        }
+    }
+
+    // Stacked list of features
+    .pricing-table-list {
+        li {
+            padding-top: $pricing-list-item-padding-y;
+            padding-bottom: $pricing-list-item-padding-y;
+            border-bottom: $pricing-list-item-border-width solid $pricing-list-item-border-color;
+
+            // Change border color in dark cards
+            .card[class*=bg-]:not(.bg-transparent):not(.bg-white):not(.bg-light) & {
+                border-bottom-color: rgba($white, 0.2);
+            }
+        }
+    }
+
+
+    //
+    // Ribbons
+    //
+
+    // Container
+    .ribbon-container {
+        width: 6.5rem;
+        height: 6.625rem;
+        overflow: hidden;
+        position: absolute;
+        top: -($card-border-width);
+        right: -($card-border-width);
+    }
+
+    // Corner ribbon
+    .ribbon {
+        text-align: center;
+        font-size: $font-size-sm;
+        line-height: $line-height-sm;
+        font-weight: $font-weight-semibold;
+        text-transform: uppercase;
+        position: relative;
+        padding: 0.3125rem 0;
+        left: -0.6875rem;
+        top: 1.563rem;
+        width: 9.375rem;
+        background-color: $pricing-ribbon-bg;
+        color: $pricing-ribbon-color;
+        z-index: 10;
+        transform: rotate(45deg);
+        @include box-shadow($pricing-ribbon-box-shadow);
+    }
+}

@@ -1,0 +1,159 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # List group component
+ *
+ *  Overrides for list group component
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+// Base class
+.list-group {
+    background-color: $card-bg;
+    border: $list-group-border-width solid $list-group-border-color;
+    padding: $list-group-padding-y 0;
+    background-clip: padding-box;
+    @include border-radius($list-group-border-radius);
+}
+
+// Individual list items
+.list-group-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    border-width: 0;
+    background-color: transparent;
+    @include transition(all ease-in-out $component-transition-timer);
+
+    // Top border
+    &:first-child {
+        @include border-top-radius(0);
+    }
+
+    // Bottom border
+    &:last-child {
+        @include border-bottom-radius(0);
+    }
+
+    // Active state
+    &.active {
+
+        // Calculate color shades for badges
+        // depending on active item color
+        @if (lightness($list-group-active-bg) < 75) {
+
+            // All badges except badge mark
+            .badge:not(.badge-mark) {
+                background-color: $white!important;
+                color: $body-color!important;
+            }
+
+            // Badge mark with custom bg
+            .badge-mark[class*=bg-] {
+                background-color: $white!important;
+                border-color: $white!important;
+            }
+
+            // Badge mark with custom border
+            .badge-mark[class*=border-] {
+                border-color: $white!important;
+            }
+        }
+    }
+
+    // Disabled state
+    &.disabled,
+    &:disabled {
+        cursor: $cursor-disabled;
+    }
+}
+
+// Flush list items
+.list-group-flush {
+    border: 0;
+    @include border-radius(0);
+    @include box-shadow(none);
+}
+
+// List group divider
+.list-group-divider {
+    padding: 0;
+    margin: $list-group-padding-y 0;
+    border-top-width: $list-group-border-width;
+}
+
+// Bordered list
+.list-group-bordered {
+    padding: 0;
+
+    // Item
+    .list-group-item {
+        border-top-width: $list-group-border-width;
+        border-bottom-width: $list-group-border-width;
+        margin-bottom: -$list-group-border-width;
+
+        // Round top corners
+        &:first-child {
+            border-top-width: 0;
+            @include border-top-radius($list-group-border-radius);
+        }
+
+        // Round bottom corners
+        &:last-child {
+            @include border-bottom-radius($list-group-border-radius);
+        }
+    }
+
+    // Custom bg color
+    &[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) {
+        .list-group-item {
+            border-top-color: $navigation-dark-bordered-border-color;
+            border-bottom-color: $navigation-dark-bordered-border-color;
+        }
+    }
+}
+
+// Dark badkgrounds
+.list-group[class*=bg-]:not(.bg-light):not(.bg-transparent):not(.bg-white) {
+    @include border-radius($list-group-border-radius);
+
+    // Links
+    .list-group-item-action {
+        &:not(.active):not(.disabled) {
+            color: rgba($white, 0.9);
+
+            // Hover state
+            @include hover-focus {
+                background-color: $dropdown-dark-hover-bg;
+                color: $white;
+            }
+        }
+    }
+
+    // Item
+    .list-group-item {
+        color: $white;
+
+        // Active state
+        &.active {
+            background-color: $dropdown-dark-active-bg;
+        }
+
+        // Disabled state
+        &.disabled,
+        &:disabled {
+            color: $dropdown-dark-disabled-color;
+            background-color: transparent;
+        }
+    }
+
+    // Divider
+    .list-group-divider {
+        border-top-color: $dropdown-dark-divider-bg;
+    }
+}
+
+// Contextual variants
+@each $color, $value in $theme-colors-light {
+    @include list-group-item-variant($color, $value, theme-color-level($color, 6));
+}

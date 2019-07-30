@@ -1,0 +1,273 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Button component
+ *
+ *  Overrides for button bootstrap component
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Button base
+.btn {
+    position: relative;
+    text-transform: uppercase;
+
+    // Button states
+    &:not(.bg-transparent):not([class*=btn-outline]):not(.btn-light):not(.btn-link):not([class*=alpha-]):not(.fab-menu-btn) {
+
+        // States
+        &:hover,
+        &:focus,
+        &.focus,
+        &:active,
+        &.active,
+        .show > &.dropdown-toggle {
+            box-shadow: $btn-dark-hover-box-shadow;
+        }
+
+        // Disabled button
+        &.disabled,
+        &:disabled {
+            box-shadow: none;
+        }
+    }
+
+    // Disabled state
+    &.disabled,
+    &:disabled {
+        cursor: $cursor-disabled;
+    }
+}
+
+// Light button overrides
+.btn-light {
+    color: $btn-light-color;
+    background-color: $btn-light-bg;
+    border-color: $btn-light-border-color;
+
+    // States
+    &:hover,
+    &:focus,
+    &.focus,
+    &:not([disabled]):not(.disabled):active,
+    &:not([disabled]):not(.disabled).active,
+    .show > &.dropdown-toggle {
+        color: $btn-light-hover-color;
+        background-color: $btn-light-hover-bg;
+        border-color: $btn-light-hover-border-color;
+    }
+
+    // Disabled button
+    &.disabled,
+    &:disabled {
+        background-color: $btn-light-bg;
+        border-color: $btn-light-border-color;
+    }
+}
+
+
+//
+// Alternate buttons
+//
+
+// Custom outline buttons
+.btn-outline {
+    &:not(:hover):not(:active):not(.active):not([aria-expanded=true]),
+    &.disabled,
+    &:disabled {
+        background-color: transparent!important;
+    }
+
+    // Hover/focus states
+    &:not(.disabled):not(:disabled):not([class*=alpha-]) {
+        &:hover,
+        &:not([disabled]):not(.disabled):active,
+        &:not([disabled]):not(.disabled).active,
+        .show > &.dropdown-toggle {
+            color: $white!important;
+        }
+    }
+
+    // White button
+    &.bg-white:not(.disabled):not(:disabled) {
+        &:hover,
+        &:not([disabled]):not(.disabled):active,
+        &:not([disabled]):not(.disabled).active,
+        .show > &.dropdown-toggle {
+            color: $body-color!important;
+        }
+    }
+}
+
+// Link buttons
+.btn-link {
+    font-weight: $btn-font-weight;
+
+    // Opened dropdown
+    .show > &.dropdown-toggle {
+        color: $link-hover-color;
+    }
+}
+
+// Button with icon only
+.btn-icon {
+    padding-left: $btn-padding-y + (($line-height-computed - $icon-font-size) / 2);
+    padding-right: $btn-padding-y + (($line-height-computed - $icon-font-size) / 2);
+
+    // Checkbox and radio
+    input[type=checkbox],
+    input[type=radio] {
+        display: block;
+    }
+
+    // Sizes
+    &.btn-sm {
+        padding-left: $btn-padding-y-sm + (($line-height-computed - $icon-font-size) / 2);
+        padding-right: $btn-padding-y-sm + (($line-height-computed - $icon-font-size) / 2);
+    }
+    &.btn-lg {
+        padding-left: $btn-padding-y-lg + (($line-height-computed - $icon-font-size) / 2);
+        padding-right: $btn-padding-y-lg + (($line-height-computed - $icon-font-size) / 2);
+    }
+}
+
+// Float button
+.btn-float {
+    padding: $btn-float-padding;
+    @include border-radius($btn-border-radius);
+
+    // Transparent button
+    &.btn-link {
+        padding: ($btn-float-padding / 1.25);
+    }
+
+    // Icon
+    i {
+        display: block;
+        top: 0;
+    }
+
+    // Text
+    > span {
+        display: block;
+        padding-top: ($spacer / 2);
+        margin-bottom: -($font-size-base / 2);
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+// Buttons with strong border
+.btn {
+    &.border-2 {
+        padding-top: ($btn-padding-y - rem-calc($border-width));
+        padding-bottom: ($btn-padding-y - rem-calc($border-width));
+
+        // Sizes
+        &.btn-lg {
+            padding-top: ($btn-padding-y-lg - rem-calc($border-width));
+            padding-bottom: ($btn-padding-y-lg - rem-calc($border-width));
+        }
+        &.btn-sm {
+            padding-top: ($btn-padding-y-sm - rem-calc($border-width));
+            padding-bottom: ($btn-padding-y-sm - rem-calc($border-width));
+        }
+
+        // Icon button
+        &.btn-icon {
+            padding-left: $btn-padding-y + (($line-height-computed - $icon-font-size) / 2) - rem-calc($border-width);
+            padding-right: $btn-padding-y + (($line-height-computed - $icon-font-size) / 2) - rem-calc($border-width);
+
+            // Sizes
+            &.btn-lg {
+                padding-left: $btn-padding-y-lg + (($line-height-computed - $icon-font-size) / 2) - rem-calc($border-width);
+                padding-right: $btn-padding-y-lg + (($line-height-computed - $icon-font-size) / 2) - rem-calc($border-width);
+            }
+            &.btn-sm {
+                padding-left: $btn-padding-y-sm + (($line-height-computed - $icon-font-size) / 2) - rem-calc($border-width);
+                padding-right: $btn-padding-y-sm + (($line-height-computed - $icon-font-size) / 2) - rem-calc($border-width);
+            }
+        }
+
+        // Float button
+        &.btn-float {
+            padding: ($btn-float-padding - rem-calc($border-width));
+        }
+    }
+}
+
+
+//
+// Labeled buttons
+//
+
+ // Base
+.btn-labeled {
+
+    // Icon
+    > b {
+        position: absolute;
+        top: -$btn-border-width;
+        background-color: rgba($black, 0.15);
+        display: block;
+        line-height: 1;
+        padding: ($line-height-computed - $icon-font-size + $btn-padding-y - rem-calc($btn-border-width));
+
+        // Center icon vertically
+        > i {
+            top: 0;
+        }
+    }
+
+    // Rounded icon
+    &.rounded-round {
+        > b {
+            @include border-radius($border-radius-round);
+        }
+    }
+
+    // Sizes
+    &.btn-lg > b {
+        padding: ($line-height-computed - $icon-font-size + $btn-padding-y-lg - rem-calc($btn-border-width));
+    }
+    &.btn-sm > b {
+        padding: ($line-height-computed - $icon-font-size + $btn-padding-y-sm - rem-calc($btn-border-width));
+    }
+}
+
+// Left icon
+.btn-labeled-left {
+    padding-left: ((($line-height-computed - $icon-font-size + $btn-padding-y - rem-calc($btn-border-width)) * 2) + $icon-font-size) + $btn-padding-x;
+
+    // Icon
+    > b {
+        left: -$btn-border-width;
+        @include border-left-radius($btn-border-radius);
+    }
+
+    // Sizes
+    &.btn-lg {
+        padding-left: ((($line-height-computed-lg - $icon-font-size + $btn-padding-y-lg - rem-calc($btn-border-width)) * 2) + $icon-font-size) + $btn-padding-x-lg;
+
+        > b {
+            @include border-left-radius($btn-border-radius-lg);
+        }
+    }
+    &.btn-sm {
+        padding-left: ((($line-height-computed - $icon-font-size + $btn-padding-y-sm - rem-calc($btn-border-width)) * 2) + $icon-font-size) + $btn-padding-x-sm;
+
+        > b {
+            @include border-left-radius($btn-border-radius-sm);
+        }
+    }
+}
+
+// Right icon
+.btn-labeled-right {
+    padding-right: ((($line-height-computed - $icon-font-size + $btn-padding-y - rem-calc($btn-border-width)) * 2) + $icon-font-size) + $btn-padding-x;
+
+    // Icon
+    > b {
+        right: -$btn-border-width;
+        @include border-right-radius($btn-border-radius);
+    }
+}

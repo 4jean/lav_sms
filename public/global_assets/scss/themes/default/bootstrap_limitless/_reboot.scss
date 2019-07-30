@@ -1,0 +1,83 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Reboot
+ *
+ *  Normalization of HTML elements - overrides of default Bootstrap styles
+ *
+ * ---------------------------------------------------------------------------- */
+ 
+
+//
+// Document
+//
+
+// Body
+body {
+    position: relative;
+}
+
+
+//
+// Typography
+//
+
+dt {
+    margin-bottom: map-get($spacers, 1);
+}
+
+dd {
+    margin-bottom: $spacer;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+dl {
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+
+//
+// Code
+//
+
+pre {
+    tab-size: 4;
+    border: $border-width solid $pre-border-color;
+    padding: $pre-padding-y $pre-padding-x;
+    margin-bottom: 0;
+    hyphens: none;
+}
+
+
+//
+// Images and content
+//
+
+// SVG alignment
+svg {
+    display: block;
+
+    // Inline
+    .svg-inline & {
+        display: inline-block;
+    }
+
+    // Centered object
+    .svg-center & {
+        margin: auto;
+    }
+}
+
+
+//
+// Inputs
+//
+
+// File input type
+input[type="file"] {
+    display: block;
+}

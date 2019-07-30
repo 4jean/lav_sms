@@ -1,0 +1,260 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # jQuery UI Interactions
+ *
+ *  Separate styles for jQuery UI library. Component's interactions
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-jqueryui {
+
+
+	// Misc
+	// -------------------------
+
+	// Handles
+	.ui-draggable-handle,
+	.ui-sortable-handle {
+		touch-action: none;
+	}
+
+
+	// Sortable
+	// -------------------------
+
+	// Base
+	.ui-sortable {
+		.ui-state-disabled {
+			color: $text-muted;
+			cursor: $cursor-disabled;
+			opacity: 0.75;
+		}
+	}
+
+	// Placeholder
+	.sortable-placeholder {
+		position: relative;
+
+		// Background
+		&:before {
+			content: '';
+			display: inline-block;
+			background-color: rgba($white, 0.8);
+			position: absolute;
+			left: 0;
+			top: 0;
+			border: $border-width dashed rgba($black, 0.2);
+			@include size(100%);
+		}
+	}
+
+
+	//
+	// Card placeholder
+	//
+
+	// Card
+	.card {
+
+		// Placeholder below card
+		+ .sortable-placeholder {
+			margin-bottom: $spacer;
+
+			.sidebar & {
+				margin-bottom: 0;
+			}
+		}
+
+		// Placeholder above card
+		.sortable-placeholder + & {
+			margin-top: $spacer;
+
+			.sidebar & {
+				margin-top: 0;
+			}
+		}
+	}
+
+	// Card group
+	.card-group {
+		> .sortable-placeholder:before {
+			@include border-radius($card-border-radius);
+		}
+	}
+
+
+	//
+	// Sidebar placeholder
+	//
+
+	// Base
+	.sidebar {
+
+		// Remove horizontal borders
+		.sortable-placeholder:before {
+			border-left: 0;
+			border-right: 0;
+		}
+
+		// Dark sidebar
+		&-dark {
+
+			// Remove horizontal borders
+			.sortable-placeholder:before {
+				background-color: rgba($black, 0.5);
+			}
+
+			// Sidebar category as a helper
+			.card:not([class*=bg-]):not(.fixed-top) {
+				&.ui-sortable-helper {
+					background-color: rgba($black, 0.5);
+				}
+			}
+		}
+
+		// Light sidebar
+		&-light {
+
+			// Remove horizontal borders
+			.sortable-placeholder:before {
+				background-color: $gray-100;
+			}
+
+			// Sidebar category as a helper
+			.card:not([class*=bg-]):not(.fixed-top) {
+				&.ui-sortable-helper {
+					background-color: $card-bg;
+				}
+			}
+		}
+	}
+
+
+	//
+	// Table placeholder
+	//
+
+	.table {
+
+		// Helper
+		.ui-sortable-helper {
+			width: 100%;
+			background-color: $table-bg;
+			display: table;
+		}
+
+		// Placeholder
+		.sortable-placeholder {
+			margin: 0;
+
+			// Remove placeholder border
+			&:before {
+				content: none;
+			}
+		}
+
+		// Enadle absolute positioning
+		&.ui-sortable {
+			position: relative;
+		}
+	}
+
+
+	// Resizable
+	// -------------------------
+
+	// Handle
+	.ui-resizable-handle {
+		position: absolute;
+		font-size: 0;
+		display: block;
+		touch-action: none;
+
+		// Icon
+		&.ui-icon {
+			display: inline-block;
+			border-style: solid;
+			border-width: 0 0 0.375rem 0.375rem;
+			border-color: transparent transparent $body-color transparent;
+		}
+
+		// Hide if disabled
+		.ui-resizable-disabled &,
+		.ui-resizable-autohide & {
+			display: none;
+		}
+	}
+
+	// Handle positions
+	.ui-resizable-n {
+		cursor: n-resize;
+		height: 0.4375rem;
+		width: 100%;
+		top: -0.3125rem;
+		left: 0;
+	}
+	.ui-resizable-s {
+		cursor: s-resize;
+		height: 0.4375rem;
+		width: 100%;
+		bottom: -0.3125rem;
+		left: 0;
+	}
+	.ui-resizable-e {
+		cursor: e-resize;
+		width: 0.4375rem;
+		right: -0.3125rem;
+		top: 0;
+		height: 100%;
+	}
+	.ui-resizable-w {
+		cursor: w-resize;
+		width: 0.4375rem;
+		left: -0.3125rem;
+		top: 0;
+		height: 100%;
+	}
+	.ui-resizable-se {
+		cursor: se-resize;
+		right: 0.0625rem;
+		bottom: 0.0625rem;
+	}
+	.ui-resizable-sw {
+		cursor: sw-resize;
+		width: 0.5625rem;
+		height: 0.5625rem;
+		left: -0.3125rem;
+		bottom: -0.3125rem;
+	}
+	.ui-resizable-nw {
+		cursor: nw-resize;
+		width: 0.5625rem;
+		height: 0.5625rem;
+		left: -0.3125rem;
+		top: -0.3125rem;
+	}
+	.ui-resizable-ne {
+		cursor: ne-resize;
+		width: 0.5625rem;
+		height: 0.5625rem;
+		right: -0.3125rem;
+		top: -0.3125rem;
+	}
+
+
+	// Selectable
+	// -------------------------
+
+	// Disable default behaviour
+	.ui-selectable {
+		touch-action: none;
+	}
+
+	// Selectable helper
+	.ui-selectable-helper {
+		position: absolute;
+		z-index: 100;
+		border: $border-width dashed $body-color;
+	}
+}

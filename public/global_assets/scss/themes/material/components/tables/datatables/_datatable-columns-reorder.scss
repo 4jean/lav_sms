@@ -1,0 +1,31 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Columns reorder
+ *
+ *  Easily modify the column order of a table through drop-and-drag of column headers
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-datatable-colreorder {
+
+    // Highlight cloned header
+    .DTCR_clonedTable {
+        background-color: rgba($white, 0.8);
+        z-index: 202;
+        cursor: move;
+
+        // Mute background and add border
+        th,
+        td {
+            border: $table-border-width solid $table-border-color!important;
+        }
+    }
+
+    // Add colored pointer
+    .DTCR_pointer {
+        width: $table-border-width;
+        background-color: theme-color("primary");
+        z-index: 201;
+    }
+}

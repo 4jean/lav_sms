@@ -1,0 +1,375 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Table styling
+ *
+ *  Override and extend default Bootstrap styles.
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+// Base styles
+.table {
+    margin-bottom: 0;
+
+    // Cells
+    th,
+    td {
+        vertical-align: middle;
+    }
+    th {
+        font-weight: $font-weight-semibold;
+    }
+
+    // Header cells
+    thead th {
+        vertical-align: middle;
+        border-bottom: $table-border-width solid $table-head-border-color;
+    }
+
+    // Footer cells
+    tfoot th {
+        border-top-color: $table-head-border-color;
+    }
+
+    // Remove top border from thead by default
+    caption + thead,
+    colgroup + thead,
+    thead:first-child {
+        tr:first-child {
+            th,
+            td {
+                border-top-width: 0;
+            }
+        }
+    }
+
+    // Animate background color in cells and rows
+    tr,
+    th,
+    td {
+        @include transition(background-color ease-in-out $component-transition-timer);
+    }
+}
+
+// Table backgrounds
+@each $color, $value in $theme-colors {
+    @include table-row-variant($color, theme-color-level($color, -11));
+}
+
+// Dark styles
+.table-dark {
+    thead {
+        th,
+        td {
+            border-color: $table-dark-head-border-color;
+        }
+    }
+}
+
+// Responsive tables
+.table-responsive {
+    @each $breakpoint in map-keys($grid-breakpoints) {
+        $next: breakpoint-next($breakpoint, $grid-breakpoints);
+        $infix: breakpoint-infix($next, $grid-breakpoints);
+
+        &#{$infix} {
+            @include media-breakpoint-down($breakpoint) {
+                > .table-bordered {
+                    border: $table-border-width solid $table-border-color;
+                }
+            }
+        }
+    }
+}
+
+
+//
+// Optional styles
+//
+
+// Scrollable table
+.table-scrollable {
+    max-height: $table-scrollable-max-height;
+    overflow: auto;
+}
+
+// Columned table
+.table-columned {
+    tbody,
+    tfoot {
+        td,
+        th {
+            border: 0;
+            border-left: $table-border-width solid $table-border-color;
+
+            &:first-child {
+                border-left: 0;
+            }
+        }
+    }
+
+    thead {
+        th,
+        td {
+            border-left: $table-border-width solid $table-border-color;
+
+            &:first-child {
+                border-left: 0;
+            }
+        }
+    }
+}
+
+// Borderless table
+.table-borderless {
+    td,
+    th {
+        border: 0;
+    }
+}
+
+
+//
+// Optional table cell sizes
+//
+
+// Extra large
+.table-xl {
+    th,
+    td {
+        padding: $table-cell-padding-xl;
+    }
+}
+
+// Large
+.table-lg {
+    th,
+    td {
+        padding: $table-cell-padding-lg;
+    }
+}
+
+// Mini
+.table-xs {
+    th,
+    td {
+        padding: $table-cell-padding-xs;
+    }
+}
+
+
+//
+// Table borders
+//
+
+// Solid border
+.table-border-solid {
+    thead & {
+        th,
+        td {
+            border-bottom-width: ($table-border-width * 2);
+        }
+    }
+
+    tbody &,
+    tfoot & {
+        td,
+        th {
+            border-top-width: ($table-border-width * 2);
+        }
+    }
+}
+
+// Double border
+.table-border-double {
+    thead & {
+        th,
+        td {
+            border-bottom-width: ($table-border-width * 3);
+            border-bottom-style: double;
+        }
+
+        .table-bordered &:first-child {
+            th,
+            td {
+                border-bottom-width: ($table-border-width * 3);
+                border-bottom-style: double;
+            }
+        }
+    }
+
+    tbody &,
+    tfoot & {
+        td,
+        th {
+            border-top-width: ($table-border-width * 3);
+            border-top-style: double;
+        }
+    }
+}
+
+// Dashed border
+.table-border-dashed {
+    td,
+    th {
+        border-top-style: dashed;
+    }
+}
+
+// Custom header bottom border color
+.table {
+    thead {
+        tr[class*=border-bottom-] {
+            th,
+            td {
+                border-bottom-color: inherit;
+            }
+        }
+    }
+
+    // Custom body and footer bottom border color
+    tbody,
+    tfoot {
+        tr[class*=border-top-] {
+            th,
+            td {
+                border-top-color: inherit;
+            }
+        }
+    }
+}
+
+
+//
+// Table inside card
+//
+
+// Remove top border from the table
+.card {
+    > .table:first-child,
+    > [class*=table-responsive]:first-child > .table:first-child {
+        caption + thead,
+        colgroup + thead,
+        thead:first-child {
+            tr:first-child {
+                th,
+                td {
+                    border-top-width: 0;
+                }
+            }
+        }
+    }
+}
+
+// If table is displayed in nested card
+.card {
+    &.card-table {
+        border-width: $table-border-width;
+        border-color: $table-border-color;
+    }
+}
+
+// Immediate child
+.card {
+
+    // Make sure caption has the same spacing
+    > .table,
+    > [class*=table-responsive] > .table {
+        caption {
+            padding-left: $card-spacer-x;
+            padding-right: $card-spacer-x;
+        }
+    }
+
+    // Add border top radius for first table
+    > .table:first-child,
+    > [class*=table-responsive]:first-child > .table:first-child {
+        @include border-top-radius($card-inner-border-radius);
+
+        thead:first-child,
+        tbody:first-child {
+            tr:first-child {
+                border-top-left-radius: $card-inner-border-radius;
+                border-top-right-radius: $card-inner-border-radius;
+
+                td:first-child,
+                th:first-child {
+                    border-top-left-radius: $card-inner-border-radius;
+                }
+                td:last-child,
+                th:last-child {
+                    border-top-right-radius: $card-inner-border-radius;
+                }
+            }
+        }
+    }
+    // Add border bottom radius for last table
+    > .table:last-child,
+    > [class*=table-responsive]:last-child > .table:last-child {
+        @include border-bottom-radius($card-inner-border-radius);
+
+        tbody:last-child,
+        tfoot:last-child {
+            tr:last-child {
+                border-bottom-left-radius: $card-inner-border-radius;
+                border-bottom-right-radius: $card-inner-border-radius;
+
+                td:first-child,
+                th:first-child {
+                    border-bottom-left-radius: $card-inner-border-radius;
+                }
+                td:last-child,
+                th:last-child {
+                    border-bottom-right-radius: $card-inner-border-radius;
+                }
+            }
+        }
+    }
+
+    // Remove unnecessary borders
+    > .table-bordered,
+    > [class*=table-responsive] > .table-bordered {
+        border: 0;
+
+        thead,
+        tbody,
+        tfoot {
+            th:first-child,
+            td:first-child {
+                border-left: 0;
+            }
+            th:last-child,
+            td:last-child {
+                border-right: 0;
+            }
+        }
+    }
+}
+
+// Add top border in certain cases
+.card-header:not([class*=bg-]) + .table,
+.card-header:not([class*=bg-]) + div[class*=table-responsive],
+.card-body + .table,
+.card-body + div[class*=table-responsive],
+.table + .card-body,
+div[class*=table-responsive] + .card-body,
+.navbar-light + div[class*=table-responsive],
+.navbar-light + .table {
+    border-top: $table-border-width solid $table-border-color;
+}
+
+// Remove top border if table doesn't have thead
+.table tbody:first-child tr:first-child th,
+div[class*=table-responsive] > .table tbody:first-child tr:first-child th,
+.table tbody:first-child tr:first-child td,
+div[class*=table-responsive] > .table tbody:first-child tr:first-child td {
+    border-top: 0;
+}
+
+// If table comes after card footer
+.card-footer {
+    + [class*=table-responsive],
+    + .table {
+        border-top: $table-border-width solid $table-border-color;
+    }
+}

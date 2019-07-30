@@ -1,0 +1,156 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Switchery
+ *
+ *  Styles for switchery.min.js - toggle switches
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-switchery {
+
+
+    // Core
+    // ------------------------------
+
+    // Base
+    .switchery {
+        background-color: $switchery-bg;
+        border: $switchery-border-width solid $switchery-border-color;
+        cursor: pointer;
+        display: block;
+        line-height: 1;
+        width: ($switchery-size * 2);
+        height: $switchery-size;
+        position: relative;
+        box-sizing: content-box;
+        @include border-radius($border-radius-round);
+
+        // Container
+        .form-check-switchery & {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-top: (($line-height-computed - $switchery-size) / 2) - rem-calc($switchery-border-width);
+        }
+
+        // Disabled state
+        .form-check-switchery.disabled & {
+            cursor: $cursor-disabled;
+        }
+
+        // Handle
+        > small {
+            background-color: $switchery-handle-bg;
+            width: $switchery-size;
+            height: $switchery-size;
+            position: absolute;
+            top: 0;
+            box-shadow: $switchery-handle-box-shadow;
+            @include border-radius($border-radius-round);
+        }
+    }
+
+
+    // Options
+    // ------------------------------
+
+    // Left position
+    .form-check-switchery:not(.dropdown-item) {
+        padding-left: (($switchery-size * 2) + $switchery-margin-x + rem-calc($switchery-border-width * 2));
+    }
+
+    // Right position
+    .form-check-switchery:not(.dropdown-item) {
+        &.form-check-right {
+            padding-left: 0;
+            padding-right: (($switchery-size * 2) + $switchery-margin-x + rem-calc($switchery-border-width * 2));
+
+            // Swap sides
+            .switchery {
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+
+
+    //
+    // Double side switch
+    //
+
+    .form-check-switchery-double {
+
+        // If has labels
+        &.form-check-switchery {
+            padding-left: 0;
+            padding-right: 0;
+
+            .switchery {
+                margin-top: 0;
+            }
+        }
+
+        // Label
+        .form-check-label {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        // Switch
+        .switchery {
+            position: relative;
+            margin-left: $switchery-margin-x;
+            margin-right: $switchery-margin-x;
+        }
+
+        // Checkbox
+        input {
+            margin-left: $switchery-margin-x;
+            margin-right: $switchery-margin-x;
+        }
+    }
+
+
+    //
+    // Inside dropdown menu
+    //
+
+    .dropdown-item {
+
+        // Override default styles
+        &.form-check-switchery {
+
+            // Label
+            .form-check-label {
+                padding-left: ($dropdown-item-padding-x + ($switchery-size * 2) + $dropdown-icon-spacer-x + rem-calc($switchery-border-width * 2));
+            }
+
+            // Container
+            .switchery {
+                top: 50%;
+                left: $dropdown-item-padding-x;
+                margin-top: -(($switchery-size / 2) + rem-calc($switchery-border-width));
+            }
+        }
+
+        // Right alignment
+        &.form-check-right {
+
+            // Specifically in switchery container
+            &.form-check-switchery {
+
+                // Reverse label padding
+                .form-check-label {
+                    padding-right: ($dropdown-item-padding-x + ($switchery-size * 2) + $dropdown-icon-spacer-x + rem-calc($switchery-border-width * 2));
+                }
+
+                // Reverse switchery
+                .switchery {
+                    left: auto;
+                    right: $dropdown-item-padding-x;
+                }
+            }
+        }
+    }
+}

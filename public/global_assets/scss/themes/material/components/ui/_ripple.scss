@@ -1,0 +1,105 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Ripple effect
+ *
+ *  Styles for ripple.min.js - material design ripple click effect
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-ripple {
+
+    // Base styles
+    .legitRipple {
+      position: relative;
+      overflow: hidden;
+      z-index: 0;
+      user-select: none;
+    }
+
+    // Animation
+    .legitRipple-ripple {
+      position: absolute;
+      width: 0;
+      z-index: -1;
+      pointer-events: none;
+      border-radius: 50%;
+      background-color: rgba($white, 0.15);
+      will-change: transform, width, opacity;
+      opacity: 1;
+      transition: width 0.15s linear, opacity 0.5s ease-out;
+      transform: translate(-50%, -50%);
+      display: block;
+
+      // Fix
+      &:before {
+          content: "";
+          padding-top: 100%;
+          display: block;
+      }
+    }
+
+
+    //
+    // Ripple colors
+    //
+
+
+    // Dark ripple overlay
+    .ripple-dark,
+    .btn-light,
+    .btn.bg-white,
+    .btn-link,
+    .btn.bg-transparent,
+    .page-link:not(.active),
+    .nav-tabs:not([class*=bg-]) .nav-link,
+    .nav-pills .nav-link,
+    .ui-button:not([class*=bg-]),
+    .ui-tabs-anchor,
+    .fc-button,
+    .sp-replacer,
+    .sidebar-light .nav-sidebar .nav-link,
+    .plupload_add,
+    .btn[class*=alpha-],
+    .btn-outline.bg-white,
+    .btn-outline.bg-light,
+    .list-group-item-action,
+    .navbar-light .navbar-nav-link {
+        .legitRipple-ripple {
+            background-color: rgba($black, 0.075);
+        }
+    }
+
+    // Light ripple overlay
+    .ripple-light,
+    .sidebar-user-material-footer > a,
+    .sp-replacer[class*=bg-],
+    .pagination-pager-linked .page-link,
+    .page-item.active .page-link,
+    .list-group-item-action.active {
+        .legitRipple-ripple {
+            background-color: rgba($white, 0.15);
+        }
+    }
+
+
+    //
+    // Misc styles
+    //
+
+    // z-index fix
+    img ~ .legitRipple-ripple {
+        z-index: auto;
+    }
+
+    .dropdown-toggle.legitRipple-empty {
+        &:after {
+            margin-left: 0;
+        }
+    }
+
+    // Template
+    .legitRipple-template {
+        display: none;
+    }
+}

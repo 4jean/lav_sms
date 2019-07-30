@@ -1,0 +1,65 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Touchspin spinners
+*
+*  Styles for touchspin.min.js - spinner form control library
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-touchspin {
+
+    // Base
+    .bootstrap-touchspin {
+
+        // Vertical buttons
+        .input-group-btn-vertical {
+            white-space: nowrap;
+
+            // Button
+            > .btn {
+                width: ($icon-font-size / 2) + ($input-btn-padding-x * 2) - rem-calc($input-border-width * 2);
+                margin-left: -($input-border-width);
+                @include border-radius(0);
+            }
+
+            // Icon
+            i {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -($icon-font-size / 2);
+                margin-top: -($icon-font-size / 2);
+                font-weight: normal;
+            }
+
+            // Arrow down
+            .bootstrap-touchspin-down {
+                @include border-right-radius($btn-border-radius);
+            }
+        }
+
+
+        //
+        // Sizing
+        //
+
+        // Large
+        &.input-group-lg {
+            .input-group-btn-vertical {
+                > .btn {
+                    width: ($icon-font-size / 2) + ($btn-padding-x-lg * 2) - rem-calc($input-border-width * 2);
+                }
+            }
+        }
+
+        // Small
+        &.input-group-sm {
+            .input-group-btn-vertical {
+                > .btn {
+                    width: ($icon-font-size / 2) + ($input-btn-padding-x-sm * 2) - rem-calc($input-border-width * 2);
+                }
+            }
+        }
+    }
+}

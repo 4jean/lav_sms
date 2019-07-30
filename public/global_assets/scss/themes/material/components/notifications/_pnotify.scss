@@ -1,0 +1,486 @@
+/* ------------------------------------------------------------------------------
+*
+*  # PNotify notifications
+*
+*  Styles for pnotify.min.js - a flexible JavaScript notification plugin
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-pnotify {
+
+	// Base
+	.ui-pnotify {
+	    top: $notification-gutter-y;
+	    right: $notification-gutter-x;
+	    position: absolute;
+	    height: auto;
+	    z-index: 2;
+	    box-shadow: $notification-box-shadow;
+	    @include border-radius($border-radius);
+
+	    // Related to window
+	    body > & {
+	    	position: fixed;
+	    	z-index: $zindex-tooltip;
+	    }
+
+		// Rounded alerts
+		&.alert-rounded > .ui-pnotify-container {
+			@include border-radius($border-radius-round);
+		}
+
+		// Solid color alerts
+		&[class*=bg-] > .ui-pnotify-container {
+			background-color: inherit;
+			border-color: transparent;
+			color: $white;
+		}
+
+		// Custom text and light background colors
+		&[class*=text-] > .ui-pnotify-container,
+		&[class*=alpha-] > .ui-pnotify-container {
+			background-color: inherit;
+			border-color: inherit;
+			color: inherit;
+		}
+
+
+		//
+		// Stack positions
+		//
+
+		// Alternate stack initial positioning
+		&.stack-top-left,
+		&.stack-bottom-left {
+		    left: $notification-gutter-x;
+		    right: auto;
+		}
+		&.stack-bottom-right,
+		&.stack-bottom-left {
+		    bottom: $notification-gutter-y;
+		    top: auto;
+		}
+		&.stack-modal {
+		    left: 50%;
+		    right: auto;
+		    margin-left: -($notification-width / 2);
+		}
+
+		// Custom stack positions
+		&.stack-custom-right {
+			top: auto;
+			left: auto;
+			bottom: 15rem;
+			right: 15rem;
+		}
+		&.stack-custom-left {
+			top: 15rem;
+			left: 15rem;
+			right: auto;
+			bottom: auto;
+		}
+		&.stack-custom-top {
+			right: 0;
+			left: 0;
+			top: 0;
+		}
+		&.stack-custom-bottom {
+			right: 0;
+			left: 0;
+			bottom: 0;
+			top: auto;
+		}
+
+
+		//
+		// Animations
+		//
+
+		// Display notification
+		&.ui-pnotify-in {
+		    display: block!important;
+		}
+
+		// Move notification
+		&.ui-pnotify-move {
+		    transition: left .5s ease, top .5s ease, right .5s ease, bottom .5s ease;
+		}
+
+		// Slow fading
+		&.ui-pnotify-fade-slow {
+			opacity: 0;
+		    transition: opacity linear 0.6s;
+
+			&.ui-pnotify.ui-pnotify-move {
+			    transition: opacity .6s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease;
+			}
+		}
+
+		// Normal fading
+		&.ui-pnotify-fade-normal {
+		    opacity: 0;
+		    transition: opacity linear 0.4s;
+
+			&.ui-pnotify.ui-pnotify-move {
+			    transition: opacity .4s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease;
+			}
+		}
+
+		// Fast fading
+		&.ui-pnotify-fade-fast {
+		    transition: opacity .2s linear;
+		    opacity: 0;
+
+			&.ui-pnotify.ui-pnotify-move {
+			    transition: opacity .2s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease;
+			}
+		}
+
+		// Fading
+		&.ui-pnotify-fade-in {
+		    opacity: 1;
+		}
+	}
+
+
+	//
+	// Notification layout
+	//
+
+	// Container
+	.ui-pnotify-container {
+	    padding: $alert-padding-y $alert-padding-x;
+	    height: 100%;
+	    position: relative;
+	    left: 0;
+	    margin: 0;
+	    @include border-radius($border-radius);
+	    @include clearfix;
+
+		// Roundless notifications
+		&.ui-pnotify-sharp {
+		    @include border-radius(0);
+		}
+	}
+
+	// Title
+	.ui-pnotify-title {
+		display: block;
+		margin-top: 0;
+		margin-bottom: map-get($spacers, 1);
+		font-size: $h6-font-size;
+	}
+
+	// Text
+	.ui-pnotify-text {
+	    display: block;
+	}
+
+	// Notification icon
+	.ui-pnotify-icon {
+	    display: block;
+	    float: left;
+	    line-height: 1;
+
+	    > [class^=icon-] {
+		    margin-top: ($line-height-computed - $icon-font-size);
+		    margin-right: $element-spacer-x;
+	    }
+	}
+
+	// Control buttons
+	.ui-pnotify-closer,
+	.ui-pnotify-sticker {
+		float: right;
+		margin-left: $element-spacer-x;
+		margin-top: ($line-height-computed - $icon-font-size);
+		line-height: 1;
+		outline: 0;
+	}
+
+
+	//
+	// Utility classes
+	//
+
+	// Overlay
+	.ui-pnotify-modal-overlay {
+	    background-color: rgba($modal-backdrop-bg, $modal-backdrop-opacity);
+	    top: 0;
+	    left: 0;
+	    position: absolute;
+	    z-index: 1;
+	    @include size(100%);
+
+	    body > & {
+		    position: fixed;
+		    z-index: $zindex-modal-backdrop;
+	    }
+	}
+
+
+	//
+	// Notification theme
+	//
+
+	.brighttheme {
+	    border: $alert-border-width solid;
+
+	    // Custom color
+	    .ui-pnotify[class*=bg-] > & {
+	    	background-color: inherit;
+	    	border-color: inherit;
+	    	color: inherit;
+	    }
+	}
+
+
+	//
+	// Contextual alternatives
+	//
+
+	.brighttheme-notice {
+	    background-color: $color-orange-50;
+	    border-color: $color-orange-500;
+	    color: $color-warning-900;
+	}
+	.brighttheme-info {
+	    background-color: $color-blue-50;
+	    border-color: $color-blue-500;
+	    color: $color-blue-900;
+	}
+	.brighttheme-success {
+	    background-color: $color-success-50;
+	    border-color: $color-success-500;
+	    color: $color-success-900;
+	}
+	.brighttheme-error {
+	    background-color: $color-danger-50;
+	    border-color: $color-danger-500;
+	    color: $color-danger-900;
+	}
+
+
+	//
+	// Notification controls
+	//
+
+	// Base
+	.brighttheme-icon-closer,
+	.brighttheme-icon-sticker {
+	    position: relative;
+	    display: inline-block;
+	    outline: 0;
+	    @include size($font-size-sm);
+
+	    // Icons
+	    &:after {
+	    	content: '';
+	    	font-family: $icon-font-family;
+	    	font-size: $font-size-sm;
+	    	display: block;
+			@include ll-font-smoothing();
+	    }
+	}
+
+	// Closer icon
+	.brighttheme-icon-closer:after {
+	    content: "\ed6a";
+	}
+
+	// Sticker icon
+	.brighttheme-icon-sticker:after {
+	    content: "\ee70";
+	}
+
+	// Sticked icon
+	.brighttheme-icon-sticker.brighttheme-icon-stuck:after {
+		content: "\ee75";
+	}
+
+
+	//
+	// Custom alert styles
+	//
+
+	// Styled alert
+	.ui-pnotify[class*=alert-styled-] {
+		border-width: 0;
+		padding: 0;
+	}
+
+	// Left position
+	.ui-pnotify.alert-styled-left {
+
+		// Border
+		.brighttheme {
+			border-left-width: (($alert-padding-y * 2) + $icon-font-size);
+		}
+
+		// Icon
+		&:after {
+			left: 0;
+		}
+	}
+
+	// Right position
+	.ui-pnotify.alert-styled-right {
+
+		// Border
+		.brighttheme {
+			border-right-width: (($alert-padding-y * 2) + $icon-font-size);
+		}
+
+		// Icon
+		&:after {
+			right: 0;
+		}
+	}
+
+
+	//
+	// Action bar
+	//
+
+	.brighttheme {
+		.ui-pnotify-action-bar {
+			textarea,
+			input {
+			    display: block;
+			    width: 100%;
+			    border: $input-border-width solid $input-border-color;
+			    background-color: $input-bg;
+			    margin-bottom: $form-group-margin-bottom!important;
+			    color: $input-color;
+			    padding: $input-padding-y $input-padding-x;
+			    outline: 0;
+
+			    // In colored background
+			    .ui-pnotify[class*=bg-] & {
+			    	border-color: transparent;
+			    	color: $white;
+
+				    // Placeholder
+				    &::placeholder {
+				        color: $input-placeholder-light-color;
+				        opacity: 1;
+				    }
+			    }
+			}
+		}
+	}
+
+
+	//
+	// Notification history
+	//
+
+	// Container
+	.ui-pnotify-history-container {
+	    position: absolute;
+	    top: 0;
+	    right: $notification-gutter-x;
+	    border-top: none;
+	    padding: 0;
+	    z-index: $zindex-tooltip;
+	    @include border-top-radius(0);
+
+	    // Fixed container
+		&.ui-pnotify-history-fixed {
+		    position: fixed;
+		}
+
+		// Header
+		.ui-pnotify-history-header {
+		    text-align: center;
+		    margin-bottom: map-get($spacers, 1);
+		}
+
+		// Button
+		button {
+		    cursor: pointer;
+		    display: block;
+		    width: 100%;
+		}
+
+		// Pulldown
+		.ui-pnotify-history-pulldown {
+		    display: block;
+		    margin: 0 auto;
+		}
+	}
+
+
+	//
+	// Mobile view setup
+	//
+
+	@include media-breakpoint-down(sm) {
+
+		// On mobile
+		.ui-pnotify-mobile-able {
+
+			// Notification
+		    &.ui-pnotify {
+		        position: fixed;
+		        top: 0;
+		        right: 0;
+		        left: 0;
+		        width: auto !important;
+		        font-smoothing: antialiased;
+
+		        // Shadow
+			    .ui-pnotify-shadow {
+			        border-bottom-width: ($alert-border-width * 5);
+			        @include box-shadow(none);
+			    }
+
+
+			    //
+			    // Alternate stack initial positioning
+			    //
+
+			    &.stack-top-left,
+			    &.stack-bottom-left {
+			        left: 0;
+			        right: 0;
+			    }
+			    &.stack-bottom-right,
+			    &.stack-bottom-left {
+			        left: 0;
+			        right: 0;
+			        bottom: 0;
+			        top: auto;
+
+			        // Shadow
+				    .ui-pnotify-shadow,
+				    .ui-pnotify-shadow {
+				        border-top-width: ($alert-border-width * 5);
+				        border-bottom-width: $alert-border-width;
+				    }
+			    }
+
+
+			    //
+			    // Utility classes
+			    //
+
+			    // Fade out
+				&.ui-pnotify-nonblock-fade {
+				    opacity: 0.2;
+				}
+
+				// Hide
+				&.ui-pnotify-nonblock-hide {
+				    display: none !important;
+				}
+			}
+
+		    // Container
+		    .ui-pnotify-container {
+		        @include border-radius(0);
+		    }
+		}
+	}
+}

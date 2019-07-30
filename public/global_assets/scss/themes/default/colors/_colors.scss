@@ -1,0 +1,324 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Custom color system
+ *
+ *  Custom color system styles. Includes background, border and text colors
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+//
+// Create color map
+//
+
+$ll-theme-colors: (
+    primary: (
+        base: $color-primary-500,
+        50: $color-primary-50,
+        300: $color-primary-300,
+        400: $color-primary-400,
+        600: $color-primary-600,
+        700: $color-primary-700,
+        800: $color-primary-800
+    ),
+    danger: (
+        base: $color-danger-500,
+        50: $color-danger-50,
+        300: $color-danger-300,
+        400: $color-danger-400,
+        600: $color-danger-600,
+        700: $color-danger-700,
+        800: $color-danger-800
+    ),
+    success: (
+        base: $color-success-500,
+        50: $color-success-50,
+        300: $color-success-300,
+        400: $color-success-400,
+        600: $color-success-600,
+        700: $color-success-700,
+        800: $color-success-800
+    ),
+    warning: (
+        base: $color-warning-500,
+        50: $color-warning-50,
+        300: $color-warning-300,
+        400: $color-warning-400,
+        600: $color-warning-600,
+        700: $color-warning-700,
+        800: $color-warning-800
+    ),
+    info: (
+        base: $color-info-500,
+        50: $color-info-50,
+        300: $color-info-300,
+        400: $color-info-400,
+        600: $color-info-600,
+        700: $color-info-700,
+        800: $color-info-800
+    ),
+    pink: (
+        base: $color-pink-500,
+        50: $color-pink-50,
+        300: $color-pink-300,
+        400: $color-pink-400,
+        600: $color-pink-600,
+        700: $color-pink-700,
+        800: $color-pink-800
+    ),
+    violet: (
+        base: $color-violet-500,
+        50: $color-violet-50,
+        300: $color-violet-300,
+        400: $color-violet-400,
+        600: $color-violet-600,
+        700: $color-violet-700,
+        800: $color-violet-800
+    ),
+    purple: (
+        base: $color-purple-500,
+        50: $color-purple-50,
+        300: $color-purple-300,
+        400: $color-purple-400,
+        600: $color-purple-600,
+        700: $color-purple-700,
+        800: $color-purple-800
+    ),
+    indigo: (
+        base: $color-indigo-500,
+        50: $color-indigo-50,
+        300: $color-indigo-300,
+        400: $color-indigo-400,
+        600: $color-indigo-600,
+        700: $color-indigo-700,
+        800: $color-indigo-800
+    ),
+    blue: (
+        base: $color-blue-500,
+        50: $color-blue-50,
+        300: $color-blue-300,
+        400: $color-blue-400,
+        600: $color-blue-600,
+        700: $color-blue-700,
+        800: $color-blue-800
+    ),
+    teal: (
+        base: $color-teal-500,
+        50: $color-teal-50,
+        300: $color-teal-300,
+        400: $color-teal-400,
+        600: $color-teal-600,
+        700: $color-teal-700,
+        800: $color-teal-800
+    ),
+    green: (
+        base: $color-green-500,
+        50: $color-green-50,
+        300: $color-green-300,
+        400: $color-green-400,
+        600: $color-green-600,
+        700: $color-green-700,
+        800: $color-green-800
+    ),
+    orange: (
+        base: $color-orange-500,
+        50: $color-orange-50,
+        300: $color-orange-300,
+        400: $color-orange-400,
+        600: $color-orange-600,
+        700: $color-orange-700,
+        800: $color-orange-800
+    ),
+    brown: (
+        base: $color-brown-500,
+        50: $color-brown-50,
+        300: $color-brown-300,
+        400: $color-brown-400,
+        600: $color-brown-600,
+        700: $color-brown-700,
+        800: $color-brown-800
+    ),
+    grey: (
+        base: $color-grey-500,
+        50: $color-grey-50,
+        300: $color-grey-300,
+        400: $color-grey-400,
+        600: $color-grey-600,
+        700: $color-grey-700,
+        800: $color-grey-800
+    ),
+    slate: (
+        base: $color-slate-500,
+        50: $color-slate-50,
+        300: $color-slate-300,
+        400: $color-slate-400,
+        600: $color-slate-600,
+        700: $color-slate-700,
+        800: $color-slate-800
+    )
+);
+
+
+//
+// Generate class names
+//
+
+// 50 (alpha) and 500 (main) shades
+@each $color-key, $color-variants in $ll-theme-colors {
+
+    // Get main and 50 shades from the map
+    $base-color-value: map-get($color-variants, 'base');
+    $shade-50: map-get($color-variants, 50);
+
+    // Generate .alpha-* classes
+    .alpha-#{$color-key} {
+        @include ll-background-variant($shade-50);
+    }
+
+    // Generate .text-* classes
+    .text-#{$color-key} {
+        @include ll-text-color-variant($base-color-value);
+    }
+
+    // Generate .bg-* classes
+    .bg-#{$color-key} {
+        @include ll-background-variant($base-color-value);
+    }
+
+    // Generate .border-* classes
+    .border-#{$color-key} {
+        @include ll-border-color-variant($base-color-value);
+    }
+
+    // Generate .border-top-* classes
+    .border-top-#{$color-key} {
+        @include ll-border-top-color-variant($base-color-value);
+    }
+
+    // Generate .border-bottom-* classes
+    .border-bottom-#{$color-key} {
+        @include ll-border-bottom-color-variant($base-color-value);
+    }
+
+    // Generate .border-left-* classes
+    .border-left-#{$color-key} {
+        @include ll-border-left-color-variant($base-color-value);
+    }
+
+    // Generate .border-right-* classes
+    .border-right-#{$color-key} {
+        @include ll-border-right-color-variant($base-color-value);
+    }
+
+
+    //
+    // Access color variants and values
+    //
+
+    @each $variant-name, $variant-value in $color-variants {
+        $shade-color-value: map-get($color-variants, $variant-name);
+
+        // Ignore 'base' and '50' tones
+        @if ($variant-name != 'base' and $variant-name != 50) {
+
+            // Generate .text-*-* classes
+            .text-#{$color-key}-#{$variant-name} {
+                @include ll-text-color-variant($shade-color-value);
+            }
+
+            // Generate .bg-*-* classes
+            .bg-#{$color-key}-#{$variant-name} {
+                @include ll-background-variant($shade-color-value);
+            }
+
+            // Generate .border-*-* classes
+            .border-#{$color-key}-#{$variant-name} {
+                @include ll-border-color-variant($shade-color-value);
+            }
+
+            // Generate .border-top-*-* classes
+            .border-top-#{$color-key}-#{$variant-name} {
+                @include ll-border-top-color-variant($shade-color-value);
+            }
+
+            // Generate .border-bottom-*-* classes
+            .border-bottom-#{$color-key}-#{$variant-name} {
+                @include ll-border-bottom-color-variant($shade-color-value);
+            }
+
+            // Generate .border-left-*-* classes
+            .border-left-#{$color-key}-#{$variant-name} {
+                @include ll-border-left-color-variant($shade-color-value);
+            }
+
+            // Generate .border-right-*-* classes
+            .border-right-#{$color-key}-#{$variant-name} {
+                @include ll-border-right-color-variant($shade-color-value);
+            }
+        }
+    }
+}
+
+
+//
+// Other color classes
+//
+
+// Transparent border
+.border-transparent {
+    border-color: transparent !important;
+}
+.border-top-transparent {
+    border-top-color: transparent !important;
+}
+.border-bottom-transparent {
+    border-bottom-color: transparent !important;
+}
+.border-left-transparent {
+    border-left-color: transparent !important;
+}
+.border-right-transparent {
+    border-right-color: transparent !important;
+}
+
+// Light border color on dark background
+.border-light-alpha {
+    @include ll-border-color-variant(rgba($white, 0.1));
+}
+.border-top-light-alpha {
+    @include ll-border-top-color-variant(rgba($white, 0.1));
+}
+.border-bottom-light-alpha {
+    @include ll-border-bottom-color-variant(rgba($white, 0.1));
+}
+.border-left-light-alpha {
+    @include ll-border-left-color-variant(rgba($white, 0.1));
+}
+.border-right-light-alpha {
+    @include ll-border-right-color-variant(rgba($white, 0.1));
+}
+
+// Dark border color on light background
+.border-dark-alpha {
+    @include ll-border-color-variant(rgba($black, 0.1));
+}
+.border-top-dark-alpha {
+    @include ll-border-top-color-variant(rgba($black, 0.1));
+}
+.border-bottom-dark-alpha {
+    @include ll-border-bottom-color-variant(rgba($black, 0.1));
+}
+.border-left-dark-alpha {
+    @include ll-border-left-color-variant(rgba($black, 0.1));
+}
+.border-right-dark-alpha {
+    @include ll-border-right-color-variant(rgba($black, 0.1));
+}
+
+// Background color with transparency
+.bg-dark-alpha {
+    @include ll-background-variant(rgba($black, 0.2));
+}
+.bg-light-alpha {
+    @include ll-background-variant(rgba($white, 0.1));
+}

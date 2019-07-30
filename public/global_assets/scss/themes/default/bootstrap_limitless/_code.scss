@@ -1,0 +1,21 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Code blocks
+ *
+ *  Overrides of default code block styles
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Inline code
+code {
+    padding: $code-padding-y $code-padding-x;
+    background-color: $code-bg;
+}
+
+// Blocks of code
+pre {
+    white-space: pre-wrap;
+	/*rtl:ignore*/
+	text-align: left;
+    @include border-radius($border-radius);
+}

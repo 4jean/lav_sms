@@ -1,0 +1,567 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Bootstrap file input
+ *
+ *  Styles for fileinput.min.js - an enhanced HTML 5 file input for Bootstrap
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-fileinput {
+
+
+	// File input styling
+	// ------------------------------
+
+	// Browse button
+	.btn-file {
+	    position: relative;
+	    overflow: hidden;
+
+	    // Hide original input
+		input[type=file] {
+		    position: absolute;
+		    top: 0;
+		    right: 0;
+		    min-width: 100%;
+		    min-height: 100%;
+		    text-align: right;
+		    opacity: 0;
+		    background: none repeat scroll 0 0 transparent;
+		    cursor: inherit;
+		    display: block;
+		    visibility: visible;
+		}
+	}
+
+	// Highlight input on focus
+	.file-caption {
+	    &:focus {
+			border-bottom-color: $input-focus-border-color;
+			box-shadow: $input-focus-box-shadow;
+	    }
+	}
+
+	// Caption name
+	.file-caption-name {
+	    display: inline-block;
+	    overflow: hidden;
+	    word-break: break-all;
+	    font-family: $font-family-sans-serif;
+	    width: 100%;
+	    margin: 0;
+	    padding: 0;
+	    box-shadow: none;
+	    border: 0;
+	    background: none;
+	    outline: 0;
+	    pointer-events: none;
+
+		// Display empty caption text as a placeholder
+		.file-input-new &,
+		.file-input-ajax-new & {
+			color: $input-placeholder-color;
+		}
+	}
+
+	// Error message
+	.file-error-message {
+		position: relative;
+	    background-color: $color-danger-50;
+	    color: $color-danger-800;
+	    text-align: center;
+	    padding: $input-btn-padding-y $input-btn-padding-x;
+	    margin: $fileinput-preview-spacer;
+	    margin-top: 0;
+	    @include border-radius($border-radius);
+
+	    // Top spacing correction if inside drop zone
+	    .file-drop-zone & {
+	    	margin-top: $input-btn-padding-y;
+	    }
+
+	    // Close button
+		.close {
+		    color: $color-danger-800;
+		}
+
+		// List of errors
+		pre {
+			background-color: $card-bg;
+		    margin-top: $input-btn-padding-y;
+		    text-align: left;
+		}
+
+		// List
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+	}
+
+	// Disabled caption
+	.file-caption-disabled {
+	    cursor: $cursor-disabled;
+	    border-bottom-style: dashed;
+
+	    // Focus state
+	    &:focus {
+	    	border-bottom-color: $input-border-color;
+	    	box-shadow: none;
+	    }
+	}
+
+
+	//
+	// Preview
+	//
+
+	// Preview modal
+	.file-preview-detail-modal {
+	    text-align: left;
+	}
+
+	// File preview container
+	.file-preview {
+		border: $border-width solid $border-color;
+		width: 100%;
+		margin-bottom: $spacer;
+		position: relative;
+		text-align: center;
+		@include border-radius($border-radius);
+
+		// Close button
+		.close {
+			font-size: $close-font-size;
+			font-weight: $close-font-weight;
+		    position: absolute;
+		    top: 0;
+		    right: 0;
+		    padding: $fileinput-preview-spacer;
+		    line-height: 1;
+			color: $close-color;
+			text-shadow: $close-text-shadow;
+			opacity: 0.75;
+			@include border-radius($border-radius);
+
+			// Hover state
+			@include hover-focus {
+				color: $close-color;
+				text-decoration: none;
+				opacity: 1;
+			}
+		}
+	}
+
+	// Thumbnails
+	.file-preview-thumbnails {
+		display: flex;
+		flex-wrap: wrap;
+		position: relative;
+
+		// Center thumbs on mobile
+		@include media-breakpoint-down(sm) {
+			justify-content: center;
+		}
+	}
+
+	// Thumbnail frame
+	.file-preview-frame {
+	    margin: $fileinput-preview-spacer;
+	    margin-right: 0;
+	    border: $fileinput-preview-frame-border-width solid $fileinput-preview-frame-border-color;
+	    background-color: $fileinput-preview-frame-bg;
+	    @include border-radius($border-radius);
+
+	    // Thumb
+		.kv-file-content {
+		    position: relative;
+		    height: $fileinput-preview-thumb-height;
+		}
+	}
+
+	// Thumbnail image
+	.file-preview-image {
+	    @include border-top-radius($border-radius - rem-calc($border-width));
+	}
+
+	// Thumbnail footer
+	.file-thumbnail-footer {
+		position: relative;
+		background-color: $fileinput-preview-footer-bg;
+		border-top: $border-width solid $border-color;
+	}
+
+	// Preview text
+	.file-preview-text {
+	    color: $link-color;
+	    border: 0;
+	    overflow-x: hidden;
+	}
+
+	// Other files preview
+	.file-preview-other {
+	    width: $fileinput-preview-thumb-width;
+
+	    // Override for preview icon, use Icomoon instead
+	    &:after {
+			content: '\ea0c';
+			font-family: $icon-font-family;
+			line-height: 1;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			font-size: ($icon-font-size * 4);
+			transform: translate(-50%, -50%);
+			@include ll-font-smoothing();
+	    }
+	}
+
+	// Status
+	.file-preview-status {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		background-color: $fileinput-preview-footer-bg;
+		border-top: $border-width solid $border-color;
+		font-size: $font-size-sm;
+		line-height: $line-height-sm;
+		padding: $input-btn-padding-y $input-btn-padding-x;
+		z-index: $zindex-tooltip;
+		@include border-bottom-radius($border-radius);
+
+		// Collapse if empty
+		&:empty {
+			padding: 0;
+			background-color: transparent;
+			border: 0;
+		}
+	}
+
+
+	//
+	// Loading indicator
+	//
+
+	// Give it minimum height
+	.file-thumb-loading {
+		min-height: ($icon-font-size * 2) + ($spacer * 2) + (($input-btn-padding-y * 2) + $line-height-computed);
+	}
+
+	// Loading icon
+	.file-thumb-loading,
+	.file-uploading {
+
+		// Background
+		&:before {
+			content: '';
+			display: inline-block;
+			background-color: $color-slate-900;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			z-index: $zindex-tooltip - 1;
+			margin-top: -((($icon-font-size * 2) + (($input-btn-padding-y * 2) + $line-height-computed)) / 2);
+			margin-left: -($icon-font-size);
+			@include size($icon-font-size * 2);
+			@include border-radius($border-radius);
+		}
+
+		// Icon itself
+		&:after {
+			content: '\eb55';
+			font-family: $icon-font-family;
+			display: inline-block;
+			position: absolute;
+			color: $white;
+			top: 50%;
+			left: 50%;
+			margin-top: -(($icon-font-size + (($input-btn-padding-y * 2) + $line-height-computed)) / 2);
+			margin-left: -($icon-font-size / 2);
+			font-size: $icon-font-size;
+			line-height: 1;
+			z-index: $zindex-tooltip;
+			animation: rotation 1s linear infinite;
+			@include ll-font-smoothing();
+		}
+	}
+
+	// Indicator
+	.file-upload-indicator {
+	    cursor: default;
+	    float: left;
+	    padding: map-get($spacers, 2);
+	    line-height: 1;
+
+	    // Icon
+	    i {
+	    	top: 0;
+	    }
+	}
+
+
+	//
+	// Default elements visibility
+	//
+
+	// Standard upload
+	.file-input-new {
+		.file-preview,
+		.close,
+		.glyphicon-file,
+		.fileinput-remove-button,
+		.fileinput-upload-button {
+			display: none;
+		}
+	}
+
+	// Ajax upload
+	.file-input-ajax-new {
+		.fileinput-remove-button,
+		.fileinput-upload-button,
+		.close {
+			display: none;
+		}
+	}
+
+	// Other
+	.kv-hidden,
+	.file-caption-icon,
+	.file-zoom-dialog .modal-header:before,
+	.file-zoom-dialog .modal-header:after,
+	.hide-content .kv-file-content {
+	    display: none;
+	}
+
+
+
+	// AJAX upload styling
+	// ------------------------------
+
+	// Buttons position
+	.file-footer-buttons {
+	    float: right;
+
+	    // Button base
+	    button {
+	    	padding: map-get($spacers, 2);
+	    	background-color: transparent;
+	    	border: 0;
+	    	line-height: 1;
+	    	cursor: pointer;
+	    	opacity: 0.6;
+	    	outline: 0;
+		    @include transition(opacity ease-in-out $component-transition-timer);
+
+		    // Hover state
+		    @include hover {
+		    	opacity: 1;
+		    }
+
+		    // Make icon centered vertically
+	    	i {
+	    		top: 0;
+	    	}
+	    }
+	}
+
+	// Caption
+	.file-footer-caption {
+	    display: block;
+	    white-space: nowrap;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    text-align: center;
+	    padding: $fileinput-preview-thumb-caption-spacer;
+	    background-color: $card-bg;
+	    border-bottom: $border-width solid $border-color;
+	    margin-left: auto;
+	    margin-right: auto;
+	}
+
+	// Size information
+	.file-size-info {
+		samp {
+			font-size: $font-size-xs;
+		}
+	}
+
+
+	//
+	// Dropzone
+	//
+
+	// Base
+	.file-drop-zone {
+	    border: $border-width dashed $border-color;
+	    height: 100%;
+	    vertical-align: middle;
+	    margin: $fileinput-preview-spacer;
+	    padding: $fileinput-preview-spacer;
+	    @include border-radius($border-radius);
+	}
+
+	// Text title
+	.file-drop-zone-title {
+	    font-size: $h4-font-size;
+	    font-weight: $font-weight-light;
+	    padding: 5rem;
+	    opacity: 0.5;
+	}
+
+	// Progress bar
+	.kv-upload-progress {
+		margin-bottom: $spacer;
+	}
+
+
+	//
+	// Progress
+	//
+
+	// Thumbnail progress
+	.file-thumb-progress {
+	    position: absolute;
+	    top: -$fileinput-preview-progress-height;
+	    left: 0;
+	    right: 0;
+
+	    // Progress bars
+		.progress,
+		.progress-bar {
+		    height: $fileinput-preview-progress-height;
+		    border-radius: 0;
+		    font-size: 0;
+		}
+	}
+
+	// IE 10 fix
+	.btn-file ::-ms-browse {
+	    width: 100%;
+	    height: 100%;
+	}
+
+
+	//
+	// Fullscreen modal
+	//
+
+	.file-zoom-fullscreen {
+
+		// Base
+		.modal-dialog {
+		    position: fixed;
+		    margin: 0;
+		    width: 100%;
+		    height: 100%;
+		    padding: 0;
+		    max-width: 100%;
+		}
+
+		// Content
+		.modal-content {
+		    @include border-radius(0);
+		}
+
+		// Body
+		.modal-body {
+		    overflow-y: auto;
+		}
+	}
+
+
+	//
+	// Zoom
+	//
+
+	// Dialog
+	.file-zoom-dialog {
+
+		// Navigate buttons
+		.btn-navigate {
+		    position: absolute;
+		    top: 50%;
+		    padding: 0;
+		    border: 0;
+		    background-color: transparent;
+		    outline: none;
+		    color: $white;
+		    opacity: 0.7;
+		    transform: translateY(-50%);
+		    @include transition(opacity ease-in-out $component-transition-timer);
+
+		    // Icons
+		    > i {
+		    	display: block;
+		    	font-size: ($icon-font-size * 2);
+		    }
+
+		    // Hover state
+			&:not([disabled]):hover,
+			&:not([disabled]):focus {
+			    outline: none;
+			    box-shadow: none!important;
+			    opacity: 1;
+			}
+
+			// Disabled state
+			&[disabled] {
+			    opacity: 0.3;
+			}
+		}
+
+		// Left button
+		.btn-prev {
+		    left: -(($icon-font-size * 2) + $grid-gutter-width);
+		}
+
+		// Right button
+		.btn-next {
+		    right: -(($icon-font-size * 2) + $grid-gutter-width);
+		}
+
+		// Floating buttons
+		.floating-buttons {
+		    position: absolute;
+		    top: $modal-header-padding;
+		    right: $modal-header-padding;
+		    background-color: $modal-content-bg;
+		}
+
+		// Title
+		.kv-zoom-title {
+			color: $text-muted;
+			margin-left: map-get($spacers, 2);
+		}
+	}
+
+	// Content
+	.file-zoom-content {
+	    text-align: center;
+	}
+
+
+	//
+	// Drag
+	//
+
+	.file-drag-handle {
+	    cursor: move;
+	    float: left;
+	    line-height: 1;
+	    opacity: 0.6;
+	    @include transition(opacity ease-in-out $component-transition-timer);
+
+	    // Hover state
+	    @include hover {
+	    	opacity: 1;
+	    }
+
+	    // Center icon vertically
+	    i {
+	    	top: 0;
+	    }
+	}
+}

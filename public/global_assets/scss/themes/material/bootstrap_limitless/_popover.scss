@@ -1,0 +1,90 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Popover component
+ *
+ *  Overrides for popover component
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Popover header
+.popover-header {
+    font-weight: $font-weight-semibold;
+    padding-bottom: 0;
+    border-bottom-width: 0;
+
+    // Custom background
+    &[class*=bg-]:not(.bg-white):not(.bg-light) {
+        padding-top: ($popover-header-padding-y / 1.25);
+        padding-bottom: ($popover-header-padding-y / 1.25);
+        border-bottom-width: $popover-border-width;
+    }
+}
+
+
+//
+// Optional styles
+//
+
+// Top placement
+.bs-popover-top {
+
+    // Custom colors
+    &[class*=bg-]:not(.bg-white):not(.bg-light),
+    &[class*=border-] {
+        .arrow {
+            &,
+            &:after,
+            &:before {
+                border-top-color: inherit;
+            }
+        }
+    }
+}
+
+// Right placement
+.bs-popover-right {
+
+    // Custom colors
+    &[class*=bg-]:not(.bg-white):not(.bg-light),
+    &[class*=border-] {
+        .arrow {
+            &,
+            &:after,
+            &:before {
+                border-right-color: inherit;
+            }
+        }
+    }
+}
+
+// Bottom placement
+.bs-popover-bottom {
+
+    // Custom colors
+    &[class*=bg-]:not(.bg-white):not(.bg-light),
+    &[class*=border-] {
+        .arrow {
+            &,
+            &:after,
+            &:before {
+                border-bottom-color: inherit;
+            }
+        }
+    }
+}
+
+// Left placement
+.bs-popover-left {
+
+    // Custom colors
+    &[class*=bg-]:not(.bg-white):not(.bg-light),
+    &[class*=border-] {
+        .arrow {
+            &,
+            &:after,
+            &:before {
+                border-left-color: inherit;
+            }
+        }
+    }
+}

@@ -1,0 +1,84 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Twiter Typeahead
+*
+*  Styles for typeahead.bundle.min.js - input suggestion engine
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-typeahead {
+
+
+	// Core
+	// ------------------------------
+
+	// Make input full width
+	.twitter-typeahead {
+		width: 100%;
+	}
+
+	// Input field hint
+	.tt-hint {
+		color: $input-placeholder-color;
+	}
+
+
+	// Menu
+	// ------------------------------
+
+	// Dropdown menu
+	.tt-menu {
+		width: 100%;
+		margin-top: $dropdown-spacer;
+		min-width: $dropdown-min-width;
+		padding: $dropdown-padding-y 0;
+		background-color: $dropdown-bg;
+		border: $dropdown-border-width solid $dropdown-border-color;
+		max-height: $typeahead-max-height;
+		overflow-y: auto;
+		@include border-radius($dropdown-border-radius);
+		@include box-shadow($dropdown-box-shadow);
+
+		// Custom height
+		.typeahead-scrollable & {
+			max-height: $typeahead-max-height-scrollable;
+		}
+	}
+
+	// Menu item
+	.tt-suggestion {
+		color: $dropdown-link-color;
+		padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+		cursor: pointer;
+		@include transition(all ease-in-out $component-transition-timer);
+
+		// Hover state bg color
+		&:hover,
+		&:focus,
+		&.tt-cursor {
+			color: $dropdown-link-hover-color;
+			background-color: $dropdown-link-hover-bg;
+		}
+	}
+
+	// Heading
+	.tt-heading {
+		padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+		display: block;
+		font-weight: $font-weight-bold;
+	    margin-top: $dropdown-padding-y;
+	    margin-bottom: $dropdown-padding-y;
+
+	    // Remove top margin in the first heading
+	    .tt-dataset-group:first-child &:first-child {
+	    	margin-top: 0;
+	    }
+	}
+
+	// Add padding for empty message
+	.typeahead-template .empty-message {
+		padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+		text-align: center;
+	}
+}

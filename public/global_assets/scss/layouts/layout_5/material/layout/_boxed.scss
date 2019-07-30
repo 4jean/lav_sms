@@ -1,0 +1,24 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Boxed layout
+ *
+ *  Styles for main structure of content area in boxed layout
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-boxed {
+
+    // Class for body, adds background color/image
+    .layout-boxed-bg {
+        background: $boxed-bg; // mainly for demo, use whatever you want
+    }
+
+    // Container inside other containers
+    .navbar > .container,
+    .page-header > .container,
+    .breadcrumb-line > .container {
+        padding-left: ($content-container-padding-x * 2);
+        padding-right: ($content-container-padding-x * 2);
+    }
+}

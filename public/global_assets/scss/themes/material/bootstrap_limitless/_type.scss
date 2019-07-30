@@ -1,0 +1,383 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Text styling
+ *
+ *  Override and extend default Bootstrap styles.
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+//
+// Headings
+//
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    letter-spacing: $headings-letter-spacing;
+}
+
+
+//
+// Lists
+//
+
+// Custom list class
+.list {
+
+    // Add vertical spacing to the list items
+    > li {
+        &,
+        .list > li {
+            margin-top: map-get($spacers, 1);
+        }
+
+        // Remove top margin from the first list item
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    // Extended list
+    &-extended {
+        > li {
+            &,
+            .list > li {
+                margin-top: ($spacer / 2);
+            }
+        }
+    }
+}
+
+// List item styling
+ul {
+    &.list-square {
+        list-style-type: square;
+    }
+
+    &.list-circle {
+        list-style-type: circle;
+    }
+}
+
+// Inline turns list items into inline-block
+.list-inline-item {
+    position: relative;
+}
+
+// Inline condensed
+.list-inline-condensed {
+    .list-inline-item {
+        &:not(:last-child) {
+            margin-right: ($list-inline-padding / 2);
+        }
+    }
+}
+
+// Inline dotted
+.list-inline-dotted {
+    .list-inline-item {
+        &:not(:last-child) {
+            margin-right: ($list-inline-padding / 2);
+
+            // Dot
+            &:after {
+                content: '\f052';
+                font-family: $icon-font-family;
+                font-size: ($icon-font-size / 2);
+                width: ($icon-font-size / 2.5);
+                text-align: center;
+                display: inline-block;
+                margin-left: ($list-inline-padding / 2) + (($icon-font-size / 2.5) / 2);
+                opacity: 0.25;
+            }
+        }
+    }
+
+    // Condensed dotted
+    &.list-inline-condensed {
+        .list-inline-item {
+            &:not(:last-child) {
+                margin-right: ($list-inline-padding / 3);
+
+                &:after {
+                    margin-left: ($list-inline-padding / 3) + (($icon-font-size / 4) / 2);
+                }
+            }
+        }
+    }
+}
+
+
+//
+// List with icons
+//
+
+// Base
+.list-icons {
+    display: inline-flex;
+    align-items: center;
+
+    // Spacing between items
+    > *:not(:last-child) {
+        margin-right: $list-icons-spacer;
+    }
+
+    // Extended size
+    &-extended {
+        > *:not(:last-child) {
+            margin-right: $list-icons-spacer * 2;
+        }
+    }
+}
+
+// List icons item
+.list-icons-item {
+    display: inline-block;
+    line-height: 1;
+}
+
+// Linked list icons item
+a.list-icons-item {
+    @include transition(all ease-in-out $component-transition-timer);
+
+    // Color
+    &:not([class*=text-]) {
+        color: inherit;
+    }
+
+    // Hover/open states
+    &:hover,
+    &:focus,
+    .show > & {
+        outline: 0;
+        opacity: 0.75;
+    }
+}
+
+
+//
+// Text styling
+//
+
+// Additional font weights
+.font-weight-black {
+    font-weight: $font-weight-black;
+}
+.font-weight-semibold {
+    font-weight: $font-weight-semibold;
+}
+.font-weight-thin {
+    font-weight: $font-weight-thin;
+}
+
+// White text color
+.text-white {
+    color: $white;
+}
+a.text-white {
+    &:not(.btn) {
+        @include transition(color ease-in-out $component-transition-timer);
+    }
+
+    // Hover state
+    @include hover-focus {
+        color: rgba($white, 0.75);
+    }
+}
+
+// Default text color
+.text-default {
+    color: $body-color;
+}
+a.text-default {
+    &:not(.btn) {
+        @include transition(color ease-in-out $component-transition-timer);
+    }
+
+    // Hover state
+    @include hover-focus {
+        color: rgba($body-color, 0.75);
+    }
+}
+
+
+//
+// Blockquotes
+//
+
+// Bordered style
+.blockquote-bordered {
+    border-left: $blockquote-border-width solid $blockquote-border-color;
+
+    // Reverse border
+    &-reverse {
+        border-left: 0;
+        border-right: $blockquote-border-width solid $blockquote-border-color;
+    }
+}
+
+// Footer
+.blockquote-footer {
+    font-size: $font-size-base;
+
+    // Add more horizontal spacing
+    &::before {
+        content: "\2014 \00A0 \00A0 \00A0";
+    }
+}
+
+
+//
+// Feed list
+//
+
+// Feed item
+.list-feed-item {
+    position: relative;
+    padding-bottom: $list-feed-item-padding-y;
+    padding-left: $list-feed-item-padding-x;
+
+    // Circle
+    &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: $list-feed-circle-position;
+        background-color: $card-bg;
+        display: inline-block;
+        border: $list-feed-circle-border-width solid $list-feed-circle-border-color;
+        z-index: 3;
+        @include size($list-feed-circle-radius);
+        @include border-radius($border-radius-circle);
+    }
+
+    // Line
+    &:after {
+        content: '';
+        position: absolute;
+        top: $list-feed-circle-position;
+        left: ($list-feed-circle-radius / 2) - (rem-calc($list-feed-circle-border-width) / 2);
+        bottom: -($list-feed-circle-position + rem-calc($list-feed-circle-border-width));
+        width: 0;
+        border-left: ($list-feed-circle-border-width / 2) solid $list-feed-circle-border-color;
+        border-right: ($list-feed-circle-border-width / 2) solid $list-feed-circle-border-color;
+        z-index: 2;
+    }
+
+    // First item
+    &:first-child {
+        &:after {
+            top: $list-feed-circle-radius;
+        }
+    }
+
+    // Last item
+    &:last-child {
+        padding-bottom: 0;
+
+        &:after {
+            content: none;
+        }
+    }
+
+    // Setup color inheritance
+    &[class*=border-] {
+        &:before,
+        &:after {
+            border-color: inherit;
+        }
+    }
+}
+
+// Filled symbols
+.list-feed-solid {
+    .list-feed-item:before {
+        content: '';
+        border-width: ($list-feed-circle-radius / 2);
+        @include size(0);
+    }
+}
+
+// Square
+.list-feed-square {
+    .list-feed-item:before {
+        content: '';
+        @include border-radius(0);
+    }
+}
+
+// Rhombus
+.list-feed-rhombus {
+    .list-feed-item:before {
+        content: '';
+        transform: rotate(45deg);
+        @include border-radius(0);
+    }
+}
+
+// Time stamp
+.list-feed-time {
+    .list-feed-item {
+        margin-left: (($list-feed-item-padding-x * 2) - ($list-feed-circle-radius / 2));
+
+        .feed-time {
+            position: absolute;
+            left: -(($list-feed-item-padding-x * 2) - ($list-feed-circle-radius / 2));
+            top: 0;
+        }
+    }
+}
+
+
+//
+// Misc
+//
+
+// Content text divider
+.content-divider {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+
+    // Text container
+    > span {
+        background-color: $body-bg;
+        display: inline-block;
+
+        // Change bg color if inside other containers
+        .card &,
+        .tab-content-bordered & {
+            background-color: $card-bg;
+        }
+        .modal & {
+            background-color: $modal-content-bg;
+        }
+
+        // Add line
+        &:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            height: $content-divider-height;
+            background-color: $content-divider-color;
+            width: 100%;
+            z-index: -1;
+        }
+    }
+}
+
+// Large circle icon
+.letter-icon {
+    width: $icon-font-size;
+    height: $line-height-computed;
+    display: block;
+
+    // Sizes
+    .btn-lg & {
+        height: $line-height-computed-lg;
+    }
+    .btn-sm & {
+        height: $line-height-computed-sm;
+    }
+}

@@ -1,0 +1,91 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Pace. Radar theme
+ *
+ *  Radar css spinner theme for Pace.
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-pace {
+
+    // Define variables
+    $pace-show-text: true;
+    $pace-overlay-color: $color-slate-900;
+    $pace-loader-color: $white;
+    $pace-loader-size: 1.875rem;
+    $pace-loader-border-width: 0.125rem;
+
+
+    // Pace theme styles
+    // ------------------------------
+
+    // Overlay
+    .pace-running {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $pace-overlay-color;
+
+        // Hide all content
+        > *:not(.pace) {
+            opacity: 0;
+        }
+    }
+
+    // Base
+    .pace {
+        position: fixed;
+        top: 50%;
+        left: 0;
+        right: 0;
+        margin-top: -($pace-loader-size / 2);
+        z-index: 9999;
+        user-select: none;
+        pointer-events: none;
+
+        // Change colors on light/dark backgrounds
+        @if (lightness($pace-overlay-color) < 75) {
+            color: $white;
+        }
+    }
+
+    // Progress
+    .pace-progress {
+        width: 100% !important;
+    }
+
+    // Activity
+    .pace-activity {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        border: $pace-loader-border-width solid transparent;
+        border-top-color: $pace-loader-color;
+        border-bottom-color: $pace-loader-color;
+        border-radius: 50%;
+        animation: rotation 1.1s infinite linear;
+        @include size($pace-loader-size);
+    }
+
+    // Hide inactive
+    .pace-inactive {
+        display: none;
+    }
+
+    // Progress text
+    @if $pace-show-text {
+        .pace-progress:after {
+            content: attr(data-progress-text);
+            text-align: center;
+            width: 100%;
+            display: inline-block;
+            white-space: nowrap;
+            margin-top: $pace-loader-size + ($spacer / 1.5);
+        }
+    }
+}

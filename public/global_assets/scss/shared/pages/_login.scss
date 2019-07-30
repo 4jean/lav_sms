@@ -1,0 +1,39 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Login and related forms
+ *
+ *  Styles related to user login - logins, registration, password revovery, unlock etc.
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-login {
+
+    // Cover image
+    .login-cover {
+        background: url(#{$img-path}/login_cover.jpg) no-repeat;
+        background-size: cover;
+    }
+
+    // Form
+    .login-form {
+        width: 100%;
+
+        // Tabs
+        .nav-item {
+            @if $enable-rounded {
+                &:first-child .nav-link {
+                    border-top-left-radius: $card-inner-border-radius;
+                }
+                &:last-child .nav-link {
+                    border-top-right-radius: $card-inner-border-radius;
+                }
+            }
+        }
+
+        // Set a fixed width for desktop browsers
+        @include media-breakpoint-up(sm) {
+            width: $login-form-width;
+        }
+    }
+}

@@ -1,0 +1,23 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Forms mixin
+ *
+ *  Override and extend default forms mixin.
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Form control focus state
+@mixin form-control-focus() {
+    &:focus {
+        outline: 0;
+        @if $enable-shadows {
+            box-shadow: $input-box-shadow, $input-focus-box-shadow;
+        } @else {
+            box-shadow: $input-focus-box-shadow;
+        }
+    }
+
+    &:not(.border-bottom-1):not(.border-bottom-2):not(.border-bottom-3):focus {
+        border-color: $input-focus-border-color;
+    }
+}

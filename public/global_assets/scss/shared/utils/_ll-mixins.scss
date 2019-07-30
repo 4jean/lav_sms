@@ -1,0 +1,64 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Custom template mixins
+ *
+ *  All custom mixins are prefixed with "ll-" to avoid conflicts
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+// Content
+// ------------------------------
+
+// Font smoothing
+@mixin ll-font-smoothing() {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+//
+// Colors (for color system)
+//
+
+// For .bg-* classes
+@mixin ll-background-variant($color) {
+    background-color: $color;
+}
+
+// For .text-* classes
+@mixin ll-text-color-variant($color) {
+    color: $color;
+
+    // Darken link color on hover
+    &[href] {
+        @include hover-focus {
+            color: darken($color, 7.5%);
+        }
+    }
+}
+
+// For .border-* classes
+@mixin ll-border-color-variant($color) {
+    border-color: $color;
+}
+
+// For .border-top-* classes
+@mixin ll-border-top-color-variant($color) {
+    border-top-color: $color;
+}
+
+// For .border-bottom-* classes
+@mixin ll-border-bottom-color-variant($color) {
+    border-bottom-color: $color;
+}
+
+// For .border-left-* classes
+@mixin ll-border-left-color-variant($color) {
+    border-left-color: $color;
+}
+
+// For .border-right-* classes
+@mixin ll-border-right-color-variant($color) {
+    border-right-color: $color;
+}

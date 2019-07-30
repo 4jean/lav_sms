@@ -1,0 +1,48 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Input group component
+ *
+ *  Overrides for input group component
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+// Base styles
+.input-group {
+
+    // Form group feedback
+    .form-group-feedback {
+        position: relative;
+        flex: 1 1 auto;
+        width: 1%;
+        z-index: 4;
+
+        // Border radius fixes
+        &:not(:last-child) {
+            .form-control {
+                @include border-right-radius(0);
+            }
+        }
+        &:not(:first-child) {
+            .form-control {
+                @include border-left-radius(0);
+            }
+        }
+    }
+
+    // Make sure icon is always on top
+    + .form-control-feedback,
+    .form-control-feedback + & {
+        z-index: 4;
+    }
+}
+
+// Textual addons
+.input-group-text {
+
+    // Icon
+    i {
+        display: block;
+        top: 0;
+    }
+}

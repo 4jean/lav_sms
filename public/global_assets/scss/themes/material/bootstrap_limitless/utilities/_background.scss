@@ -1,0 +1,12 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Background utility
+ *
+ *  Override and extend default background utility.
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Text color in dark containers
+[class*=bg-]:not(.bg-transparent):not(.bg-light):not(.bg-white):not(.btn-outline):not(body) {
+    color: $white;
+}

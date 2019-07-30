@@ -1,0 +1,51 @@
+.container {
+    font-size: 11px;
+}
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+@media print {
+
+    td, th {
+        padding: 2px;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    @page {
+        size: auto;   /* auto is the initial value */
+        margin: 0;  /* this affects the margin in the printer settings */
+    }
+
+    html {
+        background-color: #FFFFFF;
+        margin: 10px; /* this affects the margin on the html before sending to printer */
+    }
+
+    body {
+        margin: 0 10mm; /* margin you want for the content */
+    }
+}
+
+td {
+    text-align: center;
+}
+
+table.td-left td{
+    text-align: left!important;
+    padding: 5px;
+}

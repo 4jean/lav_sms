@@ -1,0 +1,69 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Boxed layout
+ *
+ *  Styles for main structure of content area in boxed layout
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-boxed {
+
+    // Class for body, adds background color/image
+    .layout-boxed-bg {
+        background: $boxed-bg; // mainly for demo, use whatever you want
+    }
+    
+    // Boxed layout base
+    .layout-boxed {
+        @include box-shadow($boxed-container-box-shadow);
+
+        // Sizing
+        &,
+        > .navbar {
+            @include media-breakpoint-up(lg) {
+                width: map-get($grid-breakpoints, "lg");
+                margin-left: auto;
+                margin-right: auto;
+            }
+            @include media-breakpoint-up(xl) {
+                width: map-get($grid-breakpoints, "xl");
+            }
+        }
+
+        // Page container
+        .page-content {
+            background-color: $body-bg;
+        }
+    }
+
+    // Boxed content section
+    .content-boxed {
+        @include media-breakpoint-up(lg) {
+            &:not(.navbar-collapse) {
+                margin-left: 6%;
+                margin-right: 6%;
+            }
+
+            // Inside navbar
+            .navbar > & {
+                > *:first-child {
+                    margin-left: 6%;
+                }
+                > *:last-child {
+                    margin-right: 6%;
+                }
+            }
+
+            // Inside breadcrumb line
+            .breadcrumb-line > & {
+                > *:first-child {
+                    margin-left: $content-container-padding-x;
+                }
+                > *:last-child {
+                    margin-right: $content-container-padding-x;
+                }
+            }
+        }
+    }
+}

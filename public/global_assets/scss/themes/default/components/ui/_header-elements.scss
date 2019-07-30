@@ -1,0 +1,133 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Header elements
+*
+*  Display default and custom components in page header, card header and breadcrumbs
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-header-elements {
+
+    // Base
+    .header-elements {
+
+        // Inside card header
+        .card-header & {
+            padding-top: $card-spacer-y;
+        }
+
+
+        //
+        // Inside page header
+        //
+
+        // Base
+        .page-header-content & {
+            margin-left: -($page-header-padding-x);
+            margin-right: -($page-header-padding-x);
+            padding: $header-elements-padding-y $header-elements-padding-x;
+            border-top: $page-header-elements-border-width solid darken($body-bg, 15%);
+            border-bottom: $page-header-elements-border-width solid darken($body-bg, 15%);
+            background-color: darken($body-bg, 2.5%);
+        }
+
+        // Light page header
+        .page-header-light & {
+            background-color: $page-header-light-elements-bg;
+            border-color: $page-header-light-elements-border-color;
+            border-bottom: 0;
+        }
+
+        // Dark page header
+        .page-header-dark & {
+            background-color: $page-header-dark-elements-bg;
+            border-color: $page-header-dark-elements-border-color;
+            border-bottom: 0;
+        }
+
+
+        //
+        // Inside breadcrumb line
+        //
+
+        // Base
+        .breadcrumb-line & {
+            margin-left: -($breadcrumb-line-padding-x);
+            margin-right: -($breadcrumb-line-padding-x);
+            padding: 0 $breadcrumb-line-padding-x;
+            border-top: $breadcrumb-line-elements-border-width solid transparent;
+        }
+
+        // Light breadcrumb line
+        .breadcrumb-line-light & {
+            background-color: $breadcrumb-line-light-elements-bg;
+            border-color: $breadcrumb-line-light-elements-border-color;
+        }
+
+        // Dark breadcrumb line
+        .breadcrumb-line-dark & {
+            background-color: $breadcrumb-line-dark-elements-bg;
+            border-color: $breadcrumb-line-dark-elements-border-color;
+        }
+
+
+        //
+        // Misc
+        //
+
+        // Remove bottom margin from last form group
+        .form-group {
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    // Mobile toggler
+    .header-elements-toggle,
+    .footer-elements-toggle {
+        margin-left: auto;
+        align-self: center;
+    }
+
+
+    //
+    // Generate styles for multiple breakpoints
+    //
+    // Classes: .header-elements-inline and .header-elements-[breakpoint]-inline
+    //
+
+    @each $breakpoint in map-keys($grid-breakpoints) {
+        @include media-breakpoint-up($breakpoint) {
+            $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+            .header-elements#{$infix}-inline {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: nowrap;
+
+                // Header elements container
+                .header-elements {
+                    display: flex!important;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    padding: 0;
+                    background-color: transparent;
+                    border: 0;
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+
+                // Tabs inside card header
+                .card-header-tabs {
+                    .nav-link {
+                        padding-top: $card-spacer-y + rem-calc($card-border-width);
+                        padding-bottom: $card-spacer-y + rem-calc($card-border-width);
+                    }
+                }
+            }
+        }
+    }
+}

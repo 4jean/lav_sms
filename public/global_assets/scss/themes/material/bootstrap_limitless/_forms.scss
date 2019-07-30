@@ -1,0 +1,322 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Form styles
+ *
+ *  Basic form styles and overrides of default Bootstrap styles
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+//
+// Base styles
+//
+
+// Legend
+legend {
+    padding-top: ($spacer / 2);
+    padding-bottom: ($spacer / 2);
+    margin-bottom: $spacer;
+    border-bottom: $input-border-width solid $input-border-color;
+    font-size: $font-size-base;
+
+    // Remove top padding in first items
+    fieldset:first-child & {
+        &:first-child {
+            padding-top: 0;
+        }
+    }
+}
+
+// Multiple select
+select[multiple],
+select[size] {
+    height: 200px;
+    padding: $input-padding-x;
+
+    // Option
+    option {
+        padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+        @include border-radius($border-radius);
+
+        + option {
+            margin-top: $dropdown-item-spacer-y;
+        }
+    }
+}
+
+// Textual form controls
+.form-control {
+    background-clip: border-box;
+    border-width: $input-border-width 0;
+    border-top-color: transparent !important;
+
+    // Disabled and readonly states
+    &:disabled,
+    &[readonly] {
+        border-bottom-style: dashed;
+    }
+    &:disabled {
+        color: $input-disabled-color;
+    }
+    &[readonly] {
+        box-shadow: none;
+        border-bottom-color: $input-border-color !important;
+    }
+
+    // Apply contextual shadow that acts as a second border
+    &.border-success:focus {
+        box-shadow: 0 $input-border-width 0 theme-color('success');
+    }
+    &.border-danger:focus {
+        box-shadow: 0 $input-border-width 0 theme-color('danger');
+    }
+    &.border-warning:focus {
+        box-shadow: 0 $input-border-width 0 theme-color('warning');
+    }
+    &.border-primary:focus {
+        box-shadow: 0 $input-border-width 0 theme-color('primary');
+    }
+    &.border-info:focus {
+        box-shadow: 0 $input-border-width 0 theme-color('info');
+    }
+
+    // On dark background
+    &.text-white {
+        border-bottom-color: $input-light-border-color;
+
+        // Focus state
+        &:focus {
+            border-bottom-color: $input-light-border-active-color;
+            box-shadow: 0 $input-border-width 0 $input-light-border-active-color;
+        }
+
+        // Placeholder color
+        &::placeholder {
+            color: $input-placeholder-light-color;
+        }
+    }
+}
+
+// Form groups
+.form-group {
+
+    // Remove bottom margin from the last group
+    .form-group:last-child {
+        margin-bottom: 0;
+    }
+
+    // Add top margin on certain breakpoints
+    @include media-breakpoint-down(sm) {
+        [class*="col-md-"]:not([class*=col-form-label]) + [class*="col-md-"] {
+            margin-top: $form-group-margin-bottom;
+        }
+    }
+    @include media-breakpoint-down(md) {
+        [class*="col-lg-"]:not([class*=col-form-label]) + [class*="col-lg-"] {
+            margin-top: $form-group-margin-bottom;
+        }
+    }
+    @include media-breakpoint-down(lg) {
+        [class*="col-xl-"]:not([class*=col-form-label]) + [class*="col-xl-"] {
+            margin-top: $form-group-margin-bottom;
+        }
+    }
+}
+
+// Remove top padding in labels on certain breakpoints
+// to match vertical form spacings
+[class*=col-form-label] {
+    @include media-breakpoint-down(sm) {
+        &[class*="col-md-"] {
+            padding-top: 0;
+        }
+    }
+    @include media-breakpoint-down(md) {
+        &[class*="col-lg-"] {
+            padding-top: 0;
+        }
+    }
+    @include media-breakpoint-down(lg) {
+        &[class*="col-xl-"] {
+            padding-top: 0;
+        }
+    }
+}
+
+
+//
+// Checkboxes and radios
+//
+
+// Container
+.form-check {
+
+    // Exclude dropdown items
+    &:not(.form-check-inline) {
+        margin-bottom: $form-check-margin-y;
+
+        // Last item doesn't have spacing
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    // In horizontal form group
+    .form-group.row &:not(.dropdown-item) {
+        margin-top: ($input-padding-y + rem-calc($input-border-width));
+    }
+
+    // Disabled state
+    &.disabled {
+        color: $form-check-disabled-color;
+
+        .form-check-label {
+            cursor: $cursor-disabled;
+        }
+    }
+}
+
+// Input
+.form-check-input {
+    &:disabled ~ .form-check-label {
+        cursor: $cursor-disabled;
+    }
+}
+
+// Label
+.form-check-label {
+    cursor: pointer;
+}
+
+// Inline list
+.form-check-inline {
+
+    // Label
+    .form-check-label {
+        display: inline-flex;
+        align-items: flex-start;
+    }
+
+    // Undo .form-check-input defaults and add some `margin-right`.
+    .form-check-input {
+        margin-top: $form-check-input-margin-y;
+    }
+
+    // Last item
+    &:last-child {
+        margin-right: 0;
+    }
+
+    // Make sure input is not affected by top/left spacings
+    input {
+        position: static;
+    }
+}
+
+// Right position
+.form-check-right {
+    padding-left: 0;
+    padding-right: $form-check-input-gutter;
+
+    // Reverse input direction
+    .form-check-input,
+    input {
+        left: auto;
+        right: 0;
+    }
+
+    // Inline list
+    &.form-check-inline {
+        padding: 0;
+        
+        // Input
+        .form-check-input {
+            margin-right: 0;
+            margin-left: $form-check-inline-input-margin-x;
+        }
+    }
+}
+
+
+//
+// Form control feedback states
+//
+
+// Default left icon position
+.form-group-feedback {
+    position: relative;
+
+    // Left alignment
+    &-left {
+
+        // Stick icon to the left
+        .form-control-feedback {
+            left: 0;
+        }
+
+        // Ensure icons don't overlap text
+        .form-control {
+            padding-left: $input-padding-x + $input-btn-padding-x + $icon-font-size;
+
+            // Sizes
+            &-lg {
+                padding-left: $input-padding-x-lg + $input-btn-padding-x-lg + $icon-font-size;
+            }
+            &-sm {
+                padding-left: $input-padding-x-sm + $input-btn-padding-x-sm + $icon-font-size;
+            }
+        }
+    }
+
+    // Right alignment
+    &-right {
+
+        // Stick icon to the right
+        .form-control-feedback {
+            right: 0;
+        }
+
+        // Ensure icons don't overlap text
+        .form-control {
+            padding-right: $input-padding-x + $input-btn-padding-x + $icon-font-size;
+
+            // Sizes
+            &-lg {
+                padding-right: $input-padding-x-lg + $input-btn-padding-x-lg + $icon-font-size;
+            }
+            &-sm {
+                padding-right: $input-padding-x-sm + $input-btn-padding-x-sm + $icon-font-size;
+            }
+        }
+    }
+}
+
+// Feedback icon
+.form-control-feedback {
+    position: absolute;
+    top: 0;
+    color: $input-color;
+    padding-left: $input-padding-x;
+    padding-right: $input-padding-x;
+    line-height: $input-height;
+    min-width: $icon-font-size;
+
+    // Large size
+    &-lg {
+        padding-left: $input-padding-x-lg;
+        padding-right: $input-padding-x-lg;
+        line-height: $input-height-lg;
+    }
+
+    // Small size
+    &-sm {
+        padding-left: $input-padding-x-sm;
+        padding-right: $input-padding-x-sm;
+        line-height: $input-height-sm;
+    }
+
+    // Change color if comes after colored input
+    input[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) + & {
+        color: $white;
+    }
+}

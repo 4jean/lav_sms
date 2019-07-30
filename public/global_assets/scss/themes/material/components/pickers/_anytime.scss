@@ -1,0 +1,312 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Anytime picker
+*
+*  jQuery datepicker/timepicker and a Date/String parse/format utility
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-anytime {
+
+
+    // Core
+    // ------------------------------
+
+    // Base
+    .AnyTime-pkr {
+        text-align: center;
+
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .AnyTime-date {
+            float: left;
+
+            & + .AnyTime-time {
+                margin-left: 3.125rem;
+                float: left;
+            }
+        }
+    }
+
+    // Dropdown container
+    .AnyTime-win {
+        padding: $datepicker-padding;
+        background-color: $dropdown-bg;
+        border: $dropdown-border-width solid $dropdown-border-color;
+        display: inline-block;
+        z-index: $zindex-tooltip;
+        @include border-radius($border-radius);
+        @include box-shadow($dropdown-box-shadow);
+    }
+
+    // Clock
+    .AnyTime-cloak {
+        position: absolute;
+        opacity: 0.7;
+    }
+
+    // Title
+    .AnyTime-hdr {
+        font-size: $datepicker-title-font-size;
+        margin: $datepicker-padding;
+        line-height: 1;
+    }
+
+    // Close button
+    .AnyTime-x-btn {
+        display: none;
+        font-size: 0;
+        cursor: pointer;
+        float: right;
+        opacity: 0.6;
+        @include border-radius($border-radius);
+
+        // Hover state
+        @include hover {
+            opacity: 1;
+        }
+
+        // Icon
+        &:after {
+            content: '\ed6b';
+            font-family: $icon-font-family;
+            font-size: $icon-font-size;
+            line-height: 1;
+            @include ll-font-smoothing();
+        }
+    }
+
+    // Label
+    .AnyTime-lbl {
+        font-size: $font-size-base;
+        margin-bottom: ($spacer / 2);
+        font-weight: $font-weight-semibold;
+        margin-top: $spacer;
+
+        &:first-child {
+            margin-top: $dropdown-padding-y;
+        }
+    }
+
+
+    // Highlight item colors
+    // ------------------------------
+
+    // Years
+    .AnyTime-yrs {
+        .AnyTime-cur-btn {
+            &,
+            &:hover {
+                background-color: $anytime-year-btn-bg;
+                color: $anytime-year-btn-color;
+            }
+        }
+    }
+
+    // Months
+    .AnyTime-mons {
+        .AnyTime-cur-btn {
+            &,
+            &:hover {
+                background-color: $anytime-month-btn-bg;
+                color: $anytime-month-btn-color;
+            }
+        }
+    }
+
+    // Time
+    .AnyTime-time {
+        .AnyTime-cur-btn {
+            &,
+            &:hover {
+                background-color: $anytime-time-btn-bg;
+                color: $anytime-time-btn-color;
+            }
+        }
+    }
+
+    // Calendar
+    .AnyTime-dom-table,
+    .AnyTime-body-yr-selector {
+        .AnyTime-cur-btn {
+            &,
+            &:hover {
+                background-color: $datepicker-item-active-bg;
+                color: $datepicker-item-active-color;
+            }
+        }
+    }
+
+
+    // Periods
+    // ------------------------------
+
+    // Years
+    .AnyTime-yrs-past-btn,
+    .AnyTime-yrs-ahead-btn {
+        display: inline-block;
+    }
+    .AnyTime-yr-prior-btn,
+    .AnyTime-yr-cur-btn,
+    .AnyTime-yr-next-btn {
+        display: inline-block;
+        min-width: 3rem;
+    }
+
+    // Months
+    .AnyTime-mons {
+        @include clearfix;
+    }
+
+
+    // Date calendar
+    // ------------------------------
+
+    // Table
+    .AnyTime-dom-table {
+        width: 100%;
+    }
+
+    // Week days
+    .AnyTime-pkr th.AnyTime-dow {
+        color: $datepicker-item-weekday-color;
+        padding: $datepicker-item-padding;
+        font-weight: $font-weight-normal;
+    }
+
+    // Buttons
+    .AnyTime-mon-btn {
+        float: left;
+        width: (100% / 6); // 6 months per row
+    }
+    .AnyTime-mon7-btn {
+        clear: left;
+    }
+
+    // Make elements inline
+    .AnyTime-time,
+    .AnyTime-hrs-am,
+    .AnyTime-hrs-pm,
+    .AnyTime-mins-tens,
+    .AnyTime-mins-ones,
+    .AnyTime-secs-tens,
+    .AnyTime-secs-ones,
+    .AnyTime-hrs,
+    .AnyTime-mins,
+    .AnyTime-secs,
+    .AnyTime-offs {
+        display: inline-block;
+    }
+
+    // Button
+    .AnyTime-btn {
+        padding: $datepicker-item-padding;
+        cursor: pointer;
+        @include border-radius($border-radius);
+        @include transition(all ease-in-out $component-transition-timer);
+
+        // Hover state
+        @include hover {
+            color: $datepicker-item-hover-color;
+            background-color: $datepicker-item-hover-bg;
+        }
+
+        // Disabled state
+        &.ui-state-disabled {
+            cursor: $cursor-disabled;
+            color: $datepicker-item-disabled-color;
+            background-color: $datepicker-item-disabled-bg;
+        }
+    }
+
+
+    // Time
+    // ------------------------------
+
+    // Time buttons
+    .AnyTime-hr-btn,
+    .AnyTime-min-ten-btn,
+    .AnyTime-min-one-btn,
+    .AnyTime-sec-ten-btn,
+    .AnyTime-sec-one-btn {
+        min-width: 2.5rem;
+    }
+
+    .AnyTime-hrs-pm,
+    .AnyTime-mins-ones,
+    .AnyTime-secs-ones {
+        margin-left: 0.125rem;
+    }
+    .AnyTime-mins-tens,
+    .AnyTime-secs-tens {
+        margin-left: 1.25rem;
+    }
+
+    // Off buttons
+    .AnyTime-off-cur-btn {
+        display: inline-block;
+        overflow: hidden;
+    }
+    .AnyTime-off-select-btn {
+        display: inline-block;
+        vertical-align: top;
+    }
+    .AnyTime-off-selector {
+        margin: 0.625rem;
+        position: absolute;
+    }
+    .AnyTime-body-off-selector {
+        margin: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        white-space: nowrap
+    }
+    .AnyTime-off-off-btn {
+        text-align: left;
+    }
+
+
+    // Year and era
+    // ------------------------------
+
+    // Year selector
+    .AnyTime-yr-selector {
+        position: absolute;
+        width: 90%;
+    }
+    .AnyTime-body-yr-selector {
+        margin: 0;
+    }
+    .AnyTime-yr-mil,
+    .AnyTime-yr-cent,
+    .AnyTime-yr-dec,
+    .AnyTime-yr-yr,
+    .AnyTime-yr-era {
+        display: inline-block;
+        vertical-align: top;
+        width: 20%;
+    }
+
+    // Media queries
+    @include media-breakpoint-down(xs) {
+        .AnyTime-pkr .AnyTime-date {
+            float: none;
+        }
+
+        .AnyTime-mon-btn {
+            float: none;
+            display: inline-block;
+        }
+
+        .AnyTime-date + .AnyTime-time {
+            margin-left: 0;
+            margin-top: $spacer;
+            float: none;
+        }
+    }
+}

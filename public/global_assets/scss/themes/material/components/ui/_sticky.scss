@@ -1,0 +1,16 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Sticky kit
+ *
+ *  Styles for sticky.min.js - extension that makes elements sticky
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-sticky {
+
+    // Apply correct z-index to sticked element
+    .is_stuck {
+        z-index: $zindex-fixed !important;
+    }
+}

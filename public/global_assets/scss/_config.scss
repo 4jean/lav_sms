@@ -1,0 +1,171 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Global configuration
+ *
+ *  Here you can change main theme, enable or disable certain components and
+ *  optional styles. This allows you to include only components that you need.
+ *
+ *  'true'  - enables component and includes it to main CSS file.
+ *  'false' - disables component and excludes it from main CSS file.
+ *
+ *  Layout helper: @if $layout == 'base' {...}
+ *  Theme helper: @if $theme == 'material' {...}
+ *  Component helper: @if $enable-* {...}
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+//
+// Core settings
+// ------------------------------
+//
+
+//** Layout: 'layout_1', 'layout_2', 'layout_3', 'layout_4', 'layout_5'
+$layout:       'layout_1' !default;
+
+//** Theme: 'default' or 'material'
+$theme:        'default' !default;
+
+//** Direction: 'LTR' or 'RTL'
+$direction:    'LTR' !default;
+
+
+//
+// Layout
+// ------------------------------
+//
+
+//** Sidebar navigation types
+$enable-sidebar-nav-icons-reverse:	  true !default;
+$enable-sidebar-nav-bordered:		  true !default;
+
+//** Boxed layouts
+$enable-boxed:						  true !default;
+
+//** Flash of unstyled content (FOUC) fix for jQuery 3.*
+$enable-fouc-fix:					  true !default;
+
+
+//
+// Components
+// ------------------------------
+//
+
+//** UI things
+$enable-header-elements:			  true !default;
+$enable-headroom:					  true !default;
+$enable-scrollbar:					  true !default;
+$enable-slinky:						  true !default;
+$enable-sticky:						  true !default;
+$enable-blockui:					  true !default;
+$enable-ripple:						  true !default;
+
+
+//** Forms
+$enable-uniform:					  true !default;
+$enable-switchery:					  true !default;
+$enable-bootstrap-switch:			  true !default;
+
+$enable-select2:					  true !default;
+$enable-multiselect:				  true !default;
+
+$enable-typeahead:					  true !default;
+$enable-passy:						  true !default;
+$enable-validation:					  true !default;
+$enable-alpaca:						  true !default;
+$enable-wizard:						  true !default;
+$enable-dual-listbox:				  true !default;
+$enable-touchspin:					  true !default;
+$enable-floating-labels:			  true !default;
+
+$enable-tags-input:					  true !default;
+$enable-tokenfield:					  true !default;
+
+
+//** Editors
+$enable-summernote:					  true !default;
+$enable-trumbowyg:					  true !default;
+$enable-ace:						  true !default;
+
+
+//** Pickers
+$enable-daterange:					  true !default;
+$enable-pickadate:					  true !default;
+$enable-anytime:					  true !default;
+$enable-spectrum:					  true !default;
+
+
+//** File uploaders
+$enable-plupload:					  true !default;
+$enable-fileinput:					  true !default;
+$enable-dropzone:					  true !default;
+
+
+//** Notifications
+$enable-pnotify:					  true !default;
+$enable-noty:						  true !default;
+$enable-jgrowl:						  true !default;
+$enable-sweetalert:					  true !default;
+
+
+//** Sliders
+$enable-noui:						  true !default;
+$enable-ion:						  true !default;
+
+
+//** Charts
+$enable-charts:						  true !default;
+$enable-d3:							  true !default;
+$enable-c3:							  true !default;
+
+
+//** Maps
+$enable-google-maps:				  true !default;
+$enable-vector-maps:				  true !default;
+
+
+//** jQuery UI
+$enable-jqueryui:					  true !default;
+$enable-jqueryui-pips:				  true !default;
+
+
+//** Tables
+$enable-datatable:					  true !default;
+$enable-datatable-select:			  true !default;
+$enable-datatable-scroller:			  true !default;
+$enable-datatable-row-reorder:		  true !default;
+$enable-datatable-responsive:		  true !default;
+$enable-datatable-keytable:			  true !default;
+$enable-datatable-fixed-header:		  true !default;
+$enable-datatable-fixed-columns:	  true !default;
+$enable-datatable-colreorder:		  true !default;
+$enable-datatable-buttons:			  true !default;
+$enable-datatable-autofill:			  true !default;
+
+$enable-handsontable:				  true !default;
+$enable-footable:					  true !default;
+
+
+//** Page kits
+$enable-blog:						  true !default;
+$enable-timeline:					  true !default;
+$enable-login:						  true !default;
+$enable-error:						  true !default;
+$enable-profile:					  true !default;
+$enable-tasks:						  true !default;
+$enable-inbox:						  true !default;
+$enable-chat:						  true !default;
+$enable-ecommerce:					  true !default;
+
+
+//** Misc
+$enable-fab:						  true !default;
+$enable-fancybox:					  true !default;
+$enable-fancytree:					  true !default;
+$enable-fullcalendar:				  true !default;
+$enable-image-cropper:				  true !default;
+$enable-ladda:						  true !default;
+$enable-pace:						  true !default;
+$enable-dragula:					  true !default;
+$enable-prism:						  true !default;
+$enable-demo:						  true !default;

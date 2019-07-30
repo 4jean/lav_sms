@@ -1,0 +1,41 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Pace. Default theme
+ *
+ *  Minimal preloader theme, used as a default theme
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-pace {
+
+    // Define variables
+    $pace-loader-color: $color-blue-300;
+    $pace-loader-height: 0.125rem;
+
+
+    // Pace theme styles
+    // ------------------------------
+
+    // Base
+    .pace {
+        pointer-events: none;
+        user-select: none;
+
+        // Progress
+        .pace-progress {
+            background: $pace-loader-color;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: $pace-loader-height;
+        }
+    }
+
+    // Hide when done
+    .pace-inactive {
+        display: none;
+    }
+}

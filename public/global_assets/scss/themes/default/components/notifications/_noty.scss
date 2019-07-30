@@ -1,0 +1,372 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Noty notifications
+*
+*  Styles for noty.min.js - A dependency-free notification library
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-noty {
+
+    // Base
+    .noty_bar {
+        position: relative;
+        -webkit-backface-visibility: hidden;
+        transform: translate(0, 0) scale(1.0, 1.0);
+        -webkit-font-smoothing: subpixel-antialiased;
+        @include box-shadow($notification-box-shadow);
+    }
+
+    // Body
+    .noty_body {
+        padding: $alert-padding-y $alert-padding-x;
+
+        // Increase right padding if alert has close button
+        .noty_close_with_button & {
+            padding-right: ($alert-padding-x * 2);
+        }
+    }
+
+    // Buttons area
+    .noty_buttons {
+        padding: $alert-padding-y $alert-padding-x;
+        padding-top: 0;
+        text-align: right;
+    }
+
+    // Positioning mixin
+    .noty_layout_mixin {
+        position: fixed;
+        margin: 0;
+        padding: 0;
+        z-index: $zindex-modal;
+        transform: translateZ(0) scale(1.0, 1.0);
+        filter: blur(0);
+        backface-visibility: hidden;
+        -webkit-font-smoothing: subpixel-antialiased;
+        max-width: 90%;
+    }
+
+
+    //
+    // Top position
+    //
+
+    // Full width
+    #noty_layout__top {
+        @extend .noty_layout_mixin;
+        top: 0;
+        left: 5%;
+        width: 90%;
+
+        // Add more spacing to the first notification
+        .noty_bar:first-child {
+            margin-top: $notification-gutter-y;
+        }
+    }
+
+    // Left
+    #noty_layout__topLeft {
+        @extend .noty_layout_mixin;
+        top: $notification-gutter-y;
+        left: $notification-gutter-x;
+        width: $notification-width;
+    }
+
+    // Center
+    #noty_layout__topCenter {
+        @extend .noty_layout_mixin;
+        top: 5%;
+        left: 50%;
+        width: $notification-width;
+        transform: translate(-50%) translateZ(0) scale(1.0, 1.0);
+    }
+
+    // Right
+    #noty_layout__topRight {
+        @extend .noty_layout_mixin;
+        top: $notification-gutter-y;
+        right: $notification-gutter-x;
+        width: $notification-width;
+    }
+
+
+    //
+    // Middle position
+    //
+
+    // Center
+    #noty_layout__center {
+        @extend .noty_layout_mixin;
+        top: 50%;
+        left: 50%;
+        width: $notification-width;
+        transform: translate(-50%, -50%) translateZ(0) scale(1.0, 1.0);
+    }
+
+    // Left
+    #noty_layout__centerLeft {
+        @extend .noty_layout_mixin;
+        top: 50%;
+        left: $notification-gutter-x;
+        width: $notification-width;
+        transform: translate(0, -50%) translateZ(0) scale(1.0, 1.0);
+    }
+
+    // Right
+    #noty_layout__centerRight {
+        @extend .noty_layout_mixin;
+        top: 50%;
+        right: $notification-gutter-x;
+        width: $notification-width;
+        transform: translate(0, -50%) translateZ(0) scale(1, 1);
+    }
+
+
+    //
+    // Bottom position
+    //
+
+    // Full width
+    #noty_layout__bottom {
+        @extend .noty_layout_mixin;
+        bottom: 0;
+        left: 5%;
+        width: 90%;
+
+        // Add more spacing to the last notification
+        .noty_bar:last-child {
+            margin-bottom: $notification-gutter-y;
+        }
+    }
+
+    // Left
+    #noty_layout__bottomLeft {
+        @extend .noty_layout_mixin;
+        bottom: $notification-gutter-y;
+        left: $notification-gutter-x;
+        width: $notification-width;
+    }
+
+    // Center
+    #noty_layout__bottomCenter {
+        @extend .noty_layout_mixin;
+        bottom: 5%;
+        left: 50%;
+        width: $notification-width;
+        transform: translate(calc(-50% - #{$alert-border-width})) translateZ(0) scale(1.0, 1.0);
+    }
+
+    // Right
+    #noty_layout__bottomRight {
+        @extend .noty_layout_mixin;
+        bottom: $notification-gutter-y;
+        right: $notification-gutter-x;
+        width: $notification-width;
+    }
+
+
+    //
+    // Progress bar
+    //
+
+    .noty_progressbar {
+        display: none;
+
+        // Show only if notification has timeout
+        .noty_has_timeout.noty_has_progressbar & {
+            display: block;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: $noty-progress-height;
+            width: 100%;
+            background-color: $noty-progress-bg;
+        }
+    }
+
+
+    //
+    // Animation effects
+    //
+
+    // Open
+    .noty_effects_open {
+        opacity: 0;
+        transform: translate(50%);
+        animation: noty_anim_in .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        animation-fill-mode: forwards;
+    }
+
+    // Close
+    .noty_effects_close {
+        animation: noty_anim_out .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        animation-fill-mode: forwards;
+    }
+
+    // Height
+    .noty_fix_effects_height {
+        animation: noty_anim_height 75ms ease-out;
+    }
+
+
+    //
+    // Close button
+    //
+
+    // On notification click
+    .noty_close_with_click {
+        cursor: pointer;
+    }
+
+    // Button
+    .noty_close_button {
+        position: absolute;
+        top: $alert-padding-y;
+        right: $alert-padding-x;
+        background-color: transparent;
+        font-size: $close-font-size;
+        font-weight: $close-font-weight;
+        color: inherit;
+        text-align: center;
+        line-height: 1;
+        cursor: pointer;
+        opacity: 0.75;
+        @include transition(opacity ease-in-out $component-transition-timer);
+
+        // Animate on hover
+        @include hover {
+            opacity: 1;
+        }
+    }
+
+
+    //
+    // Modal
+    //
+
+    .noty_modal {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: $modal-backdrop-bg;
+        z-index: $zindex-modal-backdrop;
+        opacity: $modal-backdrop-opacity;
+        left: 0;
+        top: 0;
+
+        // Open
+        &.noty_modal_open {
+            opacity: 0;
+            animation: noty_modal_in .3s ease-out;
+        }
+
+        // Close
+        &.noty_modal_close {
+            animation: noty_modal_out .3s ease-out;
+            animation-fill-mode: forwards;
+        }
+    }
+
+
+    //
+    // Animations
+    //
+
+    @keyframes noty_modal_in {
+        100% {
+            opacity: $modal-backdrop-opacity;
+        }
+    }
+    @keyframes noty_modal_out {
+        100% {
+            opacity: 0;
+        }
+    }
+    @keyframes noty_anim_in {
+        100% {
+            transform: translate(0);
+            opacity: 1;
+        }
+    }
+    @keyframes noty_anim_out {
+        100% {
+            transform: translate(50%);
+            opacity: 0;
+        }
+    }
+    @keyframes noty_anim_height {
+        100% {
+            height: 0;
+        }
+    }
+
+
+    //
+    // Default limitless theme
+    //
+
+    .noty_theme__limitless {
+
+        // Base
+        &.noty_bar {
+            margin: $noty-spacer-y 0;
+            position: relative;
+            border: $alert-border-width solid transparent;
+            @include border-radius($alert-border-radius);
+        }
+
+        // Alert type
+        &.noty_type__alert {
+            background-color: $notification-alert-bg;
+            color: $notification-alert-color;
+            border-color: $notification-alert-border-color;
+        }
+
+        // Warning type
+        &.noty_type__warning {
+            background-color: $notification-warning-bg;
+            color: $notification-warning-color;
+            border-color: $notification-warning-border-color;
+        }
+
+        // Error type
+        &.noty_type__error {
+            background-color: $notification-error-bg;
+            color: $notification-error-color;
+            border-color: $notification-error-border-color;
+        }
+
+        // Info type
+        &.noty_type__info {
+            background-color: $notification-info-bg;
+            color: $notification-info-color;
+            border-color: $notification-info-border-color;
+        }
+
+        // Success type
+        &.noty_type__success {
+            background-color: $notification-success-bg;
+            color: $notification-success-color;
+            border-color: $notification-success-border-color;
+        }
+
+        // Confirmation type
+        &.noty_type__confirm {
+            background-color: $modal-content-bg;
+            border-color: $modal-content-border-color;
+            @include box-shadow($modal-content-box-shadow-xs);
+
+            // Use bigger vertical padding
+            .noty_body {
+                padding: $alert-padding-x;
+            }
+
+            // Override top padding for close button to match new vertical padding
+            .noty_close_button {
+                top: $alert-padding-x;
+            }
+        }
+    }
+}

@@ -1,0 +1,412 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Plupload multiple file uploader
+ *
+ *  Styles for plupload.min.js - multi runtime single and multiple file uploader
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-plupload {
+
+
+	// Layout
+	// ------------------------------
+
+	// Wrapper
+	.plupload_wrapper {
+		background-color: $plupload-bg;
+		border: $plupload-border-width $plupload-border-style $plupload-border-color;
+		@include border-radius($border-radius);
+	}
+
+	// Common icon styles
+	.plupload_header:after,
+	.plupload_filelist:empty:before,
+	.plupload_filelist li.plupload_droptext:before,
+	.plupload_file_action:after,
+	.plupload_delete a:after,
+	.plupload_failed a:after,
+	.plupload_done a:after {
+		font-family: $icon-font-family;
+		display: block;
+		font-size: $icon-font-size;
+		line-height: 1;
+		@include ll-font-smoothing();
+	}
+
+	// Header (hidden by default)
+	.plupload_header {
+		display: none;
+		position: relative;
+		background-color: $plupload-header-bg;
+		color: $plupload-header-color;
+		margin: -($plupload-border-width) -($plupload-border-width) 0 -($plupload-border-width);
+		@include border-top-radius($border-radius);
+
+		// Icon
+		&:after {
+			content: '\ec78';
+			font-size: ($icon-font-size * 2);
+			position: absolute;
+			top: 50%;
+			left: $card-spacer-x;
+			margin-top: -($icon-font-size);
+		}
+	}
+	.plupload_header_content {
+		padding: $card-spacer-y $card-spacer-x;
+		padding-left: (($card-spacer-x * 2) + ($icon-font-size * 2));
+	}
+	.plupload_header_title {
+		font-size: $h6-font-size;
+		font-weight: $font-weight-semibold;
+	}
+	.plupload_header_text {
+		font-size: $font-size-sm;
+		line-height: $line-height-sm;
+	}
+
+	// Helpers
+	.plupload_clear,
+	.plupload_clearer {
+		clear: both;
+	}
+	.plupload_clearer,
+	.plupload_progress_bar {
+		display: block;
+		font-size: 0;
+		line-height: 0;
+	}
+
+
+	// Buttons
+	// ------------------------------
+
+	// Buttons base
+	.plupload_button { 
+		display: inline-flex;
+		border: $btn-border-width solid transparent;
+		font-weight: $btn-font-weight;
+		text-transform: uppercase;
+		@include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-line-height, $btn-border-radius);
+		@include transition($btn-transition);
+
+		// Button spacer
+		&:not(:last-child) {
+			margin-right: $element-spacer-x;
+		}
+	}
+
+	// Add files button
+	.plupload_add {
+		color: $btn-light-color;
+		background-color: $btn-light-bg;
+		border-color: $btn-light-border-color;
+
+		// Hover state
+		@include hover {
+			color: $btn-light-hover-color;
+			background-color: $btn-light-hover-bg;
+			border-color: $btn-light-hover-border-color;
+		}
+	}
+
+	// Start upload button
+	.plupload_start {
+		color: $plupload-btn-start-color;
+		background-color: $plupload-btn-start-bg;
+		border-color: $plupload-btn-start-border-color;
+
+		// Hover state
+		@include hover {
+			color: $plupload-btn-start-color;
+			box-shadow: $btn-dark-hover-box-shadow;
+		}
+	}
+	// Disabled button
+	a.plupload_disabled {
+		cursor: default;
+		opacity: $btn-disabled-opacity;
+		pointer-events: none;
+
+		// Hover state
+		@include hover {		
+			box-shadow: none;
+		}
+	}
+
+
+	// File list
+	// ------------------------------
+
+	// Itself
+	.plupload_filelist {
+		position: relative;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		// Scrollable area
+		.plupload_scroll & {
+			height: $plupload-max-height;
+			overflow-y: auto;
+		}
+
+		// List item
+		li {
+			display: flex;
+			align-items: center;
+			padding: $dropdown-item-padding-y $card-spacer-x;
+			@include transition(all ease-in-out $component-transition-timer);
+
+			// Hover state
+			@include hover {
+				background-color: $dropdown-link-hover-bg;
+			}
+
+			// File info
+			.plupload_file_name {
+				margin-right: auto;
+			}
+
+			// Ordering
+			.plupload_file_action {
+				order: 12;
+			}
+			.plupload_file_status {
+				order: 11;
+			}
+			.plupload_file_size {
+				order: 10;
+			}
+		}
+
+		// Add background icon with text
+		&:empty,
+		li.plupload_droptext {
+			background-color: transparent;
+			font-size: 0;
+
+			// Icon
+			&:before {
+				content: '\ea0e';
+				font-size: ($icon-font-size * 5);
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -($spacer);
+				z-index: 2;
+				color: $plupload-placeholder-icon-color;
+				text-indent: 0;
+				font-weight: normal;
+				transform: translate(-50%, -50%);
+			    @include ll-font-smoothing();
+			}
+
+			// Text label
+			&:after {
+				content: 'Drag files to upload';
+				font-size: $h5-font-size;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: ($icon-font-size * 2.5) + $spacer;
+				color: $plupload-placeholder-text-color;
+				text-indent: 0;
+				transform: translate(-50%, -50%);
+			}
+		}
+		&:empty:after {
+			content: 'Add files to upload';
+		}
+
+		// On small screens
+		@include media-breakpoint-down(sm) {
+			padding: ($spacer / 2) 0;
+
+			// File size
+			li {
+				.plupload_file_size {
+					display: none;
+				}
+			}
+		}
+	}
+
+	// Header
+	.plupload_filelist_header {
+		padding: $card-spacer-y $card-spacer-x;
+
+		// File info
+		.plupload_file_name,
+		.plupload_file_size,
+		.plupload_file_status,
+		.plupload_file_action {
+		  font-weight: $font-weight-semibold;
+		}
+
+		// Hide on small screen
+		@include media-breakpoint-down(sm) {
+			display: none;
+		}
+	}
+
+	// Footer
+	.plupload_filelist_footer {
+		padding: $card-spacer-y $card-spacer-x;
+
+		// File info
+		.plupload_file_size,
+		.plupload_file_status,
+		.plupload_upload_status { 
+		  padding: $btn-padding-y 0;
+		  font-weight: $font-weight-semibold;
+		}
+
+		// On small screen
+		@include media-breakpoint-down(sm) {
+			text-align: center;
+
+			// Hide all file info
+			.plupload_file_action, 
+			.plupload_file_status, 
+			.plupload_file_size { 
+				display: none; 
+			}
+
+			// Center progress bar
+			.plupload_progress {
+				margin: auto;
+			}
+		}
+	}
+
+	// Header and footer
+	.plupload_filelist_header,
+	.plupload_filelist_footer {
+		@include media-breakpoint-up(sm) {
+			display: flex;
+			align-items: center;
+
+			// File name
+			.plupload_file_name {
+				margin-right: auto;
+			}
+
+			// File info
+			.plupload_file_action {
+				order: 12;
+			}
+			.plupload_file_status {
+				order: 11;
+			}
+			.plupload_file_size {
+				order: 10;
+			}
+		}
+	}
+
+
+	// Indicators
+	// ------------------------------
+
+	// File action indicator
+	.plupload_file_action {
+		margin-left: map-get($spacers, 4);
+		line-height: 1;
+		font-size: 0;
+		text-align: right;
+
+		// Hide all children by default
+		* {
+			display: none;
+		}
+
+		// Add icon to the header and footer
+		&:after {
+			content: '\ec67';
+		}
+
+		// Remove icons in the file list
+		.plupload_filelist &:after {
+			content: none;
+		}
+
+		// Delete button
+		.plupload_delete & {
+			> a {
+				color: $body-color;
+				line-height: 1;
+				opacity: 0.5;
+				@include transition(opacity ease-in-out $component-transition-timer);
+
+				// Hover state
+				@include hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	// Uploading indicator
+	.plupload_uploading {
+		background-color: $color-success-50; 
+	}
+
+	// Delete button
+	.plupload_delete a:after {
+		content: '\ed6b';
+	}
+
+	// Failed indicator
+	.plupload_failed a {
+		color: theme-color('danger');
+		cursor: default;
+
+		// Icon
+		&:after {
+			content: '\e9cf';
+		}
+	}
+
+	// Done indicator
+	.plupload_done {
+		color: $gray-600;
+
+		// Link
+		a {
+			color: theme-color('success');
+			cursor: default;
+
+			// Icon
+			&:after {
+				content: '\e9db';
+			}
+		}
+	}
+
+	// Progress indicators
+	.plupload_progress,
+	.plupload_upload_status {
+		display: none;
+	}
+	.plupload_progress_container {
+		background-color: rgba($black, 0.1);
+		@include border-radius($border-radius);
+	}
+	.plupload_progress_bar {
+		width: 0;
+		height: 0.25rem;
+		background: theme-color('success');
+		@include border-radius($border-radius);
+	}
+
+	// File info
+	.plupload_file_size,
+	.plupload_file_status,
+	.plupload_progress {
+		width: 5rem;
+		text-align: right;
+	}
+}

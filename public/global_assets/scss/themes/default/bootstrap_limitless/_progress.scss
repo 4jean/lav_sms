@@ -1,0 +1,90 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Progress bar component
+ *
+ *  Overrides for progress bar component
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+//
+// Base styles
+//
+
+// Container
+.progress {
+    position: relative;
+}
+
+// Bar
+.progress-bar {
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+//
+// Enhanced bars
+//
+
+.progress {
+
+    // Progress bar back text
+    .progressbar-back-text,
+    .progressbar-front-text {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        text-align: center;
+        font-size: $progress-font-size;
+    }
+
+    // Center the text
+    .progressbar-back-text {
+        align-self: center;
+    }
+
+    // Right alignment
+    &.right {
+        justify-content: flex-end;
+    }
+
+
+    // Vertical orientation
+    &.vertical {
+        width: 3rem;
+        height: 100%;
+        display: inline-block;
+
+        // Add horizontal spacing
+        & + & {
+            margin-left: $element-spacer-x;
+        }
+
+        // Progress bar adjustment
+        .progress-bar {
+            width: 100%;
+            height: 0;
+            @include transition(height 0.6s ease);
+        }
+
+        // Bottom direction
+        &.bottom {
+
+            // Progress bar back text
+            .progressbar-back-text,
+            .progressbar-front-text {
+                top: auto;
+                bottom: 0;
+            }
+
+            // Bar itself
+            .progress-bar {
+                position: absolute;
+                bottom: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,769 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Additional variables
+ *
+ *  Mainly 3rd party libraries and additional variables for default
+ *  Bootstrap components.
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+//
+// Light contextual colors
+//
+// Includes 50 shades from custom color palette
+
+$theme-colors-light: () !default;
+$theme-colors-light: map-merge((
+  "primary":      $color-primary-50,
+  "secondary":    $gray-300,
+  "success":      $color-success-50,
+  "info":         $color-info-50,
+  "warning":      $color-orange-50,
+  "danger":       $color-danger-50,
+  "light":        $gray-200,
+  "dark":         $color-slate-50
+), $theme-colors-light);
+
+
+
+//
+// Content styling
+//
+// Various custom variables for text, icons, elements, blocks etc
+
+// Content divider
+$content-divider-height:                  $border-width !default;
+$content-divider-color:                   $border-color !default;
+
+// Shadows used in :hover/:focus states
+$hover-shadow-lighter:                    0 0 0 62.5rem rgba($black, 0.01) inset !default;
+$hover-shadow-darker:                     0 0 0 62.5rem rgba($black, 0.04) inset !default;
+
+// Images
+$img-path:                                '../../../../../../global_assets/images' !default;
+$img-preview-max-height:                  5rem !default;
+
+// Wrappers for element spacers. Uses default $spacers map
+$element-spacer-x-sm:                     map-get($spacers, 1) !default;
+$element-spacer-x:                        map-get($spacers, 2) !default;
+$element-spacer-x-lg:                     map-get($spacers, 3) !default;
+
+// Header elements
+$header-elements-padding-y:               $spacer !default;
+$header-elements-padding-x:               $grid-gutter-width !default;
+
+// Icons
+$icon-font-family:                        'icomoon' !default;
+$icon-font-size:                          1rem !default;
+$list-icons-spacer:                       0.375rem !default;
+
+// Transition timers
+$component-transition-timer:              0.15s !default;
+$component-transition-delay:              0.15s !default;
+
+// Enhanced media objects
+$media-title-margin-bottom:               0.125rem !default;
+$media-link-hover-bg:                     rgba($black, 0.04) !default;
+$media-padding-x:                         1.25rem !default;
+$media-padding-y:                         1rem !default;
+$media-border-width:                      $border-width !default;
+$media-border-color:                      $border-color !default;
+
+// Enhanced dropdown menus
+$dropdown-content-header-padding-y:       1rem !default;
+$dropdown-content-body-padding-y:         1.25rem !default;
+$dropdown-content-body-padding-x:         1.25rem !default;
+$dropdown-content-footer-padding-y:       0.75rem !default;
+$dropdown-content-footer-border-width:    $border-width !default;
+$dropdown-content-footer-border-color:    $border-color !default;
+
+// Perfect scrollbar
+$ps-size:                                 0.25rem !default;
+$ps-gap:                                  0.125rem !default;
+$ps-bg:                                   $gray-600 !default;
+$ps-opacity:                              0.75 !default;
+
+// jQuery UI
+$ui-accordion-spacer-y:                   0.5rem !default;
+$ui-autocomplete-height:                  250px !default;
+$ui-datepicker-width:                     270px !default;
+
+// Charts
+$chart-container-height:                  400px !default;
+$chart-min-width:                         37.5rem !default;
+$chart-pie-min-width:                     31.25rem !default;
+
+// Maps
+$map-container-height:                    500px !default;
+$map-container-sidebar-height:            200px !default;
+
+// Misc
+$select-custom-width:                     220px !default;
+$cursor-disabled:                         default !default;
+
+
+
+//
+// Page header
+//
+// Includes page header base, colors and page title
+
+$page-header-border-width:                   $border-width !default;
+$page-header-elements-border-width:          $border-width !default;
+
+$page-header-padding-y:                      2rem !default;
+$page-header-padding-x:                      $grid-gutter-width !default;
+
+$page-header-light-bg:                       $white !default;
+$page-header-light-border-color:             $border-color !default;
+$page-header-light-elements-bg:              $gray-100 !default;
+$page-header-light-elements-border-color:    $page-header-light-border-color !default;
+
+$page-header-dark-bg:                        #273246 !default;
+$page-header-dark-color:                     $white !default;
+$page-header-dark-border-color:              rgba($white, 0.2) !default;
+$page-header-dark-elements-bg:               rgba($black, 0.1) !default;
+$page-header-dark-elements-border-color:     $page-header-dark-border-color !default;
+
+
+
+//
+// Content area
+//
+// Area below page header, Also includes boxed layout
+
+$content-container-padding-y:    $spacer !default;
+$content-container-padding-x:    $grid-gutter-width !default;
+
+$boxed-bg:                       url(#{$img-path}/backgrounds/boxed_bg.png) repeat !default;
+$boxed-container-box-shadow:     -4px 2px 4px rgba($black, 0.15), 4px 2px 4px rgba($black, 0.15) !default;
+
+
+
+//
+// Sidebar
+//
+// Includes sidebar sizes, colors and user areas
+
+// Base
+$sidebar-base-width:                     rem-calc(270px) !default;
+$sidebar-mini-width:                     ($spacer * 2) + $icon-font-size !default;
+
+
+// Light sidebar
+$sidebar-light-bg:                       $white !default;
+$sidebar-light-color:                    $body-color !default;
+$sidebar-light-border-width:             $border-width !default;
+$sidebar-light-border-color:             rgba($black, 0.125) !default;
+$sidebar-light-toggler-bg:               darken($sidebar-light-bg, 4%) !default;
+$sidebar-light-toggler-color:            rgba($sidebar-light-color, 0.8) !default;
+$sidebar-light-toggler-hover-bg:         transparent !default;
+$sidebar-light-toggler-hover-color:      $sidebar-light-color !default;
+$sidebar-light-tabs-bg:                  darken($sidebar-light-bg, 4%) !default;
+$sidebar-light-xs-menu-bg:               darken($sidebar-light-bg, 1%) !default;
+
+
+// Dark sidebar
+$sidebar-dark-bg:                        #2a3140 !default;
+$sidebar-dark-color:                     $white !default;
+$sidebar-dark-border-width:              $border-width !default;
+$sidebar-dark-border-color:              rgba($white, 0.1) !default;
+$sidebar-dark-toggler-bg:                darken($sidebar-dark-bg, 4%) !default;
+$sidebar-dark-toggler-color:             rgba($sidebar-dark-color, 0.9) !default;
+$sidebar-dark-toggler-hover-bg:          transparent !default;
+$sidebar-dark-toggler-hover-color:       $sidebar-dark-color !default;
+$sidebar-dark-tabs-bg:                   darken($sidebar-dark-bg, 4%) !default;
+$sidebar-dark-xs-menu-bg:                lighten($sidebar-dark-bg, 5%) !default;
+
+
+// Shadows [material only]
+$sidebar-left-desktop-box-shadow:        none !default;
+$sidebar-left-mobile-box-shadow:         0.25rem 0 1rem rgba(0, 0, 0, 0.35) !default;
+
+$sidebar-right-desktop-box-shadow:       none !default;
+$sidebar-right-mobile-box-shadow:        -0.25rem 0 1rem rgba(0, 0, 0, 0.35) !default;
+
+
+// Z-indexes
+$sidebar-zindex:                         ($zindex-fixed + 10) !default;
+$sidebar-zindex-main:                    99 !default;
+$sidebar-zindex-secondary:               ($sidebar-zindex-main - 1) !default;
+$sidebar-zindex-right:                   ($sidebar-zindex-main - 2) !default;
+$sidebar-zindex-component:               ($sidebar-zindex-main - 3) !default;
+
+
+
+//
+// Main vertical navigation
+//
+// Includes base styles, levels and colors
+
+$navigation-padding-y:                      0.5rem !default;
+
+$navigation-item-padding-y:                 0.75rem !default;
+$navigation-item-padding-x:                 1.25rem !default;
+$navigation-item-spacer-y:                  1px !default;
+$navigation-item-font-weight:               $font-weight-semibold !default;
+$navigation-item-disabled-opacity:          0.5 !default;
+
+$navigation-sub-padding-y:                  0.625rem !default;
+$navigation-sub-item-opacity:               0.5 !default;
+
+
+// Dark sidebar navigation styles
+$navigation-dark-color:                     rgba($sidebar-dark-color, 0.9) !default;
+$navigation-dark-hover-bg:                  rgba($black, 0.15) !default;
+$navigation-dark-hover-color:               $sidebar-dark-color !default;
+$navigation-dark-active-bg:                 lighten($sidebar-dark-bg, 10%) !default;
+$navigation-dark-active-color:              $white !default;
+$navigation-dark-sub-bg:                    rgba($black, 0.15) !default;
+$navigation-dark-sub-active-bg:             rgba($black, 0.15) !default;
+$navigation-dark-sub-active-color:          $white !default;
+$navigation-dark-bordered-border-width:     $border-width !default;
+$navigation-dark-bordered-border-color:     rgba($white, 0.1) !default;
+$navigation-dark-bordered-header-bg:        rgba($black, 0.1) !default;
+
+
+// Light sidebar navigation styles
+$navigation-light-color:                    rgba($sidebar-light-color, 0.85) !default;
+$navigation-light-hover-bg:                 $gray-200 !default;
+$navigation-light-hover-color:              $sidebar-light-color !default;
+$navigation-light-active-bg:                $navigation-light-hover-bg !default;
+$navigation-light-active-color:             $navigation-light-hover-color !default;
+$navigation-light-sub-bg:                   transparent !default;
+$navigation-light-sub-active-bg:            $gray-200 !default;
+$navigation-light-sub-active-color:         $body-color !default;
+$navigation-light-bordered-border-width:    $border-width !default;
+$navigation-light-bordered-border-color:    $gray-300 !default;
+$navigation-light-bordered-header-bg:       $gray-100 !default;
+
+
+
+//
+// Form components
+//
+// Form checks, switches, selects, tags etc.
+
+// Checkboxes and radios
+$checkbox-size:                      1.25rem !default;
+$checkbox-color:                     $color-slate-700 !default;
+$checkbox-border-width:              rem-calc($border-width * 2) !default;
+$checkbox-border-color:              $checkbox-color !default;
+$checkbox-disabled-opacity:          0.5 !default;
+
+
+// Switchery toggle
+$switchery-bg:                       $white !default;
+$switchery-border-width:             $border-width !default;
+$switchery-border-color:             $gray-400 !default;
+$switchery-handle-bg:                $white !default;
+$switchery-handle-box-shadow:        0 1px 3px rgba($black, 0.4) !default;
+$switchery-size:                     1.125rem !default;
+$switchery-margin-x:                 0.625rem !default;
+
+
+// Bootstrap switch
+$switch-border-width:                $border-width !default;
+$switch-bg-default:                  $gray-300 !default;
+$switch-handle-width:                0.25rem !default;
+$switch-handle-height:               0.625rem !default;
+$switch-handle-bg:                   $white !default;
+$switch-handle-border-color:         rgba($black, 0.15) !default;
+$switch-handle-hover-bg:             $gray-100 !default;
+
+
+// Select2 selects
+$select2-max-height:                 280px !default;
+$select2-disabled-opacity:           0.6 !default;
+$select2-custom-disabled-opacity:    0.75 !default;
+
+$select2-pills-spacer:               0.125rem !default;
+$select2-pills-bg:                   $color-slate-700 !default;
+$select2-pills-color:                $white !default;
+$select2-pills-hover-bg:             $select2-pills-bg !default;
+$select2-pills-hover-color:          $select2-pills-color !default;
+$select2-pills-border-radius:        $border-radius !default;
+
+$select2-light-results-color:        $gray-600 !default;
+$select2-dark-results-color:         rgba($white, 0.75) !default;
+
+
+// Multiselect
+$multiselect-max-height:             280px !default;
+$multiselect-font-weight:            $font-weight-normal !default;
+$multiselect-text-transform:         none !default;
+
+
+// Typeahead
+$typeahead-max-height:               350px !default;
+$typeahead-max-height-scrollable:    250px !default;
+
+
+// Tag inputs
+$tags-spacer:                        0.125rem !default;
+$tags-color:                         $body-color !default;
+$tags-hover-color:                   $white !default;
+$tags-bg:                            $gray-300 !default;
+$tags-hover-bg:                      $color-blue-500 !default;
+$tag-disabled-opacity:               0.5 !default;
+$tag-border-radius:                  $border-radius !default;
+
+
+// Form wizard
+$wizard-step-line-size:              2px !default;
+$wizard-step-line-color:             $gray-300 !default;
+
+$wizard-step-number-size:            rem-calc(38px) !default;
+$wizard-step-number-bg:              $card-bg !default;
+$wizard-step-number-color:           $gray-500 !default;
+$wizard-step-number-active-bg:       $color-info-500 !default;
+$wizard-step-number-active-color:    $white !default;
+$wizard-step-number-error-bg:        $color-danger-500 !default;
+
+
+
+//
+// Text editors
+//
+// Summernote, trumbowyg, ace code editor
+
+// Summernote editor
+$summernote-border-width:            $border-width !default;
+$summernote-border-color:            $border-color !default;
+$summernote-font-path:               "../../../../../../global_assets/css/icons/summernote/" !default;
+$summernote-icon-font-size:          0.875rem !default;
+$summernote-min-height:              rem-calc(150px) !default;
+
+$summernote-resizer-width:           1.25rem !default;
+$summernote-resizer-height:          $border-width !default;
+$summernote-resizer-color:           $border-color !default;
+
+
+// Trumbowyg editor
+$trumbowyg-min-height:               350px !default;
+
+$trumbowyg-border-width:             $border-width !default;
+$trumbowyg-border-color:             $border-color !default;
+
+$trumbowyg-toolbar-bg:               $gray-100 !default;
+$trumbowyg-toolbar-hover-bg:         $gray-300 !default;
+$trumbowyg-toolbar-color:            $body-color !default;
+$trumbowyg-toolbar-border-width:     $border-width !default;
+$trumbowyg-toolbar-border-color:     $border-color !default;
+$trumbowyg-toolbar-divider-width:    1px !default;
+$trumbowyg-toolbar-height:           ($btn-padding-x * 2) + $icon-font-size + rem-calc($trumbowyg-toolbar-border-width * 2) !default;
+
+
+// Ace code editor
+$ace-height:                         450px !default;
+
+
+
+//
+// Pickers
+//
+// Date, time and color pickers
+
+// Common styles for date pickers
+$datepicker-padding:                0.9375rem !default;
+$datepicker-title-font-size:        $h6-font-size !default;
+
+$datepicker-item-padding:           $input-btn-padding-y !default;
+$datepicker-item-weekday-color:     $gray-600 !default;
+$datepicker-item-year-color:        $gray-600 !default;
+$datepicker-item-focusout-color:    $gray-500 !default;
+$datepicker-item-hover-color:       $body-color !default;
+$datepicker-item-hover-bg:          $gray-200 !default;
+$datepicker-item-active-color:      $white !default;
+$datepicker-item-active-bg:         $color-teal-400 !default;
+$datepicker-item-today-color:       $body-color !default;
+$datepicker-item-today-bg:          $gray-200 !default;
+$datepicker-item-disabled-color:    $gray-600 !default;
+$datepicker-item-disabled-bg:       transparent !default;
+
+
+// Pick-a-date picker
+$pickadate-max-width:               18.13rem !default;
+$pickadate-max-height:              480px !default;
+
+
+// Pick-a-time picker
+$pickatime-max-height:              250px !default;
+$pickatime-min-width:               16rem !default;
+$pickatime-max-width:               20rem !default;
+
+
+// Anytime picker
+$anytime-year-btn-bg:               $color-danger-500 !default;
+$anytime-year-btn-color:            $white !default;
+
+$anytime-month-btn-bg:              $color-teal-400 !default;
+$anytime-month-btn-color:           $white !default;
+
+$anytime-time-btn-bg:               $color-slate-500 !default;
+$anytime-time-btn-color:            $white !default;
+
+
+// Spectrum color picker
+$spectrum-padding:                  0.625rem !default;
+$spectrum-width:                    13.75rem !default;
+$spectrum-max-width:                13.75rem !default;
+
+$spectrum-choose-btn-bg:            $color-slate-500 !default;
+$spectrum-choose-btn-color:         $white !default;
+
+
+
+//
+// File uploaders
+//
+// Plupload, Bootstrap file input and dropzone
+
+// Plupload uploader
+$plupload-max-height:                       250px !default;
+$plupload-bg:                               #fcfcfc !default;
+$plupload-border-width:                     ($border-width * 2) !default;
+$plupload-border-style:                     dashed !default;
+$plupload-border-color:                     $gray-400 !default;
+
+$plupload-header-bg:                        $color-slate-800 !default;
+$plupload-header-color:                     $white !default;
+
+$plupload-placeholder-icon-color:           $gray-500 !default;
+$plupload-placeholder-text-color:           $gray-700 !default;
+
+$plupload-btn-start-bg:                     theme-color('primary') !default;
+$plupload-btn-start-border-color:           $plupload-btn-start-bg !default;
+$plupload-btn-start-color:                  $white !default;
+
+
+// Bootstrap file input
+$fileinput-preview-spacer:                  0.5rem !default;
+$fileinput-preview-thumb-width:             10rem !default;
+$fileinput-preview-thumb-height:            10rem !default;
+$fileinput-preview-thumb-caption-spacer:    0.75rem !default;
+$fileinput-preview-footer-bg:               $gray-100 !default;
+$fileinput-preview-progress-height:         0.375rem !default;
+$fileinput-preview-frame-bg:                $card-bg !default;
+$fileinput-preview-frame-border-width:      $border-width !default;
+$fileinput-preview-frame-border-color:      $border-color !default;
+
+
+// Dropzone
+$dropzone-min-height:                       18rem !default;
+$dropzone-spacer:                           0.3125rem !default;
+
+$dropzone-bg:                               #fcfcfc !default;
+$dropzone-border-width:                     ($border-width * 2) !default;
+$dropzone-border-style:                     dashed !default;
+$dropzone-border-color:                     $gray-400 !default;
+
+$dropzone-placeholder-icon-size:            ($icon-font-size * 4) !default;
+$dropzone-placeholder-icon-color:           $gray-500 !default;
+$dropzone-placeholder-text-color:           $gray-700 !default;
+
+$dropzone-drag-bg:                          $gray-200 !default;
+$dropzone-drag-color:                       $gray-400 !default;
+$dropzone-drag-border-color:                $gray-600 !default;
+
+$dropzone-preview-spacer:                   0.5rem !default;
+$dropzone-preview-width:                    10rem !default;
+
+
+
+//
+// Notifications
+//
+// Sweet alert and noty.js notification libraries
+
+// Common styles
+$notification-width:                   20rem !default;
+$notification-gutter-y:                $spacer !default;
+$notification-gutter-x:                $content-container-padding-x !default;
+$notification-box-shadow:              $dropdown-box-shadow !default;
+
+
+// Noty.js
+$noty-spacer-y:                        0.25rem !default;
+
+$notification-alert-bg:                $color-slate-600 !default;
+$notification-alert-color:             $white !default;
+$notification-alert-border-color:      $notification-alert-bg !default;
+
+$notification-warning-bg:              $color-warning-400 !default;
+$notification-warning-color:           $white !default;
+$notification-warning-border-color:    $notification-warning-bg !default;
+
+$notification-error-bg:                $color-danger-400 !default;
+$notification-error-color:             $white !default;
+$notification-error-border-color:      $notification-error-bg !default;
+
+$notification-info-bg:                 $color-blue-500 !default;
+$notification-info-color:              $white !default;
+$notification-info-border-color:       $notification-info-bg !default;
+
+$notification-success-bg:              $color-success-500 !default;
+$notification-success-color:           $white !default;
+$notification-success-border-color:    $notification-success-bg !default;
+
+$noty-progress-height:                 0.1875rem !default;
+$noty-progress-bg:                     rgba($black, 0.25) !default;
+
+
+// Sweet alert 2
+$swal-padding:                         1.25rem !default;
+$swal-width:                           31.25rem !default;
+$swal-margin-x:                        $content-container-padding-x !default;
+
+$swal2-icon-size:                      5rem !default;
+$swal2-icon-border-width:              0.25rem !default;
+$swal2-icon-spacer:                    1rem !default;
+
+$swal2-step-inactive-color:            $text-muted !default;
+$swal2-step-active-color:              $color-primary-500 !default;
+$swal2-step-complete-color:            $swal2-step-active-color !default;
+$swal2-step-line-color:                $gray-400 !default;
+
+$swal2-error-color:                    $color-danger-400 !default;
+$swal2-error-border-color:             $swal2-error-color !default;
+
+$swal2-warning-color:                  $color-warning-400 !default;
+$swal2-warning-border-color:           $swal2-warning-color !default;
+
+$swal2-info-color:                     $color-blue-500 !default;
+$swal2-info-border-color:              $swal2-info-color !default;
+
+$swal2-question-color:                 $color-slate-700 !default;
+$swal2-question-border-color:          $swal2-question-color !default;
+
+$swal2-success-color:                  $color-success-400 !default;
+$swal2-success-border-color:           $swal2-success-color !default;
+
+
+
+//
+// Tables
+//
+// Handsontable and datatables.js libraries
+
+// Handsontable
+$hot-row-header-width:               5rem !default;
+$hot-cell-height:                    1.875rem !default;
+$hot-cell-bg:                        $white !default;
+$hot-header-bg:                      $gray-200 !default;
+$hot-search-result-bg:               $color-orange-50 !default;
+$hot-cell-padding-y:                 0.3125rem !default;
+$hot-cell-padding-x:                 0.25rem !default;
+$hot-datepicker-width:               15.63rem !default;
+$hot-cell-highlight-bg:              $color-primary-50 !default;
+$hot-cell-highlight-border-color:    $color-primary-500 !default;
+$hot-scrollable-max-height:          22.5rem !default;
+
+
+// Datatables
+$dt-spacer-y:                        $spacer !default;
+$dt-spacer-x:                        $card-spacer-x !default;
+$dt-filter-width:                    12.5rem !default;
+$dt-controls-label-spacer-y:         ($input-padding-y + rem-calc($input-border-width)) !default;
+$dt-controls-label-spacer-x:         ($dt-spacer-x / 1.5) !default;
+
+$dt-pagination-active-bg:            $color-slate-800 !default;
+$dt-pagination-active-color:         $white !default;
+
+$dt-button-collection-2col-width:    18.75rem !default;
+$dt-button-collection-3col-width:    28.13rem !default;
+$dt-button-collection-4col-width:    37.5rem !default;
+
+$dt-ext-select-active-row-bg:        $color-success-50 !default;
+
+
+
+//
+// Misc components
+//
+// Other custom 3rd party extensions and libraries
+
+// FAB (floating action button)
+$fab-main-btn-size:                    (($btn-float-padding + ($icon-font-size / 2)) * 2) !default;
+$fab-btn-gap:                          0.125rem !default;
+$fab-gutter-x:                         $content-container-padding-x !default;
+
+$fab-inner-btn-size:                   (($btn-float-padding - $fab-btn-gap) * 2) + $icon-font-size !default;
+$fab-inner-btn-spacing:                $spacer !default;
+
+$fab-badge-spacer-x:                   0.25rem !default;
+$fab-badge-spacer-y:                   $fab-badge-spacer-x !default;
+
+$fab-label-light-bg:                   $white !default;
+$fab-label-light-color:                $body-color !default;
+
+
+// Fullcalendar
+$fullcalendar-bg:                      $card-bg !default;
+
+$fullcalendar-event-bg:                $color-blue-600 !default;
+$fullcalendar-event-color:             $white !default;
+$fullcalendar-event-border-width:      $border-width !default;
+$fullcalendar-event-border-color:      $color-blue-600 !default;
+
+$fullcalendar-event-spacer:            0.5rem !default;
+$fullcalendar-event-padding-y:         0.25rem !default;
+$fullcalendar-event-padding-x:         0.5rem !default;
+
+$fullcalendar-event-resizer-size-h:    0.5rem !default;
+$fullcalendar-event-resizer-size-v:    0.5rem !default;
+
+$fullcalendar-today-bg:                $color-success-50 !default;
+$fullcalendar-bgevent-bg:              rgba($color-success-300, 0.3) !default;
+$fullcalendar-nonbusiness-bg:          rgba($gray-400, 0.3) !default;
+$fullcalendar-highlight-bg:            rgba($gray-400, 0.3) !default;
+$fullcalendar-weekday-bg:              $gray-100 !default;
+$fullcalendar-weekday-color:           rgba($body-color, 0.5) !default;
+
+
+// Sliders (shared styles)
+$slider-bg:                            $gray-300 !default;
+$slider-connect-bg:                    $color-slate-500 !default;
+$slider-disabled-opacity:              0.75 !default;
+$slider-box-shadow:                    inset 0 1px 1px rgba($black, 0.1) !default;
+
+$slider-height:                        0.375rem !default;
+$slider-height-lg:                     ($slider-height + 0.125rem) !default;
+$slider-height-sm:                     ($slider-height - 0.125rem) !default;
+$slider-vertical-height:               10rem !default;
+
+$slider-handle-bg:                     $white !default;
+$slider-handle-inner-bg:               $gray-900 !default;
+$slider-handle-border-width:           $border-width !default;
+$slider-handle-border-color:           $gray-500 !default;
+$slider-handle-hover-bg:               $gray-100 !default;
+$slider-handle-inner-hover-bg:         $gray-800 !default;
+
+$slider-pips-color:                    $gray-700 !default;
+$slider-pips-spacer-y:                 1rem !default;
+$slider-pips-marker-width:             0.0625rem !default;
+$slider-pips-marker-height:            0.1875rem !default;
+$slider-pips-font-size:                $font-size-xs !default;
+$slider-pips-line-height:              $line-height-xs !default;
+
+
+// Image cropper
+$cropper-grid-size:                    $border-width !default;
+$cropper-grid-color:                   $gray-300 !default;
+$cropper-grid-center-size:             ($border-width * 9) !default;
+
+$cropper-resizer-color:                $color-primary-500 !default;
+$cropper-resizer-size:                 0.375rem !default;
+$cropper-resizer-size-lg:              1.25rem !default;
+
+
+// Fancybox
+$fancybox-nav-spacer-x:                0.625rem !default;
+$fancybox-nav-spacer-y:                $fancybox-nav-spacer-x !default;
+$fancybox-nav-padding:                 0.375rem !default;
+$fancybox-nav-bg:                      rgba($black, 0.5) !default;
+$fancybox-nav-color:                   $white !default;
+$fancybox-nav-hover-bg:                $gray-900 !default;
+$fancybox-nav-hover-color:             $fancybox-nav-color !default;
+
+$fancybox-caption-padding-y:           0.5rem !default;
+$fancybox-caption-padding-x:           0.625rem !default;
+$fancybox-caption-bg:                  rgba($black, 0.5) !default;
+$fancybox-caption-color:               $white !default;
+
+
+// Fancytree
+$fancytree-node-padding-y:             0.25rem !default;
+$fancytree-node-padding-x:             0.5rem !default;
+
+$fancytree-node-selected-bg:           $gray-300 !default;
+$fancytree-node-selected-color:        $body-color !default;
+
+$fancytree-node-active-bg:             $color-primary-500 !default;
+$fancytree-node-active-color:          $white !default;
+
+
+
+//
+// Page kits
+//
+// Feeds, timelines, profiles, chats, inbox, ecommerce etc
+//
+
+// Timelines
+$timeline-icon-size: 				          3rem !default;
+$timeline-line-width: 				        ($border-width * 2) !default;
+$timeline-line-color: 				        $gray-500 !default;
+$timeline-icon-bg:					          $card-bg !default;
+$timeline-icon-border-width: 		      ($timeline-line-width * 2) !default;
+$timeline-content-padding-x:		      $content-container-padding-x !default;
+
+
+// Feeds
+$list-feed-circle-radius: 			      0.5rem !default; // must be equal to even px value
+$list-feed-circle-border-width: 	    ($border-width * 2) !default;
+$list-feed-circle-border-color:		    $color-slate-500 !default;
+$list-feed-circle-position: 		      ($line-height-computed - ($list-feed-circle-radius + rem-calc($list-feed-circle-border-width))) / 2 !default;
+
+$list-feed-item-padding-y:			      1.25rem !default;
+$list-feed-item-padding-x:			      ($card-spacer-x + $list-feed-circle-radius) !default;
+
+
+// Blog
+$blog-horizontal-img-max-width:       25rem !default;
+$blog-horizontal-img-max-width-lg:    31.25rem !default;
+$blog-horizontal-img-max-width-sm:    18.75rem !default;
+$blog-horizontal-img-max-width-xs:    12.5rem !default;
+
+
+// Login page
+$login-form-width:                    20rem !default;
+
+
+// Error pages
+$error-title-color:                   $white !default;
+$error-title-font-size:               12.5rem !default;
+$error-title-font-size-sm:            8.125rem !default;
+
+$error-offline-title-font-size:       10rem !default;
+$error-offline-title-font-size-sm:    6.875rem !default;
+
+
+// Profile pages
+$profile-cover-element-shadow:        0 0 0.1875rem rgba($black, 0.5) !default;
+$profile-thumb-size:                  6.25rem !default;
+$profile-thumb-border-width:          ($border-width * 3) !default;
+$profile-thumb-border-color:          $white !default;
+$profile-cover-height:                21.88rem !default;
+
+
+// Inbox
+$inbox-read-row-bg:                   $gray-100 !default;
+$inbox-unread-row-bg:                 $card-bg !default;
+
+
+// Chats
+$chat-list-max-height:                520px !default;
+$chat-message-arrow-size:             ($border-width * 5) !default;
+$chat-message-border-radius:          $border-radius !default;
+$chat-message-padding-y:              0.625rem !default;
+$chat-message-padding-x:              1rem !default;
+
+$chat-message-bg:                     $gray-300 !default;
+$chat-message-color:                  $body-color !default;
+$chat-message-reversed-bg:            $color-primary-400 !default;
+$chat-message-reversed-color:         $white !default;
+
+
+// Pricing tables
+$pricing-title-font-size:             2.625rem !default;
+$pricing-subtitle-font-size:          1.875rem !default;
+
+$pricing-list-item-padding-y:         1rem !default;
+$pricing-list-item-border-width:      $border-width !default;
+$pricing-list-item-border-color:      rgba($black, 0.1) !default;
+
+$pricing-ribbon-bg:                   $color-success-500 !default;
+$pricing-ribbon-color:                $white !default;
+$pricing-ribbon-box-shadow:           0 4px 6px rgba($black, 0.1) !default;

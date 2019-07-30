@@ -1,0 +1,211 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Tokenfield for Bootstrap
+*
+*  Styles for tokenfield.js - Advanced tagging/tokenizing plugin for Bootstrap
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-tokenfield {
+
+    // Base
+    .tokenfield {
+        height: auto;
+        border: 0;
+        @include clearfix;
+
+        // Remove default .form-control styling
+        &.form-control:not(input) {
+            padding: 0;
+        }
+
+        // Token
+        .token {
+            margin-right: $element-spacer-x;
+            margin-top: $tags-spacer;
+            margin-bottom: $tags-spacer;
+            cursor: default;
+            float: left;
+            position: relative;
+            @include border-radius($tag-border-radius);
+            @include transition(all ease-in-out $component-transition-timer);
+
+            // Skip tokens with custom background color
+            &:not([class*=bg-]) {
+                background-color: $tags-bg;
+                color: $tags-color;
+
+                // Hover state
+                @include hover-focus {
+                    background-color: $tags-hover-bg;
+                    color: $tags-hover-color;
+                }
+            }
+
+            // Tag text
+            .token-label {
+                display: block;
+                max-width: none!important;
+                padding: $input-padding-y $input-btn-padding-x;
+                padding-right: ($input-btn-padding-x + ($icon-font-size * 1.5));
+            }
+
+            // Close button
+            > .close {
+                font-size: 0;
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                color: inherit;
+                right: $input-btn-padding-x;
+                line-height: 1;
+                margin-top: -($font-size-xs / 2);
+                @include transition(opacity ease-in-out $component-transition-timer);
+
+                // Icon
+                &:after {
+                    content: '\ed6a';
+                    font-family: $icon-font-family;
+                    display: block;
+                    font-size: $font-size-xs;
+                    @include ll-font-smoothing();
+                }
+
+                // Hover action
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+
+
+        //
+        // Input field
+        //
+
+        // Make typeahead input auto width
+        .twitter-typeahead {
+            width: auto;
+        }
+
+        // Input field
+        .token-input {
+            direction: ltr;
+            background: none;
+            width: 5.625rem!important;
+            max-width: 50%;
+            min-width: 4rem;
+            padding: $input-padding-y $input-padding-x;
+            margin-top: $tags-spacer;
+            margin-bottom: $tags-spacer;
+            border: 0;
+            outline: 0;
+        }
+
+
+        //
+        // States
+        //
+
+        // Readonly
+        &.readonly .token {
+            .token-label {
+                padding-right: $input-btn-padding-x;
+            }
+
+            // Hide close button in readonly
+            .close {
+                display: none;
+            }
+        }
+
+        // Disabled
+        &.disabled {
+            cursor: $cursor-disabled;
+            
+            // Token style
+            .token {
+
+                // Mute tokens
+                &,
+                .close {
+                    opacity: $tag-disabled-opacity;
+                }
+
+                // Revert default background on hover
+                @include hover-focus {
+                    background-color: $tags-bg;
+                    color: $tags-color;
+                }
+            }
+
+            // Add disabled cursor
+            &,
+            .token-input,
+            .token,
+            .token .close {
+                cursor: $cursor-disabled;
+            }
+        }
+    }
+
+
+    //
+    // Sizing
+    //
+
+    // Large
+    .input-group-lg,
+    .tokenfield.form-control-lg {
+
+        // Right spacing for close button
+        .token > .token-label,
+        .token > span {
+            padding: $input-padding-y-lg $input-btn-padding-x-lg;
+            padding-right: ($input-btn-padding-x-lg + ($font-size-xs * 1.5));
+        }
+
+        // Input
+        .token-input {
+            padding: $input-padding-y-lg $input-padding-x-lg;
+        }
+
+        // Close button
+        .token > .close {
+            right: $input-btn-padding-x-lg;
+        }
+
+        // Readonly
+        &.readonly .token > .token-label {
+            padding-right: $input-btn-padding-x-lg;
+        }
+    }
+
+    // Small
+    .input-group-sm,
+    .tokenfield.form-control-sm {
+
+        // Tags
+        .token > .token-label,
+        .token > span {
+            padding: $input-padding-y-sm $input-btn-padding-x-sm;
+            padding-right: ($input-btn-padding-x-sm + ($font-size-xs * 1.5));
+        }
+
+        // Input
+        .token-input {
+            padding: $input-padding-y-sm $input-padding-x-sm;
+        }
+
+        // Close button
+        .token > .close {
+            right: $input-btn-padding-x-sm;
+        }
+
+        // Readonly
+        &.readonly .token > .token-label {
+            padding-right: $input-btn-padding-x-sm;
+        }
+    }
+}

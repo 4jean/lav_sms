@@ -1,0 +1,52 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Bootstrap v4.1.1 (https://getbootstrap.com)
+ *
+ *  Copyright 2011-2018 The Bootstrap Authors
+ *  Copyright 2011-2018 Twitter, Inc.
+ *  Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Import custom template config
+@import "../../../../config";
+@import "../../../../shared/utils/ll-functions";
+@import "../../../../shared/utils/ll-mixins";
+@import "../../../../themes/material/colors/palette";
+
+// Core variables and mixins
+@import "../../../../_bootstrap/functions";
+@import "../../../../_bootstrap/variables";
+@import "../../../../_bootstrap/mixins";
+
+// Import template's variables
+@import "../variables/variables-core";
+@import "../variables/variables-custom";
+@import "../../../../themes/material/bootstrap_limitless/mixins";
+
+// Import default files
+@import "../../../../themes/material/bootstrap_limitless/reboot";
+@import "../../../../themes/material/bootstrap_limitless/type";
+@import "../../../../themes/material/bootstrap_limitless/code";
+@import "../../../../themes/material/bootstrap_limitless/tables";
+@import "../../../../themes/material/bootstrap_limitless/forms";
+@import "../../../../themes/material/bootstrap_limitless/buttons";
+@import "../../../../themes/material/bootstrap_limitless/dropdown";
+@import "../../../../themes/material/bootstrap_limitless/button-group";
+@import "../../../../themes/material/bootstrap_limitless/input-group";
+@import "../../../../themes/material/bootstrap_limitless/custom-forms";
+@import "../../../../themes/material/bootstrap_limitless/nav";
+@import "../../../../themes/material/bootstrap_limitless/navbar";
+@import "../../../../themes/material/bootstrap_limitless/card";
+@import "../../../../themes/material/bootstrap_limitless/breadcrumb";
+@import "../../../../themes/material/bootstrap_limitless/pagination";
+@import "../../../../themes/material/bootstrap_limitless/badge";
+@import "../../../../themes/material/bootstrap_limitless/alert";
+@import "../../../../themes/material/bootstrap_limitless/progress";
+@import "../../../../themes/material/bootstrap_limitless/media";
+@import "../../../../themes/material/bootstrap_limitless/list-group";
+@import "../../../../themes/material/bootstrap_limitless/close";
+@import "../../../../themes/material/bootstrap_limitless/modal";
+@import "../../../../themes/material/bootstrap_limitless/tooltip";
+@import "../../../../themes/material/bootstrap_limitless/popover";
+@import "../../../../themes/material/bootstrap_limitless/utilities";

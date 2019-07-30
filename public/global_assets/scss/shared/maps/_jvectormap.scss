@@ -1,0 +1,54 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Vector maps
+*
+*  Vector map container, tooltip and zooming
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-vector-maps {
+
+    // Container
+    .vector-map-container {
+        height: $map-container-height;
+    }
+
+    // Map tooltip
+    .jvectormap-label {
+        position: absolute;
+        display: none;
+        background-color: $tooltip-bg;
+        color: $tooltip-color;
+        padding: $tooltip-padding-y $tooltip-padding-x;
+        @include border-radius($tooltip-border-radius);
+    }
+
+    // Zoom buttons
+    .jvectormap-zoomin,
+    .jvectormap-zoomout {
+        position: absolute;
+        left: $card-spacer-x;
+        padding: 0.5rem;
+        color: white;
+        cursor: pointer;
+        font-size: $icon-font-size;
+        font-weight: $font-weight-light;
+        line-height: 0.625rem;
+        background-color: $color-slate-700;
+        text-align: center;
+        @include border-radius($border-radius);
+        @include transition(all ease-in-out $component-transition-timer);
+
+        //  Hover state
+        @include hover {
+            background-color: $color-slate-800;
+        }
+    }
+    .jvectormap-zoomin {
+        top: 0.625rem;
+    }
+    .jvectormap-zoomout {
+        top: 2.5rem;
+    }
+}

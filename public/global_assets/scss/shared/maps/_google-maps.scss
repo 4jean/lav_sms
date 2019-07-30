@@ -1,0 +1,26 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Google Maps overrides
+*
+*  Override Google Maps default styles
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-google-maps {
+
+	// Container
+	.map-container {
+		height: $map-container-height;
+	}
+
+	// Override popover text styles
+	.gm-style {
+		font-size: $font-size-base;
+
+		.gm-style-iw {
+			font-size: $font-size-base;
+			font-weight: $font-weight-normal;
+		}
+	}
+}

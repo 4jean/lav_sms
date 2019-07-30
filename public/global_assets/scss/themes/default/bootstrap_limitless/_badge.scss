@@ -1,0 +1,141 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Badge component
+ *
+ *  Overrides for badge bootstrap component
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Base
+.badge {
+
+    // Direction arrow in badge dropdowns
+    &.dropdown-toggle {
+        &:after {
+            font-size: 85%;
+            vertical-align: baseline;
+        }
+    }
+
+    // Light color
+    &-light {
+        background-color: $gray-200;
+    }
+}
+
+// Linked badge
+a.badge {
+    @include transition(all ease-in-out $component-transition-timer);
+
+    // Custom bg color
+    &[class*=bg-]:not(.bg-transparent):not(.bg-white):not(.bg-light) {
+        &:hover,
+        &:focus,
+        .show > &.dropdown-toggle {
+            box-shadow: $btn-dark-hover-box-shadow;
+        }
+    }
+}
+
+// Quick fix for badges in buttons
+.btn .badge {    
+    top: 0;
+}
+
+
+//
+// Alternative styles
+//
+
+// Flat (outline) badge
+.badge-flat {
+    background-color: transparent;
+    border: $badge-flat-border-width solid transparent;
+    padding: calc(#{$badge-padding-y} - #{$badge-flat-border-width}) calc(#{$badge-padding-x} - #{$badge-flat-border-width});
+
+    // Remove background color and shadow on hover
+    &[href] {
+        @include hover-focus {
+            background-color: transparent;
+            @include box-shadow(none);
+        }
+    }
+
+    // Pill badge
+    &.badge-pill {
+        padding-left: calc(#{$badge-pill-padding-x} - #{$badge-flat-border-width});
+        padding-right: calc(#{$badge-pill-padding-x} - #{$badge-flat-border-width});
+    }
+}
+
+// Striped badge
+.badge-striped {
+    padding: $badge-striped-padding-y $badge-striped-padding-x;
+    position: relative;
+
+    // Stripe
+    &:before {
+        content: '';
+        width: 0;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+    }
+
+    // Left alignment
+    &-left {
+        padding-left: calc(#{$badge-padding-x} + #{$badge-striped-border-width});
+        @include border-left-radius(0);
+
+        // Stripe
+        &:before {
+            left: 0;
+            border-left: $badge-striped-border-width solid;
+            border-left-color: inherit;
+        }
+    }
+
+    // Right alignment
+    &-right {
+        padding-right: calc(#{$badge-padding-x} + #{$badge-striped-border-width});
+        @include border-right-radius(0);
+
+        // Stripe
+        &:before {
+            right: 0;
+            border-right: $badge-striped-border-width solid;
+            border-right-color: inherit;
+        }
+    }
+}
+
+// Badge with icon
+.badge-icon {
+    padding: $badge-padding-x;
+    line-height: 1;
+
+    // Remove top edge from icon
+    > i {
+        top: 0;
+    }
+}
+
+// Floating badge
+.badge-float {
+    position: absolute;
+    right: $badge-float-margin;
+    top: $badge-float-margin;
+}
+
+// Badge mark
+.badge-mark {
+    padding: 0;
+    border: $badge-mark-border-width solid;
+    @include size($badge-mark-size);
+    @include border-radius($border-radius-round);
+
+    // Override default behaviour if it's empty
+    &:empty {
+        display: inline-block;
+    }
+}

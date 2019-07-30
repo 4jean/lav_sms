@@ -1,0 +1,110 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Footable
+ *
+ *  jQuery plugin that aims to make HTML tables on smaller devices look awesome.
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-footable {
+
+    // Base
+    .footable {
+        width: 100%;
+
+        // Remove user select
+        > thead > tr > th {
+            -webkit-touch-callout: none;
+            user-select: none;
+        }
+
+        // Setup table styles
+        &.breakpoint {
+            > tbody {
+                > tr {
+                    &.footable-detail-show > td {
+                        border-bottom: 0;
+                    }
+
+                    // Remove background color from details row
+                    &.footable-row-detail:hover {
+                        background-color: transparent;
+                    }
+
+                    // Add pointer
+                    &:hover:not(.footable-row-detail) {
+                        cursor: pointer;
+                    }
+
+                    // Cell with details
+                    > .footable-cell-detail {
+                        background-color: $gray-100;
+                        border-top: 0;
+                    }
+
+                    // Add expand icon
+                    .footable-toggle:before {
+                        content: "\e9e4";
+                        display: inline-block;  
+                        font-family: $icon-font-family;
+                        font-size: $icon-font-size;
+                        vertical-align: middle;
+                        position: relative;
+                        top: (($font-size-base - $icon-font-size) / 2);
+                        line-height: 1;
+                        padding-right: $element-spacer-x;
+                        @include ll-font-smoothing();
+                    }
+
+                    // Add collapse icon
+                    &.footable-detail-show .footable-toggle:before {
+                        content: "\e9e7";       
+                    }
+                }
+            }
+        }
+    }
+
+
+    //
+    // Row styling
+    //
+
+    // Inner wrapper
+    .footable-row-detail-inner {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    // Row details
+    .footable-row-detail-row {
+        display: table-row;
+    }
+
+    // Grouped details
+    .footable-row-detail-group {
+        display: block;
+        font-weight: $font-weight-semibold;
+        margin-top: $spacer;
+        margin-bottom: 0.5rem;
+
+        &:first-child {
+            margin-top: 0.5rem;
+        }
+    }
+
+    // Name
+    .footable-row-detail-name {
+        display: table-cell;
+        font-weight: $font-weight-semibold;
+        padding-right: ($card-spacer-x * 2);
+    }
+
+    // Value
+    .footable-row-detail-value {
+        display: table-cell;
+        padding: 0.5rem 0;
+    }
+}

@@ -1,0 +1,132 @@
+/* ------------------------------------------------------------------------------
+*
+*  # jGrowl notifications
+*
+*  Styles for jgrowl.min.js - an unobtrusive notification system for web applications
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-jgrowl {
+
+	// Base
+	.jGrowl {
+		z-index: $zindex-tooltip;
+		position: absolute;
+
+		// Document popups have fixed position
+		body > & {
+			position: fixed;
+		}
+
+
+		//
+		// Positions
+		//
+
+		// Top
+		&.top-left {
+			left: $notification-gutter-x;
+			top: $notification-gutter-y;
+		}
+		&.top-center {
+			left: 50%;
+			top: $notification-gutter-y;
+			margin-left: -($notification-width / 2);
+		}
+		&.top-right {
+			right: $notification-gutter-x;
+			top: $notification-gutter-y;
+		}
+
+		// Center
+		&.center {
+			top: 40%;
+			width: $notification-width;
+			left: 50%;
+			margin-left: -($notification-width / 2);
+			margin-top: -($alert-padding-x + ($line-height-computed / 2));
+
+			// Center the content
+			.jGrowl-notification,
+			.jGrowl-closer {
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+
+		// Bottom
+		&.bottom-left {
+			left: $notification-gutter-x;
+			bottom: $notification-gutter-y;
+		}
+		&.bottom-center {
+			left: 50%;
+			bottom: $notification-gutter-y;
+			margin-left: -($notification-width / 2);
+		}
+		&.bottom-right {
+			right: $notification-gutter-x;
+			bottom: $notification-gutter-y;
+		}
+
+		// Hide on print
+		@media print {
+			display: none;
+		}
+	}
+
+	// Notification styles
+	.jGrowl-notification {
+		margin-bottom: ($notification-gutter-y / 2);
+		width: $notification-width;
+		text-align: left;
+		display: none;
+	    box-shadow: $notification-box-shadow;
+
+		// Header
+		.jGrowl-header {
+			font-size: $h6-font-size;
+			margin-bottom: map-get($spacers, 1);
+
+			// Remove spacing if no header
+			&:empty {
+				margin: 0;
+			}
+		}
+
+		// Close button
+		.jGrowl-close {
+			font-weight: $close-font-weight;
+			background: none;
+			border: 0;
+			font-size: $close-font-size;
+			cursor: pointer;
+			line-height: 1;
+			padding: 0;
+			float: right;
+			color: inherit;
+			outline: 0;
+			margin-left: $element-spacer-x;
+			opacity: 0.75;
+			@include transition(opacity ease-in-out $component-transition-timer);
+
+			// Hover state
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+
+	// "Close all" closer
+	.jGrowl-closer {
+		padding: map-get($spacers, 1) 0;
+		cursor: pointer;
+		margin-top: map-get($spacers, 1);
+		text-align: center;
+		background-color: $white;
+		width: $notification-width;
+		border: $border-width solid $border-color;
+		@include border-radius($border-radius);
+	}
+}

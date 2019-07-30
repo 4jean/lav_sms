@@ -1,0 +1,269 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Flash of unstyled content (FOUC)
+ *
+ *  CSS fix for FOUC issue, which pops up in latest jQuery version. These styles
+ *  are optional, but enabled by default. Feel free to turn them off in configuration.
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-fouc-fix {
+
+
+	//
+	// Checkboxes and Radios
+	//
+	// for Uniform inputs
+	// requires [data-fouc] data attribute
+	//
+
+	input[type=checkbox][data-fouc],
+	input[type=radio][data-fouc] {
+		visibility: hidden;
+		@include size($checkbox-size);
+
+		// Inside .form-check container
+		.form-check & {
+	        position: absolute;
+		}
+
+		// Inline list
+		.form-check-inline:not(.form-check-switchery) & {
+			position: relative;
+			margin-top: (($line-height-computed - $checkbox-size) / 2);
+			margin-right: $form-check-inline-input-margin-x;
+
+			// Right aligned
+			.form-check-inline.form-check-right & {
+				margin-right: 0;
+				margin-left: $form-check-inline-input-margin-x;
+			}
+		}
+	}
+
+
+	//
+	// Switchery
+	//
+	// for Switchery inputs
+	// requires wrapper with .form-check-switchery class
+	//
+
+	// Left and right alignment
+    .form-check-switchery {
+        input[data-fouc] {
+            width: ($switchery-size * 2) + rem-calc($switchery-border-width * 2);
+            height: $switchery-size + rem-calc($switchery-border-width * 2);
+        }
+    }
+
+    // Centered
+    .form-check-switchery-double {
+    	&.form-check input[data-fouc] {
+        	position: static;
+    	}
+    }
+
+
+	//
+	// Bootstrap switch
+	//
+	// for Bootstrap switch inputs
+	// requires wrapper with .form-check-switch class
+	//
+
+    .form-check-switch {
+        input {
+            height: $input-height;
+            visibility: hidden;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+
+            // Large size
+            &[data-size=large] {
+                height: $input-height-lg;
+            }
+
+            // Small size
+            &[data-size=small] {
+                height: $input-height-sm;
+            }
+        }
+    }
+
+
+	//
+	// Text input
+	//
+	// for tags, Uniform etc.
+	// includes optional sizes
+	//
+
+	input {
+
+		// Base
+		&[type=text][data-fouc] {
+		    height: $input-height;
+		    opacity: 0;
+		}
+
+		// Large size
+		&[type=text].form-control-lg[data-fouc] {
+		    height: $input-height-lg;
+		}
+
+		// Small size
+		&[type=text].form-control-sm[data-fouc] {
+		    height: $input-height-sm;
+		}
+	}
+
+
+	//
+	// Selects
+	//
+	// for Select2 and Uniform selects
+	// single and multiple
+	//
+
+	select {
+
+		// Base
+		&[data-fouc]:not([aria-hidden=false]) {
+			height: $input-height;
+			opacity: 0;
+		}
+
+		// Large size
+		&.form-control-lg[data-fouc]:not([aria-hidden=false]) {
+		    height: $input-height-lg;
+		}
+
+		// Small size
+		&.form-control-sm[data-fouc]:not([aria-hidden=false]) {
+		    height: $input-height-sm;
+		}
+	}
+
+
+	//
+	// File input
+	//
+	// for Uniform file input
+	// includes optional sizes
+	//
+
+	input {
+
+		// Base
+		&[type=file][data-fouc] {
+		    height: $input-height;
+		    opacity: 0;
+		}
+
+		// Large size
+		&[type=file].form-control-lg[data-fouc] {
+		    height: $input-height-lg;
+		}
+
+		// Small size
+		&[type=file].form-control-sm[data-fouc] {
+		    height: $input-height-sm;
+		}
+	}
+
+
+	//
+	// Form wizard
+	//
+	// for Steps wizard
+	// only hides main container
+	//
+
+    .wizard-form[data-fouc] {
+    	opacity: 0;
+
+    	// Show wizard
+        &.wizard {
+            opacity: 1;
+        }
+
+        // Calculate approximate container height
+        &:not(.wizard) {
+            padding-top: ($wizard-step-number-size + ($spacer / 2) + $line-height-computed) + ($spacer * 2);
+            padding-bottom: (($input-padding-y * 2) + $line-height-computed + $spacer + rem-calc($input-border-width * 2));
+
+            // Hide certain elements
+            fieldset:not(:first-of-type),
+            h6 {
+                display: none;
+            }
+        }
+    }
+
+
+	//
+	// Color picker
+	//
+	// for Spectrum color picker
+	// hard coded height
+	//
+
+	input[type=text].colorpicker-flat-full[data-fouc] {
+	    height: 285px;
+	}
+
+
+	//
+	// Ace editor
+	//
+	// for code editor containers
+	// only hides main wrapper
+	//
+
+	pre[data-fouc] {
+		&:not(.ace_editor) {
+		    height: $pre-scrollable-max-height;
+		}
+		&.ace_editor {
+		    visibility: visible;
+		}
+	}
+
+
+	//
+	// Sliders
+	//
+	// for NoUI and ION sliders
+	// both require .noui-pips-height-helper and .ion-height-helper classes
+	//
+
+
+	// NoUI slider
+	.noui-pips-height-helper:not(.noUi-target)[data-fouc] {
+	    height: $slider-pips-spacer-y + $line-height-computed + $slider-height;
+	}
+	.noui-pips-height-helper.noui-slider-lg:not(.noUi-target)[data-fouc] {
+	    height: $slider-pips-spacer-y + $line-height-computed + $slider-height-lg;
+	}
+	.noui-pips-height-helper.noui-slider-sm:not(.noUi-target)[data-fouc] {
+	    height: $slider-pips-spacer-y + $line-height-computed + $slider-height-sm;
+	}
+	.noui-vertical-height-helper:not(.noUi-target)[data-fouc] {
+	    display: inline-block;
+	    height: $slider-vertical-height;
+	}
+
+	// ION range slider
+	input[type=text].ion-height-helper[data-fouc] {
+	    height: $tooltip-arrow-height + ($tooltip-padding-y * 2) + $slider-pips-font-size + ($slider-height * 4);
+	}
+	input[type=text].ion-pips-height-helper[data-fouc] {
+	    height: $tooltip-arrow-height + ($tooltip-padding-y * 2) + $slider-pips-font-size + ($slider-height * 7) + $slider-pips-spacer-y;
+	}
+	input[type=text].noui-height-helper:not(.noUi-target)[data-fouc] {
+	    height: $slider-height;
+	}
+}

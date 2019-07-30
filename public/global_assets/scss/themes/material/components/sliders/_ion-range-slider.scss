@@ -1,0 +1,344 @@
+/* ------------------------------------------------------------------------------
+*
+*  # ION Range Slider
+*
+*  Styles for ion_rangeslider.min.js - range slider plugin
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-ion {
+
+    // Base
+    .irs {
+        position: relative;
+        display: block;
+        height: $tooltip-arrow-height + ($tooltip-padding-y * 2) + $slider-pips-font-size + ($slider-height * 4);
+        user-select: none;
+        /*rtl:ignore*/
+        direction: ltr;
+    }
+
+    // Hide original input
+    .irs-hidden-input {
+        position: absolute !important;
+        display: block !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        font-size: 0 !important;
+        line-height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        outline: none !important;
+        z-index: -9999 !important;
+        background: none !important;
+        border-style: solid !important;
+        border-color: transparent !important;
+    }
+
+
+    //
+    // Background line
+    //
+
+    // Base
+    .irs-line {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        outline: none;
+        height: $slider-height;
+        top: $tooltip-arrow-height + ($tooltip-padding-y * 2) + $slider-pips-font-size + ($slider-height * 2);
+        background-color: $slider-bg;
+        @include border-radius($border-radius-round);
+    }
+
+    // It consists of 3 parts
+    .irs-line-left,
+    .irs-line-mid,
+    .irs-line-right {
+        position: absolute;
+        display: block;
+        top: 0;
+    }
+
+    // Left
+    .irs-line-left {
+        /*rtl:ignore*/
+        left: 0;
+        width: 11%;
+    }
+
+    // Middle
+    .irs-line-mid {
+        /*rtl:ignore*/
+        left: 9%;
+        width: 82%;
+    }
+
+    // And right
+    .irs-line-right {
+        /*rtl:ignore*/
+        right: 0;
+        width: 11%;
+    }
+
+
+    //
+    // Colored bar
+    //
+
+    // Base
+    .irs-bar {
+        position: absolute;
+        display: block;
+        top: $tooltip-arrow-height + ($tooltip-padding-y * 2) + $slider-pips-font-size + ($slider-height * 2);
+        /*rtl:ignore*/
+        left: 0;
+        width: 0;
+        height: $slider-height;
+        background-color: $slider-connect-bg;
+        @include border-radius($border-radius-round);
+    }
+
+    // Edge
+    .irs-bar-edge {
+        position: absolute;
+        display: block;
+        top: $tooltip-arrow-height + ($tooltip-padding-y * 2) + $slider-pips-font-size + ($slider-height * 2);
+        /*rtl:ignore*/
+        left: 0;
+        height: 0.75rem;
+        width: 0.5625rem;
+    }
+
+    // Shadow for highlighting disabled range
+    .irs-shadow {
+        position: absolute;
+        display: none;
+        top: $tooltip-arrow-height + ($tooltip-padding-y * 2) + $slider-pips-font-size + ($slider-height * 2);
+        /*rtl:ignore*/
+        left: 0;
+        width: 0;
+        height: $slider-height;
+        background-color: $body-color;
+        opacity: 0.25;
+        @include border-radius($border-radius-round);
+    }
+
+
+
+    //
+    // Handles
+    //
+
+    // Base
+    .irs-slider {
+        position: absolute;
+        display: block;
+        background-color: $slider-handle-bg;
+        border: $slider-handle-border-width solid $slider-handle-border-color;
+        cursor: pointer;
+        top: $tooltip-arrow-height + ($tooltip-padding-y * 2) + $slider-pips-font-size + $slider-height;
+        cursor: pointer;
+        z-index: 1;
+        @include size($slider-height * 3);
+        @include border-radius($border-radius-round);
+
+        // Small circle
+        &:after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -($slider-height / 2);
+            margin-left: -($slider-height / 2);
+            background-color: $slider-handle-inner-bg;
+            @include size($slider-height);
+            @include border-radius($border-radius-round);
+        }
+
+        // Animate handle
+        &,
+        &:after {
+            @include transition(background-color ease-in-out $component-transition-timer, box-shadow ease-in-out $component-transition-timer, transform ease-in-out $component-transition-timer);
+        }
+
+        // Hover state
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        // Active state
+        &:focus,
+        &:active {
+            box-shadow: 0 0 0 0.625rem rgba($slider-handle-bg, 0.1);
+        }
+
+        // Hover state
+        @include hover-focus {
+            background-color: $slider-handle-hover-bg;
+
+            // Mute circle
+            &:after {
+                background-color: $slider-handle-inner-hover-bg;
+            }
+        }
+
+        // The last one is on top of the first one
+        &.type_last {
+            z-index: 2;
+        }
+    }
+
+
+
+    //
+    // Tooltips
+    //
+
+    // Base
+    .irs-min,
+    .irs-max,
+    .irs-from,
+    .irs-to,
+    .irs-single {
+        position: absolute;
+        display: block;
+        cursor: default;
+    }
+
+    // Minimum and maximum labels
+    .irs-min,
+    .irs-max {
+        color: $slider-pips-color;
+        font-size: $slider-pips-font-size;
+        line-height: 1;
+        top: 0;
+        padding: $tooltip-padding-y;
+        background-color: $slider-bg;
+        @include border-radius($border-radius);
+    }
+    .irs-min {
+        /*rtl:ignore*/
+        left: 0;
+    }
+    .irs-max {
+        /*rtl:ignore*/
+        right: 0;
+    }
+
+    // Handle tooltips
+    .irs-from,
+    .irs-to,
+    .irs-single {
+        top: 0;
+        /*rtl:ignore*/
+        left: 0;
+        white-space: nowrap;
+        color: $tooltip-color;
+        font-size: $slider-pips-font-size;
+        line-height: 1;
+        padding: $tooltip-padding-y;
+        top: 0;
+        background-color: $tooltip-bg;
+        @include border-radius($border-radius);
+
+        // Tooltip arrow
+        &:after {
+            content: "";
+            position: absolute;
+            display: block;
+            bottom: -($tooltip-arrow-height * 2);
+            left: 50%;
+            margin-left: -($tooltip-arrow-height);
+            overflow: hidden;
+            border: $tooltip-arrow-height solid transparent;
+            border-top-color: $tooltip-arrow-color;
+            @include size(0);
+        }
+    }
+
+
+    //
+    // The grid
+    //
+
+    // Base
+    .irs-grid {
+        position: absolute;
+        display: none;
+        bottom: 0;
+        /*rtl:ignore*/
+        left: 0;
+        width: 100%;
+        height: ($slider-pips-font-size + $slider-pips-spacer-y);
+    }
+
+    // If slider has grid
+    .irs-with-grid {
+        height: $tooltip-arrow-height + ($tooltip-padding-y * 2) + $slider-pips-font-size + ($slider-height * 7) + $slider-pips-spacer-y;
+
+        // Display grid
+        .irs-grid {
+            display: block;
+        }
+    }
+
+    // Marker
+    .irs-grid-pol {
+        position: absolute;
+        top: 0;
+        /*rtl:ignore*/
+        left: 0;
+        width: $slider-pips-marker-width;
+        height: ($slider-pips-marker-height * 2);
+        background-color: $slider-pips-color;
+
+        // Sub marker
+        &.small {
+            height: $slider-pips-marker-height;
+        }
+    }
+
+    // Text label
+    .irs-grid-text {
+        position: absolute;
+        bottom: 0;
+        /*rtl:ignore*/
+        left: 0;
+        white-space: nowrap;
+        text-align: center;
+        font-size: $slider-pips-font-size;
+        color: $slider-pips-color;
+        line-height: 1;
+        padding: 0 $slider-pips-marker-height;
+    }
+
+
+    //
+    // Disabled state
+    //
+
+    // Disabled mask
+    .irs-disable-mask {
+        position: absolute;
+        display: block;
+        top: 0;
+        /*rtl:ignore*/
+        left: -1%;
+        width: 102%;
+        height: 100%;
+        cursor: default;
+        background: transparent;
+        z-index: 2;
+    }
+
+    // Mute slider if disabled
+    .irs-disabled {
+        opacity: $slider-disabled-opacity;
+    }
+}

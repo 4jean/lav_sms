@@ -1,0 +1,331 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Dropzone file uploader
+ *
+ *  Styles for dropzone.min.js - open source library that provides drag’n’drop file uploads with image previews
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-dropzone {
+
+	// Base
+	.dropzone {
+		position: relative;
+		border: $dropzone-border-width $dropzone-border-style $card-border-color;
+		min-height: $dropzone-min-height;
+		background-color: $card-bg;
+		padding: $dropzone-spacer;
+		@include border-radius($border-radius);
+
+		// If inside panel, give it grey background
+		.card & {
+			background-color: $dropzone-bg;
+			border-color: $dropzone-border-color;
+		}
+
+		// Message
+		.dz-message {
+			opacity: 1;
+		}
+		&.dz-started .dz-message {
+			display: none;
+		}
+
+		// Drag hover border and bg color
+		&.dz-drag-hover {
+			border-color: $dropzone-drag-border-color;
+			background-color: $dropzone-drag-bg;
+			color: $dropzone-drag-color;
+		}
+
+		// Inside sidebar
+		.sidebar & {
+			text-align: center;
+
+			// Message
+			.dz-default.dz-message {
+				&:before {
+					font-size: ($icon-font-size * 4);
+					width: ($icon-font-size * 4);
+					height: ($icon-font-size * 4);
+					margin-left: -($icon-font-size * 2);
+					top: 50%;
+					transform: translateY(-50%);
+				}
+
+				// Message text
+				span {
+					font-size: $h6-font-size;
+				}
+			}
+		}
+	}
+
+
+	//
+	// Messages
+	//
+
+	.dropzone {
+
+		// Default styles
+		.dz-default {
+			&.dz-message {
+				height: $dropzone-min-height;
+				width: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				text-align: center;
+				opacity: 1;
+				@include border-radius($border-radius);
+				@include transition(opacity ease-in-out $component-transition-timer);
+
+				// Icon
+				&:before {
+					content: '\ea0e';
+					font-family: $icon-font-family;
+					font-size: $dropzone-placeholder-icon-size;
+					display: inline-block;
+					position: absolute;
+					top: ($dropzone-min-height / 2) - $dropzone-placeholder-icon-size;
+					left: 50%;
+					transform: translateX(-50%);
+					line-height: 1;
+					z-index: 2;
+					color: $dropzone-placeholder-icon-color;
+					@include ll-font-smoothing();
+				}
+
+				// Text label
+				> span {
+					font-size: $h5-font-size;
+					color: $dropzone-placeholder-text-color;
+					display: block;
+					margin-top: ($dropzone-min-height / 2) + $spacer;
+
+					// Subtext
+					span {
+						display: block;
+						color: lighten($dropzone-placeholder-text-color, 15%);
+						font-size: $h6-font-size;
+					}
+				}
+			}
+		}
+
+		// On files drag
+		&.dz-drag-hover .dz-message {
+			opacity: 0.75;
+		}
+		&.dz-started .dz-message {
+			display: block;
+			opacity: 0;
+		}
+	}
+
+
+	//
+	// Preview
+	//
+
+	.dropzone,
+	.dropzone-previews {
+		.dz-preview {
+			background-color: $card-bg;
+			position: relative;
+			display: inline-block;
+			margin: $dropzone-preview-spacer;
+			min-width: $dropzone-preview-width;
+			border: $card-border-width solid $card-border-color;
+			padding: $dropzone-preview-spacer;
+			@include border-radius($border-radius);
+			@include box-shadow($card-box-shadow);
+
+			// Hide thumbnail in file preview
+			&.dz-file-preview [data-dz-thumbnail] {
+				display: none;
+			}
+
+			// Details
+			.dz-details {
+				position: relative;
+
+				// File name
+				.dz-filename {
+					overflow: hidden;
+					margin-top: map-get($spacers, 2);
+				}
+
+				// Image
+				img {
+					position: absolute;
+					top: 0;
+					left: 0;
+				}
+
+				// Size
+				.dz-size {
+					margin-top: map-get($spacers, 2);
+				}
+			}
+
+			// Hover state
+			@include hover {
+				.dz-details img {
+					display: none;
+				}
+			}
+
+			// Marks
+			.dz-error-mark,
+			.dz-success-mark {
+				display: none;
+				position: absolute;
+				z-index: 9;
+				top: 0;
+				right: 0;
+				padding: ($dropzone-preview-spacer / 2);
+				background-color: $card-bg;
+				border-left: $card-border-width solid $card-border-color;
+				border-bottom: $card-border-width solid $card-border-color;
+				@include border-radius(0 0 0 $card-border-radius);
+
+				// Icon base
+				&:after {
+					font-family: $icon-font-family;
+					display: block;
+					font-size: $font-size-base;
+					line-height: 1;
+					@include ll-font-smoothing();
+				}
+
+				// Hide default things
+				span,
+				svg {
+					display: none;
+				}
+			}
+			.dz-error-mark {
+				color: theme-color('danger');
+
+				&:after {
+					content: '\ed6a';
+				}
+			}
+			.dz-success-mark {
+				color: theme-color('success');
+
+				&:after {
+					content: '\ed6e';
+				}
+			}
+
+			// Error and success marks
+			&.dz-error .dz-error-mark,
+			&.dz-success .dz-success-mark {
+				display: block;
+				opacity: 1;
+			}
+
+			// Uploading progress
+			.dz-progress {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: ($dropzone-preview-spacer / 2);
+				display: none;
+
+				// Upload progress
+				.dz-upload {
+					display: block;
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					left: 0;
+					width: 0%;
+					height: 100%;
+					background-color: theme-color('success');
+					@include transition(width ease-in-out $component-transition-timer);
+					@include border-bottom-radius($card-border-radius - rem-calc($card-border-width));
+				}
+			}
+			&.dz-processing .dz-progress {
+				display: block;
+			}
+			&.dz-success {
+				.dz-progress {
+					display: block;
+					opacity: 0;
+					@include transition(opacity ease-in-out $component-transition-timer);
+				}
+			}
+
+			// Error message
+			.dz-error-message {
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background-color: rgba($card-bg, 0.9);
+				margin: $dropzone-preview-spacer;
+				padding: $dropzone-preview-spacer;
+				color: theme-color('danger');
+				max-width: 100%;
+				z-index: 5;
+				opacity: 0;
+				@include transition(opacity ease-in-out $component-transition-timer);
+			}
+			&.dz-error {
+				@include hover {
+					.dz-error-message {
+						display: block;
+						opacity: 1;
+					}
+				}
+
+				.dz-progress .dz-upload {
+					background: theme-color('danger');
+				}
+			}
+
+			// Image preview
+			&.dz-image-preview:hover {
+				.dz-details img {
+					display: block;
+					opacity: 0.1;
+				}
+			}
+
+			// Image thumb
+			.dz-image {
+				img {
+					width: 100%;
+				}
+			}
+
+			// Remove button
+			a.dz-remove {
+				background-color: $btn-light-bg;
+				border: $btn-border-width solid $btn-light-border-color;
+				display: block;
+				padding: $btn-padding-y-sm $btn-padding-x-sm;
+				text-align: center;
+				color: $btn-light-color;
+				margin-top: map-get($spacers, 2);
+				cursor: pointer;
+				@include border-radius($border-radius);
+				@include transition(all ease-in-out $component-transition-timer);
+
+				// Hover state
+				@include hover {
+					color: $btn-light-hover-color;
+					background-color: $btn-light-hover-bg;
+					border-color: $btn-light-hover-border-color;
+				}
+			}
+		}
+	}
+}

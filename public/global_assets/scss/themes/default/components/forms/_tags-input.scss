@@ -1,0 +1,101 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Bootstrap tags input
+*
+*  Styles for tagsinput.js - tags input for Bootstrap
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-tags-input {
+
+    // Base
+    .bootstrap-tagsinput {
+        background-color: $input-bg;
+        border: $input-border-width solid $input-border-color;
+        display: inline-block;
+        padding: 0 0 $tags-spacer 0;
+        vertical-align: middle;
+        width: 100%;
+        @include border-radius($tag-border-radius);
+
+        // Input field
+        input {
+            direction: ltr;
+            border: 0;
+            outline: 0;
+            background-color: transparent;
+            padding: ($input-padding-y - $tags-spacer) $input-padding-x;
+            margin-top: $tags-spacer;
+            margin-left: $tags-spacer;
+            width: auto !important;
+            max-width: 50%;
+            min-width: 4rem;
+            box-shadow: none;
+        }
+
+        // Inside input group
+        .input-group & {
+            width: 1%;
+            flex: 1 1 auto;
+        }
+
+        // Twitter typeahead adaptation
+        .twitter-typeahead {
+            width: auto;
+        }
+        .tt-dropdown-menu {
+            margin-top: ($tags-spacer + $dropdown-spacer);
+            min-width: $dropdown-min-width;
+        }
+
+        // Tag
+        .tag {
+            margin: $tags-spacer 0 0 $tags-spacer;
+            padding: ($input-btn-padding-y - $tags-spacer) $input-btn-padding-x;
+            padding-right: ($input-btn-padding-x + ($icon-font-size * 1.5));
+            float: left;
+            position: relative;
+            @include border-radius($tag-border-radius);
+            @include transition(all ease-in-out $component-transition-timer);
+
+            // Skip tokens with custom background color
+            &:not([class*=bg-]) {
+                background-color: $tags-bg;
+                color: $tags-color;
+
+                // Hover state
+                @include hover-focus {
+                    background-color: $tags-hover-bg;
+                    color: $tags-hover-color;
+                }
+            }
+
+            // Remove button
+            [data-role="remove"] {
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                right: $input-btn-padding-x;
+                line-height: 1;
+                margin-top: -($font-size-xs / 2);
+                opacity: 0.7;
+                @include transition(opacity ease-in-out $component-transition-timer);
+
+                // Hover state
+                @include hover {
+                    opacity: 1;
+                }
+
+                // Icon
+                &:after {
+                    content: '\ed6a';
+                    font-family: $icon-font-family;
+                    display: block;
+                    font-size: $font-size-xs;
+                    @include ll-font-smoothing();
+                }
+            }
+        }
+    }
+}

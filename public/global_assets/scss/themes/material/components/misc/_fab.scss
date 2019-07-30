@@ -1,0 +1,450 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Floating action buttons
+*
+*  Styles for fab.min.js - material design floating action button with menu
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-fab {
+
+    // Base
+    .fab-menu {
+        position: relative;
+        display: inline-block;
+        white-space: nowrap;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        z-index: ($zindex-fixed - 1);
+        transform: scale(0.85);
+
+        // Inside page header
+        .page-header > & {
+            position: absolute;
+            bottom: -($fab-main-btn-size / 2);
+        }
+
+        @include media-breakpoint-up(md) {
+            transform: scale(1);
+        }
+    }
+
+
+    //
+    // Positions
+    //
+
+    // Absolute
+    .fab-menu-absolute {
+        position: absolute;
+    }
+
+    // Fixed
+    .fab-menu-fixed {
+        position: fixed;
+        z-index: $zindex-fixed;
+    }
+
+
+    //
+    // Button placements
+    //
+
+     // Top placement
+    .fab-menu-top-left,
+    .fab-menu-top-right, {
+
+        // Top spacing
+        .content-wrapper > & {
+            top: -($fab-main-btn-size / 2);
+        }
+    }
+
+    // Bottom placement
+    .fab-menu-bottom-left,
+    .fab-menu-bottom-right {
+        bottom: $spacer;
+        transition: bottom ease-in-out $component-transition-timer;
+        
+        // Keep space for footer
+        &.reached-bottom {
+            bottom: $nav-link-height + rem-calc($navbar-border-width * 2) + ($spacer * 2);
+        }
+    }
+
+    // Right placement
+    .fab-menu-top-right,
+    .fab-menu-bottom-right {
+        right: $fab-gutter-x;
+    }
+
+
+    //
+    // Inner menu
+    //
+
+    .fab-menu-inner {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        // Menu items
+        > li {
+            display: block;
+            position: absolute;
+            top: $fab-btn-gap;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding-top: $fab-inner-btn-spacing;
+            margin-top: -($fab-inner-btn-spacing);
+
+            // Remove border from buttons
+            .btn {
+                border-width: 0;
+                box-shadow: $shadow-depth1;
+
+                // States shadow
+                &:hover,
+                &:focus,
+                &.focus,
+                &:not(:disabled):not(.disabled):active,
+                &:not(:disabled):not(.disabled).active {
+                    box-shadow: $shadow-depth2 !important;
+                }
+            }
+
+            // Make buttons smaller than main one
+            .btn-float {
+                padding: 0;
+                width: $fab-inner-btn-size;
+                height: $fab-inner-btn-size;
+
+                // Icon spacing
+                > i {
+                    margin: ($btn-float-padding - $fab-btn-gap);
+                }
+            }
+
+            // Keep shadow for opened dropdown toggle
+            .show > .btn-float.dropdown-toggle {
+                box-shadow: $shadow-depth2;
+            }
+
+            // Left and right menus
+            .dropleft,
+            .dropright {
+                .btn:before,
+                .btn:after {
+                    content: none;
+                }
+            }
+
+
+            //
+            // Badges and badge marks
+            //
+
+            // Base
+            .badge {
+                position: absolute;
+                top: ($fab-inner-btn-spacing - ($fab-badge-spacer-y * 2));
+                right: -($fab-badge-spacer-x);
+            }
+
+            // Badge marks
+            .badge-mark {
+                top: ($fab-inner-btn-spacing - $fab-badge-spacer-y + ($badge-mark-size / 2));
+                right: -($fab-badge-spacer-x - ($badge-mark-size / 2));
+            }
+
+
+            //
+            // Change appearance in bottom position
+            //
+
+            .fab-menu-bottom-left &,
+            .fab-menu-bottom-right & {
+                padding-top: 0;
+                margin-top: 0;
+                padding-bottom: $fab-inner-btn-spacing;
+                margin-bottom: -($fab-inner-btn-spacing);
+
+                // Badges
+                .badge {
+                    top: -($fab-badge-spacer-y * 2);
+                }
+
+                // Badge marks
+                .badge-mark {
+                    top: ($fab-badge-spacer-y - ($badge-mark-size / 2));
+                }
+            }
+        }
+    }
+
+
+    //
+    // Main button
+    //
+
+    // Base
+    .fab-menu-btn {
+        z-index: ($zindex-fixed + 1);
+        border-width: 0;
+        box-shadow: $shadow-depth1;
+
+        // Float button overrides
+        &.btn-float {
+            padding: ($fab-main-btn-size / 2);
+
+            // Icons
+            > i {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-top: -($icon-font-size / 2);
+                margin-left: -($icon-font-size / 2);
+            }
+        }
+
+        // Button shadow
+        &:hover,
+        &:focus,
+        &:not(:disabled):not(.disabled):active,
+        &:not(:disabled):not(.disabled).active,
+        &:not(:disabled):not(.disabled):active:focus,
+        .fab-menu[data-fab-toggle="hover"]:hover &,
+        .fab-menu[data-fab-state="open"] & {
+            box-shadow: $shadow-depth2;
+        }
+
+        // Show shadow in disabled state
+        &:disabled,
+        &.disabled {
+            box-shadow: $shadow-depth1; 
+        }
+    }
+
+    // Animation
+    .fab-icon-close,
+    .fab-icon-open {
+        transform: rotate(360deg);
+        transition: all ease-in-out ($component-transition-timer * 2);
+
+        // Reverse rotation if active
+        .fab-menu[data-fab-toggle="hover"]:hover &,
+        .fab-menu[data-fab-state="open"] & {
+            transform: rotate(0deg);
+        }
+    }
+
+    // Open icon
+    .fab-icon-open {
+        .fab-menu[data-fab-toggle="hover"]:hover &,
+        .fab-menu[data-fab-state="open"] & {
+            opacity: 0;
+        }
+    }
+
+    // Close icon
+    .fab-icon-close {
+        opacity: 0;
+
+        // Display if active
+        .fab-menu[data-fab-toggle="hover"]:hover &,
+        .fab-menu[data-fab-state="open"] & {
+            opacity: 1;
+        }
+    }
+
+
+    //
+    // Inner menu animation
+    //
+
+    // Base
+    .fab-menu {
+
+        // Hide items
+        .fab-menu-inner > li {
+            visibility: hidden;
+            opacity: 0;
+            transition: all ease-in-out ($component-transition-timer * 2);
+
+            // Items number
+            &:nth-child(1) {
+                transition-delay: 0.05s;
+            }
+            &:nth-child(2) {
+                transition-delay: 0.1s;
+            }
+            &:nth-child(3) {
+                transition-delay: 0.15s;
+            }
+            &:nth-child(4) {
+                transition-delay: 0.2s;
+            }
+            &:nth-child(5) {
+                transition-delay: 0.25s;
+            }
+        }
+
+        // Show items
+        &[data-fab-toggle="hover"]:hover,
+        &[data-fab-state="open"] {
+            .fab-menu-inner > li {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }
+
+    // Top position
+    .fab-menu-top,
+    .fab-menu-top-left,
+    .fab-menu-top-right {
+        &[data-fab-toggle="hover"]:hover,
+        &[data-fab-state="open"] {
+            .fab-menu-inner > li {
+                &:nth-child(1) {
+                    top: ($fab-inner-btn-size + $fab-inner-btn-spacing) + ($fab-btn-gap * 2);
+                }
+                &:nth-child(2) {
+                    top: (($fab-inner-btn-size + $fab-inner-btn-spacing) * 2) + ($fab-btn-gap * 2);
+                }
+                &:nth-child(3) {
+                    top: (($fab-inner-btn-size + $fab-inner-btn-spacing) * 3) + ($fab-btn-gap * 2);
+                }
+                &:nth-child(4) {
+                    top: (($fab-inner-btn-size + $fab-inner-btn-spacing) * 4) + ($fab-btn-gap * 2);
+                }
+                &:nth-child(5) {
+                    top: (($fab-inner-btn-size + $fab-inner-btn-spacing) * 5) + ($fab-btn-gap * 2);
+                }
+            }
+        }
+    }
+
+    // Bottom position
+    .fab-menu-bottom,
+    .fab-menu-bottom-left,
+    .fab-menu-bottom-right {
+        &[data-fab-toggle="hover"]:hover,
+        &[data-fab-state="open"] {
+            .fab-menu-inner > li {
+                &:nth-child(1) {
+                    top: -($fab-inner-btn-size + $fab-inner-btn-spacing) + ($fab-btn-gap * 2);
+                }
+                &:nth-child(2) {
+                    top: -(($fab-inner-btn-size + $fab-inner-btn-spacing) * 2) + ($fab-btn-gap * 2);
+                }
+                &:nth-child(3) {
+                    top: -(($fab-inner-btn-size + $fab-inner-btn-spacing) * 3) + ($fab-btn-gap * 2);
+                }
+                &:nth-child(4) {
+                    top: -(($fab-inner-btn-size + $fab-inner-btn-spacing) * 4) + ($fab-btn-gap * 2);
+                }
+                &:nth-child(5) {
+                    top: -(($fab-inner-btn-size + $fab-inner-btn-spacing) * 5) + ($fab-btn-gap * 2);
+                }
+            }
+        }
+    }
+
+
+    //
+    // Item labels
+    //
+
+    .fab-menu-inner div[data-fab-label] {
+
+        // Base
+        &:after {
+            content: attr(data-fab-label);
+            position: absolute;
+            top: 50%;
+            margin-top: -($tooltip-padding-y);
+            right: ($fab-btn-gap + $fab-inner-btn-size + $fab-gutter-x);
+            color: $tooltip-color;
+            background-color: $tooltip-bg;
+            padding: $tooltip-padding-y $tooltip-padding-x;
+            visibility: hidden;
+            opacity: 0;
+            box-shadow: $shadow-depth1;
+            transition: all ease-in-out ($component-transition-timer * 2);
+            @include border-radius($border-radius);
+
+            // Reposition them in bottom position
+            .fab-menu-bottom-left &,
+            .fab-menu-bottom-right & {
+                margin-top: -($tooltip-padding-y + $fab-inner-btn-spacing);
+            }
+        }
+
+        // Placement
+        .fab-menu-top-left &:after,
+        .fab-menu-bottom-left &:after,
+        &.fab-label-right:after {
+            right: auto;
+            left: ($fab-btn-gap + $fab-inner-btn-size + $fab-gutter-x);
+        }
+
+        // Display labels
+        .fab-menu[data-fab-toggle="hover"] &:hover:after,
+        .fab-menu[data-fab-state="open"] &:hover:after {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        // Light label
+        &.fab-label-light:after {
+            background-color: $fab-label-light-bg;
+            color: $fab-label-light-color;
+        }
+
+        // Always visible
+        &.fab-label-visible:after {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+
+
+    // Layout specific additions
+    // ------------------------------
+
+    //
+    // # Layout 5
+    //
+
+    @if $layout == 'layout_5' {
+
+        // Left placement
+        .fab-menu-top-left,
+        .fab-menu-bottom-left {
+            left: $fab-gutter-x;
+
+            @include media-breakpoint-up(md) {
+                left: ((($page-container-padding-x / 2) - $fab-main-btn-size) / 2) + $content-container-padding-x;
+            }
+            @include media-breakpoint-up(xl) {
+                left: (($page-container-padding-x - $fab-main-btn-size) / 2) + $content-container-padding-x;
+            }
+        }
+        
+        // Right placement
+        .fab-menu-top-right,
+        .fab-menu-bottom-right {
+            @include media-breakpoint-up(md) {
+                right: ((($page-container-padding-x / 2) - $fab-main-btn-size) / 2) + $content-container-padding-x;
+            }
+            @include media-breakpoint-up(xl) {
+                right: (($page-container-padding-x - $fab-main-btn-size) / 2) + $content-container-padding-x;
+            }
+        }
+    }
+}

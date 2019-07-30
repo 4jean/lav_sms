@@ -1,0 +1,63 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Blog layouts
+ *
+ *  Blog layouts with various blog layouts
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-blog {
+
+    // Horizontal layout
+    .blog-horizontal {
+
+        // Stick thumb to the left and give it fixed width
+        .card-img-actions {
+            width: 100%;
+
+            // Desktop size
+            @include media-breakpoint-up(sm) {
+                width: 45%;
+                float: left;
+                max-width: $blog-horizontal-img-max-width;
+                z-index: 10;
+            }
+        }
+    }
+
+
+    //
+    // Media sizing
+    //
+
+    // Mini
+    .blog-horizontal-xs {
+        .card-img-actions {
+            @include media-breakpoint-up(sm) {
+                width: 35%;
+                max-width: $blog-horizontal-img-max-width-xs;
+            }
+        }
+    }
+
+    // Medium
+    .blog-horizontal-sm {
+        .card-img-actions {
+            @include media-breakpoint-up(sm) {
+                width: 40%;
+                max-width: $blog-horizontal-img-max-width-sm;
+            }
+        }
+    }
+
+    // Large
+    .blog-horizontal-lg {
+        .card-img-actions {
+            @include media-breakpoint-up(sm) {
+                width: 50%;
+                max-width: $blog-horizontal-img-max-width-lg;
+            }
+        }
+    }
+}

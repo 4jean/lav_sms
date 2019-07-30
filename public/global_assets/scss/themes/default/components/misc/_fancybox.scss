@@ -1,0 +1,342 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Fancybox lightbox
+ *
+ *  Styles for fancybox.min.js - Mac-style "lightbox" plugin
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-fancybox {
+
+
+    // Core
+    // ------------------------------
+
+    .fancybox-wrap,
+    .fancybox-skin,
+    .fancybox-outer,
+    .fancybox-inner,
+    .fancybox-image,
+    .fancybox-wrap iframe,
+    .fancybox-wrap object,
+    .fancybox-nav,
+    .fancybox-nav span,
+    .fancybox-tmp {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        outline: none;
+        vertical-align: top;
+    }
+
+    // Wrapper
+    .fancybox-wrap {
+        position: absolute;
+        top: 0;
+        /*rtl:ignore*/
+        left: 0;
+        z-index: 8020;
+    }
+
+    // Skin
+    .fancybox-skin {
+        position: relative;
+        background-color: $modal-content-bg;
+        @include border-radius($border-radius);
+    }
+
+    // Opened lightbox
+    .fancybox-opened {
+        z-index: 8030;
+
+        .fancybox-skin {
+            @include box-shadow($modal-content-box-shadow-xs);
+
+        }
+    }
+
+
+    // Content
+    // ------------------------------
+
+    // Image containers
+    .fancybox-outer,
+    .fancybox-inner {
+        position: relative;
+    }
+    .fancybox-inner {
+        overflow: hidden;
+
+        .fancybox-type-iframe & {
+            -webkit-overflow-scrolling: touch;
+        }
+    }
+
+    // Image
+    .fancybox-image,
+    .fancybox-iframe {
+        display: block;
+        @include size(100%);
+    }
+    .fancybox-image {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    // Loading indicator
+    #fancybox-loading {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        cursor: pointer;
+        z-index: 8060;
+        color: $white;
+        opacity: 0.8;
+
+        // Icon container
+        div {
+
+            // Icon
+            &:after {
+                content: '\eb55';
+                font-family: $icon-font-family;
+                font-size: $icon-font-size;
+                margin-top: -($icon-font-size / 2);
+                margin-left: -($icon-font-size / 2);
+                display: block;
+                line-height: 1;
+                animation: rotation 1s ease infinite;
+                @include ll-font-smoothing();
+                @include size($icon-font-size);
+            }
+        }
+    }
+
+    // Close button
+    .fancybox-close {
+        position: absolute;
+        right: $fancybox-nav-spacer-x;
+        top: $fancybox-nav-spacer-y;
+        padding: $fancybox-nav-padding;
+        z-index: 8061;
+        cursor: pointer;
+        line-height: 1;
+        color: $fancybox-nav-color;
+        background-color: $fancybox-nav-bg;
+        @include border-radius($border-radius);
+        @include transition(all ease-in-out $component-transition-timer);
+
+        // Hover state
+        @include hover-focus {
+            background-color: $fancybox-nav-hover-bg;
+            color: $fancybox-nav-hover-color;
+        }
+
+        // Icon
+        &:after {
+            content: '\ed6a';
+            font-family: $icon-font-family;
+            font-size: $icon-font-size;
+            display: block;
+            @include ll-font-smoothing();
+        }
+    }
+
+    // Error
+    .fancybox-error {
+        color: theme-color("danger");  
+        font-weight: $font-weight-semibold;  
+        margin: 0;  
+        padding: $modal-inner-padding;  
+        white-space: nowrap;
+    }
+
+
+    //
+    // Title
+    //
+
+    // Helper
+    .fancybox-title {
+        visibility: hidden;
+        position: relative;
+        z-index: 8050;
+
+        .fancybox-opened & {
+            visibility: visible;
+        }
+    }
+
+    // Wrappers
+    .fancybox-title-float-wrap {
+        position: absolute;
+        bottom: 0;
+        right: 50%;
+        margin-bottom: -(($fancybox-caption-padding-y * 2) + $line-height-computed);
+        z-index: 8050;
+        text-align: center;
+        @include border-bottom-radius($border-radius);
+
+        .child {
+            display: inline-block;
+            margin-right: -100%;
+            padding: $fancybox-caption-padding-y $fancybox-caption-padding-x;
+            background-color: $fancybox-caption-bg;
+            color: $fancybox-caption-color;
+            white-space: nowrap;
+        }
+    }
+    .fancybox-title-outside-wrap {
+        text-align: center;
+        margin-top: ($spacer / 2);
+        color: $fancybox-caption-color;
+    }
+    .fancybox-title-inside-wrap {
+        padding: $fancybox-caption-padding-y $fancybox-caption-padding-x;
+    }
+    .fancybox-title-over-wrap {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        color: $fancybox-caption-color;
+        padding: $fancybox-caption-padding-y $fancybox-caption-padding-x;
+        background-color: $fancybox-caption-bg;
+    }
+
+
+    // Navigation
+    // ------------------------------
+
+    // Container
+    .fancybox-nav {
+        position: absolute;
+        top: 0;
+        width: 40%;
+        height: 100%;
+        cursor: pointer;
+        background-color: transparent;
+        -webkit-tap-highlight-color: transparent;
+        z-index: 8040;
+
+        // Icons
+        span {
+            position: absolute;
+            top: 50%;
+            margin-top: -(($icon-font-size / 2) + $fancybox-nav-padding);
+            cursor: pointer;
+            padding: $fancybox-nav-padding;
+            color: $fancybox-nav-color;
+            background-color: $fancybox-nav-bg;
+            display: block;
+            line-height: 1;
+            min-width: ($icon-font-size + ($fancybox-nav-padding * 2));
+            text-align: center;
+            visibility: hidden;
+            opacity: 0;
+            z-index: 8040;
+            @include border-radius($border-radius);
+            @include transition(all ease-in-out $component-transition-timer);
+
+            // Arrow icons
+            &:after {
+                font-family: $icon-font-family;
+                display: inline-block;
+                font-size: $icon-font-size;
+                line-height: 1;
+                @include ll-font-smoothing();
+            } 
+
+            // Hover state
+            @include hover-focus {
+                background-color: $fancybox-nav-hover-bg;
+                color: $fancybox-nav-hover-color;
+            }
+        }
+
+        // Show on hover
+        &:hover span {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    // Previous button
+    .fancybox-prev {
+        left: 0;
+
+        // Nav container
+        span {
+            left: $fancybox-nav-spacer-x;
+
+            // Arrow
+            &:after {
+                @if $direction == 'LTR' {
+                    content: '\e9c8';
+                }
+                @else {
+                    content: '\e9cb';
+                }
+            } 
+        }
+    }
+
+    // Next button
+    .fancybox-next {
+        right: 0;
+
+        // Nav container
+        span {
+            right: $fancybox-nav-spacer-x;
+
+            // Arrow
+            &:after {
+                @if $direction == 'LTR' {
+                    content: '\e9cb';
+                }
+                @else {
+                    content: '\e9c8';
+                }
+            } 
+        }
+    }
+
+
+    // Overlays
+    // ------------------------------
+
+    // Helper
+    .fancybox-lock {
+        overflow: visible !important;
+        width: auto;
+
+        .fancybox-overlay {
+            overflow: auto;
+            overflow-y: scroll;
+        }
+
+        body {
+            overflow: hidden !important;
+        }
+    }
+    .fancybox-lock-test {
+        overflow-y: hidden !important;
+    }
+
+    // Overlays
+    .fancybox-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        display: none;
+        z-index: 8010;
+        background-color: rgba($black, 0.8);
+    }
+    .fancybox-overlay-fixed {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+    }
+}

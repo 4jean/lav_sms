@@ -1,0 +1,59 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Modal component
+ *
+ *  Overrides for modal dialog component
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Modal header
+.modal-header {
+    position: relative;
+    @include border-top-radius($border-radius-lg - rem-calc($modal-header-border-width));
+
+    // Close button
+    .close {
+        color: inherit;
+    }
+
+    // If header has '.bg-*' class,
+    // remove bottom padding and border
+    &:not([class*=bg-]) {
+        padding-bottom: 0;
+        border-bottom-width: 0;
+    }
+}
+
+// Footer (for actions)
+.modal-footer {
+
+    // If footer has '.bg-*' class,
+    // remove top padding and border
+    &:not([class*=bg-]) {
+        padding-top: 0;
+        border-top-width: 0;
+    }
+
+    // Add top border if footer comes after table
+    [class*=table-responsive] + &,
+    .table + & {
+        border-top-width: $modal-footer-border-width;
+        border-top-color: $table-border-color;
+    }
+}
+
+// Scale up the modal
+@include media-breakpoint-up(sm) {
+
+    // Mini size
+    .modal-xs {
+        max-width: $modal-xs-width;
+    }
+
+    // Full width size
+    .modal-full {
+        max-width: $modal-full-width;
+        margin-left: ((100% - $modal-full-width) / 2);
+        margin-right: ((100% - $modal-full-width) / 2);
+    }
+}

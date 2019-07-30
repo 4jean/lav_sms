@@ -1,0 +1,26 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Custom color system
+ *
+ *  Custom color system styles, includes background, border and text colors
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Import custom template config
+@import "../../../../config";
+@import "../../../../shared/utils/ll-functions";
+@import "../../../../shared/utils/ll-mixins";
+@import "../../../../themes/material/colors/palette";
+
+// Core variables and mixins
+@import "../../../../_bootstrap/functions";
+@import "../../../../_bootstrap/variables";
+@import "../../../../_bootstrap/mixins";
+
+// Import template's variables
+@import "../variables/variables-core";
+@import "../variables/variables-custom";
+@import "../../../../themes/material/bootstrap_limitless/mixins";
+
+// Color system, always load last
+@import "../../../../themes/material/colors/colors";

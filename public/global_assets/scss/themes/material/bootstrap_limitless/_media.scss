@@ -1,0 +1,82 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Media object component
+ *
+ *  Overrides for media object component
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+// Base class
+.media {
+	margin-top: $spacer;
+
+	// Remove vertical spacing in certain cases
+	&.card-body,
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
+// Media list
+.media-list {
+	list-style: none;
+	padding-left: 0;
+	margin-bottom: 0;
+}
+
+// Media title inside .media-body
+.media-title {
+	margin-bottom: $media-title-margin-bottom;
+}
+
+// Image preview
+.img-preview {
+    max-height: $img-preview-max-height;
+}
+
+
+//
+// Styling variations
+//
+
+// Bordered list
+.media-list-bordered {
+	.media {
+		margin-top: 0;
+		padding: $media-padding-y $media-padding-x;
+		border-top: $media-border-width solid $media-border-color;
+	}
+}
+
+// Linked list
+.media-list-linked {
+
+	// Item container
+	.media {
+        padding: $media-padding-y $media-padding-x;
+	}
+
+	// Inside media list
+	li.media {
+		margin-top: 0;
+		border-top: $media-border-width solid $media-border-color;
+		border-bottom: $media-border-width solid $media-border-color;
+	}
+
+	// Inside borderedmedia list
+	&.media-list-bordered li.media {
+		border-bottom: 0;
+	}
+
+	// Link
+    a.media {
+        color: inherit;
+    	@include transition(all ease-in-out $component-transition-timer);
+
+    	// Hover state
+        @include hover {
+        	background-color: $media-link-hover-bg;
+        }
+    }
+}

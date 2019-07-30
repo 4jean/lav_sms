@@ -1,0 +1,194 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Bootstrap Duallistbox
+*
+*  Styles for listbox.js - A responsive dual listbox widget optimized for Bootstrap
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-dual-listbox {
+
+    // Base
+    .bootstrap-duallistbox-container {
+
+        // Add bottom spacing to the first box
+        .box1 {
+            margin-bottom: $spacer;
+        }
+
+        // Select
+        select.form-control {
+            padding: $input-btn-padding-y;
+            @include border-top-radius(0);
+        }
+        option {
+            display: block;
+            padding: $input-btn-padding-y $input-btn-padding-x;
+            @include border-radius($border-radius);
+        }
+
+        // Move option on select
+        &.moveonselect {
+
+            // Hide "Move single" button
+            .move,
+            .remove {
+                display: none;
+            }
+
+            // Add border to the next buttons
+            .btn-group {
+
+                // Visible buttons
+                .moveall,
+                .removeall {
+                    width: 100%;
+                    @include border-top-radius($btn-border-radius);
+                }
+
+                // Spacing between buttons
+                .btn + .btn {
+                    border-left-width: $btn-border-width;
+                }
+            }
+        }
+
+
+        //
+        // Buttons
+        //
+
+        // Main buttons
+        .buttons {
+            width: 100%;
+            margin-bottom: -($btn-border-width);
+        }
+
+        // Clear buttons
+        .clear1,
+        .clear2 {
+            display: none;
+            margin-top: $spacer;
+
+            // Reset styles
+            @include plain-hover-focus {
+                background-color: transparent;
+                border: 0;
+                color: $link-color;
+                padding: 0;
+                box-shadow: none;
+            }
+        }
+        .box1.filtered .clear1,
+        .box2.filtered .clear2 {
+            display: inline-block;
+        }
+
+        // Control buttons
+        .move,
+        .remove,
+        .moveall,
+        .removeall {
+            width: 50%;
+        }
+
+        // Button group
+        .btn-group .btn {
+            margin: 0;
+            @include border-bottom-radius(0);
+
+            // Borders
+            & + .btn {
+                border-left-width: 0;
+            }
+
+            // Icons
+            > i {
+                float: none;
+                text-align: center;
+
+                // Reduce spacing between icons
+                + i {
+                    margin-left: -($icon-font-size);
+                }
+            }
+        }
+
+
+        //
+        // Elements
+        //
+
+        // Filter
+        .filter {
+            margin-bottom: $spacer;
+            position: relative;
+
+            &.placeholder {
+                color: $input-placeholder-color;
+            }
+        }
+
+        // Bottom info
+        .info-container {
+            .info {
+                display: inline-block;
+                margin-top: $spacer;
+
+                .badge {
+                    margin-right: $element-spacer-x;
+                }
+            }
+        }
+
+
+        //
+        // Inside sidebar
+        //
+
+        .sidebar & {
+            text-align: center;
+
+            .box1,
+            .box2 {
+                flex: auto;
+                width: 100%;
+                max-width: none;
+            }
+
+            .box1 {
+                padding-bottom: map-get($spacers, 1);
+
+                &:after {
+                    content: '\e9c9';
+                    font-size: $icon-font-size;
+                    font-family: $icon-font-family;
+                    display: block;
+                    text-align: center;
+                    line-height: 1;
+                    margin: ($spacer / 2) 0;
+                    opacity: 0.5;
+                    @include ll-font-smoothing();
+                }
+            }
+        }
+
+
+        //
+        // Responsive stuff
+        //
+
+        @include media-breakpoint-up(md) {
+            .box1 {
+                margin-bottom: 0;
+            }
+
+            .sidebar & {
+                .box1 {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}

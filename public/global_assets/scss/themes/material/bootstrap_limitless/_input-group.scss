@@ -1,0 +1,115 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Input group component
+ *
+ *  Overrides for input group component
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+// Base styles
+.input-group {
+
+    // Form group feedback
+    .form-group-feedback {
+        position: relative;
+        flex: 1 1 auto;
+        width: 1%;
+        z-index: 4;
+
+        // Border radius fixes
+        &:not(:last-child) {
+            .form-control {
+                @include border-right-radius(0);
+            }
+        }
+        &:not(:first-child) {
+            .form-control {
+                @include border-left-radius(0);
+            }
+        }
+    }
+
+    // Make sure icon is always on top
+    + .form-control-feedback,
+    .form-control-feedback + & {
+        z-index: 4;
+    }
+}
+
+// Textual addons
+.input-group-text {
+
+    // Icon
+    i {
+        display: block;
+        top: 0;
+    }
+}
+
+
+//
+// Prepend and append elements
+//
+
+// Prepend elements
+.input-group-prepend {
+    margin-right: $element-spacer-x-lg;
+
+    // Rounded corners
+    .input-group > & > .btn:last-of-type {
+        @include border-right-radius($btn-border-radius);
+    }
+}
+
+// Append elements
+.input-group-append {
+    margin-left: $element-spacer-x-lg;
+
+    // Rounded corners
+    .input-group > & > .btn:first-of-type {
+        @include border-left-radius($btn-border-radius);
+    }
+}
+
+// Large size
+.input-group-lg > .input-group-prepend,
+.input-group-lg > .input-group-append {
+    > .btn {
+        padding-left: $btn-padding-x-lg;
+        padding-right: $btn-padding-x-lg;
+
+        // Border radius fixes
+        &:first-of-type {
+            @include border-left-radius($btn-border-radius-lg);
+        }
+        &:last-of-type {
+            @include border-right-radius($btn-border-radius-lg);
+        }
+    }
+    > .btn-icon {
+        padding-left: $btn-padding-y-lg + (($line-height-computed - $icon-font-size) / 2);
+        padding-right: $btn-padding-y-lg + (($line-height-computed - $icon-font-size) / 2);
+    }
+}
+
+// Small size
+.input-group-sm > .input-group-prepend,
+.input-group-sm > .input-group-append {
+    > .btn {
+        padding-left: $btn-padding-x-sm;
+        padding-right: $btn-padding-x-sm;
+
+        // Border radius fixes
+        &:first-of-type {
+            @include border-left-radius($btn-border-radius-sm);
+        }
+        &:last-of-type {
+            @include border-right-radius($btn-border-radius-sm);
+        }
+    }
+    > .btn-icon {
+        padding-left: $btn-padding-y-sm + (($line-height-computed - $icon-font-size) / 2);
+        padding-right: $btn-padding-y-sm + (($line-height-computed - $icon-font-size) / 2);
+    }
+}

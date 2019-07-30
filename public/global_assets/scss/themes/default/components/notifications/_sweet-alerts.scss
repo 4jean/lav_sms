@@ -1,0 +1,733 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Sweet Alerts component
+*
+*  Styles for sweet_alert.min.js - notification library
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-sweetalert {
+
+
+	//
+	// Styles applied to <body>
+	//
+
+	.swal2-shown {
+
+		// Disable scrolling when notification is shown
+	    &:not(.swal2-no-backdrop) {
+			overflow-y: hidden;
+	    }
+
+		// Fix fox iOS
+		&.swal2-iosfix {
+			position: fixed;
+			left: 0;
+			right: 0;
+		}
+
+		// Disabled backdrop
+		&.swal2-no-backdrop {
+			.swal2-shown {
+				background-color: transparent;
+				box-shadow: $modal-content-box-shadow-xs;
+			}
+		}
+	}
+
+
+	//
+	// Container
+	//
+
+	.swal2-container {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: transparent;
+		z-index: $zindex-tooltip;
+
+
+		//
+		// Positioning
+		//
+
+		// Top
+		&.swal2-top {
+			align-items: flex-start;
+
+			// Modal spacing
+			.swal2-modal {
+				margin-top: $notification-gutter-y;
+			}
+		}
+		&.swal2-top-left {
+			align-items: flex-start;
+			justify-content: flex-start;
+
+			// Modal spacing
+			.swal2-modal {
+				margin-top: $notification-gutter-y;
+				margin-left: $notification-gutter-x;
+			}
+		}
+		&.swal2-top-right {
+			align-items: flex-start;
+			justify-content: flex-end;
+
+			// Modal spacing
+			.swal2-modal {
+				margin-top: $notification-gutter-y;
+				margin-right: $notification-gutter-x;
+			}
+		}
+
+		// Center
+		&.swal2-center {
+			align-items: center;
+			margin: auto;
+		}
+		&.swal2-center-left {
+			align-items: center;
+			justify-content: flex-start;
+
+			// Modal spacing
+			.swal2-modal {
+				margin-left: $notification-gutter-x;
+			}
+		}
+		&.swal2-center-right {
+			align-items: center;
+			justify-content: flex-end;
+
+			// Modal spacing
+			.swal2-modal {
+				margin-right: $notification-gutter-x;
+			}
+		}
+
+		// Bottom
+		&.swal2-bottom {
+			align-items: flex-end;
+
+			// Modal spacing
+			.swal2-modal {
+				margin-bottom: $notification-gutter-y;
+			}
+		}
+		&.swal2-bottom-left {
+			align-items: flex-end;
+			justify-content: flex-start;
+
+			// Modal spacing
+			.swal2-modal {
+				margin-bottom: $notification-gutter-y;
+				margin-left: $notification-gutter-x;
+			}
+		}
+		&.swal2-bottom-right {
+			align-items: flex-end;
+			justify-content: flex-end;
+
+			// Modal spacing
+			.swal2-modal {
+				margin-bottom: $notification-gutter-y;
+				margin-right: $notification-gutter-x;
+			}
+		}
+
+		// IE hacks
+		@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+			.swal2-modal {
+				margin: 0 !important;
+			}
+		}
+
+		// Dialog animation
+		&.swal2-fade {
+			@include transition(background-color .15s);
+		}
+
+		// Overlay
+		body:not(.swal2-no-backdrop) &.swal2-shown {
+			background-color: rgba($modal-backdrop-bg, $modal-backdrop-opacity);
+		}
+	}
+
+
+	//
+	// Stretching
+	//
+
+	// Fullscreen
+	.swal2-grow-fullscreen {
+		.swal2-modal {
+			display: flex !important;
+			flex: 1;
+			align-self: stretch;
+			justify-content: center;
+			margin: $notification-gutter-y $notification-gutter-x;
+		}
+	}
+
+	// Full width
+	.swal2-grow-row {
+		.swal2-modal {
+			display: flex !important;
+			flex: 1;
+			align-content: center;
+			justify-content: center;
+			margin-left: $notification-gutter-x;
+			margin-right: $notification-gutter-x;
+		}
+	}
+
+	// Full height
+	.swal2-grow-column {
+		flex: 1;
+		flex-direction: column;
+		align-items: center;
+
+		// Left position (use 'center-left')
+		&.swal2-center-left {
+			align-items: flex-start;
+		}
+
+		// Right position (use 'center-right')
+		&.swal2-center-right {
+			align-items: flex-end;
+		}
+
+		// Nodal
+		.swal2-modal {
+			display: flex !important;
+			flex: 1;
+			align-content: center;
+			justify-content: center;
+			margin-top: $notification-gutter-y;
+			margin-bottom: $notification-gutter-y;
+		}
+	}
+
+
+	//
+	// Popup
+	//
+
+	// Base
+	.swal2-popup {
+		flex-direction: column;
+		background-color: $modal-content-bg;
+		text-align: center;
+		display: none;
+		position: relative;
+		max-width: 100%;
+		padding: $swal-padding;
+		width: $swal-width;
+		margin-left: $swal-margin-x;
+		margin-right: $swal-margin-x;
+	    @include border-radius($border-radius-lg);
+	    @include box-shadow($modal-content-box-shadow-xs);
+
+	    // Remove outline
+		&:focus {
+			outline: none;
+		}
+
+		// Hide overflow when notification is loading
+		&.swal2-loading {
+			overflow-y: hidden;
+		}
+
+		// No horizontal spacing on desktop
+		@include media-breakpoint-up(sm) {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+
+	// Header
+	.swal2-header {
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	}
+
+	// Title
+	.swal2-title {
+		font-size: $h5-font-size;
+		font-weight: $font-weight-semibold;
+		line-height: $headings-line-height;
+		text-align: center;
+		position: relative;
+		word-wrap: break-word;
+		margin-top: map-get($spacers, 1);
+		margin-bottom: 0;
+	}
+
+	// Content
+	.swal2-content {
+		text-align: center;
+		position: relative;
+		word-wrap: break-word;
+	}
+
+
+	//
+	// Buttons
+	//
+
+	// Container
+	.swal2-actions {
+	    align-items: center;
+	    justify-content: center;
+	    margin-top: $spacer;
+
+		// Add horizontal spacing to buttons
+		> button + button {
+			margin-left: ($spacer / 2);
+		}
+
+		// Disabled state
+		&:not(.swal2-loading) .swal2-styled[disabled] {
+			cursor: no-drop;
+			opacity: 0.4;
+		}
+	}
+
+	// Loading spinner
+	.swal2-loading {
+		.swal2-confirm {
+			&:before {
+				content: '\eb55';
+				font-family: $icon-font-family;
+			    display: inline-block;
+			    font-size: $icon-font-size;
+			    align-self: center;
+			    vertical-align: middle;
+			    position: relative;
+		        line-height: 1;
+			    margin-right: $element-spacer-x;
+			    animation: rotation 1s linear infinite;
+			    @include ll-font-smoothing();
+			}
+		}
+	}
+
+	// Close button
+	.swal2-close {
+		background: transparent;
+		border: 0;
+		margin: 0;
+		padding: 0;
+		font-size: 1.5rem;
+		line-height: 1;
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		cursor: pointer;
+		opacity: .5;
+		@include size(1.5rem);
+	    @include transition(opacity ease-in-out .15s);
+
+	    // Hover/focus states
+		@include hover-focus {
+			opacity: 1;
+			outline: 0;
+		}
+	}
+
+
+	//
+	// Forms
+	//
+
+	// Main types
+	.swal2-input,
+	.swal2-file,
+	.swal2-textarea,
+	.swal2-select,
+	.swal2-radio,
+	.swal2-checkbox {
+		display: none;
+		margin: $spacer auto 0 auto;
+	}
+
+	// Custom types
+	.swal2-popup {
+		.select2-container,
+		.btn-group,
+		.uniform-uploader {
+			margin: $spacer auto 0 auto;
+		}
+	}
+
+	// Checkbox
+	.swal2-checkbox {
+		align-items: center;
+		justify-content: center;
+
+		// Spacing between input and text
+		> span:not(.switchery) {
+			margin-left: $element-spacer-x;
+		}
+	}
+
+	// Radio
+	.swal2-radio {
+		justify-content: center;
+
+		label {
+			display: inline-flex;
+		    align-items: center;
+
+			// Add spacing to labels
+			+ label {
+				margin-left: $spacer;
+			}
+
+			// Add spacing to text
+			input,
+			.uniform-choice {
+				margin-right: $element-spacer-x;
+			}
+		}
+	}
+
+	// Range
+	.swal2-range {
+		margin-top: $spacer;
+		justify-content: center;
+		flex-wrap: wrap;
+
+		// Range input
+		input {
+			display: block;
+			width: 100%;
+		}
+
+		// Range output
+		output {
+			font-size: $h6-font-size;
+			font-weight: $font-weight-semibold;
+			margin-top: ($spacer / 2);
+		}
+	}
+
+	// Input error
+	.swal2-inputerror {
+		@include plain-hover-focus {
+			border-color: $form-feedback-invalid-color;
+		}
+	}
+
+	// Validation error message
+	.swal2-validationerror {
+		background-color: $gray-200;
+		overflow: hidden;
+		padding: $input-padding-y $input-padding-x;
+		display: none;
+		margin-top: $spacer;
+		margin-left: 0!important;
+		margin-right: 0!important;
+		@include border-radius($border-radius);
+
+		// Add icon
+		&:before {
+			content: '\ed68';
+			font-family: $icon-font-family;
+		    display: inline-block;
+		    font-size: $icon-font-size;
+		    vertical-align: middle;
+		    align-self: center;
+		    line-height: 1;
+		    margin-right: $element-spacer-x;
+		    color: $color-danger-500;
+		    @include ll-font-smoothing();
+		}
+	}
+
+
+	//
+	// Images and icons
+	//
+
+	// Image
+	.swal2-image {
+		margin: ($spacer / 2) auto;
+		@include img-fluid();
+	}
+
+	// Icons
+	.swal2-icon {
+		border: $swal2-icon-border-width solid transparent;
+		margin: ($spacer / 2) auto $spacer auto;
+		padding: 0;
+		position: relative;
+		box-sizing: content-box;
+		cursor: default;
+		user-select: none;
+		@include size($swal2-icon-size);
+		@include border-radius($border-radius-circle);
+
+		// Success
+		&.swal2-success {
+			border-color: $swal2-success-border-color;
+
+			// Checkmark
+			[class^='swal2-success-line'][class$='tip'] {
+			    height: ($swal2-icon-size / 2);
+			    width: ($swal2-icon-size / 4);
+			    /*rtl:ignore*/
+			    border-right: $swal2-icon-border-width solid $swal2-success-color;
+			    border-top: $swal2-icon-border-width solid $swal2-success-color;
+			    position: absolute;
+			    /*rtl:ignore*/
+			    left: ($swal2-icon-size / 4);
+			    top: ($swal2-icon-size / 2) + ($swal2-icon-border-width / 2);
+			    opacity: 1;
+			    animation: animate-checkmark ease 0.75s;
+			    /*rtl:begin:ignore*/
+			    transform: scaleX(-1) rotate(135deg);
+			    transform-origin: left top;
+			    /*rtl:end:ignore*/
+			}
+		}
+
+		// Error
+		&.swal2-error {
+			border-color: $swal2-error-border-color;
+
+			// Base
+			.swal2-x-mark {
+				position: relative;
+				display: block;
+				flex: 1;
+			}
+
+			// Lines
+			[class^='swal2-x-mark-line'] {
+				position: absolute;
+				height: $swal2-icon-border-width;
+				width: ($swal2-icon-size - ($swal2-icon-spacer * 2));
+				background-color: $swal2-error-color;
+				display: block;
+				top: ($swal2-icon-size - $swal2-icon-border-width) / 2;
+
+				// Left line
+				&[class$='left'] {
+					transform: rotate(45deg);
+					left: $swal2-icon-spacer;
+				}
+
+				// Right line
+				&[class$='right'] {
+					transform: rotate(-45deg);
+					right: $swal2-icon-spacer;
+				}
+			}
+		}
+
+		// Warning
+		&.swal2-warning {
+			color: $swal2-warning-color;
+			border-color: $swal2-warning-border-color;
+			font-size: ($swal2-icon-size - $swal2-icon-spacer);
+			line-height: $swal2-icon-size;
+			justify-content: center;
+		}
+
+		// Info
+		&.swal2-info {
+			color: $swal2-info-color;
+			border-color: $swal2-info-color;
+			font-size: ($swal2-icon-size - $swal2-icon-spacer);
+			line-height: $swal2-icon-size;
+			justify-content: center;
+		}
+
+		// Question
+		&.swal2-question {
+			color: $swal2-question-color;
+			border-color: $swal2-question-border-color;
+			font-size: ($swal2-icon-size - $swal2-icon-spacer);
+			line-height: calc(#{$swal2-icon-size} + #{$swal2-icon-border-width});
+			justify-content: center;
+		}
+	}
+
+
+	//
+	// Progress steps
+	//
+
+	// Base
+	.swal2-progresssteps {
+		font-weight: $font-weight-semibold;
+		margin: 0 0 $spacer;
+		padding: 0;
+
+		// Steps
+		li {
+			display: inline-block;
+			position: relative;
+		}
+	}
+
+	// Steps
+	.swal2-progresscircle {
+		color: $swal2-step-complete-color;
+		text-align: center;
+		margin-left: ($spacer / 2);
+		margin-right: ($spacer / 2);
+
+		// Active step
+		&.swal2-activeprogressstep {
+			color: $color-primary-500;
+
+			// Active step color
+			~ .swal2-progresscircle {
+				color: $swal2-step-inactive-color;
+			}
+
+			// Active step line color
+			~ .swal2-progressline {
+				background-color: $swal2-step-line-color;
+			}
+		}
+	}
+
+	// Line
+	.swal2-progressline {
+		background-color: $swal2-step-active-color;
+		height: rem-calc(1);
+		vertical-align: middle;
+	}
+
+
+	//
+	// Animations
+	//
+
+	// github.com/limonte/sweetalert2/issues/268
+	[class^='swal2'] {
+		-webkit-tap-highlight-color: rgba($black, 0);
+	}
+
+	// Show notification
+	.swal2-show {
+		animation: show-notification 0.15s;
+
+		// Disable animation
+		&.swal2-noanimation {
+			animation: none;
+		}
+	}
+
+	// Hide notification
+	.swal2-hide {
+		animation: hide-notification 0.15s forwards;
+
+		// Disable animation
+		&.swal2-noanimation {
+			animation: none;
+		}
+	}
+
+	// Circle
+	.swal2-animate-success-icon,
+	.swal2-animate-error-icon,
+	.swal2-warning,
+	.swal2-info,
+	.swal2-question {
+		animation: animate-circle 0.5s;
+	}
+
+	// Error cross
+	.swal2-animate-x-mark {
+		animation: animate-x-mark 0.5s;
+	}
+
+
+	//
+	// Animation keyframes
+	//
+
+	// Show notification
+	@keyframes show-notification {
+		0% {
+			transform: scale(0.5);
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
+
+	// Hide notification
+	@keyframes hide-notification {
+		0% {
+			transform: scale(1);
+			opacity: 1;
+		}
+		100% {
+			transform: scale(0.5);
+			opacity: 0;
+		}
+	}
+
+	// Checkmark
+	@keyframes animate-checkmark {
+		0% {
+			height: 0;
+			width: 0;
+			opacity: 0;
+		}
+		30% {
+			height: 0;
+			width: ($swal2-icon-size / 4);
+			opacity: 0;
+		}
+		60% {
+			height: ($swal2-icon-size / 2);
+			width: ($swal2-icon-size / 4);
+			opacity: 1;
+		}
+		100% {
+			height: ($swal2-icon-size / 2);
+			width: ($swal2-icon-size / 4);
+			opacity: 1;
+		}
+	}
+
+	// Circle
+	@keyframes animate-circle {
+		0% {
+			color: transparent;
+			border-color: transparent;
+		}
+		25% {
+			color: transparent;
+		}
+	}
+
+	// Error cross
+	@keyframes animate-x-mark {
+		0% {
+			opacity: 0;
+		}
+		25% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+}

@@ -1,0 +1,57 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Main content layout
+ *
+ *  Styles for main structure of content area
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Make sure document has 100% height
+html {
+    display: flex;
+    flex-direction: column;
+}
+
+// Document body
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+// Main container
+.page-content {
+    display: flex;
+    flex-grow: 1;
+    padding: $content-container-padding-y $content-container-padding-x;
+    padding-top: ($content-container-padding-y * 2);
+
+    // Extra padding to match other elements
+    &:not(.container) {
+        @include media-breakpoint-up(md) {
+            padding-left: ($page-container-padding-x / 2) + $content-container-padding-x;
+            padding-right: ($page-container-padding-x / 2) + $content-container-padding-x;
+        }
+        @include media-breakpoint-up(xl) {
+            padding-left: $page-container-padding-x + $content-container-padding-x;
+            padding-right: $page-container-padding-x + $content-container-padding-x;
+        }
+    }
+}
+
+// Content wrapper
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: auto;
+}
+
+// Main content container
+.content {
+    flex-grow: 1;
+    margin-left: $content-container-padding-x;
+    margin-right: $content-container-padding-x;
+    @include clearfix;
+}

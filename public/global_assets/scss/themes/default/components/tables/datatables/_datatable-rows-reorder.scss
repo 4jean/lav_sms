@@ -1,0 +1,41 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Row Reorder extension
+ *
+ *  RowReorder adds the ability for rows in a DataTable to be reordered through
+ *  user interaction with the table.
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-datatable-row-reorder {
+
+    // The movable row
+    .dt-rowReorder-float {
+        position: absolute!important;
+        table-layout: static;
+        outline: $table-border-width dashed $color-grey-500;
+        outline-offset: -($table-border-width);
+        background-color: $card-bg;
+        z-index: $zindex-fixed;
+        cursor: move;
+        opacity: 0.9;
+    }
+
+    // The target row
+    .dt-rowReorder-moving {
+        outline: $table-border-width solid $color-grey-500;
+        outline-offset: -($table-border-width);
+    }
+
+    // Hide overflow from <body> tag when moving
+    .dt-rowReorder-noOverflow {
+        overflow-x: hidden;
+    }
+
+    // Reorder cell
+    .dataTable td.reorder {
+        text-align: center;
+        cursor: move;
+    }
+}

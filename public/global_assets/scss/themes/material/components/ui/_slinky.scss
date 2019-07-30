@@ -1,0 +1,131 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Slinky
+ *
+ *  Styles for slinky.min.js - animated multi level navigation
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-slinky {
+
+    // Base
+    .slinky-menu {
+        position: relative;
+        overflow: hidden;
+        transform: translateZ(0);
+
+        // Child level
+        > ul {
+            /*rtl:ignore*/
+            left: 0;
+            position: relative;
+            transform: translateZ(0);
+        }
+
+        // All levels
+        ul {
+            width: 100%;
+
+            // Active list
+            &.active {
+                max-height: $dropdown-scrollable-max-height;
+                overflow-y: auto;
+            }
+        }
+
+        // Submenus
+        li {
+
+            // Add spacing between items
+            + li:not(.dropdown-item):not(.dropdown-divider) {
+                margin-top: $dropdown-item-spacer-y;
+            }
+
+            // Children lists
+            ul {
+                display: none;
+                /*rtl:ignore*/
+                left: 100%;
+                position: absolute;
+                top: 0;
+            }
+        }
+
+        // Header link
+        .header {
+            display: flex;
+            position: relative;
+            color: $link-color;
+            @include transition(all ease-in-out $component-transition-timer);
+
+            // Hover state
+            @include hover-focus {
+                color: $link-hover-color;
+            }
+
+            // Title
+            .title {
+                flex: 1;
+                padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+                padding-left: $dropdown-item-padding-x + $dropdown-icon-spacer-x + $icon-font-size;
+            }
+        }
+
+
+        //
+        // Directions
+        //
+
+        // Icons base
+        .next,
+        .back {
+            &:after,
+            &:before {
+                font-family: $icon-font-family;
+                position: absolute;
+                top: 50%;
+                margin-top: -($icon-font-size / 2);
+                font-size: $icon-font-size;
+                line-height: 1;
+                opacity: 0.75;
+                @include ll-font-smoothing();
+            }
+        }
+
+        // Next
+        .next {
+            padding-right: (($dropdown-item-padding-x * 2) + ($icon-font-size / 2));
+
+            // Arrow
+            &:after {
+                @if $direction == 'LTR' {
+                    content: '\e9c7';
+                }
+                @else {
+                    content: '\e9c4';
+                }
+                right: $dropdown-item-padding-x;
+            }
+        }
+
+        // Previous
+        .back {
+            position: absolute;
+            padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+            color: inherit;
+            @include size(100%);
+
+            // Icon
+            &:before {
+                @if $direction == 'LTR' {
+                    content: '\ede7';
+                }
+                @else {
+                    content: '\ede5';
+                }
+                left: $dropdown-item-padding-x;
+            }
+        }
+    }
+}

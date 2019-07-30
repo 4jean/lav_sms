@@ -1,0 +1,91 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Touchspin spinners
+*
+*  Styles for touchspin.min.js - spinner form control library
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-touchspin {
+
+    // Base
+    .bootstrap-touchspin {
+
+        // Vertical buttons
+        .input-group-btn-vertical {
+            white-space: nowrap;
+
+            // Button
+            > .btn {
+                width: ($icon-font-size / 2) + ($input-btn-padding-x * 2) - rem-calc($input-border-width * 2);
+                margin-left: -($input-border-width);
+                @include border-radius(0);
+            }
+
+            // Icon
+            i {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -($icon-font-size / 2);
+                margin-top: -($icon-font-size / 2);
+                font-weight: normal;
+            }
+
+            // Arrow up
+            .bootstrap-touchspin-up {
+                border: $input-border-width solid $input-border-color;
+                @include border-radius(0);
+            }
+
+            // Arrow down
+            .bootstrap-touchspin-down {
+                border: $input-border-width solid $input-border-color;
+                @include border-right-radius($input-border-radius);
+            }
+        }
+
+
+        //
+        // Sizing
+        //
+
+        // Large
+        &.input-group-lg .input-group-btn-vertical {
+            > .btn {
+                width: ($icon-font-size / 2) + ($input-btn-padding-x-lg * 2) - rem-calc($input-border-width * 2);
+            }
+            .bootstrap-touchspin-down {
+                @include border-right-radius($input-border-radius-lg);
+            }
+        }
+
+        // Small
+        &.input-group-sm .input-group-btn-vertical {
+            > .btn {
+                width: ($icon-font-size / 2) + ($input-btn-padding-x-sm * 2) - rem-calc($input-border-width * 2);
+            }
+            .bootstrap-touchspin-down {
+                @include border-right-radius($input-border-radius-sm);
+            }
+        }
+    }
+
+    // Fix for rounded corners
+    .input-group {
+        .input-group-prepend.d-none:first-child + .form-control {
+            @include border-left-radius($input-border-radius);
+        }
+        &-lg {
+            .input-group-prepend.d-none:first-child + .form-control {
+                @include border-left-radius($input-border-radius-lg);
+            }
+        }
+        &-sm {
+            .input-group-prepend.d-none:first-child + .form-control {
+                @include border-left-radius($input-border-radius-sm);
+            }
+        }
+    }
+}

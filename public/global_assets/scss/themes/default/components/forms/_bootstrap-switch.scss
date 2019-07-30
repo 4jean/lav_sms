@@ -1,0 +1,263 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Bootstrap switches
+*
+*  Styles for switch.min.js - checkbox/radio toggle switches
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-bootstrap-switch {
+
+
+    // Core
+    // ------------------------------
+
+    // Base
+    .bootstrap-switch {
+        display: inline-block;
+        border: $switch-border-width solid transparent;
+        position: relative;
+        overflow: hidden;
+        vertical-align: middle;
+        user-select: none;
+        /*rtl:begin:ignore*/
+        direction: ltr;
+        text-align: left;
+        /*rtl:end:ignore*/
+        @include border-radius($border-radius);
+        @include transition(all ease-in-out $component-transition-timer);
+
+        // Container
+        .bootstrap-switch-container {
+            display: inline-block;
+            top: 0;
+            transform: translate3d(0, 0, 0);
+            @include border-radius($border-radius);
+        }
+
+        // Set base styles
+        .bootstrap-switch-handle-on,
+        .bootstrap-switch-handle-off,
+        .bootstrap-switch-label {
+            cursor: pointer;
+            display: inline-block;
+            height: 100%;
+            padding: $input-btn-padding-y $input-btn-padding-x;
+        }
+
+        // Original input
+        input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0;
+        }
+    }
+
+    // Inputs
+    .form-check-switch {
+        padding: 0;
+
+        // In horizontal forms
+        .form-group.row & {
+            margin-top: 0;
+        }
+    }
+
+    // Left position
+    .form-check-switch-left {
+        .bootstrap-switch {
+            margin-right: $form-check-inline-input-margin-x;
+        }
+    }
+
+    // Right position
+    .form-check-switch-right {
+        .bootstrap-switch {
+            margin-left: $form-check-inline-input-margin-x;
+        }
+    }
+
+
+    //
+    // States
+    //
+
+    // Remove outline on focus
+    .bootstrap-switch-focused {
+        outline: 0;
+    }
+
+    // Disabled
+    .bootstrap-switch-disabled {
+        .bootstrap-switch-handle-on,
+        .bootstrap-switch-handle-off,
+        .bootstrap-switch-label {
+            cursor: $cursor-disabled;
+            opacity: $checkbox-disabled-opacity;
+        }
+    }
+
+    // Readonly
+    .bootstrap-switch-readonly,
+    .bootstrap-switch-indeterminate {
+        .bootstrap-switch-handle-on,
+        .bootstrap-switch-handle-off,
+        .bootstrap-switch-label {
+            cursor: default !important;
+            opacity: $checkbox-disabled-opacity;
+        }
+    }
+
+
+    //
+    // Misc
+    //
+
+    // Set animation
+    .bootstrap-switch-animate .bootstrap-switch-container {
+        @include transition(margin $component-transition-timer);
+    }
+
+    // Set border radiuses
+    /*rtl:begin:ignore*/
+    .bootstrap-switch-inverse {
+        .bootstrap-switch-handle-on {
+            @include border-left-radius(0);
+            @include border-right-radius(calc(#{$border-radius} - #{$switch-border-width}));
+        }
+        .bootstrap-switch-handle-off {
+            @include border-right-radius(0);
+            @include border-left-radius(calc(#{$border-radius} - #{$switch-border-width}));
+        }
+    }
+    .bootstrap-switch-on,
+    .bootstrap-switch-inverse.bootstrap-switch-off {
+        .bootstrap-switch-label {
+            @include border-right-radius(calc(#{$border-radius} - #{$switch-border-width}));
+        }
+    }
+    .bootstrap-switch-off,
+    .bootstrap-switch-inverse.bootstrap-switch-on {
+        .bootstrap-switch-label {
+            @include border-left-radius(calc(#{$border-radius} - #{$switch-border-width}));
+        }
+    }
+    /*rtl:end:ignore*/
+
+
+
+    // Elements
+    // ------------------------------
+
+    // Handles
+    .bootstrap-switch-handle-on,
+    .bootstrap-switch-handle-off {
+        text-align: center;
+        white-space: nowrap;
+        z-index: 1;
+    }
+
+    // Contextual alternatives
+    .bootstrap-switch-default {
+        color: $body-color;
+        background-color: $switch-bg-default;
+    }
+    .bootstrap-switch-primary {
+        color: $white;
+        background-color: theme-color("primary");
+    }
+    .bootstrap-switch-danger {
+        color: $white;
+        background-color: theme-color("danger");
+    }
+    .bootstrap-switch-success {
+        color: $white;
+        background-color: theme-color("success");
+    }
+    .bootstrap-switch-warning {
+        color: $white;
+        background-color: theme-color("warning");
+    }
+    .bootstrap-switch-info {
+        color: $white;
+        background-color: theme-color("info");
+    }
+
+    // Set border radius
+    /*rtl:begin:ignore*/
+    .bootstrap-switch-handle-on {
+        @include border-left-radius(calc(#{$border-radius} - #{$switch-border-width}));
+    }
+    .bootstrap-switch-handle-off {
+        @include border-right-radius(calc(#{$border-radius} - #{$switch-border-width}));
+    }
+    /*rtl:end:ignore*/
+
+    // Label
+    .bootstrap-switch-label {
+        text-align: center;
+        z-index: 100;
+        background-color: $switch-handle-bg;
+        position: relative;
+        box-shadow: 0 0 0 $switch-border-width $switch-handle-border-color inset;
+        @include transition(background-color ease-in-out $component-transition-timer);
+
+        // Hover and active states
+        &:hover,
+        &:active {
+            background-color: $switch-handle-hover-bg;
+        }
+
+        // Add vertical lines
+        &:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: $switch-handle-width;
+            height: $switch-handle-height;
+            margin-top: -($switch-handle-height / 2);
+            margin-left: -($switch-handle-width / 2);
+            display: inline-block;
+            border-left: $switch-border-width solid $switch-handle-border-color;
+            border-right: $switch-border-width solid $switch-handle-border-color;
+        }
+    }
+
+
+    //
+    // Sizing
+    //
+
+    // Large
+    .bootstrap-switch-large {
+        .bootstrap-switch-handle-on,
+        .bootstrap-switch-handle-off,
+        .bootstrap-switch-label {
+            padding: $input-btn-padding-y-lg $input-btn-padding-x-lg;
+        }
+    }
+
+    // Small
+    .bootstrap-switch-small {
+        .bootstrap-switch-handle-on,
+        .bootstrap-switch-handle-off,
+        .bootstrap-switch-label {
+            padding: $input-btn-padding-y-sm $input-btn-padding-x-sm;
+        }
+    }
+
+
+    //
+    // Checkbox specials
+    //
+
+    // Right alignment
+    .form-check-right .bootstrap-switch {
+        margin-right: 0;
+        margin-left: $form-check-inline-input-margin-x;
+    }
+}

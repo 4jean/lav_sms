@@ -1,0 +1,81 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Select extension
+ *
+ *  Adds item selection capabilities to a DataTable
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-datatable-select {
+
+    // Highlight selected row
+    .dataTable {
+        tbody > tr {
+            &.selected,
+            > .selected {
+                background-color: $dt-ext-select-active-row-bg;
+            }
+
+        }
+    }
+
+    // Item select
+    .dataTables_wrapper {
+        .select-info,
+        .select-item {
+            margin-left: $element-spacer-x;
+
+            // On mobile
+            @include media-breakpoint-down(sm) {
+                margin-left: 0;
+                display: block;
+            }
+        }
+    }
+
+    // Checkbox
+    .dataTable tbody {
+
+        // Chackbox base
+        .select-checkbox {
+            position: relative;
+
+            // Checkbox icon base
+            &:before,
+            &:after {
+                display: inline-block;
+                color: $checkbox-color;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                cursor: pointer;
+            }
+
+            // Box
+            &:before {
+                content: '';
+                background-color: $card-bg;
+                width: $checkbox-size;
+                height: $checkbox-size;
+                margin-top: -($checkbox-size / 2);
+                margin-left: -($checkbox-size / 2);
+                border: $checkbox-border-width solid $checkbox-color;
+                @include border-radius($border-radius-sm);
+            }
+        }
+
+        // Checkmark icon
+        .selected .select-checkbox {
+            &:after {
+                content: "\e600";
+                font-family: $icon-font-family;
+                font-size: $icon-font-size;
+                line-height: 1;
+                margin-top: -(($checkbox-size - ($checkbox-border-width * 2)) / 2);
+                margin-left: -(($checkbox-size - ($checkbox-border-width * 2)) / 2);
+                @include ll-font-smoothing();
+            }
+        }
+    }
+}

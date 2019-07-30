@@ -1,0 +1,49 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Datatables Scroller
+ *
+ *  Drawing the rows required for the current display only, for fast operation
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-datatable-scroller {
+
+    // Base
+    .DTS {
+
+        // Prevent word wrap
+        tbody {
+            th,
+            td {
+                white-space: nowrap;
+            }
+        }
+
+        // Loading text
+        .DTS_Loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 12.5rem;
+            height: 1.25rem;
+            margin-top: -($spacer);
+            margin-left: -6.25rem;
+            z-index: 1;
+
+            border: $table-border-width solid $table-border-color;
+            padding: 1.25rem 0;
+            text-align: center;
+            background-color: rgba($white, 0.5);
+        }
+
+        // Scroller areas
+        .dataTables_scrollHead,
+        .dataTables_scrollFoot {
+            background-color: $white;
+        }
+        .dataTables_scrollBody {
+            z-index: 2;
+        }
+    }
+}

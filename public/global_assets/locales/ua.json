@@ -1,0 +1,64 @@
+{
+    "app": {
+        "name": "Limitless - Responsive Web Application Kit"
+    },
+
+    "nav_inline": {
+        "user": {
+        	"name": "Богдана Загорулько",
+        	"location": "Луцьк, УА"
+        },
+        "nav": {
+            "header": "Заголовок навігації",
+            "top_level": "Посилання верхнього рівня",
+            "with_children": {
+                "main": "Підменю",
+                "second_one": "Посилання другого рівня #1",
+                "second_two": "Посилання другого рівня #2"
+            },
+            "multiple_levels": {
+                "main": "Множинні рівні",
+                "second_one": "Другий рівень - посилання 1",
+                "second_child": {
+                    "main": "Другий рівень з підрівнями",
+                    "third_one": "Третій рівень - посилання 1",
+                    "third_two": "Третій рівень - посилання 2"
+                },
+                "second_three": "Другий рівень - посилання 3",
+                "disabled": "Неактивне посилання"
+            }
+        }
+    },
+
+    "nav_advanced": {
+        "user": {
+            "name": "Богдана Загорулько",
+            "location": "Луцьк, УА"
+        },
+        "nav": {
+            "header": "Заголовок навігації",
+            "tooltip": "Підказка",
+            "tooltip_text": "Текст підказки",
+            "inline_element": "Додатковий елемент",
+            "insert": "Вставлений HTML із JSON файлу",
+            "inline_text": "Текстовий елемент",
+            "badges": {
+                "done": "<span class='badge bg-success'>Зроблено</span>",
+                "fixed": "Виправлено",
+                "new": "Нове",
+                "text": "Простий текст"
+            },
+            "multiple_levels": {
+                "main": "Множинні рівні",
+                "second_one": "Другий рівень - посилання 1",
+                "second_child": {
+                    "main": "Другий рівень з підрівнями",
+                    "third_one": "Третій рівень - посилання 1",
+                    "third_two": "Третій рівень - посилання 2"
+                },
+                "second_three": "Другий рівень - посилання 3",
+                "disabled": "Неактивне посилання"
+            }
+        }
+    }
+}

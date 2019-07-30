@@ -1,0 +1,67 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Fixed columns
+ *
+ *  Extension that "freezes" in place the left most columns in a scrolling DataTable
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-datatable-fixed-columns {
+
+    // Prevent text from wrapping
+    .DTFC_ScrollWrapper {
+        thead th {
+            white-space: nowrap;
+        }
+    }
+
+    // Block out what is behind the fixed column's header and footer
+    .DTFC_Cloned {
+        background-color: $card-bg;
+        border-bottom: 0;
+    }
+
+    // In left column
+    .DTFC_LeftWrapper {
+        .DTFC_LeftHeadWrapper,
+        .DTFC_LeftBodyWrapper,
+        .DTFC_LeftFootWrapper {
+            border-right: $table-border-width solid $table-border-color;
+        }
+    }
+
+    // In right column
+    .DTFC_RightWrapper {
+        .DTFC_RightHeadWrapper,
+        .DTFC_RightBodyWrapper,
+        .DTFC_RightFootWrapper {
+            border-left: $table-border-width solid $table-border-color;
+        }
+    }
+
+    // Remove dublicated header arrows and borders
+    .DTFC_LeftBodyWrapper,
+    .DTFC_RightBodyWrapper {
+        .DTFC_Cloned {
+            thead th {
+                &:before,
+                &:after {
+                    content: none;
+                }
+            }
+
+            tbody > tr:first-child {
+                > td,
+                > th {
+                    border-top: 0;
+                }
+            }
+        }
+    }
+
+    // Block out the gap above the scrollbar on the right
+    .DTFC_Blocker {
+        background-color: white;
+    }
+}

@@ -1,0 +1,485 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Daterange picker
+*
+*  Date range picker component for Bootstrap
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-daterange {
+
+    // Core
+    .daterangepicker {
+        position: absolute;
+        left: 0;
+        margin-top: $dropdown-spacer;
+        width: auto;
+        padding: 0;
+        z-index: $zindex-tooltip;
+
+        // Override default dropdown styles
+        &.dropdown-menu {
+            max-width: none;
+            background-color: transparent;
+            border: 0;
+            @include box-shadow(none);
+        }
+
+        // Dropup
+        &.dropup {
+            margin-top: -($dropdown-padding-y);
+        }
+
+        // Align containers
+        .ranges,
+        .calendar {
+            float: left;
+        }
+
+        // Display calendars on left side
+        &.opensleft {
+            .calendars {
+                /*rtl:ignore*/
+                float: left;
+            }
+            .calendar {
+                /*rtl:ignore*/
+                margin-right: $datepicker-padding;
+            }
+        }
+
+        // Display calendars on right side
+        &.opensright {
+            .calendars {
+                /*rtl:ignore*/
+                float: right;
+            }
+            .calendar {
+                /*rtl:ignore*/
+                margin-left: $datepicker-padding;
+            }
+        }
+
+        // And remove floats in single picker
+        &.single {
+            .calendar {
+                float: none;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            // Hide range menu
+            .ranges {
+                display: none;
+            }
+        }
+
+        // Display calendars
+        &.show-calendar .calendar {
+            display: block;
+        }
+
+        // Calendar
+        .calendar {
+            display: none;
+            background-color: $dropdown-bg;
+            border: $dropdown-border-width solid $dropdown-border-color;
+            margin: ($datepicker-padding / 2) 0;
+            padding: $datepicker-padding;
+            @include border-radius($dropdown-border-radius);
+            @include box-shadow($dropdown-box-shadow);
+        }
+    }
+
+    // Table
+    .daterangepicker {
+
+        // Table defaults
+        table {
+            width: 100%;
+            margin: 0;
+
+            tbody {
+                th,
+                td {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        // Cells
+        th,
+        td {
+            white-space: nowrap;
+            text-align: center;
+
+            // Week days
+            &.week {
+                font-size: 80%;
+                color: $datepicker-item-weekday-color;
+            }
+        }
+
+        // Header
+        th {
+            color: $datepicker-item-weekday-color;
+            font-weight: $font-weight-normal;
+            font-size: $font-size-sm;
+
+            // Icons
+            > i {
+                top: 0;
+            }
+
+            // Arrow buttons
+            &.prev,
+            &.next {
+                cursor: pointer;
+            }
+
+            // Available dates
+            &.available {
+                @include hover-focus {
+                    color: $body-color;
+                }
+            }
+        }
+
+        // Table content cells
+        td {
+
+            // Available days
+            &.available {
+                @include border-radius($border-radius);
+
+                // Hover state
+                @include hover-focus {
+                    color: $datepicker-item-hover-color;
+                    background-color: $datepicker-item-hover-bg;
+                }
+            }
+
+            // Inactive days
+            &.off,
+            &.disabled {
+                color: $datepicker-item-focusout-color;
+            }
+
+            // Disabled days
+            &.disabled {
+                cursor: $cursor-disabled;
+            }
+
+            // Highlight dates in range
+            &.in-range {
+                color: $datepicker-item-hover-color;
+                background-color: $datepicker-item-hover-bg;
+                @include border-radius(0);
+            }
+
+            // Active date
+            &.active {
+                @include plain-hover-focus {
+                    color: $datepicker-item-active-color;
+                    background-color: $datepicker-item-active-bg;
+                    @include border-radius($border-radius);
+                }
+            }
+        }
+
+        // Override default condensed styles
+        .table-condensed {
+            tr > th,
+            tr > td {
+                padding: $datepicker-item-padding;
+                min-width: (($datepicker-item-padding * 2) + $line-height-computed);
+                @include transition(all ease-in-out $component-transition-timer);
+            }
+
+            // Add extra top padding to day names
+            thead tr:last-child th {
+                padding-top: $datepicker-padding;
+            }
+
+            // Month heading
+            .month {
+                font-size: $datepicker-title-font-size;
+                color: $body-color;
+                padding-top: ($datepicker-padding / 2);
+                padding-bottom: ($datepicker-padding / 2);
+                font-weight: $font-weight-semibold;
+            }
+        }
+    }
+
+    // Elements
+    .daterangepicker {
+
+        // Selects
+        select {
+            display: inline-block;
+
+            &.monthselect {
+                margin-right: 2%;
+                width: 56%;
+            }
+
+            &.yearselect {
+                width: 40%;
+            }
+
+            &.hourselect,
+            &.minuteselect,
+            &.secondselect,
+            &.ampmselect {
+                width: 3.75rem;
+                padding-left: 0;
+                padding-right: 0;
+                margin-bottom: 0;
+            }
+        }
+
+        // Text inputs
+        .daterangepicker_input {
+            position: relative;
+
+            // Calendar icons
+            i {
+                position: absolute;
+                right: $input-padding-x-sm;
+                top: auto;
+                bottom: (($input-height-inner - $icon-font-size) / 2) + rem-calc($input-border-width);
+                color: $text-muted;
+            }
+
+            // Add right padding for inputs
+            input {
+                padding-left: $input-padding-x-sm;
+                padding-right: ($input-padding-x-sm + $icon-font-size + $input-padding-y);
+            }
+        }
+
+        // Time picker
+        .calendar-time {
+            text-align: center;
+            margin: $input-padding-y 0;
+
+            // Disabled state
+            select.disabled {
+                color: $gray-600;
+                cursor: $cursor-disabled;
+            }
+        }
+    }
+
+    // Ranges dropdown
+    .ranges {
+        background-color: $dropdown-bg;
+        position: relative;
+        margin-top: ($datepicker-padding / 2);
+        border: $dropdown-border-width solid $dropdown-border-color;
+        min-width: 13rem;
+        @include border-radius($dropdown-border-radius);
+        @include box-shadow($dropdown-box-shadow);
+
+        // List with links
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: $dropdown-padding-y 0;
+
+            // Add top border
+            & + .daterangepicker-inputs {
+                border-top: $border-width solid $dropdown-divider-bg;
+            }
+
+            // List item
+            li {
+                color: $dropdown-link-color;
+                padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+                cursor: pointer;
+                margin-top: $dropdown-item-spacer-y;
+                @include transition(all ease-in-out $component-transition-timer);
+
+                &:first-child {
+                    margin-top: 0;
+                }
+
+                // Hover bg color
+                @include hover-focus {
+                    color: $dropdown-link-hover-color;
+                    background-color: $dropdown-link-hover-bg;
+                }
+
+                // Active item color
+                &.active {
+                    color: $datepicker-item-active-color;
+                    background-color: $datepicker-item-active-bg;
+                }
+            }
+        }
+
+        // Text inputs
+        .daterangepicker-inputs {
+            padding: $datepicker-padding;
+            padding-top: ($datepicker-padding + ($dropdown-padding-y / 2));
+
+            // Inputs container
+            .daterangepicker_input {
+
+                // Add top margin to the second field
+                & + .daterangepicker_input {
+                    margin-top: ($datepicker-padding + ($dropdown-padding-y / 2));
+                }
+
+                // Text label
+                > span {
+                    display: block;
+                    color: $gray-600;
+                }
+            }
+        }
+
+        // Buttons area
+        .range_inputs {
+            padding: $datepicker-padding;
+            padding-top: 0;
+
+            // Buttons
+            .btn {
+                display: block;
+                width: 100%;
+            }
+            .btn + .btn {
+                margin-top: $datepicker-padding;
+            }
+        }
+
+        // If ranges menu has list items
+        ul + .daterangepicker-inputs {
+            padding-left: $dropdown-item-padding-x;
+            padding-right: $dropdown-item-padding-x;
+        }
+
+
+        // Setup mobile view
+        @include media-breakpoint-up(sm) {
+            margin-top: ($datepicker-padding / 2);
+            margin-bottom: ($datepicker-padding / 2);
+        }
+    }
+
+
+    //
+    // Custom ranges layout
+    //
+
+    // Container
+    .daterange-custom {
+        cursor: pointer;
+    }
+
+    // Layout
+    .daterange-custom-display {
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        position: relative;
+        padding-left: ($icon-font-size * 1.5);
+        height: (1.75rem * $line-height-base);
+
+        // Arrow icon
+        &:after {
+            content: '\e9c1';
+            font-family: $icon-font-family;
+            display: block;
+            font-size: $icon-font-size;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            margin-top: -($icon-font-size / 2);
+            line-height: 1;
+            @include ll-font-smoothing();
+        }
+
+        // Date number
+        > i {
+            display: block;
+            font-size: 1.875rem;
+            font-weight: normal;
+            font-style: normal;
+            letter-spacing: $headings-letter-spacing;
+        }
+
+        // Date details
+        b {
+            margin-left: 0.5rem;
+            font-weight: $font-weight-normal;
+            text-align: center;
+
+            // Month/year
+            > i {
+                font-size: $font-size-xs;
+                display: block;
+                line-height: $font-size-sm;
+                text-transform: uppercase;
+                font-style: normal;
+                font-weight: $font-weight-normal;
+            }
+        }
+
+        // Line divider
+        em {
+            margin: 0 0.5rem;
+        }
+    }
+
+
+    //
+    // Setup mobile view
+    //
+
+    @include media-breakpoint-down(sm) {
+
+        // Layout
+        .opensleft,
+        .opensright {
+            left: 0!important;
+            right: 0;
+
+            // Stack calendars container
+            .calendars {
+                float: none;
+            }
+        }
+
+        // Stack elements
+        .daterangepicker.opensleft,
+        .daterangepicker.opensright {
+            .ranges,
+            .calendar,
+            .calendars {
+                float: none;
+            }
+        }
+
+        // Elements
+        .daterangepicker {
+            width: 100%;
+            padding-left: $grid-gutter-width;
+            padding-right: $grid-gutter-width;
+
+            // Remove side margin from calendars
+            .calendar {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            // Make ranges full width
+            .ranges {
+                width: 100%;
+            }
+        }
+    }
+}

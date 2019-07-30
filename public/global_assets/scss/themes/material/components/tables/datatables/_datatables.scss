@@ -1,0 +1,601 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Datatables library
+ *
+ *  Add advanced interaction controls to any HTML table
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-datatable {
+
+
+	// Base
+	// ------------------------------
+
+	// Table container
+	.dataTable {
+		margin: 0;
+		max-width: none;
+
+		// Header
+		thead {
+			th,
+			td {
+				outline: 0;
+				position: relative;
+			}
+
+			// Add hand cursor to sortable cells
+			.sorting_asc,
+			.sorting_desc,
+			.sorting {
+				cursor: pointer;
+			}
+
+			// Add right space to avoid text overlap over arrow
+			.sorting,
+			.sorting_asc,
+			.sorting_desc,
+			.sorting_asc_disabled,
+			.sorting_desc_disabled {
+				padding-right: ($dt-spacer-x * 2);
+			}
+
+
+			// Add sorting icon base
+			.sorting:before,
+			.sorting:after,
+			.sorting_asc:after,
+			.sorting_desc:after,
+			.sorting_asc_disabled:after,
+			.sorting_desc_disabled:after {
+				content: '';
+				font-family: $icon-font-family;
+				position: absolute;
+				top: 50%;
+				right: $dt-spacer-x;
+				font-size: $font-size-sm;
+				margin-top: -($font-size-sm / 2);
+				display: inline-block;
+				line-height: 1;
+				@include ll-font-smoothing();
+			}
+
+			// Icons
+			.sorting {
+				&:before {
+					content: '\e9c1';
+					margin-top: -0.125rem;
+					opacity: 0.5;
+				}
+				&:after {
+					content: '\e9c2';
+					margin-top: -($font-size-sm - 0.125rem);
+					opacity: 0.5;
+				}
+			}
+			.sorting_asc:after {
+				content: '\e9c2';
+				opacity: 1;
+			}
+			.sorting_desc:after {
+				content: '\e9c1';
+				opacity: 1;
+			}
+			.sorting_asc_disabled:after {
+				content: '\e9c2';
+				opacity: 0.25;
+			}
+			.sorting_desc_disabled:after {
+				content: '\e9c1';
+				opacity: 0.25;
+			}
+		}
+
+		// Body
+		tbody {
+
+			// Remove top border from thead by default
+		    + thead,
+		    + tfoot + thead {
+		        > tr:first-child {
+		            > th,
+		            > td {
+		                border-top: 0;
+		            }
+		        }
+		    }
+
+		    // Highlight rows and columns
+		    th,
+		    td {
+		    	outline: 0;
+		    	
+		    	// Active cell
+		    	&.active {
+		    		background-color: $table-hover-bg;
+		    	}
+		    }
+		}
+
+		// Center text in empty table
+		.dataTables_empty {
+			text-align: center;
+		}
+
+		// Collapse borders in bordered table
+		&.table-bordered {
+			border-collapse: collapse;
+		}
+	}
+
+	// Wrapper
+	.dataTables_wrapper {
+		position: relative;
+		clear: both;
+		@include clearfix();
+
+		// Remove top border from bordered table
+		.table-bordered {
+			border-top: 0;
+		}
+
+		// Add top border if card body comes after wrapper
+		+ .card-body {
+			border-top: $table-border-width solid $table-border-color;
+		}
+	}
+
+	// Processing indicator
+	.dataTables_processing {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 100%;
+		height: 40px;
+		margin-left: -50%;
+		margin-top: -25px;
+		padding-top: 20px;
+		text-align: center;
+		background-color: #fff;
+		background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(25%, rgba(255, 255, 255, 0.9)), color-stop(75%, rgba(255, 255, 255, 0.9)), color-stop(100%, rgba(255, 255, 255, 0)));
+		background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+		background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+		background: -ms-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+		background: -o-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+		background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+	}
+
+
+	// Header and footer
+	// ------------------------------
+
+	// Common
+	.datatable-header,
+	.datatable-footer {
+		padding: $dt-spacer-y $dt-spacer-x 0 $dt-spacer-x;
+		@include clearfix();
+
+		// Remove left margin from the first item
+		> div:first-child {
+			margin-left: 0;
+		}
+
+		// Remove horizontal spacing if inside card body
+		.card-body & {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		// Highlight header of footer with .*-accent class
+		&-accent {
+			background-color: $table-accent-bg;
+		}
+	}
+
+	// Header
+	.datatable-header {
+		border-bottom: $table-border-width solid $table-border-color;
+	}
+
+	// Footer
+	.datatable-footer {
+		border-top: $table-border-width solid $table-head-border-color;
+	}
+
+
+	// Controls
+	// ------------------------------
+
+	// Length menu
+	.dataTables_length {
+		float: right;
+		display: inline-block;
+		margin: 0 0 $dt-spacer-y $dt-spacer-x;
+
+		// Text label
+		> label {
+			margin-bottom: 0;
+
+			// Text, excluding select2 container
+			> span:first-child {
+				float: left;
+				margin: $dt-controls-label-spacer-y $dt-controls-label-spacer-x;
+				margin-left: 0;
+			}
+		}
+
+		// Apply default .form-control styles to select
+		select {
+		    height: $input-height;
+		    padding: $input-padding-y $input-padding-x;
+		    font-size: $font-size-base;
+		    line-height: $line-height-base;
+		    color: $input-color;
+		    background-color: $input-bg;
+		    border: $input-border-width solid $input-border-color;
+		    outline: 0;
+		}
+
+		// Left display option
+		.length-left & {
+			float: left;
+		}
+
+		// Adjust Select2 menu
+		.select2-container {
+			width: auto;
+		}
+		.select2-choice {
+			min-width: 3.75rem;
+		}
+	}
+
+	// Filter
+	.dataTables_filter {
+		position: relative;
+		display: block;
+		float: left;
+		margin: 0 0 $dt-spacer-y $dt-spacer-x;
+
+		// Text label
+		> label {
+			margin-bottom: 0;
+			position: relative;
+
+			// Add search icon
+			&:after {
+				content: "\e98e";
+				font-family: $icon-font-family;
+				font-size: $font-size-sm;
+				display: inline-block;
+				position: absolute;
+				top: 50%;
+				right: $input-padding-x;
+				margin-top: -($font-size-sm / 2);
+				line-height: 1;
+				opacity: 0.5;
+				@include ll-font-smoothing();
+			}
+
+			// Text spacing
+			> span {
+				float: left;
+				margin: $dt-controls-label-spacer-y $dt-controls-label-spacer-x;
+				margin-left: 0;
+			}
+		}
+
+		// Filter input
+		input {
+			outline: 0;
+			width: $dt-filter-width;
+			padding: $input-padding-y $input-padding-x;
+			padding-right: ($input-padding-x + ($font-size-sm * 1.5));
+			font-size: $font-size-base;
+			line-height: $line-height-base;
+			color: $input-color;
+			background-color: $input-bg;
+			border: $input-border-width solid $input-border-color;
+			border-width: $input-border-width 0;
+			border-top-color: transparent;
+			@include transition(all ease-in-out $component-transition-timer);
+
+			// Highlight input on focus
+			&:focus {
+	            border-bottom-color: $input-focus-border-color;
+	            box-shadow: $input-focus-box-shadow;
+			}
+
+			// Placeholder color
+		    &::placeholder {
+		        color: $input-placeholder-color;
+		        opacity: 1;
+		    }
+		}
+
+		// Right display option
+		.filter-right & {
+			float: right;
+		}
+	}
+
+	// Info
+	.dataTables_info {
+		float: left;
+		padding: $input-padding-y 0;
+		margin-bottom: $dt-spacer-y;
+
+		// Right alignment
+		.info-right & {
+			float: right;
+		}
+	}
+
+	// Pagination common styles
+	.dataTables_paginate {
+		float: right;
+		text-align: right;
+		margin: 0 0 $dt-spacer-y $dt-spacer-x;
+
+		// Button
+		.paginate_button {
+			display: inline-block;
+			padding: $btn-padding-y;
+		    min-width: ($font-size-base * $line-height-base) + rem-calc($pagination-border-width * 2) + ($pagination-padding-y * 2);
+			margin-left: 0.125rem;
+			text-align: center;
+			text-decoration: none;
+			cursor: pointer;
+			color: $pagination-color;
+			outline: 0;
+			border: $btn-border-width solid transparent;
+			@include border-radius($border-radius);
+			@include transition(all ease-in-out $component-transition-timer);
+
+			// First item
+			&:first-child {
+				margin-left: 0;
+			}
+
+			// Hover state
+			@include hover-focus {
+				background-color: $pagination-hover-bg;
+			}
+
+			// Current active state
+			&.current {
+				@include plain-hover-focus {
+					color: $dt-pagination-active-color;
+					background-color: $dt-pagination-active-bg;
+				}
+			}
+
+			// Disabled state
+			&.disabled {
+				@include plain-hover-focus {
+					cursor: $cursor-disabled;
+					background-color: $pagination-disabled-bg;
+					color: $pagination-disabled-color;
+				}
+			}
+		}
+
+		// Simple paginate
+		&.paging_simple .paginate_button {
+			padding-left: $btn-padding-x;
+			padding-right: $btn-padding-x;
+
+			// Hover state
+			&:not(.disabled) {
+				@include hover-focus {
+					color: $dt-pagination-active-color;
+					background-color: $dt-pagination-active-bg;
+				}
+			}
+		}
+
+		// Left display option
+		.paginate-left & {
+			float: left;
+		}
+	}
+
+	// Simple pagination style
+	.paging_simple {
+		.paginate_button {
+			@include hover-focus {
+				color: $pagination-active-color;
+				background-color: $pagination-active-bg;
+			}
+		}
+	}
+
+
+	// Scrollable table
+	// ------------------------------
+
+	.dataTables_scroll {
+		clear: both;
+
+		// Scrolling header
+		.dataTables_scrollHead {
+			table {
+				border-bottom: 0;
+			}
+
+			th,
+			td {
+				white-space: nowrap;
+			}
+		}
+
+		// Scrolling body
+		.dataTables_scrollBody {
+			-webkit-overflow-scrolling: touch;
+
+			table {
+				border-bottom: 0;
+
+				thead th[class*=sorting] {
+					&:before,
+					&:after {
+						content: none;
+					}
+				}
+
+				tbody tr:first-child > td {
+					border-top: 0;
+				}
+			}
+
+			th,
+			td {
+				white-space: nowrap;
+
+				> .dataTables_sizing {
+					height: 0;
+					overflow: hidden;
+					margin: 0;
+					padding: 0;
+				}
+			}
+		}
+	}
+
+
+	// Table inside cards
+	// ------------------------------
+
+	// Inside card body
+	.card-body {
+		+ .dataTables_wrapper,
+		+ * > .dataTables_wrapper {
+			border-top: $table-border-width solid $table-border-color;
+		}
+
+		> .dataTables_wrapper {
+			.datatable-footer {
+				border-top: 0;
+				
+				.dataTables_length,
+				.dataTables_filter,
+				.dataTables_info,
+				.dataTables_paginate {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+	// If card header doesn't have bottom border
+	.card-header:not([class*=bg-]) + .dataTables_wrapper {
+		> .datatable-header {
+			padding-top: 0;
+		}
+	}
+
+	// Bordered table inside card
+	.card > .dataTables_wrapper .table-bordered {
+		border: 0;
+
+		> thead,
+		> tbody,
+		> tfoot {
+			> tr {
+				> td,
+				> th {
+					&:first-child {
+						border-left: 0;
+					}
+
+					&:last-child {
+						border-right: 0;
+					}
+				}
+			}
+		}
+
+		> tbody > tr:last-child {
+			> th,
+			> td {
+				border-bottom: 0;
+			}
+		}
+	}
+
+
+	// Responsive style additions
+	// ------------------------------
+
+	// Simple responsive setup
+	.datatable-scroll-lg,
+	.datatable-scroll,
+	.datatable-scroll-sm {
+		min-height: .01%;
+	}
+
+	// Scroller
+	.datatable-scroll-wrap {
+		width: 100%;
+		min-height: .01%;
+		overflow-x: auto;
+	}
+
+	@include media-breakpoint-down(sm) {
+		.datatable-scroll-sm {
+			width: 100%;
+			overflow-x: scroll;
+
+			th,
+			td {
+				white-space: nowrap;
+			}
+		}
+	}
+	@include media-breakpoint-down(md) {
+		.datatable-scroll {
+			width: 100%;
+			overflow-x: scroll;
+
+			th,
+			td {
+				white-space: nowrap;
+			}
+		}
+	}
+	@include media-breakpoint-down(lg) {
+		.datatable-scroll-lg {
+			width: 100%;
+			overflow-x: scroll;
+
+			th,
+			td {
+				white-space: nowrap;
+			}
+		}
+	}
+
+	// Common media queries
+	@include media-breakpoint-down(sm) {
+		.dataTables_info,
+		.dataTables_paginate,
+		.dataTables_length,
+		.dataTables_filter,
+		.DTTT_container,
+		.ColVis {
+			float: none!important;
+			text-align: center;
+			margin-left: 0;
+		}
+		.dataTables_info,
+		.dataTables_paginate {
+			margin-top: 0;
+		}
+
+		.datatable-header {
+			text-align: center;
+		}
+	}
+}

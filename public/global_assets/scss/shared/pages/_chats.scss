@@ -1,0 +1,119 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Chat layouts
+ *
+ *  Conversation chat styles - layouts, chat elements, colors, options
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-chat {
+
+    // Set scrollbar to the long chat list
+    .media-chat-scrollable {
+        max-height: $chat-list-max-height; 
+        overflow: auto;
+    }
+
+    // Message list
+    .media-chat {
+
+        // Set side spacing for message bodies
+        @include media-breakpoint-up(sm) {
+            .media {
+                margin-right: 20%;
+
+                // Reversed item
+                &.media-chat-item-reverse {
+                    margin-right: 0;
+                    margin-left: 20%;
+                }
+            }
+        }
+    }
+
+    // Message body
+    .media-chat-item {
+        position: relative;
+        padding: $chat-message-padding-y $chat-message-padding-x;
+        width: auto;
+        display: inline-block;
+        color: $chat-message-color;
+        @include border-radius($chat-message-border-radius);
+
+        // Set default bg color
+        &:not([class*=bg-]) {
+            background-color: $chat-message-bg;
+            border-color: $chat-message-bg;
+        }
+
+        // Arrow base
+        &:before {
+            content: '';
+            left: -($chat-message-arrow-size);
+            top: ($chat-message-padding-y + ($line-height-computed / 2) - rem-calc($chat-message-arrow-size));
+            position: absolute;
+            margin-left: 0;
+            border-top: $chat-message-arrow-size solid transparent;
+            border-right: $chat-message-arrow-size solid;
+            border-right-color: inherit;
+            border-bottom: $chat-message-arrow-size solid transparent;
+
+            // Reversed arrow
+            .media-chat-item-reverse & {
+                left: auto;
+                right: -($chat-message-arrow-size);
+                border-right: 0;
+                border-left: $chat-message-arrow-size solid;
+                border-left-color: inherit;
+            }
+        }
+    }
+
+    // Reversed message body
+    .media-chat-item-reverse {
+
+        // Message
+        .media-chat-item {
+            text-align: left;
+            color: $chat-message-reversed-color;
+
+            // Set default bg color
+            &:not([class*=bg-]) {
+                background-color: $chat-message-reversed-bg;
+                border-color: $chat-message-reversed-bg;
+            }
+        }
+
+        // Change text alignment
+        .media-body {
+            text-align: right;
+        }
+    }
+
+    // Inversed message list
+    .media-chat-inverse {
+        .media-chat-item {
+            color: $chat-message-reversed-color;
+
+            // Colors
+            &:not([class*=bg-]) {
+                background-color: $chat-message-reversed-bg;
+                border-color: $chat-message-reversed-bg;
+            }
+        }
+
+        // Reversed message
+        .media-chat-item-reverse {
+            .media-chat-item {
+                color: $chat-message-color;
+
+                // Colors
+                &:not([class*=bg-]) {
+                    background-color: $chat-message-bg;
+                    border-color: $chat-message-bg;
+                }
+            }
+        }
+    }
+}

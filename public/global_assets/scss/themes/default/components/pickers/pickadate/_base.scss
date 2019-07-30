@@ -1,0 +1,52 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Pick-a-date - Picker base
+*
+*  The mobile-friendly, responsive, and lightweight jQuery date & time input picker
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-pickadate {
+
+    // Picker base
+    .picker {
+        width: 100%;
+        text-align: left;
+        position: absolute;
+        top: 100%;
+        margin-top: -($dropdown-border-width);
+        z-index: $zindex-tooltip;
+        user-select: none;
+    }
+
+    // Input element
+    .picker__input {
+        cursor: default;
+    }
+
+    // The base of the picker
+    .picker__holder {
+        width: 100%;
+        overflow-y: auto;
+        position: absolute;
+        display: none;
+        background-color: $dropdown-bg;
+        border: $dropdown-border-width solid $dropdown-border-color;
+        border-top-width: 0;
+        border-bottom-width: 0;
+        max-width: $pickadate-max-width;
+        outline: 0;
+        -webkit-overflow-scrolling: touch;
+        @include border-bottom-radius($border-radius);
+        @include box-shadow($dropdown-box-shadow);
+
+        // When the picker opens
+        .picker--opened & {
+            max-height: $pickadate-max-height;
+            border-top-width: $dropdown-border-width;
+            border-bottom-width: $dropdown-border-width;
+            display: block;
+        }
+    }
+}

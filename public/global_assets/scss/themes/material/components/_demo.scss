@@ -1,0 +1,148 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Demo styles
+ *
+ *  Styles used for demostration purposes only
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-demo {
+
+
+    // jQuery UI
+    // ------------------------------
+
+    .jqueryui-demo-element {
+        background-color: $gray-100;
+        border: ($border-width * 2) dashed $border-color;
+        color: $color-grey-500;
+        position: relative;
+        z-index: 10;
+        @include size(90px);
+
+        > span {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+        }
+    }
+
+    // Selectable
+    .selectable-demo-list {
+        list-style: none;
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 200px;
+
+        > .ui-sortable-handle,
+        > .ui-selectee {
+            background-color: $btn-light-bg;
+            border: $btn-border-width solid $btn-light-border-color;
+
+            &.ui-selecting,
+            &.ui-selected {
+                background-color: $color-blue-500!important;
+                border-color: $color-blue-700!important;
+                color: $white;
+            }
+        }
+
+        > .ui-sortable-helper:first-child + li {
+            margin-top: 0;
+        }
+    }
+
+    // Selectable
+    .selectable-demo-connected {
+        & + & {
+            margin-top: $spacer;
+
+            @include media-breakpoint-up(sm) {
+                margin-top: 0;
+                margin-left: $grid-gutter-width;
+            }
+        }
+    }
+
+    // Droppable
+    .droppable-demo-target {
+        width: 110px;
+        height: 110px;
+        background-color: $color-primary-50;
+        border-color: $color-primary-500;
+        color: $color-primary-800;
+        z-index: 9;
+    }
+    .droppable-demo-drop {
+        background-color: $color-success-50;
+        border-color: $color-success-500;
+        color: $color-success-800;
+    }
+
+
+    // Color palette
+    // ------------------------------
+
+    .demo-color {
+        height: 10rem;
+        position: relative;
+        @include border-top-radius($border-radius);
+
+        > span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 0.375rem;
+            background-color: rgba($black, 0.2);
+            font-size: $font-size-sm;
+            color: $white;
+        }
+    }
+
+
+    // Icons showcase
+    // ------------------------------
+
+    .glyphs {
+        > div > div {
+            padding: 0.5rem 1rem;
+            @include transition(all ease-in-out $component-transition-timer);
+
+            // Hover state
+            @include hover {
+                background-color: $color-dark-500;
+                color: $white;
+                @include border-radius($border-radius);
+
+                .text-muted {
+                    color: rgba($white, 0.75);
+                }
+            }
+        }
+    }
+
+
+    // Velocity animations box
+    // ------------------------------
+
+    .demo-velocity-box {
+        padding: 0.75rem 1rem;
+        margin-bottom: $spacer;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid $gray-500;
+        text-align: center;
+        background-color: $gray-100;
+        border-radius: $border-radius;
+        box-shadow: 0 0 0 0 theme-color("primary");
+    }
+}

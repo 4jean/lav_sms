@@ -1,0 +1,109 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Pick-a-date - Time picker
+*
+*  The mobile-friendly, responsive, and lightweight jQuery date & time input picker
+*
+* ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-pickadate {
+
+    // Container size
+    .picker--time {
+        min-width: $pickatime-min-width;
+        max-width: $pickatime-max-width;
+    }
+
+    // Remove padding from picker box
+    .picker--time .picker__box {
+        padding: 0;
+    }
+
+
+    //
+    // List of items
+    //
+
+    // Items list
+    .picker__list {
+        list-style: none;
+        padding: $dropdown-padding-y 0;
+        margin: 0;
+        max-height: $pickatime-max-height;
+        overflow-y: auto;
+    }
+
+    // The times on the clock.
+    .picker__list-item {
+        position: relative;
+        padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+        @include transition(all ease-in-out $component-transition-timer);
+
+        // Hover state
+        @include hover-focus {
+            cursor: pointer;
+            color: $dropdown-link-hover-color;
+            background-color: $dropdown-link-hover-bg;
+            z-index: 10;
+        }
+    }
+
+    // The clear button
+    .picker--time .picker__button--clear {
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: $btn-padding-y $btn-padding-x;
+        background-color: $gray-100;
+        outline: 0;
+        border: 0;
+        border-top: $border-width solid $dropdown-divider-bg;
+        text-align: center;
+        cursor: pointer;
+        margin-bottom: -($dropdown-padding-y);
+        margin-top: $dropdown-padding-y;
+        @include transition(all ease-in-out $component-transition-timer);
+
+        // Hocer state
+        @include hover-focus {
+            background-color: $gray-200;
+        }
+    }
+
+
+    //
+    // States
+    //
+
+    // Highlighted and hovered/focused time
+    .picker__list-item--highlighted {
+        z-index: 10;
+    }
+    .picker__list-item--highlighted,
+    .picker__list-item--highlighted:hover,
+    .picker--focused .picker__list-item--highlighted {
+        cursor: pointer;
+        color: $dropdown-link-hover-color;
+        background-color: $dropdown-link-hover-bg;
+    }
+
+    // Selected and hovered/focused time
+    .picker__list-item--selected,
+    .picker__list-item--selected:hover,
+    .picker--focused .picker__list-item--selected {
+        color: $dropdown-link-active-color;
+        background-color: $dropdown-link-active-bg;
+        z-index: 10;
+    }
+
+    // Disabled time
+    .picker__list-item--disabled,
+    .picker__list-item--disabled:hover,
+    .picker--focused .picker__list-item--disabled {
+        color: $dropdown-link-disabled-color;
+        background-color: transparent;
+        cursor: $cursor-disabled;
+        z-index: auto;
+    }
+}
