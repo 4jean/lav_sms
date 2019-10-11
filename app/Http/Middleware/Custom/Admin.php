@@ -4,7 +4,7 @@ namespace App\Http\Middleware\Custom;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 
 class Admin
 {
@@ -17,6 +17,6 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        return (Auth::check() && Fn::userIsAdmin()) ? $next($request) : redirect()->route('login');
+        return (Auth::check() && Qs::userIsAdmin()) ? $next($request) : redirect()->route('login');
     }
 }

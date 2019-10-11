@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use App\Helpers\Mk;
 use App\Helpers\Pay;
 use App\Models\ExamRecord;

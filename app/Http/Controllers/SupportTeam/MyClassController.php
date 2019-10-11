@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\SupportTeam;
 
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use App\Http\Requests\MyClass\ClassCreate;
 use App\Http\Requests\MyClass\ClassUpdate;
 use App\Repositories\MyClassRepo;
@@ -44,14 +44,14 @@ class MyClassController extends Controller
 
         $this->my_class->createSection($s);
 
-        return Fn::jsonStoreOk();
+        return Qs::jsonStoreOk();
     }
 
     public function edit($id)
     {
         $d['c'] = $c = $this->my_class->find($id);
 
-        return is_null($c) ? Fn::goWithDanger('classes.index') : view('pages.support_team.classes.edit', $d) ;
+        return is_null($c) ? Qs::goWithDanger('classes.index') : view('pages.support_team.classes.edit', $d) ;
     }
 
     public function update(ClassUpdate $req, $id)
@@ -59,7 +59,7 @@ class MyClassController extends Controller
         $data = $req->only(['name']);
         $this->my_class->update($id, $data);
 
-        return Fn::jsonUpdateOk();
+        return Qs::jsonUpdateOk();
     }
 
     public function destroy($id)

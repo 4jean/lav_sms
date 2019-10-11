@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use App\Http\Requests\UserChangePass;
 use App\Http\Requests\UserUpdate;
 use App\Repositories\UserRepo;
@@ -40,9 +40,9 @@ class MyAccountController extends Controller
 
         if($req->hasFile('photo')) {
             $photo = $req->file('photo');
-            $f = Fn::getFileMetaData($photo);
+            $f = Qs::getFileMetaData($photo);
             $f['name'] = 'photo.' . $f['ext'];
-            $f['path'] = $photo->storeAs(Fn::getUploadPath($user_type).$code, $f['name']);
+            $f['path'] = $photo->storeAs(Qs::getUploadPath($user_type).$code, $f['name']);
             $d['photo'] = asset('storage/' . $f['path']);
         }
 

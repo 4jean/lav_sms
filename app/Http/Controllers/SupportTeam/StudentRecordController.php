@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\SupportTeam;
 
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use App\Helpers\Mk;
 use App\Http\Requests\Student\StudentRecordCreate;
 use App\Http\Requests\Student\StudentRecordUpdate;
@@ -14,7 +14,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\Request;
 
 class StudentRecordController extends Controller
 {
@@ -22,7 +21,7 @@ class StudentRecordController extends Controller
 
    public function __construct(LocationRepo $loc, MyClassRepo $my_class, UserRepo $user, StudentRepo $student)
    {
-       $this->middleware('teamSA', ['only' => ['edit','update', 'reset_pass', 'create', 'store', 'promotion', 'graduated'] ]);
+       $this->middleware('teamSA', ['only' => ['edit','update', 'reset_pass', 'create', 'store', 'graduated'] ]);
        $this->middleware('super_admin', ['only' => ['destroy',] ]);
 
         $this->loc = $loc;
@@ -33,7 +32,7 @@ class StudentRecordController extends Controller
 
     public function reset_pass($st_id)
     {
-        $st_id = Fn::decodeHash($st_id);
+        $st_id = Qs::decodeHash($st_id);
         $data['password'] = Hash::make('student');
         $this->user->update($st_id, $data);
         return back()->with('flash_success', __('msg.p_reset'));
@@ -51,8 +50,8 @@ class StudentRecordController extends Controller
 
     public function store(StudentRecordCreate $req)
     {
-       $data =  $req->only(Fn::getUserRecord());
-       $sr =  $req->only(Fn::getStudentData());
+       $data =  $req->only(Qs::getUserRecord());
+       $sr =  $req->only(Qs::getStudentData());
 
         $ct = $this->my_class->findTypeByClass($req->my_class_id)->code;
         $ct = ($ct == 'J') ? 'JSS' : $ct;
@@ -62,14 +61,14 @@ class StudentRecordController extends Controller
         $data['name'] = ucwords($req->name);
         $data['code'] = strtoupper(str_random(10));
         $data['password'] = Hash::make('student');
-        $data['photo'] = Fn::getDefaultUserImage();
-        $data['username'] = Fn::getAppCode().'/'.$ct.'/'.$sr['year_admitted'].'/'.mt_rand(1000, 9999);
+        $data['photo'] = Qs::getDefaultUserImage();
+        $data['username'] = Qs::getAppCode().'/'.$ct.'/'.$sr['year_admitted'].'/'.mt_rand(1000, 9999);
 
         if($req->hasFile('photo')) {
             $photo = $req->file('photo');
-            $f = Fn::getFileMetaData($photo);
+            $f = Qs::getFileMetaData($photo);
             $f['name'] = 'photo.' . $f['ext'];
-            $f['path'] = $photo->storeAs(Fn::getUploadPath('student').$data['code'], $f['name']);
+            $f['path'] = $photo->storeAs(Qs::getUploadPath('student').$data['code'], $f['name']);
             $data['photo'] = asset('storage/' . $f['path']);
         }
 
@@ -77,10 +76,10 @@ class StudentRecordController extends Controller
 
         $sr['adm_no'] = $data['username'];
         $sr['user_id'] = $user->id;
-        $sr['session'] = Fn::getSetting('current_session');
+        $sr['session'] = Qs::getSetting('current_session');
 
         $this->student->createRecord($sr); // Create Student
-        return Fn::jsonStoreOk();
+        return Qs::jsonStoreOk();
     }
 
     public function listByClass($class_id)
@@ -89,7 +88,7 @@ class StudentRecordController extends Controller
         $data['students'] = $this->student->findStudentsByClass($class_id);
         $data['sections'] = $this->my_class->getClassSections($class_id);
 
-        return is_null($mc) ? Fn::goWithDanger() : view('pages.support_team.students.list', $data);
+        return is_null($mc) ? Qs::goWithDanger() : view('pages.support_team.students.list', $data);
     }
 
     public function graduated()
@@ -104,87 +103,21 @@ class StudentRecordController extends Controller
     {
         $d['grad'] = 0;
         $d['grad_date'] = NULL;
-        $d['session'] = Fn::getSetting('current_session');
+        $d['session'] = Qs::getSetting('current_session');
         $this->student->updateRecord($sr_id, $d);
 
         return back()->with('flash_success', __('msg.update_ok'));
     }
 
-    public function promotion($fc = NULL, $fs = NULL, $tc = NULL, $ts = NULL)
-    {
-        $d['old_year'] = $old_yr = Fn::getSetting('current_session');
-        $old_yr = explode('-', $old_yr);
-        $d['new_year'] = ++$old_yr[0].'-'.++$old_yr[1];
-        $d['my_classes'] = $this->my_class->all();
-        $d['sections'] = $this->my_class->getAllSections();
-        $d['selected'] = false;
-
-        if($fc && $fs && $tc && $ts){
-            $d['selected'] = true;
-            $d['fc'] = $fc;
-            $d['fs'] = $fs;
-            $d['tc'] = $tc;
-            $d['ts'] = $ts;
-            $d['students'] = $sts = $this->student->getRecord(['my_class_id' => $fc, 'section_id' => $fs, 'session' => $d['old_year']])->get();
-            
-            if($sts->count() < 1){
-                return redirect()->route('students.promotion')->with('flash_success', __('msg.nstp'));
-            }
-        }
-
-        return view('pages.support_team.students.promotion.index', $d);
-    }
-
-    public function promote_selector(Request $req)
-    {
-        return redirect()->route('students.promotion', [$req->fc, $req->fs, $req->tc, $req->ts]);
-    }
-
-    public function promote(Request $req, $fc, $fs, $tc, $ts)
-    {
-        $oy = Fn::getSetting('current_session'); $d = [];
-        $old_yr = explode('-', $oy);
-        $ny = ++$old_yr[0].'-'.++$old_yr[1];
-        $students = $this->student->getRecord(['my_class_id' => $fc, 'section_id' => $fs, 'session' => $oy ])->get()->sortBy('user.name');
-
-        if($students->count() < 1){
-            return redirect()->route('students.promotion')->with('flash_danger', __('msg.srnf'));
-        }
-
-        foreach($students as $st){
-            $p = 'p-'.$st->id;
-            $p = $req->$p;
-            if($p == 'P'){ // Promote
-                $d['my_class_id'] = $tc;
-                $d['section_id'] = $ts;
-                $d['session'] = $ny;
-            }
-            if($p == 'D'){ // Don't Promote
-                $d['my_class_id'] = $fc;
-                $d['section_id'] = $fs;
-                $d['session'] = $ny;
-            }
-            if($p == 'G'){ // Graduated
-                $d['my_class_id'] = $fc;
-                $d['section_id'] = $fs;
-                $d['grad'] = 1;
-                $d['grad_date'] = $oy;
-            }
-
-            $this->student->updateRecord($st->id, $d);
-        }
-        return redirect()->route('students.promotion')->with('flash_success', __('msg.update_ok'));
-    }
-
     public function show($sr_id)
     {
-        $sr_id = Fn::decodeHash($sr_id);
-        if(!$sr_id){return Fn::goWithDanger();}
+        $sr_id = Qs::decodeHash($sr_id);
+        if(!$sr_id){return Qs::goWithDanger();}
 
         $data['sr'] = $this->student->getRecord(['id' => $sr_id])->first();
 
         /* Prevent Other Students/Parents from viewing Profile of others */
-        if(Auth::user()->id != $data['sr']->user_id && !Fn::userIsTeamSAT() && !Fn::userIsMyChild($data['sr']->user_id, Auth::user()->id)){
+        if(Auth::user()->id != $data['sr']->user_id && !Qs::userIsTeamSAT() && !Qs::userIsMyChild($data['sr']->user_id, Auth::user()->id)){
             return redirect(route('dashboard'))->with('pop_error', __('msg.denied'));
         }
 
@@ -193,8 +126,8 @@ class StudentRecordController extends Controller
 
     public function edit($sr_id)
     {
-        $sr_id = Fn::decodeHash($sr_id);
-        if(!$sr_id){return Fn::goWithDanger();}
+        $sr_id = Qs::decodeHash($sr_id);
+        if(!$sr_id){return Qs::goWithDanger();}
 
         $data['sr'] = $this->student->getRecord(['id' => $sr_id])->first();
         $data['my_classes'] = $this->my_class->all();
@@ -207,40 +140,40 @@ class StudentRecordController extends Controller
 
     public function update(StudentRecordUpdate $req, $sr_id)
     {
-        $sr_id = Fn::decodeHash($sr_id);
-        if(!$sr_id){return Fn::goWithDanger();}
+        $sr_id = Qs::decodeHash($sr_id);
+        if(!$sr_id){return Qs::goWithDanger();}
 
         $sr = $this->student->getRecord(['id' => $sr_id])->first();
-        $d =  $req->only(Fn::getUserRecord());
+        $d =  $req->only(Qs::getUserRecord());
         $d['name'] = ucwords($req->name);
 
         if($req->hasFile('photo')) {
             $photo = $req->file('photo');
-            $f = Fn::getFileMetaData($photo);
+            $f = Qs::getFileMetaData($photo);
             $f['name'] = 'photo.' . $f['ext'];
-            $f['path'] = $photo->storeAs(Fn::getUploadPath('student').$sr->user->code, $f['name']);
+            $f['path'] = $photo->storeAs(Qs::getUploadPath('student').$sr->user->code, $f['name']);
             $d['photo'] = asset('storage/' . $f['path']);
         }
 
         $this->user->update($sr->user->id, $d); // Update User Details
 
-        $srec = $req->only(Fn::getStudentData());
+        $srec = $req->only(Qs::getStudentData());
 
         $this->student->updateRecord($sr_id, $srec); // Update St Rec
 
         /*** If Class/Section is Changed in Same Year, Delete Marks/ExamRecord of Previous Class/Section ****/
         Mk::deleteOldRecord($sr->user->id, $srec['my_class_id']);
 
-        return Fn::jsonUpdateOk();
+        return Qs::jsonUpdateOk();
     }
 
     public function destroy($st_id)
     {
-        $st_id = Fn::decodeHash($st_id);
-        if(!$st_id){return Fn::goWithDanger();}
+        $st_id = Qs::decodeHash($st_id);
+        if(!$st_id){return Qs::goWithDanger();}
 
         $sr = $this->student->getRecord(['user_id' => $st_id])->first();
-        $path = Fn::getUploadPath('student').$sr->user->code;
+        $path = Qs::getUploadPath('student').$sr->user->code;
         Storage::exists($path) ? Storage::deleteDirectory($path) : false;
         $this->user->delete($sr->user->id);
 

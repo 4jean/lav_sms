@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header header-elements-inline">
             <h6 class="card-title">Manage Users</h6>
-            {!! Fn::getPanelOptions() !!}
+            {!! Qs::getPanelOptions() !!}
         </div>
 
         <div class="card-body">
@@ -15,7 +15,7 @@
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Manage Users</a>
                     <div class="dropdown-menu dropdown-menu-right">
                         @foreach($user_types as $ut)
-                            <a href="#ut-{{ Fn::hash($ut->id) }}" class="dropdown-item" data-toggle="tab">{{ $ut->name }}s</a>
+                            <a href="#ut-{{ Qs::hash($ut->id) }}" class="dropdown-item" data-toggle="tab">{{ $ut->name }}s</a>
                         @endforeach
                     </div>
                 </li>
@@ -33,7 +33,7 @@
                                         <label for="user_type"> Select User: <span class="text-danger">*</span></label>
                                         <select required data-placeholder="Select User" class="form-control select" name="user_type" id="user_type">
                                 @foreach($user_types as $ut)
-                                    <option value="{{ Fn::hash($ut->id) }}">{{ $ut->name }}</option>
+                                    <option value="{{ Qs::hash($ut->id) }}">{{ $ut->name }}</option>
                                 @endforeach
                                         </select>
                                     </div>
@@ -177,7 +177,7 @@
                 </div>
 
                 @foreach($user_types as $ut)
-                    <div class="tab-pane fade" id="ut-{{Fn::hash($ut->id)}}">                         <table class="table datatable-button-html5-columns">
+                    <div class="tab-pane fade" id="ut-{{Qs::hash($ut->id)}}">                         <table class="table datatable-button-html5-columns">
                             <thead>
                             <tr>
                                 <th>S/N</th>
@@ -207,15 +207,15 @@
 
                                                 <div class="dropdown-menu dropdown-menu-left">
                                                     {{--View Profile--}}
-                                                    <a href="{{ route('users.show', Fn::hash($u->id)) }}" class="dropdown-item"><i class="icon-eye"></i> View Profile</a>
+                                                    <a href="{{ route('users.show', Qs::hash($u->id)) }}" class="dropdown-item"><i class="icon-eye"></i> View Profile</a>
                                                     {{--Edit--}}
-                                                    <a href="{{ route('users.edit', Fn::hash($u->id)) }}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
-                                                @if(Fn::userIsSuperAdmin())
+                                                    <a href="{{ route('users.edit', Qs::hash($u->id)) }}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
+                                                @if(Qs::userIsSuperAdmin())
 
-                                                        <a href="{{ route('users.reset_pass', Fn::hash($u->id)) }}" class="dropdown-item"><i class="icon-lock"></i> Reset password</a>
+                                                        <a href="{{ route('users.reset_pass', Qs::hash($u->id)) }}" class="dropdown-item"><i class="icon-lock"></i> Reset password</a>
                                                         {{--Delete--}}
-                                                        <a id="{{ Fn::hash($u->id) }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
-                                                        <form method="post" id="item-delete-{{ Fn::hash($u->id) }}" action="{{ route('users.destroy', Fn::hash($u->id)) }}" class="hidden">@csrf @method('delete')</form>
+                                                        <a id="{{ Qs::hash($u->id) }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
+                                                        <form method="post" id="item-delete-{{ Qs::hash($u->id) }}" action="{{ route('users.destroy', Qs::hash($u->id)) }}" class="hidden">@csrf @method('delete')</form>
                                                 @endif
 
                                                 </div>

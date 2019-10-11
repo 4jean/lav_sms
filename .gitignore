@@ -12,4 +12,6 @@ npm-debug.log
 yarn-error.log
 .env
 .phpunit.result.cache
-cj_lav_sms.sql
+important
+_ide_helper.php
+storage

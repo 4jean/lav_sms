@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header header-elements-inline">
             <h6 class="card-title">Manage Class Sections</h6>
-            {!! Fn::getPanelOptions() !!}
+            {!! Qs::getPanelOptions() !!}
         </div>
 
         <div class="card-body">
@@ -51,7 +51,7 @@
                                         <select data-placeholder="Select Teacher" class="form-control select-search" name="teacher_id" id="teacher_id">
                                             <option value=""></option>
                                             @foreach($teachers as $t)
-                                                <option {{ old('teacher_id') == Fn::hash($t->id) ? 'selected' : '' }} value="{{ Fn::hash($t->id) }}">{{ $t->name }}</option>
+                                                <option {{ old('teacher_id') == Qs::hash($t->id) ? 'selected' : '' }} value="{{ Qs::hash($t->id) }}">{{ $t->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -84,7 +84,7 @@
                                     <td>{{ $s->my_class->name }}</td>
 
                                     @if($s->teacher_id)
-                                    <td><a target="_blank" href="{{ route('users.show', Fn::hash($s->teacher_id)) }}">{{ $s->teacher->name }}</a></td>
+                                    <td><a target="_blank" href="{{ route('users.show', Qs::hash($s->teacher_id)) }}">{{ $s->teacher->name }}</a></td>
                                         @else
                                         <td> - </td>
                                     @endif
@@ -98,11 +98,11 @@
 
                                                 <div class="dropdown-menu dropdown-menu-left">
                                                     {{--edit--}}
-                                                    @if(Fn::userIsTeamSA())
+                                                    @if(Qs::userIsTeamSA())
                                                         <a href="{{ route('sections.edit', $s->id) }}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
                                                     @endif
                                                     {{--Delete--}}
-                                                    @if(Fn::userIsSuperAdmin())
+                                                    @if(Qs::userIsSuperAdmin())
                                                         <a id="{{ $s->id }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
                                                         <form method="post" id="item-delete-{{ $s->id }}" action="{{ route('sections.destroy', $s->id) }}" class="hidden">@csrf @method('delete')</form>
                                                     @endif

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\SupportTeam;
 
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use App\Helpers\Mk;
 use App\Http\Requests\Mark\MarkSelector;
 use App\Models\Setting;
@@ -25,7 +25,7 @@ class MarkController extends Controller
         $this->mark =  $mark;
         $this->student =  $student;
         $this->my_class =  $my_class;
-        $this->year =  Fn::getSetting('current_session');
+        $this->year =  Qs::getSetting('current_session');
 
        // $this->middleware('teamSAT', ['except' => ['show', 'year_selected', 'year_selector', 'print_view'] ]);
     }
@@ -52,22 +52,22 @@ class MarkController extends Controller
             return $this->noStudentRecord();
         }
 
-        $student_id = Fn::hash($student_id);
+        $student_id = Qs::hash($student_id);
         return redirect()->route('marks.show', [$student_id, $req->year]);
     }
 
     public function show($student_id, $year)
     {
         /* Prevent Other Students/Parents from viewing Result of others */
-        if(Auth::user()->id != $student_id && !Fn::userIsTeamSAT() && !Fn::userIsMyChild($student_id, Auth::user()->id)){
+        if(Auth::user()->id != $student_id && !Qs::userIsTeamSAT() && !Qs::userIsMyChild($student_id, Auth::user()->id)){
             return redirect(route('dashboard'))->with('pop_error', __('msg.denied'));
         }
 
-        if(Mk::examIsLocked() && !Fn::userIsTeamSA()){
-            Session::put('marks_url', route('marks.show', [Fn::hash($student_id), $year]));
+        if(Mk::examIsLocked() && !Qs::userIsTeamSA()){
+            Session::put('marks_url', route('marks.show', [Qs::hash($student_id), $year]));
 
             if(!$this->checkPinVerified($student_id)){
-                return redirect()->route('pins.enter', Fn::hash($student_id));
+                return redirect()->route('pins.enter', Qs::hash($student_id));
             }
         }
 
@@ -90,7 +90,7 @@ class MarkController extends Controller
 
         $d['skills'] = in_array($ct, ['J', 'S']) ? $this->exam->getSkillByClassType($ct) : NULL;
 
-        $d['mark_type'] = Fn::getMarkType($d['ct']);
+        $d['mark_type'] = Qs::getMarkType($d['ct']);
 
         return view('pages.support_team.marks.show.index', $d);
     }
@@ -98,15 +98,15 @@ class MarkController extends Controller
     public function print_view($student_id, $exam_id, $year)
     {
         /* Prevent Other Students/Parents from viewing Result of others */
-        if(Auth::user()->id != $student_id && !Fn::userIsTeamSA() && !Fn::userIsMyChild($student_id, Auth::user()->id)){
+        if(Auth::user()->id != $student_id && !Qs::userIsTeamSA() && !Qs::userIsMyChild($student_id, Auth::user()->id)){
             return redirect(route('dashboard'))->with('pop_error', __('msg.denied'));
         }
 
-        if(Mk::examIsLocked() && !Fn::userIsTeamSA()){
-            Session::put('marks_url', route('marks.show', [Fn::hash($student_id), $year]));
+        if(Mk::examIsLocked() && !Qs::userIsTeamSA()){
+            Session::put('marks_url', route('marks.show', [Qs::hash($student_id), $year]));
 
             if(!$this->checkPinVerified($student_id)){
-                return redirect()->route('pins.enter', Fn::hash($student_id));
+                return redirect()->route('pins.enter', Qs::hash($student_id));
             }
         }
 
@@ -134,7 +134,7 @@ class MarkController extends Controller
             return [$s->type => $s->description];
         });
 
-        $d['mark_type'] = Fn::getMarkType($ct);
+        $d['mark_type'] = Qs::getMarkType($ct);
 
         return view('pages.support_team.marks.print.index', $d);
     }
@@ -174,7 +174,7 @@ class MarkController extends Controller
         $d['my_classes'] = $this->my_class->all();
         $d['sections'] = $this->my_class->getAllSections();
         $d['subjects'] = $this->my_class->getAllSubjects();
-        if(Fn::userIsTeacher()){
+        if(Qs::userIsTeacher()){
             $d['subjects'] = $this->my_class->findSubjectByTeacher(Auth::user()->id)->where('my_class_id', $class_id);
         }
         $d['selected'] = true;
@@ -199,18 +199,11 @@ class MarkController extends Controller
         foreach($marks->sortBy('user.name') as $mk){
             $st_id = $all_st_ids[] = $mk->student_id;
 
-            if(in_array($class_type->code, ['J', 'P']) ){
+            if(in_array($class_type->code, ['J', 'P', 'S']) ){
                 $d['t1'] = $t1 = $mks['t1_'.$mk->id];
                 $d['t2'] = $t2 = $mks['t2_'.$mk->id];
                 $d['t3'] = $t3 = $mks['t3_'.$mk->id];
                 $d['tca'] = $tca = $t1 + $t2 + $t3;
-                $d['exm'] = $exm = $mks['exm_'.$mk->id];
-            }
-
-            if($class_type->code == 'S'){
-                $d['t1'] = $t1 = $mks['t1_'.$mk->id];
-                $d['t2'] = $t2 = $mks['t2_'.$mk->id];
-                $d['tca'] = $tca = $t1 + $t2;
                 $d['exm'] = $exm = $mks['exm_'.$mk->id];
             }
 
@@ -269,7 +262,7 @@ class MarkController extends Controller
 
         /*Exam Record End*/
 
-       return Fn::jsonUpdateOk();
+       return Qs::jsonUpdateOk();
     }
 
     public function batch_fix()
@@ -336,15 +329,15 @@ class MarkController extends Controller
         /** END Exam Record Update END **/
 
 
-        return Fn::jsonUpdateOk();
+        return Qs::jsonUpdateOk();
     }
 
     public function comment_update(Request $req, $exr_id)
     {
-        $d = Fn::userIsTeamSA() ? $req->only(['t_comment', 'p_comment']) : $req->only(['t_comment']);
+        $d = Qs::userIsTeamSA() ? $req->only(['t_comment', 'p_comment']) : $req->only(['t_comment']);
 
         $this->exam->updateRecord(['id' => $exr_id], $d);
-        return Fn::jsonUpdateOk();
+        return Qs::jsonUpdateOk();
     }
 
     public function skills_update(Request $req, $skill, $exr_id)
@@ -356,7 +349,7 @@ class MarkController extends Controller
         }
 
         $this->exam->updateRecord(['id' => $exr_id], $d);
-        return Fn::jsonUpdateOk();
+        return Qs::jsonUpdateOk();
     }
 
     public function bulk($class_id = NULL, $section_id = NULL)
@@ -397,7 +390,7 @@ class MarkController extends Controller
             $st_ids = $this->mark->getStudentIDs($wh);
 
             if(count($sub_ids) < 1 OR count($st_ids) < 1) {
-                return Fn::goWithDanger('marks.tabulation', __('msg.srnf'));
+                return Qs::goWithDanger('marks.tabulation', __('msg.srnf'));
             }
 
             $d['subjects'] = $this->my_class->getSubjectsByIDs($sub_ids);
@@ -431,7 +424,7 @@ class MarkController extends Controller
         $st_ids = $this->mark->getStudentIDs($wh);
 
         if(count($sub_ids) < 1 OR count($st_ids) < 1) {
-            return Fn::goWithDanger('marks.tabulation', __('msg.srnf'));
+            return Qs::goWithDanger('marks.tabulation', __('msg.srnf'));
         }
 
         $d['subjects'] = $this->my_class->getSubjectsByIDs($sub_ids);
@@ -470,7 +463,7 @@ class MarkController extends Controller
         if(!$year){
             if($student_exists && $years->count() > 0)
             {
-                $d =['years' => $years, 'student_id' => Fn::hash($student_id)];
+                $d =['years' => $years, 'student_id' => Qs::hash($student_id)];
 
                 return view('pages.support_team.marks.select_year', $d);
             }

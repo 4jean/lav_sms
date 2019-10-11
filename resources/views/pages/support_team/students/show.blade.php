@@ -41,7 +41,7 @@
                                 <tr>
                                     <td class="font-weight-bold">Parent</td>
                                     <td>
-                                        <span><a target="_blank" href="{{ route('users.show', Fn::hash($sr->my_parent_id)) }}">{{ $sr->my_parent->name }}</a></span>
+                                        <span><a target="_blank" href="{{ route('users.show', Qs::hash($sr->my_parent_id)) }}">{{ $sr->my_parent->name }}</a></span>
                                     </td>
                                 </tr>
                             @endif

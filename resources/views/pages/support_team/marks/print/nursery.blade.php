@@ -14,8 +14,8 @@
         <td><strong>CLASS AVERAGE: </strong>{{ $exr->class_ave }}</td>
     </tr>
     <tr>
-        <td><strong>POSITION:</strong> {!! $exr->pos ? Mk::getSuffix($exr->pos) : '' !!}</td>
-        <td><strong>OUT OF:</strong> {{ Mk::countStudents($exam_id, $my_class->id, $section_id, $year) }}</td>
+        {{--<td><strong>POSITION:</strong> {!! $exr->pos ? Mk::getSuffix($exr->pos) : '' !!}</td>
+        <td><strong>OUT OF:</strong> {{ Mk::countStudents($exam_id, $my_class->id, $section_id, $year) }}</td>--}}
         <td><strong>TOTAL SCORES:</strong> {{ $exr->total }}</td>
         <td><strong>STUDENT AVERAGE:</strong> {{ $exr->ave }}</td>
     </tr>
@@ -110,7 +110,7 @@
     </tr>
     <tr>
         <td><strong>CUMULATIVE AVERAGE:</strong> {{ $exr->ave }}</td>
-        <td><strong>POSITION FOR THE SESSION:</strong> {!! $exr->pos ? Mk::getSuffix($exr->pos) : '' !!}</td>
+{{--        <td><strong>POSITION FOR THE SESSION:</strong> {!! $exr->pos ? Mk::getSuffix($exr->pos) : '' !!}</td>--}}
     </tr>
 
     </tbody>

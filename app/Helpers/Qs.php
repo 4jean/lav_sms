@@ -8,7 +8,7 @@ use App\Models\Subject;
 use Hashids\Hashids;
 use Illuminate\Support\Facades\Auth;
 
-class Fn
+class Qs
 {
     public static function displayError($errors)
     {
@@ -252,6 +252,13 @@ class Fn
     public static function getCurrentSession()
     {
         return self::getSetting('current_session');
+    }
+
+    public static function getNextSession()
+    {
+        $oy = self::getCurrentSession();
+        $old_yr = explode('-', $oy);
+        return ++$old_yr[0].'-'.++$old_yr[1];
     }
 
     public static function getSystemName()

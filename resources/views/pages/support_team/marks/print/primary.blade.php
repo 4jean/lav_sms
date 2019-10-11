@@ -14,8 +14,8 @@
         <td><strong>CLASS AVERAGE: </strong>{{ $exr->class_ave }}</td>
     </tr>
     <tr>
-        <td><strong>POSITION:</strong> {!! $exr->pos ? Mk::getSuffix($exr->pos) : '' !!}</td>
-        <td><strong>OUT OF:</strong> {{ Mk::countStudents($exam_id, $my_class->id, $section_id, $year) }}</td>
+       {{-- <td><strong>POSITION:</strong> {!! $exr->pos ? Mk::getSuffix($exr->pos) : '' !!}</td>
+        <td><strong>OUT OF:</strong> {{ Mk::countStudents($exam_id, $my_class->id, $section_id, $year) }}</td>--}}
         <td><strong>TOTAL SCORES:</strong> {{ $exr->total }}</td>
         <td><strong>STUDENT AVERAGE:</strong> {{ $exr->ave }}</td>
     </tr>
@@ -90,7 +90,7 @@
 
 {{--Key to Grading--}}
 <div style="margin-bottom: 5px; text-align: center">
-    <table border="0" cellpadding="5" cellspacing="5" style="text-align: center; margin: 0 auto;">
+    <table style="text-align: center; margin: 0 auto; border-spacing: 5px; padding: 5px; border: 0">
         <tr>
             <td><strong>KEY TO THE GRADING</strong></td>
             @if(Mk::getGradeList($class_type->id)->count())
@@ -116,7 +116,7 @@
         </tr>
         <tr>
             <td><strong>CUMULATIVE AVERAGE:</strong> {{ $exr->ave }}</td>
-            <td><strong>POSITION FOR THE SESSION:</strong> {!! $exr->pos ? Mk::getSuffix($exr->pos) : '' !!}</td>
+            {{--<td><strong>POSITION FOR THE SESSION:</strong> {!! $exr->pos ? Mk::getSuffix($exr->pos) : '' !!}</td>--}}
         </tr>
 
         </tbody>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\SupportTeam;
 
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use App\Http\Requests\Section\SectionCreate;
 use App\Http\Requests\Section\SectionUpdate;
 use App\Repositories\MyClassRepo;
@@ -36,7 +36,7 @@ class SectionController extends Controller
         $data = $req->all();
         $this->my_class->createSection($data);
 
-        return Fn::jsonStoreOk();
+        return Qs::jsonStoreOk();
     }
 
     public function edit($id)
@@ -44,7 +44,7 @@ class SectionController extends Controller
         $d['s'] = $s = $this->my_class->findSection($id);
         $d['teachers'] = $this->user->getUserByType('teacher');
 
-        return is_null($s) ? Fn::goWithDanger('sections.index') :view('pages.support_team.sections.edit', $d);
+        return is_null($s) ? Qs::goWithDanger('sections.index') :view('pages.support_team.sections.edit', $d);
     }
 
     public function update(SectionUpdate $req, $id)
@@ -52,7 +52,7 @@ class SectionController extends Controller
         $data = $req->only(['name', 'teacher_id']);
         $this->my_class->updateSection($id, $data);
 
-        return Fn::jsonUpdateOk();
+        return Qs::jsonUpdateOk();
     }
 
     public function destroy($id)

@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header header-elements-inline">
             <h6 class="card-title">Edit Subject - {{$s->my_class->name }}</h6>
-            {!! Fn::getPanelOptions() !!}
+            {!! Qs::getPanelOptions() !!}
         </div>
 
         <div class="card-body">
@@ -44,7 +44,7 @@
                                 <select data-placeholder="Select Teacher" class="form-control select-search" name="teacher_id" id="teacher_id">
                                     <option value=""></option>
                                     @foreach($teachers as $t)
-                                        <option {{ $s->teacher_id == $t->id ? 'selected' : '' }} value="{{ Fn::hash($t->id) }}">{{ $t->name }}</option>
+                                        <option {{ $s->teacher_id == $t->id ? 'selected' : '' }} value="{{ Qs::hash($t->id) }}">{{ $t->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

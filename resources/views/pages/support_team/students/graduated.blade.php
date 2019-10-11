@@ -5,7 +5,7 @@
 <div class="card">
     <div class="card-header header-elements-inline">
         <h6 class="card-title">Students Graduated</h6>
-        {!! Fn::getPanelOptions() !!}
+        {!! Qs::getPanelOptions() !!}
     </div>
 
     <div class="card-body">
@@ -52,22 +52,22 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-left">
-                                        <a href="{{ route('students.show', Fn::hash($s->id)) }}" class="dropdown-item"><i class="icon-eye"></i> View Profile</a>
-                                        @if(Fn::userIsTeamSA())
-                                        <a href="{{ route('students.edit', Fn::hash($s->id)) }}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
-                                        <a href="{{ route('st.reset_pass', Fn::hash($s->user->id)) }}" class="dropdown-item"><i class="icon-lock"></i> Reset password</a>
+                                        <a href="{{ route('students.show', Qs::hash($s->id)) }}" class="dropdown-item"><i class="icon-eye"></i> View Profile</a>
+                                        @if(Qs::userIsTeamSA())
+                                        <a href="{{ route('students.edit', Qs::hash($s->id)) }}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
+                                        <a href="{{ route('st.reset_pass', Qs::hash($s->user->id)) }}" class="dropdown-item"><i class="icon-lock"></i> Reset password</a>
 
                                         {{--Not Graduated--}}
-                                        <a id="{{ Fn::hash($s->id) }}" href="#" onclick="$('form#ng-'+this.id).submit();" class="dropdown-item"><i class="icon-stairs-down"></i> Not Graduated</a>
-                                            <form method="post" id="ng-{{ Fn::hash($s->id) }}" action="{{ route('st.not_graduated', Fn::hash($s->id)) }}" class="hidden">@csrf @method('put')</form>
+                                        <a id="{{ Qs::hash($s->id) }}" href="#" onclick="$('form#ng-'+this.id).submit();" class="dropdown-item"><i class="icon-stairs-down"></i> Not Graduated</a>
+                                            <form method="post" id="ng-{{ Qs::hash($s->id) }}" action="{{ route('st.not_graduated', Qs::hash($s->id)) }}" class="hidden">@csrf @method('put')</form>
                                         @endif
 
-                                        <a target="_blank" href="{{ route('marks.year_selector', Fn::hash($s->user->id)) }}" class="dropdown-item"><i class="icon-check"></i> Marksheet</a>
+                                        <a target="_blank" href="{{ route('marks.year_selector', Qs::hash($s->user->id)) }}" class="dropdown-item"><i class="icon-check"></i> Marksheet</a>
 
                                         {{--Delete--}}
-                                        @if(Fn::userIsSuperAdmin())
-                                        <a id="{{ Fn::hash($s->user->id) }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
-                                        <form method="post" id="item-delete-{{ Fn::hash($s->user->id) }}" action="{{ route('students.destroy', Fn::hash($s->user->id)) }}" class="hidden">@csrf @method('delete')</form>
+                                        @if(Qs::userIsSuperAdmin())
+                                        <a id="{{ Qs::hash($s->user->id) }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
+                                        <form method="post" id="item-delete-{{ Qs::hash($s->user->id) }}" action="{{ route('students.destroy', Qs::hash($s->user->id)) }}" class="hidden">@csrf @method('delete')</form>
                                         @endif
                                     </div>
                                 </div>
@@ -109,22 +109,22 @@
                                         </a>
 
                                         <div class="dropdown-menu dropdown-menu-left">
-                                            <a href="{{ route('students.show', Fn::hash($s->id)) }}" class="dropdown-item"><i class="icon-eye"></i> View Profile</a>
-                                            @if(Fn::userIsTeamSA())
-                                                <a href="{{ route('students.edit', Fn::hash($s->id)) }}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
-                                                <a href="{{ route('st.reset_pass', Fn::hash($s->user->id)) }}" class="dropdown-item"><i class="icon-lock"></i> Reset password</a>
+                                            <a href="{{ route('students.show', Qs::hash($s->id)) }}" class="dropdown-item"><i class="icon-eye"></i> View Profile</a>
+                                            @if(Qs::userIsTeamSA())
+                                                <a href="{{ route('students.edit', Qs::hash($s->id)) }}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
+                                                <a href="{{ route('st.reset_pass', Qs::hash($s->user->id)) }}" class="dropdown-item"><i class="icon-lock"></i> Reset password</a>
 
                                                 {{--Not Graduated--}}
-                                                <a id="{{ Fn::hash($s->id) }}" href="#" onclick="$('form#ng-'+this.id).submit();" class="dropdown-item"><i class="icon-stairs-down"></i> Not Graduated</a>
-                                                <form method="post" id="ng-{{ Fn::hash($s->id) }}" action="{{ route('st.not_graduated', Fn::hash($s->id)) }}" class="hidden">@csrf @method('put')</form>
+                                                <a id="{{ Qs::hash($s->id) }}" href="#" onclick="$('form#ng-'+this.id).submit();" class="dropdown-item"><i class="icon-stairs-down"></i> Not Graduated</a>
+                                                <form method="post" id="ng-{{ Qs::hash($s->id) }}" action="{{ route('st.not_graduated', Qs::hash($s->id)) }}" class="hidden">@csrf @method('put')</form>
                                             @endif
 
-                                            <a target="_blank" href="{{ route('marks.year_selector', Fn::hash($s->user->id)) }}" class="dropdown-item"><i class="icon-check"></i> Marksheet</a>
+                                            <a target="_blank" href="{{ route('marks.year_selector', Qs::hash($s->user->id)) }}" class="dropdown-item"><i class="icon-check"></i> Marksheet</a>
 
                                             {{--Delete--}}
-                                            @if(Fn::userIsSuperAdmin())
-                                                <a id="{{ Fn::hash($s->user->id) }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
-                                                <form method="post" id="item-delete-{{ Fn::hash($s->user->id) }}" action="{{ route('students.destroy', Fn::hash($s->user->id)) }}" class="hidden">@csrf @method('delete')</form>
+                                            @if(Qs::userIsSuperAdmin())
+                                                <a id="{{ Qs::hash($s->user->id) }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
+                                                <form method="post" id="item-delete-{{ Qs::hash($s->user->id) }}" action="{{ route('students.destroy', Qs::hash($s->user->id)) }}" class="hidden">@csrf @method('delete')</form>
                                             @endif
                                         </div>
                                     </div>

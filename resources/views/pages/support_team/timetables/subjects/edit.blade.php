@@ -52,7 +52,7 @@
                                                     <select id="day" name="day" required type="text"
                                                             class="form-control select"
                                                             data-placeholder="Select Day...">
-                                                        @foreach(Fn::getDaysOfTheWeek() as $dw)
+                                                        @foreach(Qs::getDaysOfTheWeek() as $dw)
                                                             <option {{ $tt->day == $dw ? 'selected' : '' }} value="{{ $dw }}">{{ $dw }}</option>
                                                         @endforeach
 

@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header header-elements-inline">
             <h5 class="card-title"><i class="icon-books mr-2"></i> Select Student Marksheet</h5>
-            {!! Fn::getPanelOptions() !!}
+            {!! Qs::getPanelOptions() !!}
         </div>
 
         <div class="card-body">
@@ -77,7 +77,7 @@
                         <td><img class="rounded-circle" style="height: 40px; width: 40px;" src="{{ $s->user->photo }}" alt="photo"></td>
                         <td>{{ $s->user->name }}</td>
                         <td>{{ $s->adm_no }}</td>
-                        <td><a class="btn btn-danger" href="{{ route('marks.year_select', Fn::hash($s->user_id)) }}">View Marksheet</a></td>
+                        <td><a class="btn btn-danger" href="{{ route('marks.year_select', Qs::hash($s->user_id)) }}">View Marksheet</a></td>
 
                     </tr>
                 @endforeach

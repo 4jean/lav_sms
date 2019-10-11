@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\SuperAdmin;
 
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SettingUpdate;
 use App\Repositories\MyClassRepo;
@@ -40,9 +40,9 @@ class SettingController extends Controller
 
         if($req->hasFile('logo')) {
             $logo = $req->file('logo');
-            $f = Fn::getFileMetaData($logo);
+            $f = Qs::getFileMetaData($logo);
             $f['name'] = 'logo.' . $f['ext'];
-            $f['path'] = $logo->storeAs(Fn::getPublicUploadPath(), $f['name']);
+            $f['path'] = $logo->storeAs(Qs::getPublicUploadPath(), $f['name']);
             $logo_path = asset('storage/' . $f['path']);
             $this->setting->update('logo', $logo_path);
         }

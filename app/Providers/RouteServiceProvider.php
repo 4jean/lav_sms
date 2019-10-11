@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -27,7 +27,7 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
 
         Route::bind('id', function($value){
-            return Fn::decodeHash($value);
+            return Qs::decodeHash($value);
         });
     }
 

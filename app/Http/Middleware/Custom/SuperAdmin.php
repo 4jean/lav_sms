@@ -3,7 +3,7 @@
 namespace App\Http\Middleware\Custom;
 
 use Closure;
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use Illuminate\Support\Facades\Auth;
 
 class SuperAdmin
@@ -17,6 +17,6 @@ class SuperAdmin
      */
     public function handle($request, Closure $next)
     {
-        return (Auth::check() && Fn::userIsSuperAdmin()) ? $next($request) : redirect()->route('login');
+        return (Auth::check() && Qs::userIsSuperAdmin()) ? $next($request) : redirect()->route('login');
     }
 }

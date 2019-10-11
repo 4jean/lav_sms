@@ -2,7 +2,7 @@
 @section('page_title', 'My Dashboard')
 @section('content')
 
-    @if(Fn::userIsTeamSA())
+    @if(Qs::userIsTeamSA())
        <div class="row">
            <div class="col-sm-6 col-xl-3">
                <div class="card card-body bg-blue-400 has-bg-image">
@@ -70,7 +70,7 @@
     <div class="card">
         <div class="card-header header-elements-inline">
             <h5 class="card-title">School Events Calendar</h5>
-         {!! Fn::getPanelOptions() !!}
+         {!! Qs::getPanelOptions() !!}
         </div>
 
         <div class="card-body">

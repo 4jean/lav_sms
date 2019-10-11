@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\SupportTeam;
 
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use App\Http\Requests\UserRequest;
 use App\Repositories\LocationRepo;
 use App\Repositories\MyClassRepo;
@@ -32,7 +32,7 @@ class UserController extends Controller
         $ut = $this->user->getAllTypes();
         $ut2 = $ut->where('level', '>', 2);
 
-        $d['user_types'] = Fn::userIsAdmin() ? $ut2 : $ut;
+        $d['user_types'] = Qs::userIsAdmin() ? $ut2 : $ut;
         $d['states'] = $this->loc->getStates();
         $d['users'] = $this->user->getPTAUsers();
         $d['nationals'] = $this->loc->getAllNationals();
@@ -42,7 +42,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $id = Fn::decodeHash($id);
+        $id = Qs::decodeHash($id);
         $d['user'] = $this->user->find($id);
         $d['states'] = $this->loc->getStates();
         $d['users'] = $this->user->getPTAUsers();
@@ -62,16 +62,16 @@ class UserController extends Controller
     {
         $user_type = $this->user->findType($req->user_type)->title;
 
-        $data = $req->except(Fn::getStaffRecord());
+        $data = $req->except(Qs::getStaffRecord());
         $data['name'] = ucwords($req->name);
         $data['user_type'] = $user_type;
-        $data['photo'] = Fn::getDefaultUserImage();
+        $data['photo'] = Qs::getDefaultUserImage();
         $data['code'] = strtoupper(str_random(10));
 
-        $user_is_staff = in_array($user_type, Fn::getStaff());
-        $user_is_teamSA = in_array($user_type, Fn::getTeamSA());
+        $user_is_staff = in_array($user_type, Qs::getStaff());
+        $user_is_teamSA = in_array($user_type, Qs::getTeamSA());
 
-        $staff_id = Fn::getAppCode().'/STAFF/'.date('Y/m', strtotime($req->emp_date)).'/'.mt_rand(1000, 9999);
+        $staff_id = Qs::getAppCode().'/STAFF/'.date('Y/m', strtotime($req->emp_date)).'/'.mt_rand(1000, 9999);
         $data['username'] = $uname = ($user_is_teamSA) ? $req->username : $staff_id;
 
         $pass = $req->password ?: $user_type;
@@ -79,9 +79,9 @@ class UserController extends Controller
 
         if($req->hasFile('photo')) {
             $photo = $req->file('photo');
-            $f = Fn::getFileMetaData($photo);
+            $f = Qs::getFileMetaData($photo);
             $f['name'] = 'photo.' . $f['ext'];
-            $f['path'] = $photo->storeAs(Fn::getUploadPath($user_type).$data['code'], $f['name']);
+            $f['path'] = $photo->storeAs(Qs::getUploadPath($user_type).$data['code'], $f['name']);
             $data['photo'] = asset('storage/' . $f['path']);
         }
 
@@ -94,29 +94,29 @@ class UserController extends Controller
 
         /* CREATE STAFF RECORD */
         if($user_is_staff){
-            $d2 = $req->only(Fn::getStaffRecord());
+            $d2 = $req->only(Qs::getStaffRecord());
             $d2['user_id'] = $user->id;
             $d2['code'] = $staff_id;
             $this->user->createStaffRecord($d2);
         }
 
-        return Fn::jsonStoreOk();
+        return Qs::jsonStoreOk();
     }
 
     public function update(UserRequest $req, $id)
     {
-        $id = Fn::decodeHash($id);
+        $id = Qs::decodeHash($id);
         $user = $this->user->find($id);
 
         $user_type = $user->user_type;
-        $user_is_staff = in_array($user_type, Fn::getStaff());
-        $user_is_teamSA = in_array($user_type, Fn::getTeamSA());
+        $user_is_staff = in_array($user_type, Qs::getStaff());
+        $user_is_teamSA = in_array($user_type, Qs::getTeamSA());
 
-        $data = $req->except(Fn::getStaffRecord());
+        $data = $req->except(Qs::getStaffRecord());
         $data['name'] = ucwords($req->name);
 
         if($user_is_staff && !$user_is_teamSA){
-            $data['username'] = Fn::getAppCode().'/STAFF/'.date('Y/m', strtotime($req->emp_date)).'/'.mt_rand(1000, 9999);
+            $data['username'] = Qs::getAppCode().'/STAFF/'.date('Y/m', strtotime($req->emp_date)).'/'.mt_rand(1000, 9999);
         }
         else {
             $data['username'] = $user->username;
@@ -124,9 +124,9 @@ class UserController extends Controller
 
         if($req->hasFile('photo')) {
             $photo = $req->file('photo');
-            $f = Fn::getFileMetaData($photo);
+            $f = Qs::getFileMetaData($photo);
             $f['name'] = 'photo.' . $f['ext'];
-            $f['path'] = $photo->storeAs(Fn::getUploadPath($user_type).$data['code'], $f['name']);
+            $f['path'] = $photo->storeAs(Qs::getUploadPath($user_type).$data['code'], $f['name']);
             $data['photo'] = asset('storage/' . $f['path']);
         }
 
@@ -134,23 +134,23 @@ class UserController extends Controller
 
         /* UPDATE STAFF RECORD */
         if($user_is_staff){
-            $d2 = $req->only(Fn::getStaffRecord());
+            $d2 = $req->only(Qs::getStaffRecord());
             $d2['code'] = $data['username'];
             $this->user->updateStaffRecord(['user_id' => $id], $d2);
         }
 
-        return Fn::jsonUpdateOk();
+        return Qs::jsonUpdateOk();
     }
 
     public function show($user_id)
     {
-        $user_id = Fn::decodeHash($user_id);
+        $user_id = Qs::decodeHash($user_id);
         if(!$user_id){return back();}
 
         $data['user'] = $this->user->find($user_id);
 
         /* Prevent Other Students from viewing Profile of others*/
-        if(Auth::user()->id != $user_id && !Fn::userIsTeamSAT() && !Fn::userIsMyChild(Auth::user()->id, $user_id)){
+        if(Auth::user()->id != $user_id && !Qs::userIsTeamSAT() && !Qs::userIsMyChild(Auth::user()->id, $user_id)){
             return redirect(route('dashboard'))->with('pop_error', __('msg.denied'));
         }
 
@@ -159,7 +159,7 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $id = Fn::decodeHash($id);
+        $id = Qs::decodeHash($id);
 
         $user = $this->user->find($id);
 
@@ -167,7 +167,7 @@ class UserController extends Controller
             return back()->with('pop_error', __('msg.del_teacher'));
         }
 
-        $path = Fn::getUploadPath($user->user_type).$user->code;
+        $path = Qs::getUploadPath($user->user_type).$user->code;
         Storage::exists($path) ? Storage::deleteDirectory($path) : true;
         $this->user->delete($user->id);
 

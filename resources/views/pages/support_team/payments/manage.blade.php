@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header header-elements-inline">
             <h5 class="card-title"><i class="icon-cash2 mr-2"></i> Student Payments</h5>
-            {!! Fn::getPanelOptions() !!}
+            {!! Qs::getPanelOptions() !!}
         </div>
 
         <div class="card-body">
@@ -63,10 +63,10 @@
                                     <a href="#" class=" btn btn-danger" data-toggle="dropdown"> Manage Payments <i class="icon-arrow-down5"></i>
                                     </a>
                             <div class="dropdown-menu dropdown-menu-left">
-                                <a href="{{ route('payments.invoice', [Fn::hash($s->user_id)]) }}" class="dropdown-item">All Payments</a>
+                                <a href="{{ route('payments.invoice', [Qs::hash($s->user_id)]) }}" class="dropdown-item">All Payments</a>
                                 @foreach(Pay::getYears($s->user_id) as $py)
                                 @if($py)
-                                    <a href="{{ route('payments.invoice', [Fn::hash($s->user_id), $py]) }}" class="dropdown-item">{{ $py }}</a>
+                                    <a href="{{ route('payments.invoice', [Qs::hash($s->user_id), $py]) }}" class="dropdown-item">{{ $py }}</a>
                                 @endif
                                 @endforeach
                             </div>

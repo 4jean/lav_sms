@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\SupportTeam;
 
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use App\Http\Requests\Exam\ExamCreate;
 use App\Http\Requests\Exam\ExamUpdate;
 use App\Repositories\ExamRepo;
@@ -28,7 +28,7 @@ class ExamController extends Controller
     public function store(ExamCreate $req)
     {
         $data = $req->only(['name', 'term']);
-        $data['year'] = Fn::getSetting('current_session');
+        $data['year'] = Qs::getSetting('current_session');
 
         $this->exam->create($data);
         return back()->with('flash_success', __('msg.store_ok'));

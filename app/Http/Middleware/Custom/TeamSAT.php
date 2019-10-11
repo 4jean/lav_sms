@@ -3,7 +3,7 @@
 namespace App\Http\Middleware\Custom;
 
 use Closure;
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use Illuminate\Support\Facades\Auth;
 
 class TeamSAT
@@ -17,6 +17,6 @@ class TeamSAT
      */
     public function handle($request, Closure $next)
     {
-        return (Auth::check() && Fn::userIsTeamSAT()) ? $next($request) : redirect()->route('login');
+        return (Auth::check() && Qs::userIsTeamSAT()) ? $next($request) : redirect()->route('login');
     }
 }

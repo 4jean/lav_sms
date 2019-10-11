@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use App\Repositories\LocationRepo;
 use App\Repositories\MyClassRepo;
 use Illuminate\Support\Facades\Auth;
@@ -19,8 +19,8 @@ class AjaxController extends Controller
 
     public function get_lga($state_id)
     {
-//        $state_id = Fn::decodeHash($state_id);
-//        return ['id' => Fn::hash($q->id), 'name' => $q->name];
+//        $state_id = Qs::decodeHash($state_id);
+//        return ['id' => Qs::hash($q->id), 'name' => $q->name];
 
         $lgas = $this->loc->getLGAs($state_id);
         return $data = $lgas->map(function($q){
@@ -41,7 +41,7 @@ class AjaxController extends Controller
         $sections = $this->my_class->getClassSections($class_id);
         $subjects = $this->my_class->findSubjectByClass($class_id);
 
-        if(Fn::userIsTeacher()){
+        if(Qs::userIsTeacher()){
             $subjects = $this->my_class->findSubjectByTeacher(Auth::user()->id)->where('my_class_id', $class_id);
         }
 

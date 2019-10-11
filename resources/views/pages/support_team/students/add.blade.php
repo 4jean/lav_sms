@@ -5,7 +5,7 @@
             <div class="card-header bg-white header-elements-inline">
                 <h6 class="card-title">Please fill The form Below To Admit A New Student</h6>
 
-                {!! Fn::getPanelOptions() !!}
+                {!! Qs::getPanelOptions() !!}
             </div>
 
             <form id="ajax-reg" method="post" enctype="multipart/form-data" class="wizard-form steps-validation" action="{{ route('students.store') }}" data-fouc>
@@ -156,7 +156,7 @@
                                 <select data-placeholder="Choose..."  name="my_parent_id" id="my_parent_id" class="select-search form-control">
                                     <option  value=""></option>
                                     @foreach($parents as $p)
-                                        <option {{ (old('my_parent_id') == Fn::hash($p->id)) ? 'selected' : '' }} value="{{ Fn::hash($p->id) }}">{{ $p->name }}</option>
+                                        <option {{ (old('my_parent_id') == Qs::hash($p->id)) ? 'selected' : '' }} value="{{ Qs::hash($p->id) }}">{{ $p->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

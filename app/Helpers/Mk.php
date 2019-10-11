@@ -8,7 +8,7 @@ use App\Models\Grade;
 use App\Models\Mark;
 use Illuminate\Database\Eloquent\Collection;
 
-class Mk extends Fn
+class Mk extends Qs
 {
     public static function examIsLocked()
     {

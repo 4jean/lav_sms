@@ -13,8 +13,9 @@
                 <th>EXAM (60)</th>
             @endif
             @if($class_type->code == 'S')
-                <th>1ST CA (15)</th>
-                <th>2ND CA (15)</th>
+                <th>1ST CA (5)</th>
+                <th>MID CA (15)</th>
+                <th>2ND CA (10)</th>
                 <th>EXAM (70)</th>
             @endif
             @if($class_type->code == 'P')
@@ -44,8 +45,9 @@
                 @endif
 
                 @if($class_type->code == 'S')
-                    <td><input title="1ST CA" min="1" max="15" class="text-center" name="t1_{{ $mk->id }}" value="{{ $mk->t1 }}" type="number"></td>
-                    <td><input title="2ND CA" min="1" max="15" class="text-center" name="t2_{{ $mk->id }}" value="{{ $mk->t2 }}" type="number"></td>
+                    <td><input title="1ST CA" min="1" max="5" class="text-center" name="t1_{{ $mk->id }}" value="{{ $mk->t1 }}" type="number"></td>
+                    <td><input title="MID CA" min="1" max="15" class="text-center" name="t2_{{ $mk->id }}" value="{{ $mk->t2 }}" type="number"></td>
+                    <td><input title="2ND CA" min="1" max="10" class="text-center" name="t3_{{ $mk->id }}" value="{{ $mk->t3 }}" type="number"></td>
                     <td><input title="EXAM" min="1" max="70" class="text-center" name="exm_{{ $mk->id }}" value="{{ $mk->exm }}" type="number"></td>
                 @endif
 

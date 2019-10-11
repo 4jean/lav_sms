@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use App\Repositories\UserRepo;
 
 class HomeController extends Controller
@@ -22,7 +22,7 @@ class HomeController extends Controller
     public function dashboard()
     {
         $d=[];
-        if(Fn::userIsTeamSAT()){
+        if(Qs::userIsTeamSAT()){
             $d['users'] = $this->user->getAll();
         }
 

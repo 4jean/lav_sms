@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header header-elements-inline">
             <h6 class="card-title">Exam Pins</h6>
-            {!! Fn::getPanelOptions() !!}
+            {!! Qs::getPanelOptions() !!}
         </div>
 
         <div class="card-body">
@@ -72,9 +72,9 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $up->code }}</td>
-                                        <td><a href="{{ $up->user->user_type == 'student' ? route('students.show', Fn::hash(Fn::getSRByUserID($up->user->id)->id)) : route('users.show', Fn::hash($up->user->id)) }}">{{ $up->user->name }}</a></td>
+                                        <td><a href="{{ $up->user->user_type == 'student' ? route('students.show', Qs::hash(Qs::getSRByUserID($up->user->id)->id)) : route('users.show', Qs::hash($up->user->id)) }}">{{ $up->user->name }}</a></td>
                                         <td>{{ $up->user->user_type }}</td>
-                                        <td><a href="{{ route('students.show', Fn::hash(Fn::getSRByUserID($up->student->id)->id))  }}">{{ $up->student->name }}</a></td>
+                                        <td><a href="{{ route('students.show', Qs::hash(Qs::getSRByUserID($up->student->id)->id))  }}">{{ $up->student->name }}</a></td>
                                         <td>{{ $up->updated_at }}</td>
                                     </tr>
                                 @endforeach

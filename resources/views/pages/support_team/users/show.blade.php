@@ -87,8 +87,8 @@
                                     <tr>
                                         <td class="font-weight-bold">Children/Ward</td>
                                         <td>
-                                        @foreach(Fn::findMyChildren($user->id) as $sr)
-                                            <span> - <a href="{{ route('students.show', Fn::hash($sr->id)) }}">{{ $sr->user->name.' - '.$sr->my_class->name. ' '.$sr->section->name }}</a></span><br>
+                                        @foreach(Qs::findMyChildren($user->id) as $sr)
+                                            <span> - <a href="{{ route('students.show', Qs::hash($sr->id)) }}">{{ $sr->user->name.' - '.$sr->my_class->name. ' '.$sr->section->name }}</a></span><br>
 
                                             @endforeach
                                         </td>
@@ -99,7 +99,7 @@
                                     <tr>
                                         <td class="font-weight-bold">My Subjects</td>
                                         <td>
-                                            @foreach(Fn::findTeacherSubjects($user->id) as $sub)
+                                            @foreach(Qs::findTeacherSubjects($user->id) as $sub)
                                                 <span> - {{ $sub->name.' ('.$sub->my_class->name.')' }}</span><br>
                                             @endforeach
                                         </td>

@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-header header-elements-inline bg-danger">
                 <h6 class="font-weight-bold card-title">Add Time Slots</h6>
-                {!! Fn::getPanelOptions() !!}
+                {!! Qs::getPanelOptions() !!}
             </div>
 
             <div class="card-body collapse">
@@ -111,7 +111,7 @@
         <div class="card">
             <div class="card-header header-elements-inline bg-dark">
                 <h6 class="font-weight-bold card-title">Use Existing Time Slots</h6>
-                {!! Fn::getPanelOptions() !!}
+                {!! Qs::getPanelOptions() !!}
             </div>
 
             <div class="card-body collapse">

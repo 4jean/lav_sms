@@ -3,7 +3,7 @@
 namespace App\Http\Middleware\Custom;
 
 use Closure;
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use Illuminate\Support\Facades\Auth;
 
 class TeamSA
@@ -17,6 +17,6 @@ class TeamSA
      */
     public function handle($request, Closure $next)
     {
-        return (Auth::check() && Fn::userIsTeamSA()) ? $next($request) : redirect()->route('login');
+        return (Auth::check() && Qs::userIsTeamSA()) ? $next($request) : redirect()->route('login');
     }
 }

@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-md navbar-dark">
     <div class="mt-2 mr-5">
         <a href="{{ route('dashboard') }}" class="d-inline-block">
-        <h4 class="text-bold text-white">{{ Fn::getSystemName() }}</h4>
+        <h4 class="text-bold text-white">{{ Qs::getSystemName() }}</h4>
         </a>
     </div>
   {{--  <div class="navbar-brand">
@@ -41,7 +41,7 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="{{ Fn::userIsStudent() ? route('students.show', Fn::hash(Fn::findStudentRecord(Auth::user()->id)->id)) : route('users.show', Fn::hash(Auth::user()->id)) }}" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
+                    <a href="{{ Qs::userIsStudent() ? route('students.show', Qs::hash(Qs::findStudentRecord(Auth::user()->id)->id)) : route('users.show', Qs::hash(Auth::user()->id)) }}" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('my_account') }}" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();

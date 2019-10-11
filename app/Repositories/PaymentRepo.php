@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use App\Models\Payment;
 use App\Models\PaymentRecord;
 use App\Models\Receipt;
@@ -27,7 +27,7 @@ class PaymentRepo
 
     public function getActivePayments()
     {
-        return $this->getPayment(['year' => Fn::getCurrentSession()]);
+        return $this->getPayment(['year' => Qs::getCurrentSession()]);
     }
 
     public function getPaymentYears()

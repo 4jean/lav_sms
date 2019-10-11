@@ -1,11 +1,11 @@
 @foreach($exams as $ex)
     @foreach($exam_records->where('exam_id', $ex->id) as $exr)
 
-        @if(!Fn::userIsTeacher())
+        @if(!Qs::userIsTeacher())
             <div class="card">
             <div class="card-header header-elements-inline">
                 <h6 class="font-weight-bold">{{ $ex->name.' - '.$ex->year }}</h6>
-                {!! Fn::getPanelOptions() !!}
+                {!! Qs::getPanelOptions() !!}
             </div>
 
             <div class="card-body collapse">
@@ -69,25 +69,25 @@
                 </table>
                 {{--Print Button--}}
                 <div class="text-center mt-3">
-                    <a target="_blank" href="{{ route('marks.print', [Fn::hash($student_id), $ex->id, $year]) }}" class="btn btn-secondary btn-lg">Print Marksheet <i class="icon-printer ml-2"></i></a>
+                    <a target="_blank" href="{{ route('marks.print', [Qs::hash($student_id), $ex->id, $year]) }}" class="btn btn-secondary btn-lg">Print Marksheet <i class="icon-printer ml-2"></i></a>
                 </div>
             </div>
         </div>
         @endif
 
-        @if(Fn::userIsTeamSAT())
+        @if(Qs::userIsTeamSAT())
         {{--    EXAM COMMENTS   --}}
         <div class="card">
             <div class="card-header header-elements-inline bg-dark">
                 <h6 class="card-title font-weight-bold">Exam Comments</h6>
-                {!! Fn::getPanelOptions() !!}
+                {!! Qs::getPanelOptions() !!}
             </div>
 
             <div class="card-body collapse">
                 <form class="ajax-update" method="post" action="{{ route('marks.comment_update', $exr->id) }}">
                     @csrf @method('PUT')
 
-                    @if(Fn::userIsTeamSAT())
+                    @if(Qs::userIsTeamSAT())
                         <div class="form-group row">
                             <label class="col-lg-2 col-form-label font-weight-semibold">Teacher's Comment</label>
                             <div class="col-lg-10">
@@ -96,7 +96,7 @@
                         </div>
                     @endif
 
-                    @if(Fn::userIsTeamSA())
+                    @if(Qs::userIsTeamSA())
                         <div class="form-group row">
                             <label class="col-lg-2 col-form-label font-weight-semibold">Head Teacher's Comment</label>
                             <div class="col-lg-10">

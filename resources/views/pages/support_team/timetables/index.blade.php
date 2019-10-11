@@ -5,12 +5,12 @@
     <div class="card">
         <div class="card-header header-elements-inline">
             <h6 class="card-title">Manage TimeTables</h6>
-            {!! Fn::getPanelOptions() !!}
+            {!! Qs::getPanelOptions() !!}
         </div>
 
         <div class="card-body">
             <ul class="nav nav-tabs nav-tabs-highlight">
-                @if(Fn::userIsTeamSA())
+                @if(Qs::userIsTeamSA())
                 <li class="nav-item"><a href="#add-tt" class="nav-link active" data-toggle="tab">Create Timetable</a></li>
                 @endif
                 <li class="nav-item dropdown">
@@ -26,7 +26,7 @@
 
             <div class="tab-content">
 
-                @if(Fn::userIsTeamSA())
+                @if(Qs::userIsTeamSA())
                 <div class="tab-pane fade show active" id="add-tt">
                    <div class="col-md-8">
                        <form class="ajax-store" method="post" action="{{ route('ttr.store') }}">
@@ -102,7 +102,7 @@
                                                     {{--View--}}
                                                     <a href="{{ route('ttr.show', $ttr->id) }}" class="dropdown-item"><i class="icon-eye"></i> View</a>
 
-                                                    @if(Fn::userIsTeamSA())
+                                                    @if(Qs::userIsTeamSA())
                                                     {{--Manage--}}
                                                     <a href="{{ route('ttr.manage', $ttr->id) }}" class="dropdown-item"><i class="icon-plus-circle2"></i> Manage</a>
                                                     {{--Edit--}}
@@ -110,7 +110,7 @@
                                                     @endif
 
                                                     {{--Delete--}}
-                                                    @if(Fn::userIsSuperAdmin())
+                                                    @if(Qs::userIsSuperAdmin())
                                                         <a id="{{ $ttr->id }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
                                                         <form method="post" id="item-delete-{{ $ttr->id }}" action="{{ route('ttr.destroy', $ttr->id) }}" class="hidden">@csrf @method('delete')</form>
                                                     @endif

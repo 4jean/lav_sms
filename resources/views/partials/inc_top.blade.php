@@ -13,8 +13,10 @@
 {{--DatePickers--}}
 <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.min.css') }}" type="text/css">
 
-    <!-- Core JS files -->
+{{-- Custom App CSS--}}
+<link href=" {{ asset('assets/css/qs.css') }}" rel="stylesheet" type="text/css">
+
+{{--   Core JS files --}}
     <script src="{{ asset('global_assets/js/main/jquery.min.js') }} "></script>
     <script src="{{ asset('global_assets/js/main/bootstrap.bundle.min.js') }} "></script>
     <script src="{{ asset('global_assets/js/plugins/loaders/blockui.min.js') }} "></script>
-    <!-- /core JS files -->

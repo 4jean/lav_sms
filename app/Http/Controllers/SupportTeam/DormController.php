@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\SupportTeam;
 
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dorm\DormCreate;
 use App\Http\Requests\Dorm\DormUpdate;
@@ -31,7 +31,7 @@ class DormController extends Controller
         $data = $req->only(['name', 'description']);
         $this->dorm->create($data);
 
-        return Fn::jsonStoreOk();
+        return Qs::jsonStoreOk();
     }
 
     public function edit($id)
@@ -39,7 +39,7 @@ class DormController extends Controller
         $d['dorm'] = $dorm = $this->dorm->find($id);
 
         return !is_null($dorm) ? view('pages.support_team.dorms.edit', $d)
-            : Fn::goWithDanger('dorms.index');
+            : Qs::goWithDanger('dorms.index');
     }
 
     public function update(DormUpdate $req, $id)
@@ -47,7 +47,7 @@ class DormController extends Controller
         $data = $req->only(['name', 'description']);
         $this->dorm->update($id, $data);
 
-        return Fn::jsonUpdateOk();
+        return Qs::jsonUpdateOk();
     }
 
     public function destroy($id)

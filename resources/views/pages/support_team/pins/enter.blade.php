@@ -4,13 +4,13 @@
     <div class="card">
         <div class="card-header header-elements-inline">
             <h5 class="card-title"><i class="icon-alarm mr-2"></i> Enter PIN</h5>
-            {!! Fn::getPanelOptions() !!}
+            {!! Qs::getPanelOptions() !!}
         </div>
 
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
-                    <form method="post" action="{{ route('pins.verify', Fn::hash($student->id)) }}">
+                    <form method="post" action="{{ route('pins.verify', Qs::hash($student->id)) }}">
                         @csrf
                         <div class="form-group">
                             <label for="pin_code" class="font-weight-bold col-form-label">Enter Exam Pin for <span class="text-success font-size-lg">{{ $student->name }}</span></label>

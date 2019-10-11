@@ -22,7 +22,7 @@
                         <select id="day" name="day" required type="text" class="form-control select"
                                 data-placeholder="Select Day...">
                             <option value=""></option>
-                            @foreach(Fn::getDaysOfTheWeek() as $dw)
+                            @foreach(Qs::getDaysOfTheWeek() as $dw)
                                 <option {{ old('day') == $dw ? 'selected' : '' }} value="{{ $dw }}">{{ $dw }}</option>
                             @endforeach
 

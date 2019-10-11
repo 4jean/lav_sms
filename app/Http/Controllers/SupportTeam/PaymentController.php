@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\SupportTeam;
 
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use App\Helpers\Pay;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Payment\PaymentCreate;
@@ -24,7 +24,7 @@ class PaymentController extends Controller
     {
         $this->my_class = $my_class;
         $this->pay = $pay;
-        $this->year = Fn::getCurrentSession();
+        $this->year = Qs::getCurrentSession();
         $this->student = $student;
 
         $this->middleware('teamAccount');
@@ -43,7 +43,7 @@ class PaymentController extends Controller
         $d['payments'] = $p = $this->pay->getPayment(['year' => $year])->get();
 
         if(($p->count() < 1)){
-            return Fn::goWithDanger('payments.index');
+            return Qs::goWithDanger('payments.index');
         }
 
         $d['selected'] = true;
@@ -57,7 +57,7 @@ class PaymentController extends Controller
 
     public function select_year(Request $req)
     {
-        return Fn::goToRoute(['payments.show', $req->year]);
+        return Qs::goToRoute(['payments.show', $req->year]);
     }
 
     public function create()
@@ -68,7 +68,7 @@ class PaymentController extends Controller
 
     public function invoice($st_id, $year = NULL)
     {
-        if(!$st_id) {return Fn::goWithDanger();}
+        if(!$st_id) {return Qs::goWithDanger();}
 
         $inv = $year ? $this->pay->getAllMyPR($st_id, $year) : $this->pay->getAllMyPR($st_id);
 
@@ -82,7 +82,7 @@ class PaymentController extends Controller
 
     public function receipts($pr_id)
     {
-        if(!$pr_id) {return Fn::goWithDanger();}
+        if(!$pr_id) {return Qs::goWithDanger();}
 
         try {
              $d['pr'] = $pr = $this->pay->getRecord(['id' => $pr_id])->with('receipt')->first();
@@ -101,7 +101,7 @@ class PaymentController extends Controller
 
     public function pdf_receipts($pr_id)
     {
-        if(!$pr_id) {return Fn::goWithDanger();}
+        if(!$pr_id) {return Qs::goWithDanger();}
 
         try {
             $d['pr'] = $pr = $this->pay->getRecord(['id' => $pr_id])->with('receipt')->first();
@@ -150,7 +150,7 @@ class PaymentController extends Controller
         $d2['year'] = $this->year;
 
         $this->pay->createReceipt($d2);
-        return Fn::jsonUpdateOk();
+        return Qs::jsonUpdateOk();
     }
 
     public function manage($class_id = NULL)
@@ -161,7 +161,7 @@ class PaymentController extends Controller
         if($class_id){
             $d['students'] = $st = $this->student->getRecord(['my_class_id' => $class_id])->get()->sortBy('user.name');
             if($st->count() < 1){
-                return Fn::goWithDanger('payments.manage');
+                return Qs::goWithDanger('payments.manage');
             }
             $d['selected'] = true;
             $d['my_class_id'] = $class_id;
@@ -196,7 +196,7 @@ class PaymentController extends Controller
             }
         }
 
-        return Fn::goToRoute(['payments.manage', $class_id]);
+        return Qs::goToRoute(['payments.manage', $class_id]);
     }
 
     public function store(PaymentCreate $req)
@@ -206,14 +206,14 @@ class PaymentController extends Controller
         $data['ref_no'] = Pay::genRefCode();
         $this->pay->create($data);
 
-        return Fn::jsonStoreOk();
+        return Qs::jsonStoreOk();
     }
 
     public function edit($id)
     {
         $d['payment'] = $pay = $this->pay->find($id);
 
-        return is_null($pay) ? Fn::goWithDanger('payments.index') : view('pages.support_team.payments.edit', $d);
+        return is_null($pay) ? Qs::goWithDanger('payments.index') : view('pages.support_team.payments.edit', $d);
     }
 
     public function update(PaymentUpdate $req, $id)
@@ -221,14 +221,14 @@ class PaymentController extends Controller
         $data = $req->all();
         $this->pay->update($id, $data);
 
-        return Fn::jsonUpdateOk();
+        return Qs::jsonUpdateOk();
     }
 
     public function destroy($id)
     {
         $this->pay->find($id)->delete();
 
-        return Fn::deleteOk('payments.index');
+        return Qs::deleteOk('payments.index');
     }
 
     public function reset_record($id)

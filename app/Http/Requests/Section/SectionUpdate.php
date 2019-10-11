@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Section;
 
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SectionUpdate extends FormRequest
@@ -37,7 +37,7 @@ class SectionUpdate extends FormRequest
     {
         $input = $this->all();
 
-        $input['teacher_id'] = $input['teacher_id'] ? Fn::decodeHash($input['teacher_id']) : NULL;
+        $input['teacher_id'] = $input['teacher_id'] ? Qs::decodeHash($input['teacher_id']) : NULL;
 
         $this->getInputSource()->replace($input);
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Helpers\Fn;
+use App\Helpers\Qs;
 
 class UsersTableSeeder extends Seeder
 {
@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
                 'user_type' => $ut[4],
                 'code' => strtoupper(str_random(10)),
                 'remember_token' => str_random(10),
-                'photo' => Fn::getDefaultUserImage(),
+                'photo' => Qs::getDefaultUserImage(),
             ],
 
             ['name' => 'Admin KORA',
@@ -41,7 +41,7 @@ class UsersTableSeeder extends Seeder
             'user_type' => $ut[0],
             'code' => strtoupper(str_random(10)),
             'remember_token' => str_random(10),
-            'photo' => Fn::getDefaultUserImage(),
+            'photo' => Qs::getDefaultUserImage(),
             ],
 
             ['name' => 'Teacher Chike',
@@ -50,7 +50,7 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('cj'),
                 'code' => strtoupper(str_random(10)),
                 'remember_token' => str_random(10),
-                'photo' => Fn::getDefaultUserImage(),
+                'photo' => Qs::getDefaultUserImage(),
             ],
 
             ['name' => 'Parent Kaba',
@@ -59,7 +59,7 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('cj'),
                 'code' => strtoupper(str_random(10)),
                 'remember_token' => str_random(10),
-                'photo' => Fn::getDefaultUserImage(),
+                'photo' => Qs::getDefaultUserImage(),
             ],
         ];
         DB::table('users')->insert($d);
@@ -78,7 +78,7 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make($ut[1]),
                 'code' => str_random(10),
                 'remember_token' => str_random(10),
-                'photo' => Fn::getDefaultUserImage(),
+                'photo' => Qs::getDefaultUserImage(),
             ];*/
 
             /*Create Teachers Users*/
@@ -88,7 +88,7 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make($ut[2]),
                 'code' => strtoupper(str_random(10)),
                 'remember_token' => str_random(10),
-                'photo' => Fn::getDefaultUserImage(),
+                'photo' => Qs::getDefaultUserImage(),
             ];
 
             /*Create Parents Users*/
@@ -99,7 +99,7 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make($ut[3]),
                 'code' => strtoupper(str_random(10)),
                 'remember_token' => str_random(10),
-                'photo' => Fn::getDefaultUserImage(),
+                'photo' => Qs::getDefaultUserImage(),
             ];
         }
 

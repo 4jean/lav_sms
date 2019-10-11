@@ -26,9 +26,15 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('graduated', 'StudentRecordController@graduated')->name('students.graduated');
             Route::put('not_graduated/{id}', 'StudentRecordController@not_graduated')->name('st.not_graduated');
             Route::get('list/{class_id}', 'StudentRecordController@listByClass')->name('students.list');
-            Route::get('promotion/{fc?}/{fs?}/{tc?}/{ts?}', 'StudentRecordController@promotion')->name('students.promotion');
-            Route::post('promote_selector', 'StudentRecordController@promote_selector')->name('students.promote_selector');
-            Route::post('promote/{fc}/{fs}/{tc}/{ts}', 'StudentRecordController@promote')->name('students.promote');
+
+            /* Promotions */
+            Route::post('promote_selector', 'PromotionController@selector')->name('students.promote_selector');
+            Route::get('promotion/manage', 'PromotionController@manage')->name('students.promotion_manage');
+            Route::delete('promotion/reset/{pid}', 'PromotionController@reset')->name('students.promotion_reset');
+            Route::delete('promotion/reset_all', 'PromotionController@reset_all')->name('students.promotion_reset_all');
+            Route::get('promotion/{fc?}/{fs?}/{tc?}/{ts?}', 'PromotionController@promotion')->name('students.promotion');
+            Route::post('promote/{fc}/{fs}/{tc}/{ts}', 'PromotionController@promote')->name('students.promote');
+
         });
 
         /*************** Users *****************/
