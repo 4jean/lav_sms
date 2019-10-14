@@ -1,1 +1,0 @@
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (NULL, '2018_10_18_205550_create_skills_table', '2'), (NULL, '2018_10_18_205842_create_exam_records_table', '3'), (NULL, '2018_10_31_191358_create_books_table', '3'), (NULL, '2018_10_31_192540_create_book_requests_table', '3'), (NULL, '2018_11_01_132115_create_staff_records_table', '3')
