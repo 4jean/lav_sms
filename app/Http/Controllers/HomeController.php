@@ -19,6 +19,22 @@ class HomeController extends Controller
         return redirect()->route('dashboard');
     }
 
+    public function privacy_policy()
+    {
+        $data['app_name'] = config('app.name');
+        $data['app_url'] = config('app.url');
+        $data['contact_phone'] = Qs::getSetting('phone');
+        return view('pages.other.privacy_policy', $data);
+    }
+
+    public function terms_of_use()
+    {
+        $data['app_name'] = config('app.name');
+        $data['app_url'] = config('app.url');
+        $data['contact_phone'] = Qs::getSetting('phone');
+        return view('pages.other.terms_of_use', $data);
+    }
+
     public function dashboard()
     {
         $d=[];
