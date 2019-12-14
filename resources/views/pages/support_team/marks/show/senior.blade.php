@@ -13,7 +13,7 @@
                     <thead>
                     <tr>
                         <th rowspan="2">SUBJECTS</th>
-                        <th colspan="3">CONTINUOUS ASSESSMENT</th>
+                        <th colspan="4">CONTINUOUS ASSESSMENT</th>
                         <th rowspan="2">EXAM (70)</th>
                         @if($ex->term < 3) {{-- 1st & 2nd Term--}}
                         <th rowspan="2">FINAL MARKS <br> (100%)</th>
