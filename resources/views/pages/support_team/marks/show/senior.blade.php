@@ -31,9 +31,10 @@
                         <th rowspan="2">REMARKS</th>
                     </tr>
                     <tr>
+                        <th>CA(5)</th>
                         <th>CA(15)</th>
-                        <th>CA(15)</th>
-                        <th>TOTAL(70)</th>
+                        <th>CA(10)</th>
+                        <th>TOTAL(30)</th>
                     </tr>
                     </thead>
                     <tbody>
