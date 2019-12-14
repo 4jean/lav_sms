@@ -44,6 +44,7 @@
                             @foreach($marks->where('subject_id', $sub->id)->where('exam_id', $ex->id) as $mk)
                                 <td>{{ $mk->t1 ?: '-' }}</td>
                                 <td>{{ $mk->t2 ?: '-' }}</td>
+                                <td>{{ $mk->t3 ?: '-' }}</td>
                                 <td>{{ $mk->tca ?: '-' }}</td>
                                 <td>{{ $mk->exm ?: '-' }}</td>
 
@@ -68,9 +69,9 @@
                         </tr>
                     @endforeach
                     <tr>
-                        <td colspan="{{ $ex->term < 3 ? 5 : 7 }}"><strong>TOTAL SCORES OBTAINED: </strong> {{ $exr->total }}</td>
-                        <td colspan="{{ $ex->term < 3 ? 3 : 3 }}"><strong>FINAL AVERAGE: </strong> {{ $exr->ave }}</td>
-                        <td colspan="{{ $ex->term < 3 ? 2 : 3 }}"><strong>CLASS AVERAGE: </strong> {{ $exr->class_ave }}</td>
+                        <td colspan="{{ $ex->term < 3 ? 4 : 6 }}"><strong>TOTAL SCORES OBTAINED: </strong> {{ $exr->total }}</td>
+                        <td colspan="{{ $ex->term < 3 ? 3 : 4 }}"><strong>FINAL AVERAGE: </strong> {{ $exr->ave }}</td>
+                        <td colspan="{{ $ex->term < 3 ? 3 : 3 }}"><strong>CLASS AVERAGE: </strong> {{ $exr->class_ave }}</td>
                     </tr>
                     </tbody>
                 </table>
