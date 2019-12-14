@@ -100,6 +100,11 @@ class ExamRepo
         return Mark::firstOrCreate($data);
     }
 
+    public function destroyMark($id)
+    {
+        return Mark::destroy($id);
+    }
+
     public function updateMark($id, $data)
     {
         return Mark::find($id)->update($data);

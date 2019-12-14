@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SupportTeam;
 
 use App\Helpers\Qs;
 use App\Http\Controllers\Controller;
+use App\Models\Mark;
 use App\Repositories\MyClassRepo;
 use App\Repositories\StudentRepo;
 use Illuminate\Http\Request;
@@ -117,16 +118,25 @@ class PromotionController extends Controller
 
     public function reset_all()
     {
-        $where = ['from_session' => Qs::getCurrentSession(), 'to_session' => Qs::getNextSession()];
+        $next_session = Qs::getNextSession();
+        $where = ['from_session' => Qs::getCurrentSession(), 'to_session' => $next_session];
         $proms = $this->student->getPromotions($where);
 
         if ($proms->count()){
           foreach ($proms as $prom){
               $this->reset_single($prom->id);
+
+              // Delete Marks if Already Inserted for New Session
+              $this->delete_old_marks($prom->student_id, $next_session);
           }
         }
 
         return Qs::jsonUpdateOk();
+    }
+
+    protected function delete_old_marks($student_id, $year)
+    {
+        Mark::where(['student_id' => $student_id, 'year' => $year])->delete();
     }
 
     protected function reset_single($promotion_id)
