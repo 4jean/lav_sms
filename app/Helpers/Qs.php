@@ -181,6 +181,12 @@ class Qs
         return $remove ? array_values(array_diff($data, $remove)) : $data;
     }
 
+    // Check if User is Head of Super Admins (Untouchable)
+    public static function headSA(int $user_id)
+    {
+        return $user_id === 1;
+    }
+
     public static function userIsPTA()
     {
         return in_array(Auth::user()->user_type, self::getPTA());

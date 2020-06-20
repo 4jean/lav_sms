@@ -106,6 +106,12 @@ class UserController extends Controller
     public function update(UserRequest $req, $id)
     {
         $id = Qs::decodeHash($id);
+
+        // Redirect if Making Changes to Head of Super Admins
+        if(Qs::headSA($id)){
+            return Qs::json(__('msg.denied'), FALSE);
+        }
+
         $user = $this->user->find($id);
 
         $user_type = $user->user_type;
@@ -160,6 +166,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         $id = Qs::decodeHash($id);
+
+        // Redirect if Making Changes to Head of Super Admins
+        if(Qs::headSA($id)){
+            return Qs::json(__('msg.denied'), FALSE);
+        }
 
         $user = $this->user->find($id);
 
