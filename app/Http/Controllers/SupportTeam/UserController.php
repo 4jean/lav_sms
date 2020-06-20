@@ -53,6 +53,11 @@ class UserController extends Controller
 
     public function reset_pass($id)
     {
+        // Redirect if Making Changes to Head of Super Admins
+        if(Qs::headSA($id)){
+            return back()->with('flash_danger', __('msg.denied'));
+        }
+
         $data['password'] = Hash::make('user');
         $this->user->update($id, $data);
         return back()->with('flash_success', __('msg.pu_reset'));
@@ -169,7 +174,7 @@ class UserController extends Controller
 
         // Redirect if Making Changes to Head of Super Admins
         if(Qs::headSA($id)){
-            return Qs::json(__('msg.denied'), FALSE);
+            return back()->with('pop_error', __('msg.denied'));
         }
 
         $user = $this->user->find($id);
