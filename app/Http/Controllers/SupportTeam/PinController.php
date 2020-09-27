@@ -21,6 +21,7 @@ class PinController extends Controller
         $this->user = $user;
         $this->middleware('examIsLocked');
         $this->middleware('teamSA', ['except' => ['verify', 'enter_pin'] ]);
+
     }
 
     public function index()

@@ -334,7 +334,7 @@ class Qs
     public static function goToRoute($goto, $status = 302, $headers = [], $secure = null)
     {
         $data = [];
-        $to = is_array($goto) ? $goto[0] : $goto ?: 'dashboard';
+        $to = (is_array($goto) ? $goto[0] : $goto )?: 'dashboard';
         if(is_array($goto)){
             array_shift($goto);
             $data = $goto;

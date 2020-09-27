@@ -24,7 +24,7 @@
                             <div class="col-lg-9">
                                 <select data-placeholder="Choose..." required name="current_session" id="current_session" class="select-search form-control">
                                     <option value=""></option>
-                                    @for($y=date('Y', strtotime('- 3 years')); $y<=date('Y', strtotime('+ 1 years')); $y++)
+                                    @for($y=date('Y', strtotime('- 3 years')); $y<=date('Y', strtotime('+ 100 years')); $y++)
                                         <option {{ ($s['current_session'] == (($y-=1).'-'.($y+=1))) ? 'selected' : '' }}>{{ ($y-=1).'-'.($y+=1) }}</option>
                                     @endfor
                                 </select>
@@ -93,7 +93,7 @@
                    <div class="form-group row">
                        <label class="col-lg-3 col-form-label font-weight-semibold">{{ $ct->name }}</label>
                        <div class="col-lg-9">
-                           <input class="form-control" value="{{ $s['nt_fee_'.strtolower($ct->code)] }}" name="nt_fee_{{ strtolower($ct->code) }}" placeholder="{{ $ct->name }}" type="text">
+                           <input class="form-control" value="{{ $s['next_term_fees_'.strtolower($ct->code)] }}" name="next_term_fees_{{ strtolower($ct->code) }}" placeholder="{{ $ct->name }}" type="text">
                        </div>
                    </div>
                        @endforeach

@@ -28,6 +28,8 @@ class SettingsTableSeeder extends Seeder
             ['type' => 'email_pass', 'description' => ''],
             ['type' => 'lock_exam', 'description' => 0],
             ['type' => 'logo', 'description' => ''],
+            ['type' => 'next_term_fees_c', 'description' => '10000'],
+            ['type' => 'next_term_fees_pn', 'description' => '15000'],
             ['type' => 'next_term_fees_j', 'description' => '20000'],
             ['type' => 'next_term_fees_p', 'description' => '25000'],
             ['type' => 'next_term_fees_n', 'description' => '25600'],
