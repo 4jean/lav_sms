@@ -1,6 +1,5 @@
 <?php
-
-namespace App\Http\Controllers\SupportTeam;
+namespace App\Http\Controllers\Api;
 
 use App\Helpers\Qs;
 use App\Helpers\Mk;
@@ -14,9 +13,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
-class StudentRecordController extends Controller
+class StudentsRecordController extends Controller
 {
     protected $loc, $my_class, $user, $student;
 

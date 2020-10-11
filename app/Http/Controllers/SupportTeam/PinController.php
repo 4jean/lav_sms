@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\UserRepo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Str;
 class PinController extends Controller
 {
     protected  $pin, $examIsLocked, $user;
@@ -85,7 +85,7 @@ class PinController extends Controller
         $num = $req->pin_count;
         $data = [];
         for($i = 0; $i < $num; $i++){
-            $code = str_random(5).'-'.str_random(5).'-'.str_random(6);
+            $code =Str::random(5).'-'.Str::random(5).'-'.Str::random(6);
             $data[] = ['code' => strtoupper($code)];
         }
 
