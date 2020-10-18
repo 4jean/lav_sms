@@ -1,6 +1,6 @@
 ## **Laravel School Management System** 
 
-**LAVSMS** is developed for educational institutions like schools and colleges.
+**LAVSMS** is developed for educational institutions like schools and colleges built on Laravel 8
 
 **SCREENSHOTS** 
 
@@ -27,15 +27,16 @@ Administrators (Super Admin & Admin)
 - Student
 - Parent
 
-**Reqirements** 
+**Requirements** 
 
-Check Laravel Requirements https://laravel.com/docs/6.x
+Check Laravel 8 Requirements https://laravel.com/docs/8.x
 
 **Installation**
 - Install dependencies (composer install)
 - Set Database Credentials & App Settings in dotenv file (.env)
 - Migrate Database (php artisan migrate)
 - Database seed (php artisan db:seed)
+- Link Storage (php artisan storage:link)
 
 #### **FUNCTIONS OF ACCOUNTS** 
 
@@ -92,8 +93,7 @@ Your Contributions & suggestions are welcomed.
 
 ### **Security Vulnerabilities**
 
-If you discover a security vulnerability within in LAVSMS, please use pull request. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within LAVSMS, please use pull request. All security vulnerabilities will be promptly addressed.
 
-### **Contact**
-- Email : jokemiri[at]gmail.com
+### **Contact [CJ INSPIRED]**
 - Phone : +2347068149559

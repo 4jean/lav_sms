@@ -1,9 +1,11 @@
 <?php
+namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Helpers\Qs;
+use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
 {
@@ -28,10 +30,11 @@ class UsersTableSeeder extends Seeder
 
             ['name' => 'CJ Inspired',
                 'email' => 'cj@cj.com',
+                'username' => 'cj',
                 'password' => Hash::make('cj'),
                 'user_type' => $ut[4],
-                'code' => strtoupper(str_random(10)),
-                'remember_token' => str_random(10),
+                'code' => strtoupper(Str::random(10)),
+                'remember_token' => Str::random(10),
                 'photo' => Qs::getDefaultUserImage(),
             ],
 
@@ -39,8 +42,8 @@ class UsersTableSeeder extends Seeder
             'email' => $ut[0].'@'.$ut[0].'.com',
             'password' => Hash::make('cj'),
             'user_type' => $ut[0],
-            'code' => strtoupper(str_random(10)),
-            'remember_token' => str_random(10),
+            'code' => strtoupper(Str::random(10)),
+            'remember_token' => Str::random(10),
             'photo' => Qs::getDefaultUserImage(),
             ],
 
@@ -48,8 +51,8 @@ class UsersTableSeeder extends Seeder
                 'email' => $ut[2].'@'.$ut[2].'.com',
                 'user_type' => $ut[2],
                 'password' => Hash::make('cj'),
-                'code' => strtoupper(str_random(10)),
-                'remember_token' => str_random(10),
+                'code' => strtoupper(Str::random(10)),
+                'remember_token' => Str::random(10),
                 'photo' => Qs::getDefaultUserImage(),
             ],
 
@@ -57,8 +60,8 @@ class UsersTableSeeder extends Seeder
                 'email' => $ut[3].'@'.$ut[3].'.com',
                 'user_type' => $ut[3],
                 'password' => Hash::make('cj'),
-                'code' => strtoupper(str_random(10)),
-                'remember_token' => str_random(10),
+                'code' => strtoupper(Str::random(10)),
+                'remember_token' => Str::random(10),
                 'photo' => Qs::getDefaultUserImage(),
             ],
         ];
@@ -76,8 +79,8 @@ class UsersTableSeeder extends Seeder
                 'email' => $ut[1].$i.'@'.$ut[1].'.com',
                 'user_type' => $ut[1],
                 'password' => Hash::make($ut[1]),
-                'code' => str_random(10),
-                'remember_token' => str_random(10),
+                'code' => Str::random(10),
+                'remember_token' => Str::random(10),
                 'photo' => Qs::getDefaultUserImage(),
             ];*/
 
@@ -86,8 +89,8 @@ class UsersTableSeeder extends Seeder
                 'email' => $ut[2].$i.'@'.$ut[2].'.com',
                 'user_type' => $ut[2],
                 'password' => Hash::make($ut[2]),
-                'code' => strtoupper(str_random(10)),
-                'remember_token' => str_random(10),
+                'code' => strtoupper(Str::random(10)),
+                'remember_token' => Str::random(10),
                 'photo' => Qs::getDefaultUserImage(),
             ];
 
@@ -97,8 +100,8 @@ class UsersTableSeeder extends Seeder
                 'email' => $ut[3].$i.'@'.$ut[3].'.com',
                 'user_type' => $ut[3],
                 'password' => Hash::make($ut[3]),
-                'code' => strtoupper(str_random(10)),
-                'remember_token' => str_random(10),
+                'code' => strtoupper(Str::random(10)),
+                'remember_token' => Str::random(10),
                 'photo' => Qs::getDefaultUserImage(),
             ];
         }

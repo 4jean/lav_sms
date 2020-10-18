@@ -1,7 +1,11 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\BloodGroup;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 
 class BloodGroupsTableSeeder extends Seeder
 {

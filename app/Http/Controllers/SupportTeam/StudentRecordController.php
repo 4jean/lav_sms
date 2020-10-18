@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class StudentRecordController extends Controller
 {
@@ -59,7 +60,7 @@ class StudentRecordController extends Controller
 
         $data['user_type'] = 'student';
         $data['name'] = ucwords($req->name);
-        $data['code'] = strtoupper(str_random(10));
+        $data['code'] = strtoupper(Str::random(10));
         $data['password'] = Hash::make('student');
         $data['photo'] = Qs::getDefaultUserImage();
         $data['username'] = Qs::getAppCode().'/'.$ct.'/'.$sr['year_admitted'].'/'.mt_rand(1000, 9999);

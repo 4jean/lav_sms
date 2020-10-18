@@ -1,7 +1,10 @@
 <?php
+namespace Database\Seeders;
 
 use App\Models\Lga;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 
 class LgasTableSeeder extends Seeder
 {

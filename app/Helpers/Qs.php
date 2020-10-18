@@ -142,7 +142,7 @@ class Qs
 
     public static function userIsAdmin()
     {
-        return (Auth::user()->user_type == 'admin') ? true : false;
+        return Auth::user()->user_type == 'admin';
     }
 
     public static function getUserType()
@@ -152,22 +152,22 @@ class Qs
 
     public static function userIsSuperAdmin()
     {
-        return (Auth::user()->user_type == 'super_admin') ? true : false;
+        return Auth::user()->user_type == 'super_admin';
     }
 
     public static function userIsStudent()
     {
-        return (Auth::user()->user_type == 'student') ? true : false;
+        return Auth::user()->user_type == 'student';
     }
 
     public static function userIsTeacher()
     {
-        return (Auth::user()->user_type == 'teacher') ? true : false;
+        return Auth::user()->user_type == 'teacher';
     }
 
     public static function userIsParent()
     {
-        return (Auth::user()->user_type == 'parent') ? true : false;
+        return Auth::user()->user_type == 'parent';
     }
 
     public static function userIsStaff()
@@ -208,10 +208,10 @@ class Qs
         return ['super_admin', 'admin', 'teacher', 'parent'];
     }
 
-    public static function filesToUpload($programme)
+    /*public static function filesToUpload($programme)
     {
         return ['birth_cert', 'passport',  'neco_cert', 'waec_cert', 'ref1', 'ref2'];
-    }
+    }*/
 
     public static function getPublicUploadPath()
     {
@@ -233,7 +233,7 @@ class Qs
         //$dataFile['name'] = $file->getClientOriginalName();
         $dataFile['ext'] = $file->getClientOriginalExtension();
         $dataFile['type'] = $file->getClientMimeType();
-        $dataFile['size'] = self::formatBytes($file->getClientSize());
+        $dataFile['size'] = self::formatBytes($file->getSize());
         return $dataFile;
     }
 
@@ -296,7 +296,6 @@ class Qs
            case 'P' : return 'primary';
            case 'PN' : return 'pre_nursery';
            case 'C' : return 'creche';
-           break;
        }
         return $class_type;
     }
@@ -334,7 +333,7 @@ class Qs
     public static function goToRoute($goto, $status = 302, $headers = [], $secure = null)
     {
         $data = [];
-        $to = is_array($goto) ? $goto[0] : $goto ?: 'dashboard';
+        $to = (is_array($goto) ? $goto[0] : $goto) ?: 'dashboard';
         if(is_array($goto)){
             array_shift($goto);
             $data = $goto;
@@ -348,7 +347,7 @@ class Qs
         return self::goToRoute($to)->with('flash_danger', $msg);
     }
 
-    public static function goWithSuccess($to = 'dashboard', $msg)
+    public static function goWithSuccess($to, $msg)
     {
         return self::goToRoute($to)->with('flash_success', $msg);
     }

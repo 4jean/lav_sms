@@ -4,8 +4,6 @@
 /storage/*.key
 /vendor
 /.idea
-/.vscode
-/.vagrant
 Homestead.json
 Homestead.yaml
 npm-debug.log
@@ -15,3 +13,4 @@ yarn-error.log
 important
 _ide_helper.php
 storage
+.phpstorm.meta.php

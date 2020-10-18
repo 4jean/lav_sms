@@ -30,10 +30,21 @@ class LoginController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return void$field
      */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /*
+     *  Login with Username or Email
+     * */
+    public function username()
+    {
+        $identity = request()->identity;
+        $field = filter_var($identity, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        request()->merge([$field => $identity]);
+        return $field;
     }
 }
