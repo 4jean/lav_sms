@@ -36,7 +36,16 @@ Check Laravel 8 Requirements https://laravel.com/docs/8.x
 - Set Database Credentials & App Settings in dotenv file (.env)
 - Migrate Database (php artisan migrate)
 - Database seed (php artisan db:seed)
-- Link Storage (php artisan storage:link)
+
+**Login Credentials**
+After seeding. Login details as follows:
+
+| Account Type  | Username | Email | Password |
+| ------------- | -------- | ----- | -------- |
+| Super Admin | cj | cj@cj.com | cj |
+|  Admin | admin | admin@admin.com | cj |
+|  Teacher | teacher | teacher@teacher.com | cj |
+|  Parent | parent | parent@parent.com | cj |
 
 #### **FUNCTIONS OF ACCOUNTS** 
 

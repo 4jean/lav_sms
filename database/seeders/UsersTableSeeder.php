@@ -26,12 +26,15 @@ class UsersTableSeeder extends Seeder
 
     protected function newUsers($ut)
     {
+        // Default user password
+        $password = Hash::make('cj');
+
         $d = [
 
             ['name' => 'CJ Inspired',
                 'email' => 'cj@cj.com',
                 'username' => 'cj',
-                'password' => Hash::make('cj'),
+                'password' => $password,
                 'user_type' => $ut[4],
                 'code' => strtoupper(Str::random(10)),
                 'remember_token' => Str::random(10),
@@ -40,8 +43,9 @@ class UsersTableSeeder extends Seeder
 
             ['name' => 'Admin KORA',
             'email' => $ut[0].'@'.$ut[0].'.com',
-            'password' => Hash::make('cj'),
+            'password' => $password,
             'user_type' => $ut[0],
+            'username' => $ut[0],
             'code' => strtoupper(Str::random(10)),
             'remember_token' => Str::random(10),
             'photo' => Qs::getDefaultUserImage(),
@@ -50,7 +54,8 @@ class UsersTableSeeder extends Seeder
             ['name' => 'Teacher Chike',
                 'email' => $ut[2].'@'.$ut[2].'.com',
                 'user_type' => $ut[2],
-                'password' => Hash::make('cj'),
+                'username' => $ut[2],
+                'password' => $password,
                 'code' => strtoupper(Str::random(10)),
                 'remember_token' => Str::random(10),
                 'photo' => Qs::getDefaultUserImage(),
@@ -59,7 +64,8 @@ class UsersTableSeeder extends Seeder
             ['name' => 'Parent Kaba',
                 'email' => $ut[3].'@'.$ut[3].'.com',
                 'user_type' => $ut[3],
-                'password' => Hash::make('cj'),
+                'username' => $ut[3],
+                'password' => $password,
                 'code' => strtoupper(Str::random(10)),
                 'remember_token' => Str::random(10),
                 'photo' => Qs::getDefaultUserImage(),
@@ -74,7 +80,7 @@ class UsersTableSeeder extends Seeder
 
         for($i=1; $i<2; $i++){
 
-            /*Create Students Users*/
+            /*Create Student */
          /*   $data[] = ['name' => $ut[1].' '.$i,
                 'email' => $ut[1].$i.'@'.$ut[1].'.com',
                 'user_type' => $ut[1],
@@ -84,7 +90,7 @@ class UsersTableSeeder extends Seeder
                 'photo' => Qs::getDefaultUserImage(),
             ];*/
 
-            /*Create Teachers Users*/
+            /*Create Teachers */
             $data[] = ['name' => $ut[2].' '.$i,
                 'email' => $ut[2].$i.'@'.$ut[2].'.com',
                 'user_type' => $ut[2],
