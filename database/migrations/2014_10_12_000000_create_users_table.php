@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Helpers\Qs;
 
 class CreateUsersTable extends Migration
 {
@@ -22,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('user_type');
             $table->string('dob')->nullable();
             $table->string('gender')->nullable();
-            $table->string('photo')->nullable();
+            $table->string('photo')->default(Qs::getDefaultUserImage());
             $table->string('phone')->nullable();
             $table->string('phone2')->nullable();
             $table->unsignedInteger('bg_id')->nullable();

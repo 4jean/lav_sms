@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -18,16 +19,13 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->delete();
 
-        $user_type = ['admin', 'student', 'teacher', 'parent', 'super_admin'];
-
-        $this->newUsers($user_type);
-        $this->multiUsers($user_type);
+        $this->createNewUsers();
+        $this->createManyUsers( 3);
     }
 
-    protected function newUsers($ut)
+    protected function createNewUsers()
     {
-        // Default user password
-        $password = Hash::make('cj');
+        $password = Hash::make('cj'); // Default user password
 
         $d = [
 
@@ -35,81 +33,70 @@ class UsersTableSeeder extends Seeder
                 'email' => 'cj@cj.com',
                 'username' => 'cj',
                 'password' => $password,
-                'user_type' => $ut[4],
+                'user_type' => 'super_admin',
                 'code' => strtoupper(Str::random(10)),
                 'remember_token' => Str::random(10),
-                'photo' => Qs::getDefaultUserImage(),
             ],
 
             ['name' => 'Admin KORA',
-            'email' => $ut[0].'@'.$ut[0].'.com',
+            'email' => 'admin@admin.com',
             'password' => $password,
-            'user_type' => $ut[0],
-            'username' => $ut[0],
+            'user_type' => 'admin',
+            'username' => 'admin',
             'code' => strtoupper(Str::random(10)),
             'remember_token' => Str::random(10),
-            'photo' => Qs::getDefaultUserImage(),
             ],
 
             ['name' => 'Teacher Chike',
-                'email' => $ut[2].'@'.$ut[2].'.com',
-                'user_type' => $ut[2],
-                'username' => $ut[2],
+                'email' => 'teacher@teacher.com',
+                'user_type' => 'teacher',
+                'username' => 'teacher',
                 'password' => $password,
                 'code' => strtoupper(Str::random(10)),
                 'remember_token' => Str::random(10),
-                'photo' => Qs::getDefaultUserImage(),
             ],
 
             ['name' => 'Parent Kaba',
-                'email' => $ut[3].'@'.$ut[3].'.com',
-                'user_type' => $ut[3],
-                'username' => $ut[3],
+                'email' => 'parent@parent.com',
+                'user_type' => 'parent',
+                'username' => 'parent',
                 'password' => $password,
                 'code' => strtoupper(Str::random(10)),
                 'remember_token' => Str::random(10),
-                'photo' => Qs::getDefaultUserImage(),
+            ],
+
+            ['name' => 'Accountant Jeff',
+                'email' => 'accountant@accountant.com',
+                'user_type' => 'accountant',
+                'username' => 'accountant',
+                'password' => $password,
+                'code' => strtoupper(Str::random(10)),
+                'remember_token' => Str::random(10),
             ],
         ];
         DB::table('users')->insert($d);
     }
 
-    protected function multiUsers($ut)
+    protected function createManyUsers(int $count)
     {
         $data = [];
+        $user_type = Qs::getAllUserTypes(['super_admin', 'librarian', 'student']);
 
-        for($i=1; $i<2; $i++){
+        for($i = 1; $i <= $count; $i++){
 
-            /*Create Student */
-         /*   $data[] = ['name' => $ut[1].' '.$i,
-                'email' => $ut[1].$i.'@'.$ut[1].'.com',
-                'user_type' => $ut[1],
-                'password' => Hash::make($ut[1]),
-                'code' => Str::random(10),
-                'remember_token' => Str::random(10),
-                'photo' => Qs::getDefaultUserImage(),
-            ];*/
+            foreach ($user_type as $k => $ut){
 
-            /*Create Teachers */
-            $data[] = ['name' => $ut[2].' '.$i,
-                'email' => $ut[2].$i.'@'.$ut[2].'.com',
-                'user_type' => $ut[2],
-                'password' => Hash::make($ut[2]),
-                'code' => strtoupper(Str::random(10)),
-                'remember_token' => Str::random(10),
-                'photo' => Qs::getDefaultUserImage(),
-            ];
+                $data[] = ['name' => ucfirst($user_type[$k]).' '.$i,
+                    'email' => $user_type[$k].$i.'@'.$user_type[$k].'.com',
+                    'user_type' => $user_type[$k],
+                    'username' => $user_type[$k].$i,
+                    'password' => Hash::make($user_type[$k]),
+                    'code' => strtoupper(Str::random(10)),
+                    'remember_token' => Str::random(10),
+                ];
 
-            /*Create Parents Users*/
+            }
 
-            $data[] = ['name' => $ut[3].' '.$i,
-                'email' => $ut[3].$i.'@'.$ut[3].'.com',
-                'user_type' => $ut[3],
-                'password' => Hash::make($ut[3]),
-                'code' => strtoupper(Str::random(10)),
-                'remember_token' => Str::random(10),
-                'photo' => Qs::getDefaultUserImage(),
-            ];
         }
 
         DB::table('users')->insert($data);

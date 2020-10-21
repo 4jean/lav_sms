@@ -181,6 +181,12 @@ class Qs
         return $remove ? array_values(array_diff($data, $remove)) : $data;
     }
 
+    public static function getAllUserTypes($remove=[])
+    {
+        $data =  ['super_admin', 'admin', 'teacher', 'accountant', 'librarian', 'student', 'parent'];
+        return $remove ? array_values(array_diff($data, $remove)) : $data;
+    }
+
     // Check if User is Head of Super Admins (Untouchable)
     public static function headSA(int $user_id)
     {

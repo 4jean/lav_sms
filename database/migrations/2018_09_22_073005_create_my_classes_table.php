@@ -16,7 +16,7 @@ class CreateMyClassesTable extends Migration
         Schema::create('my_classes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 100);
-            $table->unsignedInteger('class_type_id')->nullable();
+            $table->unsignedInteger('class_type_id');
             $table->timestamps();
         });
 
