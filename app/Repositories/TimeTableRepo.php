@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
-use App\models\TimeSlot;
-use App\models\TimeTable;
-use App\models\TimeTableRecord;
+use App\Models\TimeSlot;
+use App\Models\TimeTable;
+use App\Models\TimeTableRecord;
 
 class TimeTableRepo
 {
