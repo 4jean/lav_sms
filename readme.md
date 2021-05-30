@@ -18,7 +18,7 @@
 
 **Print Marksheet**
 <div style="clear: both"> </div>
-<div style="border: 1px solid #000000"><img src="https://i.ibb.co/5c1GHCj/capture-20210530-115521-crop.png" alt="print-marksheet"></div>
+<img src="https://i.ibb.co/5c1GHCj/capture-20210530-115521-crop.png" alt="print-marksheet">
 
 **Print Tabulation Sheet & Marksheet**
 <img src="https://i.ibb.co/QmscPfn/capture-20210530-115802.png" alt="tabulation-sheet" border="0">
