@@ -77,16 +77,15 @@
                        @foreach($subjects as $sub)
                        <th title="{{ $sub->name }}" rowspan="2">{{ strtoupper($sub->slug ?: $sub->name) }}</th>
                        @endforeach
-                        @if($ex->term == 3)
+                        {{--@if($ex->term == 3)
                         <th>1ST TERM TOTAL</th>
                         <th>2ND TERM TOTAL</th>
                         <th>3RD TERM TOTAL</th>
                         <th style="color: darkred">CUM Total</th>
                         <th style="color: darkblue">CUM Average</th>
-                            @else
+                        @endif--}}
                         <th style="color: darkred">Total</th>
                         <th style="color: darkblue">Average</th>
-                        @endif
                         <th style="color: darkgreen">Position</th>
                     </tr>
                     </thead>
@@ -99,14 +98,14 @@
                             <td>{{ $marks->where('student_id', $s->user_id)->where('subject_id', $sub->id)->first()->$tex ?? '-' ?: '-' }}</td>
                             @endforeach
 
-                            @if($ex->term == 3)
-                                {{--1st term Total--}}
+                            {{--@if($ex->term == 3)
+                                --}}{{--1st term Total--}}{{--
                             <td>{{ Mk::getTermTotal($s->user_id, 1, $year) ?? '-' }}</td>
-                            {{--2nd Term Total--}}
+                            --}}{{--2nd Term Total--}}{{--
                             <td>{{ Mk::getTermTotal($s->user_id, 2, $year) ?? '-' }}</td>
-                            {{--3rd Term total--}}
+                            --}}{{--3rd Term total--}}{{--
                             <td>{{ Mk::getTermTotal($s->user_id, 3, $year) ?? '-' }}</td>
-                            @endif
+                            @endif--}}
 
                             <td style="color: darkred">{{ $exr->where('student_id', $s->user_id)->first()->total ?: '-' }}</td>
                             <td style="color: darkblue">{{ $exr->where('student_id', $s->user_id)->first()->ave ?: '-' }}</td>

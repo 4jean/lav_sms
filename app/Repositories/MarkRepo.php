@@ -44,33 +44,29 @@ class MarkRepo
     {
         $d = ['student_id' => $st_id, 'exam_id' => $exam->id, 'my_class_id' => $class_id, 'year' => $year];
 
-        $term = $exam->term; $tex = 'tex'.$term;
-        if($term < 3){
-            $mk =Mark::where($d);
-            return $mk->select($tex)->sum($tex);
-        }
+        $tex = 'tex'.$exam->term;
+        $mk =Mark::where($d);
+        return $mk->select($tex)->sum($tex);
 
-        unset($d['exam_id']);
+      /*  unset($d['exam_id']);
         $mk =Mark::where($d);
         $t1 = $mk->select('tex1')->sum('tex1');
         $t2 = $mk->select('tex2')->sum('tex2');
         $t3 = $mk->select('tex3')->sum('tex3');
-        return $t1 + $t2 + $t3;
+        return $t1 + $t2 + $t3;*/
     }
 
     public function getExamAvgTerm($exam, $st_id, $class_id, $sec_id, $year)
     {
         $d = ['student_id' => $st_id, 'exam_id' => $exam->id, 'my_class_id' => $class_id, 'section_id' => $sec_id, 'year' => $year];
 
-        $term = $exam->term; $tex = 'tex'.$term;
+        $tex = 'tex'.$exam->term;
 
-        if($term < 3){
-            $mk = Mark::where($d)->where($tex, '>', 0);
-            $avg = $mk->select($tex)->avg($tex);
-            return round($avg, 1);
-        }
+        $mk = Mark::where($d)->where($tex, '>', 0);
+        $avg = $mk->select($tex)->avg($tex);
+        return round($avg, 1);
 
-        unset($d['exam_id']);
+        /*unset($d['exam_id']);
         $mk = Mark::where($d); $count = 0;
 
         $t1 = $mk->select('tex1')->avg('tex1');
@@ -82,7 +78,7 @@ class MarkRepo
         $count = $t3 ? $count + 1 : $count;
 
         $avg = $t1 + $t2 + $t3;
-        return ($avg > 0) ? round($avg/$count, 1) : 0;
+        return ($avg > 0) ? round($avg/$count, 1) : 0;*/
     }
 
     public function getSubCumTotal($tex3, $st_id, $sub_id, $class_id, $year)
@@ -150,9 +146,9 @@ class MarkRepo
 
         $my_mk = Mark::where($d)->select($tex)->sum($tex);
 
-        if($exam->term == 3){
+        /*if($exam->term == 3){
             $my_mk = Mark::where($d)->select('cum')->sum('cum');
-        }
+        }*/
 
         unset($d['student_id']);
         $mk = Mark::where($d);

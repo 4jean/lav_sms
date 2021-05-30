@@ -203,8 +203,8 @@
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label>Age:</label>
-                                <input min="1" type="number" name="age" placeholder="Age" class="form-control" value="{{ old('age') }}">
+                                <label>Admission Number:</label>
+                                <input type="text" name="adm_no" placeholder="Admission Number" class="form-control" value="{{ old('adm_no') }}">
                             </div>
                         </div>
                     </div>

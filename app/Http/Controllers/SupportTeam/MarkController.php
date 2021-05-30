@@ -83,14 +83,11 @@ class MarkController extends Controller
         $d['my_class'] = $mc = $this->my_class->getMC(['id' => $exr->first()->my_class_id])->first();
         $d['class_type'] = $this->my_class->findTypeByClass($mc->id);
         $d['subjects'] = $this->my_class->findSubjectByClass($mc->id);
-
-        $d['ct'] = $ct = $d['class_type']->code;
         $d['year'] = $year;
         $d['student_id'] = $student_id;
-
-        $d['skills'] = in_array($ct, ['J', 'S']) ? $this->exam->getSkillByClassType($ct) : NULL;
-
-        $d['mark_type'] = Qs::getMarkType($d['ct']);
+        $d['skills'] = $this->exam->getSkillByClassType() ?: NULL;
+        //$d['ct'] = $d['class_type']->code;
+        //$d['mark_type'] = Qs::getMarkType($d['ct']);
 
         return view('pages.support_team.marks.show.index', $d);
     }
@@ -120,6 +117,7 @@ class MarkController extends Controller
         $d['my_class'] = $mc = $this->my_class->find($exr->my_class_id);
         $d['section_id'] = $exr->section_id;
         $d['ex'] = $exam = $this->exam->find($exam_id);
+        $d['tex'] = 'tex'.$exam->term;
         $d['sr'] = $sr =$this->student->getRecord(['user_id' => $student_id])->first();
         $d['class_type'] = $this->my_class->findTypeByClass($mc->id);
         $d['subjects'] = $this->my_class->findSubjectByClass($mc->id);
@@ -129,12 +127,12 @@ class MarkController extends Controller
         $d['student_id'] = $student_id;
         $d['exam_id'] = $exam_id;
 
-        $d['skills'] = in_array($ct, ['J', 'S']) ? $this->exam->getSkillByClassType($ct) : NULL;
+        $d['skills'] = $this->exam->getSkillByClassType() ?: NULL;
         $d['s'] = Setting::all()->flatMap(function($s){
             return [$s->type => $s->description];
         });
 
-        $d['mark_type'] = Qs::getMarkType($ct);
+        //$d['mark_type'] = Qs::getMarkType($ct);
 
         return view('pages.support_team.marks.print.index', $d);
     }
@@ -187,7 +185,7 @@ class MarkController extends Controller
     {
         $p = ['exam_id' => $exam_id, 'my_class_id' => $class_id, 'section_id' => $section_id, 'subject_id' => $subject_id, 'year' => $this->year];
 
-        $d = $all_st_ids = []; $tca = $exm = $grade = NULL;
+        $d = $d3 = $all_st_ids = [];
 
         $exam = $this->exam->find($exam_id);
         $marks = $this->exam->getMark($p);
@@ -196,21 +194,15 @@ class MarkController extends Controller
         $mks = $req->all();
 
         /** Test, Exam, Grade **/
-        foreach($marks->sortBy('user.name') as $mk){
-            $st_id = $all_st_ids[] = $mk->student_id;
+        foreach($marks->sortBy('user.name') as $mk)
+        {
+            $all_st_ids[] = $mk->student_id;
 
-            if(in_array($class_type->code, ['J', 'P', 'S']) ){
                 $d['t1'] = $t1 = $mks['t1_'.$mk->id];
                 $d['t2'] = $t2 = $mks['t2_'.$mk->id];
-                $d['t3'] = $t3 = $mks['t3_'.$mk->id];
-                $d['tca'] = $tca = $t1 + $t2 + $t3;
+                $d['tca'] = $tca = $t1 + $t2;
                 $d['exm'] = $exm = $mks['exm_'.$mk->id];
-            }
 
-            if($class_type->code == 'N'){
-                $d['t1'] = $tca = $d['tca'] = $mks['t1_'.$mk->id];
-                $d['exm'] = $exm = $mks['exm_'.$mk->id];
-            }
 
             /** SubTotal Grade, Remark, Cum, CumAvg**/
 
@@ -220,7 +212,7 @@ class MarkController extends Controller
                 $d['tex'.$exam->term] = $d['t1'] = $d['t2'] = $d['t3'] = $d['t4'] = $d['tca'] = $d['exm'] = NULL;
             }
 
-            if($exam->term < 3){
+         /*   if($exam->term < 3){
                 $grade = $this->mark->getGrade($total, $class_type->id);
             }
 
@@ -228,8 +220,8 @@ class MarkController extends Controller
                 $d['cum'] = $this->mark->getSubCumTotal($total, $st_id, $subject_id, $class_id, $this->year);
                 $d['cum_ave'] = $cav = $this->mark->getSubCumAvg($total, $st_id, $subject_id, $class_id, $this->year);
                 $grade = $this->mark->getGrade(round($cav), $class_type->id);
-            }
-
+            }*/
+            $grade = $this->mark->getGrade($total, $class_type->id);
             $d['grade_id'] = $grade ? $grade->id : NULL;
 
             $this->exam->updateMark($mk->id, $d);
@@ -237,7 +229,8 @@ class MarkController extends Controller
 
         /** Sub Position Begin  **/
 
-        foreach($marks->sortBy('user.name') as $mk){
+        foreach($marks->sortBy('user.name') as $mk)
+        {
 
             $d2['sub_pos'] = $this->mark->getSubPos($mk->student_id, $exam, $class_id, $subject_id, $this->year);
 
@@ -248,18 +241,18 @@ class MarkController extends Controller
 
         /* Exam Record Update */
 
-        $w = $p; unset( $w['subject_id'] );
+        unset( $p['subject_id'] );
 
         foreach ($all_st_ids as $st_id) {
 
+            $p['student_id'] =$st_id;
             $d3['total'] = $this->mark->getExamTotalTerm($exam, $st_id, $class_id, $this->year);
             $d3['ave'] = $this->mark->getExamAvgTerm($exam, $st_id, $class_id, $section_id, $this->year);
             $d3['class_ave'] = $this->mark->getClassAvg($exam, $class_id, $this->year);
             $d3['pos'] = $this->mark->getPos($st_id, $exam, $class_id, $section_id, $this->year);
 
-            $this->exam->updateRecord($w, $d3);
+            $this->exam->updateRecord($p, $d3);
         }
-
         /*Exam Record End*/
 
        return Qs::jsonUpdateOk();
@@ -275,7 +268,7 @@ class MarkController extends Controller
         return view('pages.support_team.marks.batch_fix', $d);
     }
 
-    public function batch_update(Request $req)
+    public function batch_update(Request $req): \Illuminate\Http\JsonResponse
     {
         $exam_id = $req->exam_id;
         $class_id = $req->my_class_id;
@@ -289,30 +282,24 @@ class MarkController extends Controller
 
         /** Marks Fix Begin **/
 
-        $grade = NULL;
         $class_type = $this->my_class->findTypeByClass($class_id);
         $tex = 'tex'.$exam->term;
 
         foreach($marks as $mk){
 
             $total = $mk->$tex;
+            $d['grade_id'] = $this->mark->getGrade($total, $class_type->id);
 
-            if($exam->term < 3){
-                $grade = $this->mark->getGrade($total, $class_type->id);
-            }
-
-            if($exam->term == 3){
-                $d['cum'] = $this->mark->getSubCumTotal($total, $mk->student_id, $mk->subject_id, $class_id, $this->year);
-                $d['cum_ave'] = $cav = $this->mark->getSubCumAvg($total, $mk->student_id, $mk->subject_id, $class_id, $this->year);
-                $grade = $this->mark->getGrade(round($mk->cum_ave), $class_type->id);
-            }
-
-            $d['grade_id'] = $grade ? $grade->id : NULL;
+            /*      if($exam->term == 3){
+                      $d['cum'] = $this->mark->getSubCumTotal($total, $mk->student_id, $mk->subject_id, $class_id, $this->year);
+                      $d['cum_ave'] = $cav = $this->mark->getSubCumAvg($total, $mk->student_id, $mk->subject_id, $class_id, $this->year);
+                      $grade = $this->mark->getGrade(round($mk->cum_ave), $class_type->id);
+                  }*/
 
             $this->exam->updateMark($mk->id, $d);
         }
 
-        /*Marks Fix End*/
+        /* Marks Fix End*/
 
         /** Exam Record Update  **/
         foreach($exrs as $exr){
@@ -326,8 +313,8 @@ class MarkController extends Controller
 
             $this->exam->updateRecord(['id' => $exr->id], $d3);
         }
-        /** END Exam Record Update END **/
 
+        /** END Exam Record Update END **/
 
         return Qs::jsonUpdateOk();
     }

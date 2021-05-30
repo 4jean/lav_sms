@@ -55,15 +55,16 @@ class StudentRecordController extends Controller
        $sr =  $req->only(Qs::getStudentData());
 
         $ct = $this->my_class->findTypeByClass($req->my_class_id)->code;
-        $ct = ($ct == 'J') ? 'JSS' : $ct;
-        $ct = ($ct == 'S') ? 'SS' : $ct;
+       /* $ct = ($ct == 'J') ? 'JSS' : $ct;
+        $ct = ($ct == 'S') ? 'SS' : $ct;*/
 
         $data['user_type'] = 'student';
         $data['name'] = ucwords($req->name);
         $data['code'] = strtoupper(Str::random(10));
         $data['password'] = Hash::make('student');
         $data['photo'] = Qs::getDefaultUserImage();
-        $data['username'] = Qs::getAppCode().'/'.$ct.'/'.$sr['year_admitted'].'/'.mt_rand(1000, 9999);
+        $adm_no = $req->adm_no;
+        $data['username'] = strtoupper(Qs::getAppCode().'/'.$ct.'/'.$sr['year_admitted'].'/'.($adm_no ?: mt_rand(1000, 99999)));
 
         if($req->hasFile('photo')) {
             $photo = $req->file('photo');

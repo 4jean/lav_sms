@@ -5,23 +5,23 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^7.3",
+        "php": "^7.2||^8.0",
         "barryvdh/laravel-dompdf": "^0.8.3",
-        "fideloper/proxy": "^4.2",
+        "fakerphp/faker": "^1.14",
+        "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "hashids/hashids": "^3.0",
-        "laravel/framework": "^8.0",
-        "laravel/tinker": "^2.0",
+        "hashids/hashids": "^4.1.0",
+        "laravel/framework": "^8.40",
+        "laravel/tinker": "^2.5",
         "laravel/ui": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8",
-        "facade/ignition": "^2.3.6",
-        "fzaninotto/faker": "^1.9.1",
-        "mockery/mockery": "^1.3.1",
+        "facade/ignition": "^2.5",
+        "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.3"
+        "phpunit/phpunit": "^9.3.3"
     },
     "autoload": {
         "psr-4": {
