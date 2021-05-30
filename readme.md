@@ -17,10 +17,10 @@
 <img src="https://i.ibb.co/Kmrhw69/system-settings.png" alt="system-settings" border="0">
 
 **Print Marksheet**
-<br />  
-<img src="https://i.ibb.co/5c1GHCj/capture-20210530-115521-crop.png" alt="print-marksheet" border="0">
+<div style="clear: both"> </div>
+<img src="https://i.ibb.co/5c1GHCj/capture-20210530-115521-crop.png" alt="print-marksheet" border="1">
 
-**Tabulation Sheet**
+**Print Tabulation Sheet & Marksheet**
 <img src="https://i.ibb.co/QmscPfn/capture-20210530-115802.png" alt="tabulation-sheet" border="0">
 
 <hr />  
