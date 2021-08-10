@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\TimeTable;
+namespace App\Http\Requests\Timetable;
 
 use Illuminate\Foundation\Http\FormRequest;
 
