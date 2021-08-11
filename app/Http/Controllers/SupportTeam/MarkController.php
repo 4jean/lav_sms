@@ -287,7 +287,7 @@ class MarkController extends Controller
 
         foreach($marks as $mk){
 
-            $total = $mk->$tex;
+            $total = $mk->tex;
             $d['grade_id'] = $this->mark->getGrade($total, $class_type->id);
 
             /*      if($exam->term == 3){
