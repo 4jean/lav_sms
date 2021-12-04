@@ -138,7 +138,7 @@ class UserController extends Controller
             $photo = $req->file('photo');
             $f = Qs::getFileMetaData($photo);
             $f['name'] = 'photo.' . $f['ext'];
-            $f['path'] = $photo->storeAs(Qs::getUploadPath($user_type).$data['code'], $f['name']);
+            $f['path'] = $photo->storeAs(Qs::getUploadPath($user_type).$user->code, $f['name']);
             $data['photo'] = asset('storage/' . $f['path']);
         }
 
