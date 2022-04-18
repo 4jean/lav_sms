@@ -11,7 +11,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-                    <form class="ajax-update-h" method="post" action="{{ route('subjects.update', $s->id) }}">
+                    <form class="ajax-update" method="post" action="{{ route('subjects.update', $s->id) }}">
                         @csrf @method('PUT')
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
