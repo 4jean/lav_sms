@@ -55,6 +55,7 @@ After seeding. Login details as follows:
 |  Parent | parent | parent@parent.com | cj |
 |  Accountant | accountant | accountant@accountant.com | cj |
 |  Student | student | student@student.com | cj |
+|  Librarian | librarian | lib@lib.com | cj |
 
 #### **FUNCTIONS OF ACCOUNTS** 
 
