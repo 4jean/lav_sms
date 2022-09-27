@@ -11,7 +11,7 @@ class BookController extends Controller
 
     public function __construct()
     {
-        $this->middleware('librarian', ['only' => ['edit','update', 'create', 'store'] ]);
+
     }
 
     /**
@@ -21,7 +21,6 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**

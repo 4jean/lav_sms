@@ -146,7 +146,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('payments', 'PaymentController');
 
         /*************** Librarian *****************/
-        Route::group(['prefix' => 'librarian'], function(){
+        Route::group(['prefix' => 'librarian', 'middleware' => 'librarian'], function(){
             Route::resource('book', 'BookController');
         });
 
