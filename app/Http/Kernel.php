@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Custom\Librarian;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -69,5 +70,6 @@ class Kernel extends HttpKernel
         'teamAccount' => \App\Http\Middleware\Custom\TeamAccount::class,
         'examIsLocked' => \App\Http\Middleware\Custom\ExamIsLocked::class,
         'my_parent' => \App\Http\Middleware\Custom\MyParent::class,
+        'librarian'=> Librarian::class,
     ];
 }

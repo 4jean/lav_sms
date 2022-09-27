@@ -78,6 +78,11 @@ class Qs
         return ['admin', 'super_admin', 'accountant'];
     }
 
+    public static function getTeamLibrarian()
+    {
+        return ['admin', 'super_admin', 'librarian'];
+    }
+
     public static function hash($id)
     {
         $date = date('dMY').'CJ';
@@ -196,6 +201,11 @@ class Qs
     public static function userIsPTA()
     {
         return in_array(Auth::user()->user_type, self::getPTA());
+    }
+
+    public static function userIsLibrarian()
+    {
+        return in_array(Auth::user()->user_type, self::getTeamLibrarian());
     }
 
     public static function userIsMyChild($student_id, $parent_id)

@@ -1,12 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SupportTeam;
 
 use App\Book;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
+
+    public function __construct()
+    {
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,6 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**

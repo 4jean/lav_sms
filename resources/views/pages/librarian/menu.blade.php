@@ -1,4 +1,4 @@
 {{--Books--}}
 <li class="nav-item">
-    <a href="#" class="nav-link "><i class="icon-books"></i> Books</a>
+    <a href="{{route('book.index')}}" class="nav-link {{ in_array(Route::currentRouteName(), ['book.index']) ? 'active' : '' }}"><i class="icon-books"></i> Books</a>
 </li>
