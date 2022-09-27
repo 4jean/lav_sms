@@ -145,6 +145,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('dorms', 'DormController');
         Route::resource('payments', 'PaymentController');
 
+        /*************** Librarian *****************/
+        Route::group(['prefix' => 'librarian'], function(){
+            Route::resource('book', 'BookController');
+        });
+
     });
 
     /************************ AJAX ****************************/
