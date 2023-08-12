@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class MarkUpdate extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -24,7 +23,7 @@ class MarkUpdate extends FormRequest
 
     public function attributes()
     {
-        return  [
+        return [
 
         ];
     }

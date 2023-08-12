@@ -9,7 +9,6 @@ use App\Models\Receipt;
 
 class PaymentRepo
 {
-
     public function all()
     {
         return Payment::all();
@@ -62,7 +61,7 @@ class PaymentRepo
         return $this->getRecord(['student_id' => $st_id, 'payment_id' => $pay_id]);
     }
 
-    public function getAllMyPR($st_id, $year = NULL)
+    public function getAllMyPR($st_id, $year = null)
     {
         return $year ? $this->getRecord(['student_id' => $st_id, 'year' => $year]) : $this->getRecord(['student_id' => $st_id]);
     }
@@ -108,5 +107,4 @@ class PaymentRepo
     {
         return $this->getRecord(['pr_id' => $pr_id])->get();
     }
-
 }

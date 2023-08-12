@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class PinVerify extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -26,9 +25,8 @@ class PinVerify extends FormRequest
 
     public function attributes()
     {
-        return  [
+        return [
             'pin_code' => 'Pin Code',
         ];
     }
-
 }

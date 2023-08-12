@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class TSRequest extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -14,6 +13,7 @@ class TSRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
+     *
      * @return array
      */
     public function rules()
@@ -31,7 +31,7 @@ class TSRequest extends FormRequest
 
     public function attributes()
     {
-        return  [
+        return [
             'ttr_id' => 'TimeTable Record',
             'hour_from' => 'Start Hour',
             'min_from' => 'Start Minute',
@@ -41,5 +41,4 @@ class TSRequest extends FormRequest
             'meridian_to' => 'End Meridian',
         ];
     }
-
 }

@@ -2,12 +2,11 @@
 
 namespace App\Http\Requests\Student;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Helpers\Qs;
+use Illuminate\Foundation\Http\FormRequest;
 
 class StudentRecordUpdate extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -40,7 +39,7 @@ class StudentRecordUpdate extends FormRequest
 
     public function attributes()
     {
-        return  [
+        return [
             'nal_id' => 'Nationality',
             'dorm_id' => 'Dormitory',
             'state_id' => 'State',
@@ -56,7 +55,7 @@ class StudentRecordUpdate extends FormRequest
     {
         $input = $this->all();
 
-        $input['my_parent_id'] = $input['my_parent_id'] ? Qs::decodeHash($input['my_parent_id']) : NULL;
+        $input['my_parent_id'] = $input['my_parent_id'] ? Qs::decodeHash($input['my_parent_id']) : null;
 
         $this->getInputSource()->replace($input);
 

@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class TTRecordRequest extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -14,11 +13,12 @@ class TTRecordRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
+     *
      * @return array
      */
     public function rules()
     {
-        if($this->method() === 'POST'){
+        if ($this->method() === 'POST') {
             return [
                 'name' => 'required|string|min:3|unique:time_table_records',
                 'my_class_id' => 'required',
@@ -33,9 +33,8 @@ class TTRecordRequest extends FormRequest
 
     public function attributes()
     {
-        return  [
+        return [
             'my_class_id' => 'Class',
         ];
     }
-
 }

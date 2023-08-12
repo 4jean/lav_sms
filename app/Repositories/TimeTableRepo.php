@@ -8,7 +8,6 @@ use App\Models\TimeTableRecord;
 
 class TimeTableRepo
 {
-
     public function getTimeTable($where)
     {
         return TimeTable::with(['subject', 'time_slot'])->orderBy('timestamp_from')->where($where)->get();
@@ -41,14 +40,15 @@ class TimeTableRepo
         return $this->getTimeSlot(['ttr_id' => $ttr_id])->get();
     }
 
-    protected function getDistinctTTR($remove_ttr = NULL)
+    protected function getDistinctTTR($remove_ttr = null)
     {
         return $remove_ttr ? TimeSlot::where('ttr_id', '<>', $remove_ttr)->distinct()->select('ttr_id')->pluck('ttr_id') : TimeSlot::distinct()->select('ttr_id')->pluck('ttr_id');
     }
 
-    public function getExistingTS($remove_ttr = NULL)
+    public function getExistingTS($remove_ttr = null)
     {
-        $ids  = $this->getDistinctTTR($remove_ttr);
+        $ids = $this->getDistinctTTR($remove_ttr);
+
         return $this->getTTRByIDs($ids);
     }
 
@@ -76,7 +76,6 @@ class TimeTableRepo
     {
         return TimeSlot::findOrFail($id);
     }
-
 
     /************* TT RECORDS ***********/
 

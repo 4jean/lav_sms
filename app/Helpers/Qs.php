@@ -15,6 +15,7 @@ class Qs
         foreach ($errors as $err) {
             $data[] = $err;
         }
+
         return '
                 <div class="alert alert-danger alert-styled-left alert-dismissible">
 									<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
@@ -82,6 +83,7 @@ class Qs
     {
         $date = date('dMY').'CJ';
         $hash = new Hashids($date, 14);
+
         return $hash->encode($id);
     }
 
@@ -94,7 +96,7 @@ class Qs
 
     public static function getStaffRecord($remove = [])
     {
-        $data = ['emp_date',];
+        $data = ['emp_date'];
 
         return $remove ? array_values(array_diff($data, $remove)) : $data;
     }
@@ -112,6 +114,7 @@ class Qs
         $date = date('dMY').'CJ';
         $hash = new Hashids($date, 14);
         $decoded = $hash->decode($str);
+
         return $toString ? implode(',', $decoded) : $decoded;
     }
 
@@ -175,15 +178,17 @@ class Qs
         return in_array(Auth::user()->user_type, self::getStaff());
     }
 
-    public static function getStaff($remove=[])
+    public static function getStaff($remove = [])
     {
-        $data =  ['super_admin', 'admin', 'teacher', 'accountant', 'librarian'];
+        $data = ['super_admin', 'admin', 'teacher', 'accountant', 'librarian'];
+
         return $remove ? array_values(array_diff($data, $remove)) : $data;
     }
 
-    public static function getAllUserTypes($remove=[])
+    public static function getAllUserTypes($remove = [])
     {
-        $data =  ['super_admin', 'admin', 'teacher', 'accountant', 'librarian', 'student', 'parent'];
+        $data = ['super_admin', 'admin', 'teacher', 'accountant', 'librarian', 'student', 'parent'];
+
         return $remove ? array_values(array_diff($data, $remove)) : $data;
     }
 
@@ -200,7 +205,8 @@ class Qs
 
     public static function userIsMyChild($student_id, $parent_id)
     {
-        $data = ['user_id' => $student_id, 'my_parent_id' =>$parent_id];
+        $data = ['user_id' => $student_id, 'my_parent_id' => $parent_id];
+
         return StudentRecord::where($data)->exists();
     }
 
@@ -240,6 +246,7 @@ class Qs
         $dataFile['ext'] = $file->getClientOriginalExtension();
         $dataFile['type'] = $file->getClientMimeType();
         $dataFile['size'] = self::formatBytes($file->getSize());
+
         return $dataFile;
     }
 
@@ -251,9 +258,9 @@ class Qs
     public static function formatBytes($size, $precision = 2)
     {
         $base = log($size, 1024);
-        $suffixes = array('B', 'KB', 'MB', 'GB', 'TB');
+        $suffixes = ['B', 'KB', 'MB', 'GB', 'TB'];
 
-        return round(pow(1024, $base - floor($base)), $precision) .' '. $suffixes[floor($base)];
+        return round(pow(1024, $base - floor($base)), $precision).' '.$suffixes[floor($base)];
     }
 
     public static function getSetting($type)
@@ -270,6 +277,7 @@ class Qs
     {
         $oy = self::getCurrentSession();
         $old_yr = explode('-', $oy);
+
         return ++$old_yr[0].'-'.++$old_yr[1];
     }
 
@@ -295,18 +303,19 @@ class Qs
 
     public static function getMarkType($class_type)
     {
-       switch($class_type){
-           case 'J' : return 'junior';
-           case 'S' : return 'senior';
-           case 'N' : return 'nursery';
-           case 'P' : return 'primary';
-           case 'PN' : return 'pre_nursery';
-           case 'C' : return 'creche';
-       }
+        switch ($class_type) {
+            case 'J': return 'junior';
+            case 'S': return 'senior';
+            case 'N': return 'nursery';
+            case 'P': return 'primary';
+            case 'PN': return 'pre_nursery';
+            case 'C': return 'creche';
+        }
+
         return $class_type;
     }
 
-    public static function json($msg, $ok = TRUE, $arr = [])
+    public static function json($msg, $ok = true, $arr = [])
     {
         return $arr ? response()->json($arr) : response()->json(['ok' => $ok, 'msg' => $msg]);
     }
@@ -340,16 +349,18 @@ class Qs
     {
         $data = [];
         $to = (is_array($goto) ? $goto[0] : $goto) ?: 'dashboard';
-        if(is_array($goto)){
+        if (is_array($goto)) {
             array_shift($goto);
             $data = $goto;
         }
+
         return app('redirect')->to(route($to, $data), $status, $headers, $secure);
     }
 
-    public static function goWithDanger($to = 'dashboard', $msg = NULL)
+    public static function goWithDanger($to = 'dashboard', $msg = null)
     {
         $msg = $msg ? $msg : __('msg.rnf');
+
         return self::goToRoute($to)->with('flash_danger', $msg);
     }
 
@@ -362,5 +373,4 @@ class Qs
     {
         return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     }
-
 }

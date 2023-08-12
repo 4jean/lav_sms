@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class PaymentCreate extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -24,5 +23,4 @@ class PaymentCreate extends FormRequest
             'amount' => 'required',
         ];
     }
-
 }

@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ExamUpdate extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -24,5 +23,4 @@ class ExamUpdate extends FormRequest
             'term' => 'required|numeric',
         ];
     }
-
 }

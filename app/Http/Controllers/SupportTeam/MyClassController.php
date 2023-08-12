@@ -3,20 +3,22 @@
 namespace App\Http\Controllers\SupportTeam;
 
 use App\Helpers\Qs;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\MyClass\ClassCreate;
 use App\Http\Requests\MyClass\ClassUpdate;
 use App\Repositories\MyClassRepo;
 use App\Repositories\UserRepo;
-use App\Http\Controllers\Controller;
 
 class MyClassController extends Controller
 {
-    protected $my_class, $user;
+    protected $my_class;
+
+    protected $user;
 
     public function __construct(MyClassRepo $my_class, UserRepo $user)
     {
-        $this->middleware('teamSA', ['except' => ['destroy',] ]);
-        $this->middleware('super_admin', ['only' => ['destroy',] ]);
+        $this->middleware('teamSA', ['except' => ['destroy']]);
+        $this->middleware('super_admin', ['only' => ['destroy']]);
 
         $this->my_class = $my_class;
         $this->user = $user;
@@ -36,10 +38,10 @@ class MyClassController extends Controller
         $mc = $this->my_class->create($data);
 
         // Create Default Section
-        $s =['my_class_id' => $mc->id,
+        $s = ['my_class_id' => $mc->id,
             'name' => 'A',
             'active' => 1,
-            'teacher_id' => NULL,
+            'teacher_id' => null,
         ];
 
         $this->my_class->createSection($s);
@@ -51,7 +53,7 @@ class MyClassController extends Controller
     {
         $d['c'] = $c = $this->my_class->find($id);
 
-        return is_null($c) ? Qs::goWithDanger('classes.index') : view('pages.support_team.classes.edit', $d) ;
+        return is_null($c) ? Qs::goWithDanger('classes.index') : view('pages.support_team.classes.edit', $d);
     }
 
     public function update(ClassUpdate $req, $id)
@@ -65,7 +67,7 @@ class MyClassController extends Controller
     public function destroy($id)
     {
         $this->my_class->delete($id);
+
         return back()->with('flash_success', __('msg.del_ok'));
     }
-
 }

@@ -10,7 +10,6 @@ use App\Models\Skill;
 
 class ExamRepo
 {
-
     public function all()
     {
         return Exam::orderBy('name', 'asc')->orderBy('year', 'desc')->get();
@@ -127,11 +126,10 @@ class ExamRepo
         return Skill::where($where)->orderBy('name')->get();
     }
 
-    public function getSkillByClassType($class_type = NULL, $skill_type = NULL)
+    public function getSkillByClassType($class_type = null, $skill_type = null)
     {
         return ($skill_type)
             ? $this->getSkill(['class_type' => $class_type, 'skill_type' => $skill_type])
             : $this->getSkill(['class_type' => $class_type]);
     }
-
 }

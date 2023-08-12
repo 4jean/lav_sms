@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UserChangePass extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -24,5 +23,4 @@ class UserChangePass extends FormRequest
             'password' => 'required|min:8|alpha_num|confirmed',
         ];
     }
-
 }

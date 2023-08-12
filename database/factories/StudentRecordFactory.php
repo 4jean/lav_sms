@@ -28,7 +28,7 @@ class StudentRecordFactory extends Factory
             'session' => Qs::getCurrentSession(),
             'my_class_id' => MyClass::first()->id,
             'section_id' => Section::first()->id,
-            'user_id' => null
+            'user_id' => null,
         ];
     }
 }

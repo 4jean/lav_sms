@@ -7,9 +7,8 @@ use App\Models\Dorm;
 use App\Models\Promotion;
 use App\Models\StudentRecord;
 
-class StudentRepo {
-
-
+class StudentRepo
+{
     public function findStudentsByClass($class_id)
     {
         return $this->activeStudents()->where(['my_class_id' => $class_id])->with(['my_class', 'user'])->get()->sortBy('user.name');
@@ -70,7 +69,7 @@ class StudentRepo {
         return $this->activeStudents()->with('user');
     }
 
-    public function getGradRecord($data=[])
+    public function getGradRecord($data = [])
     {
         return $this->gradStudents()->where($data)->with('user');
     }
@@ -110,5 +109,4 @@ class StudentRepo {
     {
         return Promotion::where($where)->get();
     }
-
 }

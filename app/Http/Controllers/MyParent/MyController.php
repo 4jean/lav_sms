@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\MyParent;
+
 use App\Http\Controllers\Controller;
 use App\Repositories\StudentRepo;
 use Illuminate\Support\Facades\Auth;
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class MyController extends Controller
 {
     protected $student;
+
     public function __construct(StudentRepo $student)
     {
         $this->student = $student;
@@ -19,5 +21,4 @@ class MyController extends Controller
 
         return view('pages.parent.children', $data);
     }
-
 }

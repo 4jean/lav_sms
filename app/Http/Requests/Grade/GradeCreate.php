@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class GradeCreate extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -28,7 +27,7 @@ class GradeCreate extends FormRequest
 
     public function attributes()
     {
-        return  [
+        return [
             'mark_from' => 'Mark From',
             'mark_to' => 'Mark To',
         ];

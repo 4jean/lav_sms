@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class PinCreate extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -26,9 +25,8 @@ class PinCreate extends FormRequest
 
     public function attributes()
     {
-        return  [
+        return [
             'pin_count' => 'Pin Amount',
         ];
     }
-
 }

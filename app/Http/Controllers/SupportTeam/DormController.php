@@ -10,12 +10,12 @@ use App\Repositories\DormRepo;
 
 class DormController extends Controller
 {
-    protected  $dorm;
+    protected $dorm;
 
     public function __construct(DormRepo $dorm)
     {
-        $this->middleware('teamSA', ['except' => ['destroy',] ]);
-        $this->middleware('super_admin', ['only' => ['destroy',] ]);
+        $this->middleware('teamSA', ['except' => ['destroy']]);
+        $this->middleware('super_admin', ['only' => ['destroy']]);
 
         $this->dorm = $dorm;
     }
@@ -23,6 +23,7 @@ class DormController extends Controller
     public function index()
     {
         $d['dorms'] = $this->dorm->getAll();
+
         return view('pages.support_team.dorms.index', $d);
     }
 
@@ -38,7 +39,7 @@ class DormController extends Controller
     {
         $d['dorm'] = $dorm = $this->dorm->find($id);
 
-        return !is_null($dorm) ? view('pages.support_team.dorms.edit', $d)
+        return ! is_null($dorm) ? view('pages.support_team.dorms.edit', $d)
             : Qs::goWithDanger('dorms.index');
     }
 
@@ -53,6 +54,7 @@ class DormController extends Controller
     public function destroy($id)
     {
         $this->dorm->find($id)->delete();
+
         return back()->with('flash_success', __('msg.delete_ok'));
     }
 }

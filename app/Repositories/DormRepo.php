@@ -6,7 +6,6 @@ use App\Models\Dorm;
 
 class DormRepo
 {
-
     public function create($data)
     {
         return Dorm::create($data);
@@ -31,6 +30,4 @@ class DormRepo
     {
         return Dorm::find($id);
     }
-
-
 }
