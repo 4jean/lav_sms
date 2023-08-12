@@ -7,7 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class SectionUpdate extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -28,7 +27,7 @@ class SectionUpdate extends FormRequest
 
     public function attributes()
     {
-        return  [
+        return [
             'teacher_id' => 'Teacher',
         ];
     }
@@ -37,7 +36,7 @@ class SectionUpdate extends FormRequest
     {
         $input = $this->all();
 
-        $input['teacher_id'] = $input['teacher_id'] ? Qs::decodeHash($input['teacher_id']) : NULL;
+        $input['teacher_id'] = $input['teacher_id'] ? Qs::decodeHash($input['teacher_id']) : null;
 
         $this->getInputSource()->replace($input);
 

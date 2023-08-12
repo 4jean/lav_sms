@@ -3,20 +3,22 @@
 namespace App\Http\Controllers\SupportTeam;
 
 use App\Helpers\Qs;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Subject\SubjectCreate;
 use App\Http\Requests\Subject\SubjectUpdate;
 use App\Repositories\MyClassRepo;
 use App\Repositories\UserRepo;
-use App\Http\Controllers\Controller;
 
 class SubjectController extends Controller
 {
-    protected $my_class, $user;
+    protected $my_class;
+
+    protected $user;
 
     public function __construct(MyClassRepo $my_class, UserRepo $user)
     {
-        $this->middleware('teamSA', ['except' => ['destroy',] ]);
-        $this->middleware('super_admin', ['only' => ['destroy',] ]);
+        $this->middleware('teamSA', ['except' => ['destroy']]);
+        $this->middleware('super_admin', ['only' => ['destroy']]);
 
         $this->my_class = $my_class;
         $this->user = $user;
@@ -59,6 +61,7 @@ class SubjectController extends Controller
     public function destroy($id)
     {
         $this->my_class->deleteSubject($id);
+
         return back()->with('flash_success', __('msg.del_ok'));
     }
 }

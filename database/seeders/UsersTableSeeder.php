@@ -1,15 +1,15 @@
 <?php
+
 namespace Database\Seeders;
 
+use App\Helpers\Qs;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Helpers\Qs;
 use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
 {
-
     /**
      * Run the database seeds.
      *
@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->delete();
 
         $this->createNewUsers();
-        $this->createManyUsers( 3);
+        $this->createManyUsers(3);
     }
 
     protected function createNewUsers()
@@ -39,12 +39,12 @@ class UsersTableSeeder extends Seeder
             ],
 
             ['name' => 'Admin KORA',
-            'email' => 'admin@admin.com',
-            'password' => $password,
-            'user_type' => 'admin',
-            'username' => 'admin',
-            'code' => strtoupper(Str::random(10)),
-            'remember_token' => Str::random(10),
+                'email' => 'admin@admin.com',
+                'password' => $password,
+                'user_type' => 'admin',
+                'username' => 'admin',
+                'code' => strtoupper(Str::random(10)),
+                'remember_token' => Str::random(10),
             ],
 
             ['name' => 'Teacher Chike',
@@ -82,9 +82,9 @@ class UsersTableSeeder extends Seeder
         $data = [];
         $user_type = Qs::getAllUserTypes(['super_admin', 'librarian', 'student']);
 
-        for($i = 1; $i <= $count; $i++){
+        for ($i = 1; $i <= $count; $i++) {
 
-            foreach ($user_type as $k => $ut){
+            foreach ($user_type as $k => $ut) {
 
                 $data[] = ['name' => ucfirst($user_type[$k]).' '.$i,
                     'email' => $user_type[$k].$i.'@'.$user_type[$k].'.com',

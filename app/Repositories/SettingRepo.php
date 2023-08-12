@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-
 use App\Models\Setting;
 
 class SettingRepo

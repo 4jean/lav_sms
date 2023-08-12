@@ -7,10 +7,8 @@ use App\Models\StaffRecord;
 use App\Models\UserType;
 use App\User;
 
-
-class UserRepo {
-
-
+class UserRepo
+{
     public function update($id, $data)
     {
         return User::find($id)->update($data);

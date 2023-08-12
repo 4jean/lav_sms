@@ -6,12 +6,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class DormCreate extends FormRequest
 {
-
     public function authorize()
     {
         return true;
     }
-
 
     public function rules()
     {
@@ -19,5 +17,4 @@ class DormCreate extends FormRequest
             'name' => 'required|string|unique:dorms',
         ];
     }
-
 }

@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class MarkSelector extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -29,7 +28,7 @@ class MarkSelector extends FormRequest
 
     public function attributes()
     {
-        return  [
+        return [
             'exam_id' => 'Exam',
             'my_class_id' => 'Class',
             'section_id' => 'Section',

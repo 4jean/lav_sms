@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ClassCreate extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -27,9 +26,8 @@ class ClassCreate extends FormRequest
 
     public function attributes()
     {
-        return  [
+        return [
             'class_type_id' => 'Class Type',
         ];
     }
-
 }

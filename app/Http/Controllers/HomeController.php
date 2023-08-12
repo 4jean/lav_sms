@@ -8,11 +8,11 @@ use App\Repositories\UserRepo;
 class HomeController extends Controller
 {
     protected $user;
+
     public function __construct(UserRepo $user)
     {
         $this->user = $user;
     }
-
 
     public function index()
     {
@@ -24,6 +24,7 @@ class HomeController extends Controller
         $data['app_name'] = config('app.name');
         $data['app_url'] = config('app.url');
         $data['contact_phone'] = Qs::getSetting('phone');
+
         return view('pages.other.privacy_policy', $data);
     }
 
@@ -32,13 +33,14 @@ class HomeController extends Controller
         $data['app_name'] = config('app.name');
         $data['app_url'] = config('app.url');
         $data['contact_phone'] = Qs::getSetting('phone');
+
         return view('pages.other.terms_of_use', $data);
     }
 
     public function dashboard()
     {
-        $d=[];
-        if(Qs::userIsTeamSAT()){
+        $d = [];
+        if (Qs::userIsTeamSAT()) {
             $d['users'] = $this->user->getAll();
         }
 

@@ -6,12 +6,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ExamCreate extends FormRequest
 {
-
     public function authorize()
     {
         return true;
     }
-
 
     public function rules()
     {
@@ -20,5 +18,4 @@ class ExamCreate extends FormRequest
             'term' => 'required|numeric',
         ];
     }
-
 }

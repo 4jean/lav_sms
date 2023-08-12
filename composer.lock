@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c68eeaf525619b674918b662daf38dc4",
+    "content-hash": "e445167c4bc2ac9a2c12b371a94578cb",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1450,6 +1450,72 @@
                 "source": "https://github.com/laravel/framework"
             },
             "time": "2023-08-08T14:30:38+00:00"
+        },
+        {
+            "name": "laravel/pint",
+            "version": "v1.10.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/pint.git",
+                "reference": "d1915b6ecc6406c00472c6b9ae75b46aa153bbb2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/d1915b6ecc6406c00472c6b9ae75b46aa153bbb2",
+                "reference": "d1915b6ecc6406c00472c6b9ae75b46aa153bbb2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "ext-tokenizer": "*",
+                "ext-xml": "*",
+                "php": "^8.1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.21.1",
+                "illuminate/view": "^10.5.1",
+                "laravel-zero/framework": "^10.1.1",
+                "mockery/mockery": "^1.5.1",
+                "nunomaduro/larastan": "^2.5.1",
+                "nunomaduro/termwind": "^1.15.1",
+                "pestphp/pest": "^2.4.0"
+            },
+            "bin": [
+                "builds/pint"
+            ],
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "App\\": "app/",
+                    "Database\\Seeders\\": "database/seeders/",
+                    "Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
+                }
+            ],
+            "description": "An opinionated code formatter for PHP.",
+            "homepage": "https://laravel.com",
+            "keywords": [
+                "format",
+                "formatter",
+                "lint",
+                "linter",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/pint/issues",
+                "source": "https://github.com/laravel/pint"
+            },
+            "time": "2023-08-08T15:17:16+00:00"
         },
         {
             "name": "laravel/prompts",

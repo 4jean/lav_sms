@@ -11,6 +11,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "hashids/hashids": "^4.1.0",
         "laravel/framework": "^10.0",
+        "laravel/pint": "^1.10",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^4.0"
     },

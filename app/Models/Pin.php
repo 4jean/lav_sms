@@ -9,7 +9,7 @@ class Pin extends Eloquent
 {
     protected $fillable = ['code', 'user_id', 'student_id', 'times_used', 'used'];
 
-    public function user($foreign = NULL)
+    public function user($foreign = null)
     {
         return $this->belongsTo(User::class, $foreign);
     }
@@ -18,5 +18,4 @@ class Pin extends Eloquent
     {
         return $this->user('student_id');
     }
-
 }
