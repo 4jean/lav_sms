@@ -14,14 +14,16 @@
         "hashids/hashids": "^4.1.0",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.0"
+        "laravel/ui": "^3.0",
+        "axios": ">=0.21.1"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8",
         "facade/ignition": "^2.5",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.3.3"
+        "phpunit/phpunit": "^9.3.3",
+        "axios": ">=0.21.1"
     },
     "autoload": {
         "psr-4": {
