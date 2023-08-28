@@ -1,6 +1,6 @@
 ## **Laravel School Management System** 
 
-**LAVSMS** is developed for educational institutions like schools and colleges built on Laravel 8
+**LAVSMS** is developed for educational institutions like schools and colleges built on Laravel 10
 
 **SCREENSHOTS** 
 
@@ -36,7 +36,7 @@ Administrators (Super Admin & Admin)
 
 **Requirements** 
 
-Check Laravel 8 Requirements https://laravel.com/docs/8.x
+Check Laravel 10 Requirements https://laravel.com/docs/10.x
 
 **Installation**
 - Install dependencies (composer install)
