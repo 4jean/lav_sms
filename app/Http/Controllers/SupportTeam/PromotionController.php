@@ -11,7 +11,9 @@ use Illuminate\Http\Request;
 
 class PromotionController extends Controller
 {
-    protected $my_class, $student;
+    protected $my_class;
+
+    protected $student;
 
     public function __construct(MyClassRepo $my_class, StudentRepo $student)
     {
@@ -21,7 +23,7 @@ class PromotionController extends Controller
         $this->student = $student;
     }
 
-    public function promotion($fc = NULL, $fs = NULL, $tc = NULL, $ts = NULL)
+    public function promotion($fc = null, $fs = null, $tc = null, $ts = null)
     {
         $d['old_year'] = $old_yr = Qs::getSetting('current_session');
         $old_yr = explode('-', $old_yr);
@@ -30,7 +32,7 @@ class PromotionController extends Controller
         $d['sections'] = $this->my_class->getAllSections();
         $d['selected'] = false;
 
-        if($fc && $fs && $tc && $ts){
+        if ($fc && $fs && $tc && $ts) {
             $d['selected'] = true;
             $d['fc'] = $fc;
             $d['fs'] = $fs;
@@ -38,7 +40,7 @@ class PromotionController extends Controller
             $d['ts'] = $ts;
             $d['students'] = $sts = $this->student->getRecord(['my_class_id' => $fc, 'section_id' => $fs, 'session' => $d['old_year']])->get();
 
-            if($sts->count() < 1){
+            if ($sts->count() < 1) {
                 return redirect()->route('students.promotion')->with('flash_success', __('msg.nstp'));
             }
         }
@@ -53,29 +55,30 @@ class PromotionController extends Controller
 
     public function promote(Request $req, $fc, $fs, $tc, $ts)
     {
-        $oy = Qs::getSetting('current_session'); $d = [];
+        $oy = Qs::getSetting('current_session');
+        $d = [];
         $old_yr = explode('-', $oy);
         $ny = ++$old_yr[0].'-'.++$old_yr[1];
-        $students = $this->student->getRecord(['my_class_id' => $fc, 'section_id' => $fs, 'session' => $oy ])->get()->sortBy('user.name');
+        $students = $this->student->getRecord(['my_class_id' => $fc, 'section_id' => $fs, 'session' => $oy])->get()->sortBy('user.name');
 
-        if($students->count() < 1){
+        if ($students->count() < 1) {
             return redirect()->route('students.promotion')->with('flash_danger', __('msg.srnf'));
         }
 
-        foreach($students as $st){
+        foreach ($students as $st) {
             $p = 'p-'.$st->id;
             $p = $req->$p;
-            if($p === 'P'){ // Promote
+            if ($p === 'P') { // Promote
                 $d['my_class_id'] = $tc;
                 $d['section_id'] = $ts;
                 $d['session'] = $ny;
             }
-            if($p === 'D'){ // Don't Promote
+            if ($p === 'D') { // Don't Promote
                 $d['my_class_id'] = $fc;
                 $d['section_id'] = $fs;
                 $d['session'] = $ny;
             }
-            if($p === 'G'){ // Graduated
+            if ($p === 'G') { // Graduated
                 $d['my_class_id'] = $fc;
                 $d['section_id'] = $fs;
                 $d['grad'] = 1;
@@ -84,7 +87,7 @@ class PromotionController extends Controller
 
             $this->student->updateRecord($st->id, $d);
 
-//            Insert New Promotion Data
+            //            Insert New Promotion Data
             $promote['from_class'] = $fc;
             $promote['from_section'] = $fs;
             $promote['grad'] = ($p === 'G') ? 1 : 0;
@@ -97,6 +100,7 @@ class PromotionController extends Controller
 
             $this->student->createPromotion($promote);
         }
+
         return redirect()->route('students.promotion')->with('flash_success', __('msg.update_ok'));
     }
 
@@ -122,13 +126,13 @@ class PromotionController extends Controller
         $where = ['from_session' => Qs::getCurrentSession(), 'to_session' => $next_session];
         $proms = $this->student->getPromotions($where);
 
-        if ($proms->count()){
-          foreach ($proms as $prom){
-              $this->reset_single($prom->id);
+        if ($proms->count()) {
+            foreach ($proms as $prom) {
+                $this->reset_single($prom->id);
 
-              // Delete Marks if Already Inserted for New Session
-              $this->delete_old_marks($prom->student_id, $next_session);
-          }
+                // Delete Marks if Already Inserted for New Session
+                $this->delete_old_marks($prom->student_id, $next_session);
+            }
         }
 
         return Qs::jsonUpdateOk();

@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class TTRequest extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -14,6 +13,7 @@ class TTRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
+     *
      * @return array
      */
     public function rules()
@@ -29,11 +29,10 @@ class TTRequest extends FormRequest
 
     public function attributes()
     {
-        return  [
+        return [
             'subject_id' => 'Subject',
             'ttr_id' => 'TimeTable Record',
             'ts_id' => 'Time Slot',
         ];
     }
-
 }

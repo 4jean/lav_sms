@@ -8,6 +8,6 @@ class Lga extends Eloquent
 {
     public function ministry()
     {
-       // return $this->hasMany(Ministry::class);
+        // return $this->hasMany(Ministry::class);
     }
 }

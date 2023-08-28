@@ -6,7 +6,7 @@ use Eloquent;
 
 class TimeTable extends Eloquent
 {
-    protected $fillable = ['ttr_id', 'ts_id', 'exam_date', 'day', 'timestamp_from', 'timestamp_to', 'subject_id',];
+    protected $fillable = ['ttr_id', 'ts_id', 'exam_date', 'day', 'timestamp_from', 'timestamp_to', 'subject_id'];
 
     public function time_slot()
     {

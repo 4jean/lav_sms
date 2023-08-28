@@ -25,22 +25,22 @@ class StudentRecordsTableSeeder extends Seeder
     {
         $sections = Section::all();
 
-        foreach ($sections as $section){
-          User::factory()
+        foreach ($sections as $section) {
+            User::factory()
                 ->has(
                     StudentRecord::factory()
-                    ->state([
-                    'section_id' => $section->id,
-                    'my_class_id' => $section->my_class_id,
-                    'user_id' => function(User $user){
-                        return ['user_id' => $user->id];
-                    },
-                ]), 'student_record')
+                        ->state([
+                            'section_id' => $section->id,
+                            'my_class_id' => $section->my_class_id,
+                            'user_id' => function (User $user) {
+                                return ['user_id' => $user->id];
+                            },
+                        ]), 'student_record')
                 ->count($count)
                 ->create([
-                    'user_type' => 'student',
-                    'password' => Hash::make('student'),
-                ]);
+                  'user_type' => 'student',
+                  'password' => Hash::make('student'),
+              ]);
         }
 
     }
@@ -61,7 +61,7 @@ class StudentRecordsTableSeeder extends Seeder
         StudentRecord::factory()->create([
             'my_class_id' => $section->my_class_id,
             'user_id' => $user->id,
-            'section_id' => $section->id
+            'section_id' => $section->id,
         ]);
     }
 }

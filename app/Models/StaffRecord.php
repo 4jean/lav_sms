@@ -13,5 +13,4 @@ class StaffRecord extends Eloquent
     {
         return $this->belongsTo(User::class);
     }
-
 }

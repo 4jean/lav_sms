@@ -3,12 +3,10 @@
 namespace App\Repositories;
 
 use App\Models\Pin;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PinRepo
 {
-
     public function create($data)
     {
         return DB::table('pins')->insert($data);
@@ -26,12 +24,12 @@ class PinRepo
 
     public function getUserPin($code, $user_id, $st_id)
     {
-        return  $this->getPin(['code' => $code, 'user_id' => $user_id, 'student_id' => $st_id])->get();
+        return $this->getPin(['code' => $code, 'user_id' => $user_id, 'student_id' => $st_id])->get();
     }
 
     public function findValidCode($code)
     {
-        return  $this->getPin(['code' => $code, 'used' => 0])->get();
+        return $this->getPin(['code' => $code, 'used' => 0])->get();
     }
 
     public function deleteUsed()

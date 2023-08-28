@@ -36,14 +36,14 @@ class SubjectsTableSeeder extends Seeder
                     'name' => $subjects[0],
                     'slug' => $sub_slug[0],
                     'my_class_id' => $my_class->id,
-                    'teacher_id' => $teacher_id
+                    'teacher_id' => $teacher_id,
                 ],
 
                 [
                     'name' => $subjects[1],
                     'slug' => $sub_slug[1],
                     'my_class_id' => $my_class->id,
-                    'teacher_id' => $teacher_id
+                    'teacher_id' => $teacher_id,
                 ],
 
             ];
@@ -52,5 +52,4 @@ class SubjectsTableSeeder extends Seeder
         }
 
     }
-
 }

@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
-
 class TestController extends Controller
 {
-    protected $mc, $exam, $student, $user;
+    protected $mc;
+
+    protected $exam;
+
+    protected $student;
+
+    protected $user;
+
     public function __construct()
     {
 
@@ -15,5 +21,4 @@ class TestController extends Controller
     {
 
     }
-
 }

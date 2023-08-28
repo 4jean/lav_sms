@@ -9,7 +9,6 @@ use App\Models\Subject;
 
 class MyClassRepo
 {
-
     public function all()
     {
         return MyClass::orderBy('name', 'asc')->with('class_type')->get();
@@ -106,12 +105,12 @@ class MyClassRepo
 
     public function findSubjectByClass($class_id, $order_by = 'name')
     {
-        return $this->getSubject(['my_class_id'=> $class_id])->orderBy($order_by)->get();
+        return $this->getSubject(['my_class_id' => $class_id])->orderBy($order_by)->get();
     }
 
     public function findSubjectByTeacher($teacher_id, $order_by = 'name')
     {
-        return $this->getSubject(['teacher_id'=> $teacher_id])->orderBy($order_by)->get();
+        return $this->getSubject(['teacher_id' => $teacher_id])->orderBy($order_by)->get();
     }
 
     public function getSubject($data)
@@ -138,5 +137,4 @@ class MyClassRepo
     {
         return Subject::orderBy('name', 'asc')->with(['my_class', 'teacher'])->get();
     }
-
 }

@@ -31,7 +31,6 @@ class GradesTableSeeder extends Seeder
             ['name' => 'E', 'mark_from' => 40, 'mark_to' => 44, 'remark' => 'Poor'],
             ['name' => 'F', 'mark_from' => 0, 'mark_to' => 39, 'remark' => 'Fail'],
 
-
         ];
         DB::table('grades')->insert($d);
     }

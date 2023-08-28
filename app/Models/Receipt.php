@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\User;
 use Eloquent;
 
 class Receipt extends Eloquent
@@ -13,5 +12,4 @@ class Receipt extends Eloquent
     {
         return $this->belongsTo(PaymentRecord::class, 'pr_id');
     }
-
 }
