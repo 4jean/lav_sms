@@ -3,10 +3,11 @@
 namespace App;
 
 use App\Models\BloodGroup;
-use App\Models\Lga;
+use App\Models\District;
+use App\Models\Local;
 use App\Models\Nationality;
 use App\Models\StaffRecord;
-use App\Models\State;
+use App\Models\Province;
 use App\Models\StudentRecord;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
@@ -23,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'email', 'phone', 'phone2', 'dob', 'gender', 'photo', 'address', 'bg_id', 'password', 'nal_id', 'state_id', 'lga_id', 'code', 'user_type', 'email_verified_at'
+        'name', 'username', 'email', 'phone', 'phone2', 'dob', 'gender', 'photo', 'address', 'bg_id', 'password', 'nal_id', 'province_id', 'district_id','local_id', 'code', 'user_type', 'email_verified_at'
     ];
 
     /**
@@ -40,14 +41,19 @@ class User extends Authenticatable
         return $this->hasOne(StudentRecord::class);
     }
 
-    public function lga()
+    public function local()
     {
-        return $this->belongsTo(Lga::class);
+        return $this->belongsTo(Local::class);
     }
 
-    public function state()
+    public function district()
     {
-        return $this->belongsTo(State::class);
+        return $this->belongsTo(District::class);
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
     }
 
     public function nationality()

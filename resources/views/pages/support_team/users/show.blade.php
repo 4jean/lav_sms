@@ -71,16 +71,22 @@
                                         <td>{{$user->nationality->name }}</td>
                                     </tr>
                                 @endif
-                                @if($user->state_id)
+                                @if($user->province_id)
                                     <tr>
-                                        <td class="font-weight-bold">State</td>
-                                        <td>{{$user->state->name }}</td>
+                                        <td class="font-weight-bold">Province</td>
+                                        <td>{{$user->province->name }}</td>
                                     </tr>
                                 @endif
-                                @if($user->lga_id)
+                                @if($user->district_id)
                                     <tr>
-                                        <td class="font-weight-bold">LGA</td>
-                                        <td>{{$user->lga->name }}</td>
+                                        <td class="font-weight-bold">District</td>
+                                        <td>{{$user->district->name }}</td>
+                                    </tr>
+                                @endif
+                                @if($user->local_id)
+                                    <tr>
+                                        <td class="font-weight-bold">Local Government</td>
+                                        <td>{{$user->local->name }}</td>
                                     </tr>
                                 @endif
                                 @if($user->user_type == 'parent')

@@ -33,8 +33,9 @@ class UserUpdate extends FormRequest
     {
         return  [
             'nal_id' => 'Nationality',
-            'state_id' => 'State',
-            'lga_id' => 'LGA',
+            'province_id' => 'Province',
+            'district_id' => 'District',
+            'local_id' => 'Local Government',
             'phone2' => 'Telephone',
         ];
     }

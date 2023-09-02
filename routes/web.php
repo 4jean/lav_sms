@@ -149,7 +149,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     /************************ AJAX ****************************/
     Route::group(['prefix' => 'ajax'], function() {
-        Route::get('get_lga/{state_id}', 'AjaxController@get_lga')->name('get_lga');
+        Route::get('get_district/{province_id}', 'AjaxController@get_district')->name('get_district');
+        Route::get('get_local/{district_id}', 'AjaxController@get_local')->name('get_local');
         Route::get('get_class_sections/{class_id}', 'AjaxController@get_class_sections')->name('get_class_sections');
         Route::get('get_class_subjects/{class_id}', 'AjaxController@get_class_subjects')->name('get_class_subjects');
     });
