@@ -30,8 +30,9 @@ class UserRequest extends FormRequest
             'username' => 'sometimes|nullable|alpha_dash|min:8|max:100|unique:users',
             'photo' => 'sometimes|nullable|image|mimes:jpeg,gif,png,jpg|max:2048',
             'address' => 'required|string|min:6|max:120',
-            'state_id' => 'required',
-            'lga_id' => 'required',
+            'province_id' => 'required',
+            'district_id' => 'required',
+            'local_id' => 'required',            
             'nal_id' => 'required',
         ];
         $update =  [
@@ -42,8 +43,9 @@ class UserRequest extends FormRequest
             'email' => 'sometimes|nullable|email|max:100|unique:users,email,'.$this->user,
             'photo' => 'sometimes|nullable|image|mimes:jpeg,gif,png,jpg|max:2048',
             'address' => 'required|string|min:6|max:120',
-            'state_id' => 'required',
-            'lga_id' => 'required',
+            'province_id' => 'required',
+            'district_id' => 'required',
+            'local_id' => 'required',            
             'nal_id' => 'required',
         ];
         return ($this->method() === 'POST') ? $store : $update;
@@ -53,8 +55,9 @@ class UserRequest extends FormRequest
     {
         return  [
             'nal_id' => 'Nationality',
-            'state_id' => 'State',
-            'lga_id' => 'LGA',
+            'province_id' => 'Province',
+            'district_id' => 'District',
+            'local_id' => 'Local Government',
             'user_type' => 'User',
             'phone2' => 'Telephone',
         ];

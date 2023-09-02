@@ -9,13 +9,18 @@ class CreateFks extends Migration
 
     public function up()
     {
-        Schema::table('lgas', function (Blueprint $table) {
-            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
+        Schema::table('locals', function (Blueprint $table) {
+            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
+        });
+
+        Schema::table('districts', function (Blueprint $table) {
+            $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('state_id')->references('id')->on('states')->onDelete('set null');
-            $table->foreign('lga_id')->references('id')->on('lgas')->onDelete('set null');
+            $table->foreign('province_id')->references('id')->on('provinces')->onDelete('set null');
+            $table->foreign('district_id')->references('id')->on('districts')->onDelete('set null');
+            $table->foreign('local_id')->references('id')->on('locals')->onDelete('set null');
             $table->foreign('bg_id')->references('id')->on('blood_groups')->onDelete('set null');
             $table->foreign('nal_id')->references('id')->on('nationalities')->onDelete('set null');
         });

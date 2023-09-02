@@ -66,7 +66,7 @@
                         @if(in_array($user->user_type, Qs::getStaff()))
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Date of Employment:</label>
+                                    <label>Date of Enrollment:</label>
                                     <input autocomplete="off" name="emp_date" value="{{ $user->staff->first()->emp_date ?? '' }}" type="text" class="form-control date-pick" placeholder="Select Date...">
 
                                 </div>
@@ -98,24 +98,31 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4">
-                            <label for="state_id">State: <span class="text-danger">*</span></label>
-                            <select onchange="getLGA(this.value)" required data-placeholder="Choose.." class="select-search form-control" name="state_id" id="state_id">
+                        <div class="col-md-3">
+                            <label for="province_id">Province: <span class="text-danger">*</span></label>
+                            <select onchange="getDistrict(this.value)" required data-placeholder="Choose.." class="select-search form-control" name="province_id" id="province_id">
                                 <option value=""></option>
-                                @foreach($states as $st)
-                                    <option {{ ($user->state_id == $st->id ? 'selected' : '') }} value="{{ $st->id }}">{{ $st->name }}</option>
+                                @foreach($provinces as $st)
+                                    <option {{ ($user->province_id == $st->id ? 'selected' : '') }} value="{{ $st->id }}">{{ $st->name }}</option>
                                 @endforeach
                             </select>
                         </div>
 
-                        <div class="col-md-4">
-                            <label for="lga_id">LGA: <span class="text-danger">*</span></label>
-                            <select required data-placeholder="Select State First" class="select-search form-control" name="lga_id" id="lga_id">
-                                <option value="{{ $user->lga_id ?? '' }}">{{ $user->lga->name ?? '' }}</option>
+                        <div class="col-md-3">
+                            <label for="district_id">District: <span class="text-danger">*</span></label>
+                            <select onchange="getLocal(this.value)" required data-placeholder="Select Province First" class="select-search form-control" name="district_id" id="district_id">
+                                <option value="{{ $user->district_id ?? '' }}">{{ $user->district->name ?? '' }}</option>
                             </select>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <label for="local_id">Local Government: <span class="text-danger">*</span></label>
+                            <select required data-placeholder="Select District First" class="select-search form-control" name="local_id" id="local_id">
+                                <option value="{{ $user->local_id ?? '' }}">{{ $user->local->name ?? '' }}</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="bg_id">Blood Group: </label>
                                 <select class="select form-control" id="bg_id" name="bg_id" data-fouc data-placeholder="Choose..">

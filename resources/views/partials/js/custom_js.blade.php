@@ -1,18 +1,40 @@
 <script>
 
-    function getLGA(state_id){
-        var url = '{{ route('get_lga', [':id']) }}';
-        url = url.replace(':id', state_id);
-        var lga = $('#lga_id');
+function getDistrict(province_id){
+        var url = '{{ route('get_district', [':id']) }}';
+        url = url.replace(':id', province_id);
+        var district = $('#district_id');
 
         $.ajax({
             dataType: 'json',
             url: url,
             success: function (resp) {
                 //console.log(resp);
-                lga.empty();
+                district.empty();
                 $.each(resp, function (i, data) {
-                    lga.append($('<option>', {
+                    district.append($('<option>', {
+                        value: data.id,
+                        text: data.name
+                    }));
+                });
+
+            }
+        })
+    }
+
+    function getLocal(district_id){
+        var url = '{{ route('get_local', [':id']) }}';
+        url = url.replace(':id', district_id);
+        var local = $('#local_id');
+
+        $.ajax({
+            dataType: 'json',
+            url: url,
+            success: function (resp) {
+                //console.log(resp);
+                local.empty();
+                $.each(resp, function (i, data) {
+                    local.append($('<option>', {
                         value: data.id,
                         text: data.name
                     }));

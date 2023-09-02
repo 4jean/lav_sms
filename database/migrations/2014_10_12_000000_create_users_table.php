@@ -27,8 +27,9 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('phone2')->nullable();
             $table->unsignedInteger('bg_id')->nullable();
-            $table->unsignedInteger('state_id')->nullable();
-            $table->unsignedInteger('lga_id')->nullable();
+            $table->unsignedInteger('province_id')->nullable();
+            $table->unsignedInteger('district_id')->nullable();
+            $table->unsignedInteger('local_id')->nullable();
             $table->unsignedInteger('nal_id')->nullable();
             $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();

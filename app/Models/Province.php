@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Eloquent;
 
-class State extends Eloquent
+class Province extends Eloquent
 {
     public function ministry()
     {
