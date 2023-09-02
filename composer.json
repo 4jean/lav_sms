@@ -5,8 +5,8 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^7.2||^8.0",
-        "barryvdh/laravel-dompdf": "^0.8.3",
+        "php": "^8.0.2",
+        "barryvdh/laravel-dompdf": "^2.0.3",
         "fakerphp/faker": "^1.14",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
@@ -14,16 +14,14 @@
         "hashids/hashids": "^4.1.0",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.0",
-        "axios": ">=0.21.1"
+        "laravel/ui": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8",
         "facade/ignition": "^2.5",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.3.3",
-        "axios": ">=0.21.1"
+        "phpunit/phpunit": "^9.3.3"
     },
     "autoload": {
         "psr-4": {
