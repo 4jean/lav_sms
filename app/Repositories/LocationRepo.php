@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Models\Nationality;
 use App\Models\Province;
 use App\Models\District;
 use App\Models\Local;
@@ -17,11 +16,6 @@ class LocationRepo
     public function getAllProvinces()
     {
         return Province::orderBy('name', 'asc')->get();
-    }
-
-    public function getAllNationals()
-    {
-        return Nationality::orderBy('name', 'asc')->get();
     }
 
     public function getDistricts($province_id)

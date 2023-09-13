@@ -36,7 +36,6 @@ class UserController extends Controller
         $d['user_types'] = Qs::userIsAdmin() ? $ut2 : $ut;
         $d['provinces'] = $this->loc->getProvinces();
         $d['users'] = $this->user->getPTAUsers();
-        $d['nationals'] = $this->loc->getAllNationals();
         $d['blood_groups'] = $this->user->getBloodGroups();
         return view('pages.support_team.users.index', $d);
     }
@@ -48,7 +47,6 @@ class UserController extends Controller
         $d['provinces'] = $this->loc->getProvinces();
         $d['users'] = $this->user->getPTAUsers();
         $d['blood_groups'] = $this->user->getBloodGroups();
-        $d['nationals'] = $this->loc->getAllNationals();
         return view('pages.support_team.users.edit', $d);
     }
 
@@ -77,7 +75,7 @@ class UserController extends Controller
         $user_is_staff = in_array($user_type, Qs::getStaff());
         $user_is_teamSA = in_array($user_type, Qs::getTeamSA());
 
-        $staff_id = Qs::getAppCode().'/STAFF/'.date('Y/m', strtotime($req->emp_date)).'/'.mt_rand(1000, 9999);
+        $staff_id = $user_type.$data['phone'];
         $data['username'] = $uname = ($user_is_teamSA) ? $req->username : $staff_id;
 
         $pass = $req->password ?: $user_type;
