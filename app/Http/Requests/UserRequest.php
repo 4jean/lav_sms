@@ -33,7 +33,7 @@ class UserRequest extends FormRequest
             'province_id' => 'required',
             'district_id' => 'required',
             'local_id' => 'required',            
-            'nal_id' => 'required',
+            'ward' => 'required',
         ];
         $update =  [
             'name' => 'required|string|min:6|max:150',
@@ -46,7 +46,7 @@ class UserRequest extends FormRequest
             'province_id' => 'required',
             'district_id' => 'required',
             'local_id' => 'required',            
-            'nal_id' => 'required',
+            'ward' => 'required',
         ];
         return ($this->method() === 'POST') ? $store : $update;
     }
@@ -54,7 +54,6 @@ class UserRequest extends FormRequest
     public function attributes()
     {
         return  [
-            'nal_id' => 'Nationality',
             'province_id' => 'Province',
             'district_id' => 'District',
             'local_id' => 'Local Government',

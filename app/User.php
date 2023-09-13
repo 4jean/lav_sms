@@ -5,7 +5,6 @@ namespace App;
 use App\Models\BloodGroup;
 use App\Models\District;
 use App\Models\Local;
-use App\Models\Nationality;
 use App\Models\StaffRecord;
 use App\Models\Province;
 use App\Models\StudentRecord;
@@ -24,7 +23,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'email', 'phone', 'phone2', 'dob', 'gender', 'photo', 'address', 'bg_id', 'password', 'nal_id', 'province_id', 'district_id','local_id', 'code', 'user_type', 'email_verified_at'
+        'name', 'username', 'email', 'phone', 'phone2', 'doe', 'gender', 'photo', 'address', 'bg_id', 'password', 'ward', 'province_id', 'district_id','local_id', 'code', 'user_type', 'email_verified_at'
     ];
 
     /**
@@ -56,10 +55,6 @@ class User extends Authenticatable
         return $this->belongsTo(Province::class);
     }
 
-    public function nationality()
-    {
-        return $this->belongsTo(Nationality::class, 'nal_id');
-    }
 
     public function blood_group()
     {

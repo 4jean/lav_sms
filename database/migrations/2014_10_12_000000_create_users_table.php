@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('code', 100)->unique();
             $table->string('username', 100)->nullable()->unique();
             $table->string('user_type');
-            $table->string('dob')->nullable();
+            $table->string('doe')->nullable();
             $table->string('gender')->nullable();
             $table->string('photo')->default(Qs::getDefaultUserImage());
             $table->string('phone')->nullable();
@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('province_id')->nullable();
             $table->unsignedInteger('district_id')->nullable();
             $table->unsignedInteger('local_id')->nullable();
-            $table->unsignedInteger('nal_id')->nullable();
+            $table->string('ward')->nullable();
             $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

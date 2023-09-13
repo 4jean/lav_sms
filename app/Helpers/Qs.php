@@ -26,7 +26,7 @@ class Qs
 
     public static function getAppCode()
     {
-        return self::getSetting('system_title') ?: 'CJ';
+        return self::getSetting('system_title') ?: '977';
     }
 
     public static function getDefaultUserImage()
@@ -80,28 +80,28 @@ class Qs
 
     public static function hash($id)
     {
-        $date = date('dMY').'CJ';
+        $date = date('dMY').'977';
         $hash = new Hashids($date, 14);
         return $hash->encode($id);
     }
 
     public static function getUserRecord($remove = [])
     {
-        $data = ['name', 'email', 'phone', 'phone2', 'dob', 'gender', 'address', 'bg_id', 'nal_id', 'state_id', 'lga_id'];
+        $data = ['name', 'email', 'phone', 'phone2', 'doe', 'gender', 'address', 'bg_id', 'ward', 'province_id', 'district_id', 'local_id'];
 
         return $remove ? array_values(array_diff($data, $remove)) : $data;
     }
 
     public static function getStaffRecord($remove = [])
     {
-        $data = ['emp_date',];
+        $data = ['doe',];
 
         return $remove ? array_values(array_diff($data, $remove)) : $data;
     }
 
     public static function getStudentData($remove = [])
     {
-        $data = ['my_class_id', 'section_id', 'my_parent_id', 'dorm_id', 'dorm_room_no', 'year_admitted', 'house', 'age'];
+        $data = ['my_class_id', 'section_id', 'my_parent_id', 'year_admitted', 'house', 'age'];
 
         return $remove ? array_values(array_diff($data, $remove)) : $data;
 
@@ -109,7 +109,7 @@ class Qs
 
     public static function decodeHash($str, $toString = true)
     {
-        $date = date('dMY').'CJ';
+        $date = date('dMY').'977';
         $hash = new Hashids($date, 14);
         $decoded = $hash->decode($str);
         return $toString ? implode(',', $decoded) : $decoded;
@@ -360,7 +360,7 @@ class Qs
 
     public static function getDaysOfTheWeek()
     {
-        return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        return [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     }
 
 }

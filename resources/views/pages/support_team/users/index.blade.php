@@ -46,51 +46,10 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Address: <span class="text-danger">*</span></label>
-                                        <input value="{{ old('address') }}" class="form-control" placeholder="Address" name="address" type="text" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Email address: </label>
-                                        <input value="{{ old('email') }}" type="email" name="email" class="form-control" placeholder="your@email.com">
-                                    </div>
-                                </div>
-
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Username: </label>
                                         <input value="{{ old('username') }}" type="text" name="username" class="form-control" placeholder="Username">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Phone:</label>
-                                        <input value="{{ old('phone') }}" type="text" name="phone" class="form-control" placeholder="9841******" >
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Telephone:</label>
-                                        <input value="{{ old('phone2') }}" type="text" name="phone2" class="form-control" placeholder="145*****" >
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Date of Enrollment:</label>
-                                        <input autocomplete="off" name="emp_date" value="{{ old('emp_date') }}" type="text" class="form-control date-pick" placeholder="Select Date...">
-
                                     </div>
                                 </div>
 
@@ -101,6 +60,17 @@
                                     </div>
                                 </div>
 
+                                
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Email address: </label>
+                                        <input value="{{ old('email') }}" type="email" name="email" class="form-control" placeholder="your@email.com">
+                                    </div>
+                                </div>
+                                
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="gender">Gender: <span class="text-danger">*</span></label>
@@ -114,15 +84,18 @@
 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="nal_id">Nationality: <span class="text-danger">*</span></label>
-                                        <select data-placeholder="Choose..." required name="nal_id" id="nal_id" class="select-search form-control">
-                                            <option value="144">Nepal</option>
-                                            @foreach($nationals as $nal)
-                                                <option {{ (old('nal_id') == $nal->id ? 'selected' : '') }} value="{{ $nal->id }}">{{ $nal->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <label>Mobile No.:</label>
+                                        <input value="{{ old('phone') }}" type="text" name="phone" class="form-control" placeholder="9841******" >
                                     </div>
                                 </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Alternate Phone:</label>
+                                        <input value="{{ old('phone2') }}" type="text" name="phone2" class="form-control" placeholder="145*****" >
+                                    </div>
+                                </div>
+
                             </div>
 
                             <div class="row">
@@ -150,6 +123,33 @@
                                         <option value=""></option>
                                     </select>
                                 </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Ward No.: <span class="text-danger">*</span></label>
+                                        <input value="{{ old('ward') }}" class="form-control" placeholder="Ward No." name="ward" type="number" required>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Temporary Address: <span class="text-danger">*</span></label>
+                                        <input value="{{ old('address') }}" class="form-control" placeholder="Temporary Address" name="address" type="text" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Date of Enrollment:</label>
+                                        <input autocomplete="off" name="doe" value="{{ old('doe') }}" type="text" class="form-control date-pick" placeholder="Select Date...">
+
+                                    </div>
+                                </div>
+                                
                                 {{--BLOOD GROUP--}}
                                 <div class="col-md-3">
                                     <div class="form-group">
@@ -164,6 +164,8 @@
                                 </div>
 
                             </div>
+
+                            
 
                             <div class="row">
                                 {{--PASSPORT--}}
