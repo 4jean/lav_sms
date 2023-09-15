@@ -30,21 +30,18 @@ class StudentRecordUpdate extends FormRequest
             'bg_id' => 'sometimes|nullable',
             'my_class_id' => 'required',
             'section_id' => 'required',
-            'state_id' => 'required',
-            'lga_id' => 'required',
-            'nal_id' => 'required',
+            'province_id' => 'required',
+            'district_id' => 'required',
+            'ward' => 'required',
             'my_parent_id' => 'sometimes|nullable',
-            'dorm_id' => 'sometimes|nullable',
         ];
     }
 
     public function attributes()
     {
         return  [
-            'nal_id' => 'Nationality',
-            'dorm_id' => 'Dormitory',
-            'state_id' => 'State',
-            'lga_id' => 'LGA',
+            'province_id' => 'Province',
+            'district_id' => 'District',
             'bg_id' => 'Blood Group',
             'my_parent_id' => 'Parent',
             'my_class_id' => 'Class',
