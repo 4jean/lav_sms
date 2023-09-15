@@ -72,34 +72,39 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="nal_id">Nationality: <span class="text-danger">*</span></label>
-                                <select data-placeholder="Choose..." required name="nal_id" id="nal_id" class="select-search form-control">
-                                    <option value=""></option>
-                                    @foreach($nationals as $nal)
-                                        <option {{ (old('nal_id') == $nal->id ? 'selected' : '') }} value="{{ $nal->id }}">{{ $nal->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
 
-                        <div class="col-md-3">
-                            <label for="state_id">State: <span class="text-danger">*</span></label>
-                            <select onchange="getLGA(this.value)" required data-placeholder="Choose.." class="select-search form-control" name="state_id" id="state_id">
-                                <option value=""></option>
-                                @foreach($states as $st)
-                                    <option {{ (old('state_id') == $st->id ? 'selected' : '') }} value="{{ $st->id }}">{{ $st->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
 
-                        <div class="col-md-3">
-                            <label for="lga_id">LGA: <span class="text-danger">*</span></label>
-                            <select required data-placeholder="Select State First" class="select-search form-control" name="lga_id" id="lga_id">
-                                <option value=""></option>
-                            </select>
-                        </div>
+                        {{--Province--}}
+                                <div class="col-md-3">
+                                    <label for="province_id">Province: <span class="text-danger">*</span></label>
+                                    <select onchange="getDistrict(this.value)" required data-placeholder="Choose.." class="select-search form-control" name="province_id" id="province_id">
+                                        <option value=""></option>
+                                        @foreach($provinces as $st)
+                                            <option {{ (old('province_id') == $st->id ? 'selected' : '') }} value="{{ $st->id }}">{{ $st->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                {{--District--}}
+                                <div class="col-md-3">
+                                    <label for="district_id">District: <span class="text-danger">*</span></label>
+                                    <select onchange="getLocal(this.value)" required data-placeholder="Select Province First" class="select-search form-control" name="district_id" id="district_id">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                {{--Local Government--}}
+                                <div class="col-md-3">
+                                    <label for="local_id">Local Government: <span class="text-danger">*</span></label>
+                                    <select required data-placeholder="Select District First" class="select-search form-control" name="local_id" id="local_id">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Ward No.: <span class="text-danger">*</span></label>
+                                        <input value="{{ old('ward') }}" class="form-control" placeholder="Ward No." name="ward" type="number" required>
+                                    </div>
+                                </div>
                     </div>
                     <div class="row">
 
@@ -175,31 +180,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label for="dorm_id">Dormitory: </label>
-                            <select data-placeholder="Choose..."  name="dorm_id" id="dorm_id" class="select-search form-control">
-                                <option value=""></option>
-                                @foreach($dorms as $d)
-                                    <option {{ (old('dorm_id') == $d->id) ? 'selected' : '' }} value="{{ $d->id }}">{{ $d->name }}</option>
-                                    @endforeach
-                            </select>
-
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Dormitory Room No:</label>
-                                <input type="text" name="dorm_room_no" placeholder="Dormitory Room No" class="form-control" value="{{ old('dorm_room_no') }}">
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Sport House:</label>
-                                <input type="text" name="house" placeholder="Sport House" class="form-control" value="{{ old('house') }}">
-                            </div>
-                        </div>
+                    <div class="row">                       
 
                         <div class="col-md-3">
                             <div class="form-group">
