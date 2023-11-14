@@ -1,7 +1,7 @@
-<div class="navbar navbar-expand-md navbar-dark">
+<div class="navbar navbar-expand-md navbar-dark bg-primary">
     <div class="mt-2 mr-5">
         <a href="{{ route('dashboard') }}" class="d-inline-block">
-        <h4 class="text-bold text-white">{{ Qs::getSystemName() }}</h4>
+        <h4 class="text-bold text-white">CHMSC SYSTEM</h4>
         </a>
     </div>
   {{--  <div class="navbar-brand">
@@ -36,7 +36,7 @@
 
             <li class="nav-item dropdown dropdown-user">
                 <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-                    <img style="width: 38px; height:38px;" src="{{ Auth::user()->photo }}" class="rounded-circle" alt="photo">
+                    <!-- <img style="width: 38px; height:38px;" src="{{ Auth::user()->photo }}" class="rounded-circle" alt="photo"> -->
                     <span>{{ Auth::user()->name }}</span>
                 </a>
 

@@ -1,4 +1,4 @@
-<div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
+<div class="sidebar sidebar-dark bg-success sidebar-main sidebar-expand-md">
 
     <!-- Sidebar mobile toggler -->
     <div class="sidebar-mobile-toggler text-center">
@@ -20,9 +20,9 @@
         <div class="sidebar-user">
             <div class="card-body">
                 <div class="media">
-                    <div class="mr-3">
+                    <!-- <div class="mr-3">
                         <a href="{{ route('my_account') }}"><img src="{{ Auth::user()->photo }}" width="38" height="38" class="rounded-circle" alt="photo"></a>
-                    </div>
+                    </div> -->
 
                     <div class="media-body">
                         <div class="media-title font-weight-semibold">{{ Auth::user()->name }}</div>

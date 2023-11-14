@@ -8,7 +8,7 @@
 
     <div class="navbar-collapse collapse" id="navbar-footer">
 					<span class="navbar-text">
-						&copy; {{ date('Y') }}. <a href="#">{{ Qs::getSystemName() }}</a> by <a href="#" >CJ Inspired</a>
+						&copy; {{ date('Y') }}. <a href="#"></a><a href="#" >CHMSC SCHOOL MANAGEMENT SYSTEM</a>
 					</span>
 
         <ul class="navbar-nav ml-lg-auto">

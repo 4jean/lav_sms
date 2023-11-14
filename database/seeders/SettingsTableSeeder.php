@@ -16,14 +16,14 @@ class SettingsTableSeeder extends Seeder
         DB::table('settings')->delete();
 
         $data = [
-            ['type' => 'current_session', 'description' => '2018-2019'],
-            ['type' => 'system_title', 'description' => 'CJIA'],
-            ['type' => 'system_name', 'description' => 'CJ INSPIRED ACADEMY'],
-            ['type' => 'term_ends', 'description' => '7/10/2018'],
-            ['type' => 'term_begins', 'description' => '7/10/2018'],
-            ['type' => 'phone', 'description' => '0123456789'],
-            ['type' => 'address', 'description' => '18B North Central Park, Behind Central Square Tourist Center'],
-            ['type' => 'system_email', 'description' => 'cjacademy@cj.com'],
+            ['type' => 'current_session', 'description' => '2021-2022'],
+            ['type' => 'system_title', 'description' => 'CHMSC'],
+            ['type' => 'system_name', 'description' => 'CHMSC BINALBAGAN'],
+            ['type' => 'term_ends', 'description' => '08/23/25'],
+            ['type' => 'term_begins', 'description' => '08/23/2021'],
+            ['type' => 'phone', 'description' => '09123456789'],
+            ['type' => 'address', 'description' => 'BRGY.ENCLARO, BINALBAGAN,NEGROS OCCIDENTAL '],
+            ['type' => 'system_email', 'description' => 'ado@gmail.com'],
             ['type' => 'alt_email', 'description' => ''],
             ['type' => 'email_host', 'description' => ''],
             ['type' => 'email_pass', 'description' => ''],
