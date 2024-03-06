@@ -20,34 +20,29 @@ class SettingController extends Controller
 
     public function index()
     {
-         $s = $this->setting->all();
-         $d['class_types'] = $this->my_class->getTypes();
-         $d['s'] = $s->flatMap(function($s){
-            return [$s->type => $s->description];
-        });
-        return view('pages.super_admin.settings', $d);
+        $s = $this->setting->pluck('description', 'type');
+        $class_types = $this->my_class->getTypes();
+
+        return view('pages.super_admin.settings', compact('s', 'class_types'));
     }
 
     public function update(SettingUpdate $req)
     {
         $sets = $req->except('_token', '_method', 'logo');
         $sets['lock_exam'] = $sets['lock_exam'] == 1 ? 1 : 0;
-        $keys = array_keys($sets);
-        $values = array_values($sets);
-        for($i=0; $i<count($sets); $i++){
-            $this->setting->update($keys[$i], $values[$i]);
+
+        foreach ($sets as $key => $value) {
+            $this->setting->update($key, $value);
         }
 
-        if($req->hasFile('logo')) {
+        if ($req->hasFile('logo')) {
             $logo = $req->file('logo');
             $f = Qs::getFileMetaData($logo);
-            $f['name'] = 'logo.' . $f['ext'];
-            $f['path'] = $logo->storeAs(Qs::getPublicUploadPath(), $f['name']);
-            $logo_path = asset('storage/' . $f['path']);
+            $logo_path = asset('storage/' . $logo->storeAs(Qs::getPublicUploadPath(), 'logo.' . $f['ext']));
             $this->setting->update('logo', $logo_path);
         }
 
         return back()->with('flash_success', __('msg.update_ok'));
-
     }
+
 }

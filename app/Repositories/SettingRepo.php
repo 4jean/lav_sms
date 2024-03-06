@@ -21,4 +21,5 @@ class SettingRepo
     {
         return Setting::all();
     }
+
 }
