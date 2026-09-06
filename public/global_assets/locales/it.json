@@ -1,0 +1,64 @@
+{
+    "app": {
+        "name": "Limitless - Responsive Web Application Kit"
+    },
+
+    "nav_inline": {
+        "user": {
+        	"name": "Victoria Baker",
+        	"location": "Santa Ana, CA"
+    	},
+        "nav": {
+        	"header": "Intestazione barra laterale",
+        	"top_level": "Collegamento di primo livello",
+        	"with_children": {
+        		"main": "Con sottomenu",
+        		"second_one": "Collegamento di secondo livello 1",
+        		"second_two": "Collegamento di secondo livello 2"
+        	},
+        	"multiple_levels": {
+        		"main": "Livelli multipli",
+        		"second_one": "Collegamento di secondo livello 1",
+        		"second_child": {
+        			"main": "Secondo livello con sottomenu",
+        			"third_one": "Collegamento di terzo livello 1",
+        			"third_two": "Collegamento di terzo livello 2"
+        		},
+        		"second_three": "Collegamento di secondo livello 3",
+        		"disabled": "Collegamento disattivato"
+        	}
+    	}
+    },
+
+    "nav_advanced": {
+        "user": {
+        	"name": "Victoria Baker",
+        	"location": "Santa Ana, CA"
+    	},
+        "nav": {
+        	"header": "Intestazione barra laterale",
+        	"tooltip": "Suggerimento",
+        	"tooltip_text": "Testo del suggerimento",
+        	"inline_element": "Elemento in linea",
+        	"insert": "Inserisci HTML da JSON",
+        	"inline_text": "Testo normale",
+        	"badges": {
+        		"done": "<span class='badge bg-success'>Fatto</span>",
+        		"fixed": "Risolto",
+        		"new": "Nuovo",
+        		"text": "Testo in linea"
+        	},
+        	"multiple_levels": {
+        		"main": "Livelli multipli",
+        		"second_one": "Collegamento di secondo livello 1",
+        		"second_child": {
+        			"main": "Secondo livello con sottomenu",
+        			"third_one": "Collegamento di terzo livello 1",
+        			"third_two": "Collegamento di terzo livello 2"
+        		},
+        		"second_three": "Collegamento di secondo livello 3",
+        		"disabled": "Collegamento disattivato"
+        	}
+    	}
+    }
+}
