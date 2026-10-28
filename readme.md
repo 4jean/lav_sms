@@ -1,6 +1,6 @@
 ## **Laravel School Management System** 
 
-**LAVSMS** is developed for educational institutions like schools and colleges built on Laravel 8
+**LAVSMS** is developed for educational institutions like schools and colleges built on Laravel 12
 
 **SCREENSHOTS** 
 

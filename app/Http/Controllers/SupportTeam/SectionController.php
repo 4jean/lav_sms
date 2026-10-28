@@ -8,18 +8,28 @@ use App\Http\Requests\Section\SectionUpdate;
 use App\Repositories\MyClassRepo;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepo;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class SectionController extends Controller
+class SectionController extends Controller implements HasMiddleware
 {
     protected $my_class, $user;
 
     public function __construct(MyClassRepo $my_class, UserRepo $user)
     {
-        $this->middleware('teamSA', ['except' => ['destroy',] ]);
-        $this->middleware('super_admin', ['only' => ['destroy',] ]);
-
         $this->my_class = $my_class;
         $this->user = $user;
+    }
+
+    /**
+     * Get the middleware that should be assigned to the controller.
+     */
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('teamSA', except: ['destroy']),
+            new Middleware('super_admin', only: ['destroy']),
+        ];
     }
 
     public function index()
@@ -44,7 +54,7 @@ class SectionController extends Controller
         $d['s'] = $s = $this->my_class->findSection($id);
         $d['teachers'] = $this->user->getUserByType('teacher');
 
-        return is_null($s) ? Qs::goWithDanger('sections.index') :view('pages.support_team.sections.edit', $d);
+        return is_null($s) ? Qs::goWithDanger('sections.index') : view('pages.support_team.sections.edit', $d);
     }
 
     public function update(SectionUpdate $req, $id)
@@ -57,7 +67,7 @@ class SectionController extends Controller
 
     public function destroy($id)
     {
-        if($this->my_class->isActiveSection($id)){
+        if ($this->my_class->isActiveSection($id)) {
             return back()->with('pop_warning', 'Every class must have a default section, You Cannot Delete It');
         }
 

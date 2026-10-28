@@ -7,8 +7,10 @@ use App\Http\Requests\Grade\GradeUpdate;
 use App\Repositories\ExamRepo;
 use App\Http\Controllers\Controller;
 use App\Repositories\MyClassRepo;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class GradeController extends Controller
+class GradeController extends Controller implements HasMiddleware
 {
     protected $exam, $my_class;
 
@@ -16,15 +18,23 @@ class GradeController extends Controller
     {
         $this->exam = $exam;
         $this->my_class = $my_class;
+    }
 
-        $this->middleware('teamSA', ['except' => ['destroy',] ]);
-        $this->middleware('super_admin', ['only' => ['destroy',] ]);
+    /**
+     * Get the middleware that should be assigned to the controller.
+     */
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('teamSA', except: ['destroy']),
+            new Middleware('super_admin', only: ['destroy']),
+        ];
     }
 
     public function index()
     {
-         $d['grades'] = $this->exam->allGrades();
-         $d['class_types'] = $this->my_class->getTypes();
+        $d['grades'] = $this->exam->allGrades();
+        $d['class_types'] = $this->my_class->getTypes();
         return view('pages.support_team.grades.index', $d);
     }
 

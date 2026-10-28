@@ -8,18 +8,28 @@ use App\Http\Requests\Subject\SubjectUpdate;
 use App\Repositories\MyClassRepo;
 use App\Repositories\UserRepo;
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class SubjectController extends Controller
+class SubjectController extends Controller implements HasMiddleware
 {
     protected $my_class, $user;
 
     public function __construct(MyClassRepo $my_class, UserRepo $user)
     {
-        $this->middleware('teamSA', ['except' => ['destroy',] ]);
-        $this->middleware('super_admin', ['only' => ['destroy',] ]);
-
         $this->my_class = $my_class;
         $this->user = $user;
+    }
+
+    /**
+     * Get the middleware that should be assigned to the controller.
+     */
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('teamSA', except: ['destroy']),
+            new Middleware('super_admin', only: ['destroy']),
+        ];
     }
 
     public function index()

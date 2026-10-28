@@ -7,16 +7,26 @@ use App\Http\Requests\Exam\ExamCreate;
 use App\Http\Requests\Exam\ExamUpdate;
 use App\Repositories\ExamRepo;
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class ExamController extends Controller
+class ExamController extends Controller implements HasMiddleware
 {
     protected $exam;
     public function __construct(ExamRepo $exam)
     {
-        $this->middleware('teamSA', ['except' => ['destroy',] ]);
-        $this->middleware('super_admin', ['only' => ['destroy',] ]);
-
         $this->exam = $exam;
+    }
+
+    /**
+     * Get the middleware that should be assigned to the controller.
+     */
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('teamSA', except: ['destroy']),
+            new Middleware('super_admin', only: ['destroy']),
+        ];
     }
 
     public function index()

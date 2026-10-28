@@ -12,6 +12,7 @@ use App\Repositories\MyClassRepo;
 use App\Repositories\TimeTableRepo;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Validator;
 
 class TimeTableController extends Controller
 {
@@ -107,7 +108,7 @@ class TimeTableController extends Controller
 
     public function use_time_slot(Request $req, $ttr_id)
     {
-        $this->validate($req, ['ttr_id' => 'required'], [], ['ttr_id' => 'TimeTable Record']);
+        Validator::make($req->toArray(), ['ttr_id' => 'required'], [], ['ttr_id' => 'TimeTable Record'])->validate();
 
         $d = [];  //  Empty Current Time Slot Before Adding New
         $this->tt->deleteTimeSlots(['ttr_id' => $ttr_id]);

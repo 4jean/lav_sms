@@ -37,8 +37,8 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        $d=[];
-        if(Qs::userIsTeamSAT()){
+        $d = [];
+        if (Qs::userIsTeamSAT()) {
             $d['users'] = $this->user->getAll();
         }
 

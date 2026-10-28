@@ -7,17 +7,27 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dorm\DormCreate;
 use App\Http\Requests\Dorm\DormUpdate;
 use App\Repositories\DormRepo;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class DormController extends Controller
+class DormController extends Controller implements HasMiddleware
 {
-    protected  $dorm;
+    protected $dorm;
 
     public function __construct(DormRepo $dorm)
     {
-        $this->middleware('teamSA', ['except' => ['destroy',] ]);
-        $this->middleware('super_admin', ['only' => ['destroy',] ]);
-
         $this->dorm = $dorm;
+    }
+
+    /**
+     * Get the middleware that should be assigned to the controller.
+     */
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('teamSA', except: ['destroy']),
+            new Middleware('super_admin', only: ['destroy']),
+        ];
     }
 
     public function index()
