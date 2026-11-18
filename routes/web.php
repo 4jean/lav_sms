@@ -161,6 +161,12 @@ Route::group(['namespace' => 'SuperAdmin','middleware' => 'super_admin', 'prefix
 
     Route::get('/settings', 'SettingController@index')->name('settings');
     Route::put('/settings', 'SettingController@update')->name('settings.update');
+    Route::get('/schools', 'SchoolController@index')->name('saas.schools.index');
+    Route::post('/schools', 'SchoolController@store')->name('saas.schools.store');
+    Route::get('/schools/{school}', 'SchoolController@show')->name('saas.schools.show');
+    Route::put('/schools/{school}', 'SchoolController@update')->name('saas.schools.update');
+    Route::patch('/schools/{school}/status', 'SchoolController@setStatus')->name('saas.schools.status');
+
     Route::post('/subscriptions', 'SchoolSubscriptionController@store')->name('saas.subscriptions.store');
     Route::put('/subscriptions/{subscription}', 'SchoolSubscriptionController@update')->name('saas.subscriptions.update');
 
