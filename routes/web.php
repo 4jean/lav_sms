@@ -1,13 +1,13 @@
 <?php
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 //Route::get('/test', 'TestController@index')->name('test');
 Route::get('/privacy-policy', 'HomeController@privacy_policy')->name('privacy_policy');
 Route::get('/terms-of-use', 'HomeController@terms_of_use')->name('terms_of_use');
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'subscription.active']], function () {
 
     Route::get('/', 'HomeController@dashboard')->name('home');
     Route::get('/home', 'HomeController@dashboard')->name('home');
@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'students'], function(){
             Route::get('reset_pass/{st_id}', 'StudentRecordController@reset_pass')->name('st.reset_pass');
             Route::get('graduated', 'StudentRecordController@graduated')->name('students.graduated');
-            Route::put('not_graduated/{id}', 'StudentRecordController@not_graduated')->name('st.not_graduated');
+            Route::put('not_graduated/{id}', 'StudentRecordController@not_graduated')->name('st.not_graduated')->middleware('teamSA');
             Route::get('list/{class_id}', 'StudentRecordController@listByClass')->name('students.list')->middleware('teamSAT');
 
             /* Promotions */
@@ -66,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
 
                 Route::get('show/{ttr}', 'TimeTableController@show_record')->name('ttr.show');
                 Route::get('print/{ttr}', 'TimeTableController@print_record')->name('ttr.print');
-                Route::delete('/{ttr}', 'TimeTableController@delete_record')->name('ttr.destroy');
+                Route::delete('/{ttr}', 'TimeTableController@delete_record')->name('ttr.destroy')->middleware('teamSA');
 
             });
 
@@ -161,6 +161,14 @@ Route::group(['namespace' => 'SuperAdmin','middleware' => 'super_admin', 'prefix
 
     Route::get('/settings', 'SettingController@index')->name('settings');
     Route::put('/settings', 'SettingController@update')->name('settings.update');
+    Route::get('/schools', 'SchoolController@index')->name('saas.schools.index');
+    Route::post('/schools', 'SchoolController@store')->name('saas.schools.store');
+    Route::get('/schools/{school}', 'SchoolController@show')->name('saas.schools.show');
+    Route::put('/schools/{school}', 'SchoolController@update')->name('saas.schools.update');
+    Route::patch('/schools/{school}/status', 'SchoolController@setStatus')->name('saas.schools.status');
+
+    Route::post('/subscriptions', 'SchoolSubscriptionController@store')->name('saas.subscriptions.store');
+    Route::put('/subscriptions/{subscription}', 'SchoolSubscriptionController@update')->name('saas.subscriptions.update');
 
 });
 

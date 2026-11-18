@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\BelongsToSchool;
+
 use App\User;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class StudentRecord extends Eloquent
 {
+    use BelongsToSchool;
     use HasFactory;
 
     protected $fillable = [

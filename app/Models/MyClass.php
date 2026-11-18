@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\BelongsToSchool;
+
 use Eloquent;
 
 class MyClass extends Eloquent
 {
+    use BelongsToSchool;
     protected $fillable = ['name', 'class_type_id'];
 
     public function section()

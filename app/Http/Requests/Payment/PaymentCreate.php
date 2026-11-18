@@ -21,7 +21,7 @@ class PaymentCreate extends FormRequest
     {
         return [
             'title' => 'required|string|min:3',
-            'amount' => 'required',
+            'amount' => 'required|numeric|min:0.01',
         ];
     }
 

@@ -14,6 +14,7 @@ use App\Repositories\StudentRepo;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use PDF;
 
 class PaymentController extends Controller
@@ -133,23 +134,34 @@ class PaymentController extends Controller
     public function pay_now(Request $req, $pr_id)
     {
         $this->validate($req, [
-            'amt_paid' => 'required|numeric'
+            'amt_paid' => 'required|numeric|min:0.01'
         ], [], ['amt_paid' => 'Amount Paid']);
 
-        $pr = $this->pay->findRecord($pr_id);
-        $payment = $this->pay->find($pr->payment_id);
-        $d['amt_paid'] = $amt_p = $pr->amt_paid + $req->amt_paid;
-        $d['balance'] = $bal = $payment->amount - $amt_p;
-        $d['paid'] = $bal < 1 ? 1 : 0;
+        DB::transaction(function () use ($req, $pr_id) {
+            $pr = \App\Models\PaymentRecord::whereKey($pr_id)->lockForUpdate()->firstOrFail();
+            $payment = $this->pay->find($pr->payment_id);
+            $remaining = max(0, (float) $payment->amount - (float) $pr->amt_paid);
+            $amount = (float) $req->amt_paid;
 
-        $this->pay->updateRecord($pr_id, $d);
+            abort_if($amount > $remaining, 422, 'Amount paid cannot exceed the outstanding balance.');
 
-        $d2['amt_paid'] = $req->amt_paid;
-        $d2['balance'] = $bal;
-        $d2['pr_id'] = $pr_id;
-        $d2['year'] = $this->year;
+            $amountPaid = (float) $pr->amt_paid + $amount;
+            $balance = max(0, (float) $payment->amount - $amountPaid);
 
-        $this->pay->createReceipt($d2);
+            $pr->update([
+                'amt_paid' => $amountPaid,
+                'balance' => $balance,
+                'paid' => $balance === 0.0 ? 1 : 0,
+            ]);
+
+            $this->pay->createReceipt([
+                'amt_paid' => $amount,
+                'balance' => $balance,
+                'pr_id' => $pr_id,
+                'year' => $this->year,
+            ]);
+        });
+
         return Qs::jsonUpdateOk();
     }
 
